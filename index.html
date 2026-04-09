@@ -386,7 +386,7 @@
     /* ===== HERO SECTION ===== */
     .hero {
       background: var(--bg-dark);
-      padding: 64px 0 64px;
+      padding: clamp(96px, 10vw, 140px) 0 64px;
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -1511,7 +1511,7 @@
         z-index: 1000;
       }
 
-      .hero { padding: 56px 0 40px; min-height: auto; }
+      .hero { padding: 96px 0 40px; min-height: auto; }
     }
 
     /* ================================
@@ -1589,7 +1589,7 @@
         z-index: 1000;
       }
 
-      .hero { padding: 64px 0 48px; min-height: auto; }
+      .hero { padding: 96px 0 48px; min-height: auto; }
     }
 
     /* ================================
@@ -1914,7 +1914,7 @@
   <!-- ===== NAVIGATION ===== -->
   <nav class="nav-container">
     <div class="nav-inner">
-      <a href="/" class="logo">TRIDGE</a>
+      <a href="index.html" class="logo">TRIDGE</a>
 
       <div class="nav-links">
         <div class="nav-dropdown">
