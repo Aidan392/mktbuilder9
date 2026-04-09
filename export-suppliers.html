@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scale Your Buyer Reach — Tridge Export Solution</title>
+  <meta name="description" content="Reach 10,000+ verified buyers without growing your team. Tridge runs your outreach at scale — 5–10 qualified introductions within 60 days.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Scale Your Buyer Reach — Tridge Export Solution">
+  <meta property="og:description" content="Automated outreach to 200,000+ verified buyers. Qualified introductions within 60 days.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== CSS RESET & BASE ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --blue:  #171CFD;
+      --black: #0A0A18;
+      --white: #ffffff;
+      --gray-bg: #f8f9fa;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --green: #0edba5;
+    }
+
+    html { scroll-behavior: smooth; font-size: clamp(14px, 1.1vw, 18px); }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--black);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+    body.menu-open { overflow: hidden; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; height: auto; display: block; }
+    button { border: none; background: none; cursor: pointer; font-family: inherit; }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      width: 90%;
+      max-width: 1440px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: clamp(16px, 3vw, 48px);
+      padding-right: clamp(16px, 3vw, 48px);
+    }
+
+    /* ===== SCROLL REVEAL ===== */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .scroll-reveal.is-visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ===== NAVIGATION ===== */
+    .nav-container {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 24, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-inner {
+      width: 90%;
+      max-width: 1440px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: clamp(16px, 3vw, 48px);
+      padding-right: clamp(16px, 3vw, 48px);
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .logo { font-size: 24px; font-weight: 800; color: #ffffff; text-decoration: none; }
+
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-dropdown { position: relative; }
+
+    .nav-link-dropdown {
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .nav-link-dropdown:hover { color: #34c6ee; }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%; left: 0;
+      margin-top: 16px;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+      min-width: 260px;
+      padding: 8px 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+    }
+    .nav-dropdown.is-open .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+
+    .dropdown-menu a {
+      display: flex;
+      flex-direction: column;
+      padding: 12px 20px;
+      color: #0A0A18;
+      transition: background 0.2s;
+    }
+    .dropdown-menu a:hover { background: #f4f4f8; }
+    .dropdown-menu strong { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .dropdown-menu span { font-size: 13px; color: #666666; }
+
+    .nav-ctas { display: flex; gap: 12px; align-items: center; }
+
+    .btn-nav-secondary {
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-nav-secondary:hover { border-color: #ffffff; background: rgba(255,255,255,0.05); }
+
+    .btn-nav-primary {
+      background: var(--blue);
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-nav-primary:hover { background: #0f14c7; }
+
+    .mobile-menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      padding: 8px;
+    }
+    .mobile-menu-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #ffffff;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* ===================================================================
+       SECTION 1 — HERO
+    =================================================================== */
+    .hero-nm {
+      position: relative;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      padding-top: 72px;
+      background: var(--black);
+      overflow: hidden;
+    }
+
+    .hero-nm-img {
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 55%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+    }
+
+    .hero-nm-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #0A0A18 0%, #0A0A18 42%, transparent 70%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-nm .container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+
+    .hero-nm-inner {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      align-items: center;
+      padding: clamp(48px, 6vw, 80px) 0;
+    }
+
+    .hero-nm-content { max-width: 560px; }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.6);
+      font-size: 13px;
+      font-weight: 400;
+      text-decoration: none;
+      transition: color 0.2s;
+      margin-bottom: 16px;
+    }
+    .back-link:hover { color: #ffffff; }
+
+    .hero-nm-label {
+      display: block;
+      color: rgba(255,255,255,0.5);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    .hero-nm-headline {
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 300;
+      color: #ffffff;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero-nm-sub {
+      font-size: 17px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
+      margin-bottom: 32px;
+      max-width: 480px;
+    }
+
+    .btn-hero-nm {
+      display: inline-block;
+      background: var(--blue);
+      color: #ffffff;
+      padding: 14px 32px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-hero-nm:hover { background: #0f14c7; }
+
+    .hero-nm-stats {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-top: 48px;
+    }
+
+    .hero-stat {
+      flex: 1;
+      padding-right: 24px;
+    }
+    .hero-stat + .hero-stat {
+      padding-left: 24px;
+      padding-right: 24px;
+      border-left: 1px solid rgba(255,255,255,0.15);
+    }
+    .hero-stat:last-child { padding-right: 0; }
+
+    .hero-stat-num {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 300;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+
+    .hero-stat-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 4px;
+    }
+
+    /* ===================================================================
+       SECTION 2 — PROBLEM
+    =================================================================== */
+    .problem-nm {
+      background: var(--gray-bg);
+      padding: clamp(48px, 6vw, 96px) 0;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--blue);
+      margin-bottom: 16px;
+    }
+
+    .section-headline {
+      font-size: clamp(28px, 3vw, 48px);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 48px;
+    }
+
+    .problem-nm-header { text-align: center; max-width: 640px; margin: 0 auto 48px; }
+
+    .problem-nm-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .problem-card-nm {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .problem-card-nm:hover { border-color: rgba(23,28,253,0.2); box-shadow: 0 4px 20px rgba(23,28,253,0.06); }
+
+    .pcard-num {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--blue);
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .pcard-cost {
+      display: inline-block;
+      background: #fef2f2;
+      color: #dc2626;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 4px;
+      padding: 4px 10px;
+      margin-bottom: 20px;
+    }
+
+    .pcard-title {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+
+    .pcard-body {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .pcard-icon {
+      margin-top: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(23,28,253,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-self: flex-start;
+    }
+
+    /* ===================================================================
+       SECTION 3 — HOW IT WORKS
+    =================================================================== */
+    .hiw-nm {
+      background: var(--black);
+      padding: clamp(48px, 6vw, 96px) 0;
+    }
+
+    .hiw-nm-inner {
+      display: grid;
+      grid-template-columns: 40% 60%;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .hiw-nm-left {}
+
+    .hiw-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 16px;
+    }
+
+    .hiw-headline {
+      font-size: clamp(28px, 3vw, 48px);
+      font-weight: 300;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 40px;
+    }
+
+    .hiw-steps { display: flex; flex-direction: column; gap: 8px; }
+
+    .hiw-step {
+      border: 1px solid transparent;
+      border-radius: 12px;
+      padding: 20px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .hiw-step:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+
+    .day-tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.7);
+      border: 1px solid rgba(255,255,255,0.15);
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 4px;
+      padding: 3px 8px;
+      margin-bottom: 10px;
+      letter-spacing: 0.05em;
+    }
+
+    .hiw-step-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .hiw-step-body {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+    }
+
+    .hiw-step-icon {
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Dashboard mockup */
+    .hiw-nm-right {}
+
+    .dash-nm {
+      background: #0d1117;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+      overflow: hidden;
+    }
+
+    .dash-nm-bar {
+      background: rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dash-dots-nm { display: flex; gap: 6px; }
+    .dash-dot-nm {
+      width: 10px; height: 10px; border-radius: 50%;
+    }
+    .dot-red { background: #ff5f57; }
+    .dot-yellow { background: #febc2e; }
+    .dot-green { background: #28c840; }
+
+    .dash-nm-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.1em;
+      flex: 1;
+      text-align: center;
+    }
+
+    .dash-nm-live {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #0edba5;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .live-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #0edba5;
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+
+    .dash-nm-body { padding: 20px; }
+
+    .dash-campaign-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .dash-campaign-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .dash-campaign-val {
+      font-size: 13px;
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .dash-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .dash-metric-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .dash-metric-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .dash-metric-num {
+      font-size: 28px;
+      font-weight: 300;
+      color: #ffffff;
+      line-height: 1;
+    }
+    .dash-metric-num.accent { color: #0edba5; }
+
+    .dash-leads-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+
+    .dash-leads-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+
+    .dash-lead-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 6px;
+      padding: 10px 14px;
+    }
+
+    .lead-tier {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      border-radius: 4px;
+      padding: 2px 7px;
+      white-space: nowrap;
+    }
+    .tier-1 { background: rgba(23,28,253,0.25); color: #6583FF; }
+    .tier-2 { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); }
+
+    .lead-name { font-size: 13px; font-weight: 500; color: #ffffff; flex: 1; }
+    .lead-country { font-size: 12px; color: rgba(255,255,255,0.4); }
+    .lead-arrow { color: var(--blue); font-size: 14px; }
+
+    .dash-progress-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .dash-progress-label { font-size: 11px; color: rgba(255,255,255,0.4); }
+
+    .dash-progress-track {
+      width: 100%;
+      height: 4px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .dash-progress-fill {
+      height: 100%;
+      width: 55%;
+      background: linear-gradient(to right, #171CFD, #0edba5);
+      border-radius: 2px;
+    }
+
+    /* ===================================================================
+       SECTION 4 — WHAT YOU GET
+    =================================================================== */
+    .wyg-nm {
+      background: #ffffff;
+      padding: clamp(48px, 6vw, 96px) 0;
+    }
+
+    .wyg-header { text-align: center; max-width: 640px; margin: 0 auto 56px; }
+    .wyg-header .section-headline { font-size: clamp(24px, 2.8vw, 42px); white-space: nowrap; }
+
+    /* Vertical timeline layout */
+    .wyg-vt {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .wyg-vt-row {
+      display: grid;
+      grid-template-columns: 100px 40px 1fr;
+      gap: 0;
+      min-height: 160px;
+    }
+
+    .wyg-vt-day {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--blue);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: right;
+      padding-right: 24px;
+      padding-top: 4px;
+    }
+
+    .wyg-vt-node-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .wyg-vt-circle {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      border: 2px solid var(--blue);
+      background: #ffffff;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .wyg-vt-circle.filled { background: var(--blue); }
+
+    .wyg-vt-line {
+      width: 2px;
+      flex: 1;
+      background: rgba(23,28,253,0.2);
+      margin-top: 4px;
+    }
+    .wyg-vt-row:last-child .wyg-vt-line { display: none; }
+
+    .wyg-vt-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-left: 3px solid transparent;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 20px;
+      margin-left: 16px;
+      transition: box-shadow 0.2s;
+    }
+    .wyg-vt-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    .wyg-vt-card.core-card { border-left: 3px solid var(--blue); }
+
+    .wyg-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 4px;
+      padding: 3px 8px;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .wyg-tag.intelligence { background: #eff6ff; color: var(--blue); }
+    .wyg-tag.active { background: #f0fdf4; color: #16a34a; }
+    .wyg-tag.core { background: var(--blue); color: #ffffff; }
+
+    .wyg-card-title {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .wyg-card-body {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .wyg-card-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      border-top: 1px solid #f3f4f6;
+      padding-top: 12px;
+      margin-top: 16px;
+      line-height: 1.6;
+    }
+    .wyg-vt-card.core-card .wyg-card-meta {
+      color: var(--blue);
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    /* ===================================================================
+       SECTION 5 — PROOF
+    =================================================================== */
+    .proof-nm {
+      background: var(--black);
+      padding: clamp(48px, 6vw, 96px) 0;
+      padding-bottom: clamp(64px, 8vw, 120px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .proof-numbers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      text-align: center;
+      margin-bottom: 72px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .proof-num-item {
+      padding: 48px 32px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .proof-num-item:last-child { border-right: none; }
+
+    .proof-big-num {
+      font-size: clamp(40px, 5vw, 72px);
+      font-weight: 300;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+
+    .proof-big-label {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    .proof-table-header { text-align: center; margin-bottom: 32px; }
+
+    .proof-table-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .proof-table-headline {
+      font-size: clamp(24px, 2.5vw, 40px);
+      font-weight: 300;
+      color: #ffffff;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .ctable-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: var(--blue);
+      padding: 14px 24px;
+    }
+    .ctable-head-cell {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .ctable-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      padding: 16px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.15s;
+    }
+    .ctable-row:last-child { border-bottom: none; }
+    .ctable-row:nth-child(odd) { background: rgba(255,255,255,0.03); }
+    .ctable-row:hover { background: rgba(255,255,255,0.05); }
+
+    .ctable-cell { font-size: 14px; line-height: 1.5; }
+    .ctable-cell.row-label { color: rgba(255,255,255,0.85); font-weight: 500; }
+    .ctable-cell.traditional { color: rgba(255,255,255,0.5); }
+    .ctable-cell.tridge-col { color: #0edba5; font-weight: 500; }
+
+    /* ===================================================================
+       SECTION 6 — CTA
+    =================================================================== */
+    .cta-nm {
+      background: linear-gradient(180deg, #0d0f2e 0%, #0A0A18 100%);
+      padding: clamp(48px, 6vw, 96px) 0;
+      text-align: center;
+    }
+
+    .cta-nm-next-step {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .cta-nm-inner { max-width: 640px; margin: 0 auto; }
+
+    .cta-nm-divider {
+      width: 60px;
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+      margin: 0 auto 40px;
+    }
+
+    .cta-nm-headline {
+      font-size: clamp(28px, 3vw, 48px);
+      font-weight: 300;
+      color: #ffffff;
+      margin-bottom: 16px;
+      line-height: 1.15;
+    }
+
+    .cta-nm-sub {
+      font-size: 17px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    .btn-cta-nm {
+      display: inline-block;
+      background: var(--blue);
+      color: #ffffff;
+      padding: 16px 40px;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background 0.2s;
+      margin-bottom: 20px;
+    }
+    .btn-cta-nm:hover { background: #0f14c7; }
+
+    .cta-nm-secondary {
+      display: block;
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      transition: color 0.2s;
+    }
+    .cta-nm-secondary:hover { color: #ffffff; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #000000;
+      padding: 72px 0 0;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 40px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-heading {
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 16px;
+    }
+
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 10px; }
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 13px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: #ffffff; }
+
+    .footer-social-corner { display: flex; align-items: center; gap: 14px; }
+    .footer-social-corner a { color: #9ca3af; display: flex; align-items: center; transition: color 0.2s; }
+    .footer-social-corner a:hover { color: #ffffff; }
+
+    .footer-bottom {
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-bottom-left { display: flex; flex-direction: column; gap: 6px; }
+
+    .footer-lang { display: flex; gap: 12px; align-items: center; margin-bottom: 4px; }
+    .footer-lang a {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-lang a.active,
+    .footer-lang a:hover { color: #ffffff; }
+    .footer-lang-sep { font-size: 12px; color: rgba(255, 255, 255, 0.2); }
+
+    .footer-copyright { font-size: 12px; color: rgba(255, 255, 255, 0.35); line-height: 1.5; }
+
+    .footer-legal-links { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+    .footer-legal-links a {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-legal-links a:hover { color: #ffffff; }
+
+    .footer-data-notice {
+      width: 100%;
+      padding-top: 16px;
+      padding-bottom: 20px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.4);
+      line-height: 1.6;
+      border-top: 1px solid #374151;
+      margin-top: 8px;
+    }
+
+    /* ===================================================================
+       RESPONSIVE
+    =================================================================== */
+
+    /* 480px and below */
+    @media (max-width: 480px) {
+      .container, .nav-inner {
+        width: 100%;
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .nav-inner { height: 64px; }
+      .nav-links, .nav-ctas { display: none; }
+      .mobile-menu-toggle { display: flex; }
+
+      .nav-container.menu-open .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 64px; left: 0; right: 0; bottom: 0;
+        background: var(--black);
+        padding: 32px 20px;
+        z-index: 999;
+        gap: 20px;
+      }
+      .nav-container.menu-open .nav-ctas {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        padding: 20px;
+        background: var(--black);
+        border-top: 1px solid rgba(255,255,255,0.1);
+        z-index: 1000;
+      }
+
+      .hero-nm { min-height: auto; }
+      .hero-nm-inner { grid-template-columns: 1fr; }
+      .hero-nm-img { display: none; }
+      .hero-nm-gradient { display: none; }
+      .hero-nm-stats { flex-wrap: wrap; gap: 16px; }
+      .hero-stat { flex: 1 1 40%; border-left: none !important; padding: 0; }
+
+      .problem-nm-grid { grid-template-columns: 1fr; }
+
+      .hiw-nm-inner { grid-template-columns: 1fr; }
+      .dash-nm { margin-top: 32px; }
+
+      .wyg-header .section-headline { white-space: normal; font-size: clamp(24px, 5vw, 36px); }
+      .wyg-vt-row { grid-template-columns: 1fr; }
+      .wyg-vt-node-col { display: none; }
+      .wyg-vt-day { text-align: left; padding-right: 0; padding-bottom: 6px; }
+      .wyg-vt-card { margin-left: 0; margin-bottom: 16px; }
+
+      .proof-numbers { grid-template-columns: 1fr; }
+      .proof-num-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .proof-num-item:last-child { border-bottom: none; }
+
+      .compare-table { overflow-x: auto; display: block; }
+
+      .footer-top { grid-template-columns: repeat(2, 1fr); }
+      .footer-bottom { flex-direction: column; gap: 12px; }
+    }
+
+    /* 481–767px */
+    @media (min-width: 481px) and (max-width: 767px) {
+      .container, .nav-inner {
+        width: 95%;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .nav-inner { height: 64px; }
+      .nav-links, .nav-ctas { display: none; }
+      .mobile-menu-toggle { display: flex; }
+
+      .nav-container.menu-open .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 64px; left: 0; right: 0; bottom: 0;
+        background: var(--black);
+        padding: 32px 24px;
+        z-index: 999;
+        gap: 20px;
+      }
+      .nav-container.menu-open .nav-ctas {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        padding: 20px;
+        background: var(--black);
+        border-top: 1px solid rgba(255,255,255,0.1);
+        z-index: 1000;
+      }
+
+      .hero-nm-inner { grid-template-columns: 1fr; }
+      .hero-nm-img { display: none; }
+      .hero-nm-gradient { display: none; }
+
+      .wyg-header .section-headline { white-space: normal; font-size: clamp(24px, 5vw, 36px); }
+      .problem-nm-grid { grid-template-columns: 1fr; }
+      .hiw-nm-inner { grid-template-columns: 1fr; }
+      .wyg-vt-row { grid-template-columns: 1fr; }
+      .wyg-vt-node-col { display: none; }
+      .wyg-vt-day { text-align: left; padding-right: 0; padding-bottom: 6px; }
+      .wyg-vt-card { margin-left: 0; margin-bottom: 16px; }
+      .proof-numbers { grid-template-columns: 1fr; }
+      .proof-num-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .footer-top { grid-template-columns: repeat(2, 1fr); }
+      .footer-bottom { flex-direction: column; gap: 12px; }
+    }
+
+    /* 768–1023px */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .container, .nav-inner {
+        width: 92%;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .nav-inner { height: 68px; }
+      .nav-links, .nav-ctas { display: none; }
+      .mobile-menu-toggle { display: flex; }
+
+      .nav-container.menu-open .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 68px; left: 0; right: 0; bottom: 0;
+        background: var(--black);
+        padding: 32px 28px;
+        z-index: 999;
+        gap: 20px;
+      }
+      .nav-container.menu-open .nav-ctas {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        padding: 20px;
+        background: var(--black);
+        border-top: 1px solid rgba(255,255,255,0.1);
+        z-index: 1000;
+      }
+
+      .hero-nm-inner { grid-template-columns: 1fr; }
+      .hero-nm-img { width: 100%; position: relative; height: 300px; object-fit: cover; }
+      .hero-nm-gradient { display: none; }
+      .problem-nm-grid { grid-template-columns: repeat(3, 1fr); }
+      .hiw-nm-inner { grid-template-columns: 1fr; gap: 40px; }
+      .proof-numbers { grid-template-columns: repeat(3, 1fr); }
+      .footer-top { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* 1024–1279px */
+    @media (min-width: 1024px) and (max-width: 1279px) {
+      .container, .nav-inner { width: 92%; max-width: 1100px; padding-left: 32px; padding-right: 32px; }
+      .hiw-nm-inner { grid-template-columns: 40% 60%; gap: 48px; }
+      .footer-top { grid-template-columns: repeat(5, 1fr); }
+    }
+
+    /* 1280–1439px */
+    @media (min-width: 1280px) and (max-width: 1439px) {
+      .container, .nav-inner { width: 90%; max-width: 1200px; padding-left: 40px; padding-right: 40px; }
+    }
+
+    /* 1440–1919px */
+    @media (min-width: 1440px) and (max-width: 1919px) {
+      .container, .nav-inner { width: 88%; max-width: 1380px; }
+    }
+
+    /* 1920px+ */
+    @media (min-width: 1920px) {
+      html { font-size: 18px; }
+      .container, .nav-inner { width: 80%; max-width: 1600px; }
+    }
+
+    /* 2560px+ */
+    @media (min-width: 2560px) {
+      .hero-nm { min-height: 800px; }
+      .container, .nav-inner { width: 72%; max-width: 2000px; }
+    }
+
+    /* 3840px+ */
+    @media (min-width: 3840px) {
+      .hero-nm { min-height: 1000px; }
+      .container, .nav-inner { width: 65%; max-width: 2560px; }
+      .hero-nm-headline { font-size: clamp(64px, 4vw, 120px); }
+      .section-headline { font-size: clamp(48px, 3vw, 80px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav-container">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">TRIDGE</a>
+
+      <div class="nav-links">
+        <div class="nav-dropdown">
+          <button class="nav-link-dropdown">Solutions &#9660;</button>
+          <div class="dropdown-menu">
+            <a href="https://www.tridge.com/about/tridge-eye" target="_blank">
+              <strong>Tridge Eye</strong>
+              <span>For Buyers &amp; Procurement</span>
+            </a>
+            <a href="export-solution.html">
+              <strong>Export Solution</strong>
+              <span>For Exporters &amp; Sellers</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="nav-dropdown">
+          <button class="nav-link-dropdown">Resources &#9660;</button>
+          <div class="dropdown-menu">
+            <a href="#">Blog</a>
+            <a href="#">Case Studies</a>
+            <a href="#">Documentation</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-ctas">
+        <a href="https://eye.tridge.com" class="btn-nav-secondary">Get started</a>
+        <a href="contact-sales.html" class="btn-nav-primary">Get a demo</a>
+      </div>
+
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===================================================================
+       SECTION 1 — HERO
+  =================================================================== -->
+  <section class="hero-nm">
+    <img src="images/seg-scale-supplier.jpg" alt="" class="hero-nm-img" aria-hidden="true">
+    <div class="hero-nm-gradient" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero-nm-inner">
+        <div class="hero-nm-content">
+          <a href="export-solution.html" class="back-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/></svg>
+            Export Solution
+          </a>
+
+          <div class="hero-nm-label">For Suppliers</div>
+
+          <h1 class="hero-nm-headline">Scale to 10,000+ buyers without hiring.</h1>
+
+          <p class="hero-nm-sub">Your product is ready. Your team isn't big enough to reach every buyer. Tridge runs your outreach across 200,000+ verified buyers — so you don't have to.</p>
+
+          <a href="contact-sales.html" class="btn-hero-nm">Request Demo</a>
+
+          <div class="hero-nm-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-num">200K+</div>
+              <div class="hero-stat-label">Verified buyers &amp; distributors</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">60 days</div>
+              <div class="hero-stat-label">To first qualified introduction</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">10,000+</div>
+              <div class="hero-stat-label">Buyers reachable per campaign</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       SECTION 2 — PROBLEM
+  =================================================================== -->
+  <section class="problem-nm scroll-reveal">
+    <div class="container">
+      <div class="problem-nm-header">
+        <span class="section-label">The Problem</span>
+        <h2 class="section-headline">Why suppliers hit a ceiling</h2>
+        <p class="section-sub">Growth stalls when outreach capacity runs out.</p>
+      </div>
+
+      <div class="problem-nm-grid">
+
+        <!-- Card 01 -->
+        <div class="problem-card-nm">
+          <div class="pcard-num">01</div>
+          <span class="pcard-cost">$3,000–$10,000 / month</span>
+          <h3 class="pcard-title">Your sales team can only reach so many buyers</h3>
+          <p class="pcard-body">Manual outreach has a hard limit. One rep can manage 50–100 prospects. Meanwhile, thousands of distributors actively sourcing in your category never hear from you.</p>
+          <div class="pcard-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card 02 -->
+        <div class="problem-card-nm">
+          <div class="pcard-num">02</div>
+          <span class="pcard-cost">$15,000–$50,000 / event</span>
+          <h3 class="pcard-title">Trade shows put you in front of the same crowd</h3>
+          <p class="pcard-body">You meet the same buyers every year. The importer who just expanded into your category last month wasn't at the show. They never found you.</p>
+          <div class="pcard-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card 03 -->
+        <div class="problem-card-nm">
+          <div class="pcard-num">03</div>
+          <span class="pcard-cost">Staff time + months of attrition</span>
+          <h3 class="pcard-title">Hiring more reps doesn't solve the data problem</h3>
+          <p class="pcard-body">Without knowing which buyers are actively sourcing your category right now, more headcount just means more unfocused outreach. The signal is missing, not the people.</p>
+          <div class="pcard-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       SECTION 3 — HOW IT WORKS
+  =================================================================== -->
+  <section class="hiw-nm scroll-reveal">
+    <div class="container">
+      <div class="hiw-nm-inner">
+
+        <!-- Left: steps -->
+        <div class="hiw-nm-left">
+          <span class="hiw-label">How It Works</span>
+          <h2 class="hiw-headline">Your product, in front of the right buyers — automatically.</h2>
+
+          <div class="hiw-steps">
+
+            <div class="hiw-step">
+              <span class="day-tag">Day 1–3</span>
+              <h3 class="hiw-step-title">Catalog &amp; Capability Setup</h3>
+              <p class="hiw-step-body">AI ingests your product specs, certifications, MOQs, and target categories. Buyer profile built automatically — no lengthy intake calls required.</p>
+              <div class="hiw-step-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                  <polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="hiw-step">
+              <span class="day-tag">Day 3–10</span>
+              <h3 class="hiw-step-title">Buyer Matching &amp; Scoring</h3>
+              <p class="hiw-step-body">Tridge scans 200,000+ verified buyers for active procurement signals in your category. Every prospect scored by purchase readiness, category fit, and market reach.</p>
+              <div class="hiw-step-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                  <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="hiw-step">
+              <span class="day-tag">From Day 10</span>
+              <h3 class="hiw-step-title">Automated Outreach at Scale</h3>
+              <p class="hiw-step-body">Personalized outreach launched across all matched buyers simultaneously. Responses classified by intent — only genuine interest escalates to your team.</p>
+              <div class="hiw-step-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                  <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right: dashboard mockup -->
+        <div class="hiw-nm-right">
+          <div class="dash-nm">
+
+            <div class="dash-nm-bar">
+              <div class="dash-dots-nm">
+                <div class="dash-dot-nm dot-red"></div>
+                <div class="dash-dot-nm dot-yellow"></div>
+                <div class="dash-dot-nm dot-green"></div>
+              </div>
+              <div class="dash-nm-title">TRIDGE OUTREACH NETWORK</div>
+              <div class="dash-nm-live">
+                <div class="live-dot"></div>
+                LIVE
+              </div>
+            </div>
+
+            <div class="dash-nm-body">
+
+              <div class="dash-campaign-row">
+                <span class="dash-campaign-label">Your Campaign</span>
+                <span class="dash-campaign-val">Premium Olive Oil &middot; 5 markets</span>
+              </div>
+
+              <div class="dash-metrics">
+                <div class="dash-metric-card">
+                  <div class="dash-metric-label">Buyers Matched</div>
+                  <div class="dash-metric-num">3,240</div>
+                </div>
+                <div class="dash-metric-card">
+                  <div class="dash-metric-label">Outreach Live</div>
+                  <div class="dash-metric-num">1,890</div>
+                </div>
+                <div class="dash-metric-card">
+                  <div class="dash-metric-label">Responses</div>
+                  <div class="dash-metric-num accent">147</div>
+                </div>
+              </div>
+
+              <div class="dash-leads-label">Qualified Leads</div>
+              <div class="dash-leads-list">
+                <div class="dash-lead-row">
+                  <span class="lead-tier tier-1">&#9733; TIER 1</span>
+                  <span class="lead-name">Metro Fine Foods</span>
+                  <span class="lead-country">&middot; France</span>
+                  <span class="lead-arrow">&#8594;</span>
+                </div>
+                <div class="dash-lead-row">
+                  <span class="lead-tier tier-1">&#9733; TIER 1</span>
+                  <span class="lead-name">Gulf Gourmet Trading</span>
+                  <span class="lead-country">&middot; UAE</span>
+                  <span class="lead-arrow">&#8594;</span>
+                </div>
+                <div class="dash-lead-row">
+                  <span class="lead-tier tier-2">&#9670; TIER 2</span>
+                  <span class="lead-name">Yamamoto Food Import</span>
+                  <span class="lead-country">&middot; Japan</span>
+                  <span class="lead-arrow">&#8594;</span>
+                </div>
+              </div>
+
+              <div class="dash-progress-row">
+                <span class="dash-progress-label">Campaign live: Day 14</span>
+                <span class="dash-progress-label">Day 60</span>
+              </div>
+              <div class="dash-progress-track">
+                <div class="dash-progress-fill"></div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       SECTION 4 — WHAT YOU GET
+  =================================================================== -->
+  <section class="wyg-nm scroll-reveal">
+    <div class="container">
+      <div class="wyg-header">
+        <span class="section-label">What You Receive</span>
+        <h2 class="section-headline">Four deliverables. Sixty days.</h2>
+        <p class="section-sub">Every engagement includes the same set of intelligence, outreach, and introduction deliverables — designed for scale.</p>
+      </div>
+
+      <div class="wyg-vt">
+
+        <!-- Row 1: DAY 1 -->
+        <div class="wyg-vt-row">
+          <div class="wyg-vt-day">Day 1</div>
+          <div class="wyg-vt-node-col">
+            <div class="wyg-vt-circle"></div>
+            <div class="wyg-vt-line"></div>
+          </div>
+          <div class="wyg-vt-card">
+            <span class="wyg-tag intelligence">Intelligence</span>
+            <h3 class="wyg-card-title">Buyer Category &amp; Market Signal Report</h3>
+            <p class="wyg-card-body">A ranked breakdown of which markets show the highest active demand for your category — by import growth, buyer density, and current procurement signals.</p>
+            <div class="wyg-card-meta">10–20 markets assessed &middot; Top buyer segments identified &middot; Delivered within 2 weeks</div>
+          </div>
+        </div>
+
+        <!-- Row 2: WEEK 1–2 -->
+        <div class="wyg-vt-row">
+          <div class="wyg-vt-day">Week 1–2</div>
+          <div class="wyg-vt-node-col">
+            <div class="wyg-vt-circle"></div>
+            <div class="wyg-vt-line"></div>
+          </div>
+          <div class="wyg-vt-card">
+            <span class="wyg-tag intelligence">Intelligence</span>
+            <h3 class="wyg-card-title">Verified Buyer &amp; Distributor Shortlist</h3>
+            <p class="wyg-card-body">A curated, verified list of buyers and distributors scored by category fit and procurement readiness — far beyond what a directory or LinkedIn search provides.</p>
+            <div class="wyg-card-meta">500–3,000+ verified targets &middot; Scored by readiness &middot; Continuously refreshed</div>
+          </div>
+        </div>
+
+        <!-- Row 3: DAY 10 -->
+        <div class="wyg-vt-row">
+          <div class="wyg-vt-day">Day 10</div>
+          <div class="wyg-vt-node-col">
+            <div class="wyg-vt-circle"></div>
+            <div class="wyg-vt-line"></div>
+          </div>
+          <div class="wyg-vt-card">
+            <span class="wyg-tag active">Active Engagement</span>
+            <h3 class="wyg-card-title">AI Outreach Campaign &amp; Live Dashboard</h3>
+            <p class="wyg-card-body">Personalized outreach launched at scale across all matched buyers. Live dashboard tracks responses, intent classification, and engagement scoring in real time — no manual follow-up required.</p>
+            <div class="wyg-card-meta">Campaign live within 10 days &middot; Weekly performance report included</div>
+          </div>
+        </div>
+
+        <!-- Row 4: DAY 60 -->
+        <div class="wyg-vt-row">
+          <div class="wyg-vt-day">Day 60</div>
+          <div class="wyg-vt-node-col">
+            <div class="wyg-vt-circle filled"></div>
+            <div class="wyg-vt-line"></div>
+          </div>
+          <div class="wyg-vt-card core-card">
+            <span class="wyg-tag core">Core Deliverable</span>
+            <h3 class="wyg-card-title">Qualified Buyer Introductions</h3>
+            <p class="wyg-card-body">Buyers who confirm genuine sourcing interest are introduced to your team with a full briefing — purchase volume, decision timeline, and category context included. You close. We handle the volume.</p>
+            <div class="wyg-card-meta">5–10 qualified introductions within 60 days</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       SECTION 5 — PROOF
+  =================================================================== -->
+  <section class="proof-nm scroll-reveal">
+    <div class="container">
+
+      <div class="proof-numbers">
+        <div class="proof-num-item">
+          <div class="proof-big-num">10,000+</div>
+          <div class="proof-big-label">Buyers reachable per campaign</div>
+        </div>
+        <div class="proof-num-item">
+          <div class="proof-big-num">2 weeks</div>
+          <div class="proof-big-label">From onboarding to outreach live</div>
+        </div>
+        <div class="proof-num-item">
+          <div class="proof-big-num">200K+</div>
+          <div class="proof-big-label">Verified buyer network across 180+ markets</div>
+        </div>
+      </div>
+
+      <div class="proof-table-header">
+        <div class="proof-table-label">The Results</div>
+        <h2 class="proof-table-headline">Your sales team vs. Tridge</h2>
+      </div>
+
+      <div class="compare-table">
+        <div class="ctable-head">
+          <div class="ctable-head-cell"></div>
+          <div class="ctable-head-cell">Your Sales Team</div>
+          <div class="ctable-head-cell">Tridge &#10003;</div>
+        </div>
+        <div class="ctable-row">
+          <div class="ctable-cell row-label">Buyers reachable</div>
+          <div class="ctable-cell traditional">50–100 per rep/month</div>
+          <div class="ctable-cell tridge-col">10,000+ per campaign</div>
+        </div>
+        <div class="ctable-row">
+          <div class="ctable-cell row-label">Buyer data quality</div>
+          <div class="ctable-cell traditional">Directory listings, LinkedIn</div>
+          <div class="ctable-cell tridge-col">200K+ verified, scored buyers</div>
+        </div>
+        <div class="ctable-row">
+          <div class="ctable-cell row-label">Time to first intro</div>
+          <div class="ctable-cell traditional">3–6 months</div>
+          <div class="ctable-cell tridge-col">60 days</div>
+        </div>
+        <div class="ctable-row">
+          <div class="ctable-cell row-label">Outreach personalization</div>
+          <div class="ctable-cell traditional">Generic templates</div>
+          <div class="ctable-cell tridge-col">AI-personalized per buyer context</div>
+        </div>
+        <div class="ctable-row">
+          <div class="ctable-cell row-label">Visibility</div>
+          <div class="ctable-cell traditional">Spreadsheets, memory</div>
+          <div class="ctable-cell tridge-col">Live dashboard</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       SECTION 6 — CTA
+  =================================================================== -->
+  <section class="cta-nm scroll-reveal">
+    <div class="container">
+      <div class="cta-nm-inner">
+        <div class="cta-nm-divider"></div>
+        <span class="cta-nm-next-step">Next Step</span>
+        <h2 class="cta-nm-headline">Ready to reach buyers your team can't?</h2>
+        <p class="cta-nm-sub">5–10 qualified buyer introductions within 60 days. Your team closes deals. Tridge handles the volume.</p>
+        <a href="contact-sales.html" class="btn-cta-nm">Request Demo &rarr;</a>
+        <a href="export-solution.html" class="cta-nm-secondary">Or explore the full Export Solution &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       FOOTER
+  =================================================================== -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer-top">
+        <div>
+          <h4 class="footer-heading">Tridge Solutions</h4>
+          <ul class="footer-links">
+            <li><a href="https://www.tridge.com/about/tridge-eye" target="_blank" rel="noopener">Tridge Eye</a></li>
+            <li><a href="export-solution.html">Export Solution</a></li>
+            <li><a href="#">Data &amp; Analytics</a></li>
+            <li><a href="#">Sourcing Hub</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Why Tridge</h4>
+          <ul class="footer-links">
+            <li><a href="#">Use Case</a></li>
+            <li><a href="#">AI Technology</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Insights</h4>
+          <ul class="footer-links">
+            <li><a href="#">Data Curations</a></li>
+            <li><a href="#">Weekly Product Updates</a></li>
+            <li><a href="#">Market News</a></li>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Opinion</a></li>
+            <li><a href="#">Guides</a></li>
+            <li><a href="#">Webinars</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Support</h4>
+          <ul class="footer-links">
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Channel Partner</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Company</h4>
+          <ul class="footer-links">
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Newsroom</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-left">
+          <div class="footer-lang">
+            <a href="#" class="active">English</a>
+            <span class="footer-lang-sep">|</span>
+            <a href="#">&#54620;&#44397;&#50612;</a>
+          </div>
+          <div class="footer-copyright">&copy; 2026 Tridge.</div>
+        </div>
+        <div class="footer-legal-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Sitemap</a>
+        </div>
+        <div class="footer-social-corner">
+          <a href="https://www.linkedin.com/company/tridge/" aria-label="LinkedIn" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-data-notice">
+        Tridge data and intelligence services are subject to our <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: underline;">Terms of Service</a> and <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: underline;">Privacy Policy</a>.
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    // ===== NAV DROPDOWNS =====
+    document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+      const btn = dropdown.querySelector('.nav-link-dropdown');
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = dropdown.classList.contains('is-open');
+        document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('is-open'));
+        if (!isOpen) dropdown.classList.add('is-open');
+      });
+    });
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('is-open'));
+    });
+
+    // ===== MOBILE MENU =====
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    const nav = document.querySelector('.nav-container');
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        nav.classList.toggle('menu-open');
+        document.body.classList.toggle('menu-open');
+      });
+    }
+
+    // ===== SCROLL REVEAL =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('is-visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
