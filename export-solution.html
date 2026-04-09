@@ -409,13 +409,32 @@
       z-index: 2;
     }
 
+    .funnel-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
     .funnel-title {
       font-size: 10px;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.45);
-      margin-bottom: 14px;
+    }
+    .funnel-live-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      font-weight: 600;
+      color: #0edba5;
+      letter-spacing: 0.06em;
+    }
+    .funnel-live-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #0edba5;
+      animation: pulse 1.6s ease-in-out infinite;
     }
 
     .funnel-stage {
@@ -1661,7 +1680,10 @@
         <!-- Right: AI pipeline funnel card -->
         <div class="hero-es-right">
         <div class="hero-funnel">
-          <div class="funnel-title">TRIDGE INTELLIGENCE NETWORK &mdash; LIVE</div>
+          <div class="funnel-title-row">
+            <div class="funnel-title">TRIDGE INTELLIGENCE NETWORK</div>
+            <div class="funnel-live-badge"><div class="funnel-live-dot"></div>LIVE</div>
+          </div>
 
           <div class="funnel-stage fs1">
             <div class="funnel-stage-left">
@@ -1881,7 +1903,7 @@
             </svg>
           </div>
           <div class="solution-ai-tag">Full Visibility</div>
-          <h3>Seller Dashboard</h3>
+          <h3>Exporter Dashboard</h3>
           <p>Full funnel visibility &mdash; every deal from outreach to close, in real time.</p>
         </div>
       </div>
@@ -2012,7 +2034,7 @@
                 <span class="dash-dot dash-dot-yellow"></span>
                 <span class="dash-dot dash-dot-green"></span>
               </div>
-              <span class="dash-title">Seller Dashboard &mdash; Funnel Overview</span>
+              <span class="dash-title">Exporter Dashboard &mdash; Funnel Overview</span>
             </div>
             <div class="dash-body">
               <div class="dash-section-label">Pipeline Funnel</div>
