@@ -217,7 +217,7 @@
       padding: clamp(48px, 6vw, 80px) 0;
     }
 
-    .hero-nm-content { max-width: 560px; padding-top: clamp(80px, 10vw, 120px); }
+    .hero-nm-content { max-width: 560px; }
 
     .back-link {
       display: inline-flex;
@@ -411,7 +411,7 @@
       display: grid;
       grid-template-columns: 40% 60%;
       gap: 72px;
-      align-items: start;
+      align-items: center;
     }
 
     .hiw-nm-left {}
@@ -478,7 +478,11 @@
     }
 
     /* Dashboard mockup */
-    .hiw-nm-right {}
+    .hiw-nm-right {
+      align-self: center;
+      position: sticky;
+      top: 120px;
+    }
 
     .dash-nm {
       background: #0d1117;
