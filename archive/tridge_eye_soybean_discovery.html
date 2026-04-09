@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tridge Eye &#8212; Soybean Supplier Discovery | Soybean Procurement Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#171CFD;--black:#0A0A18;--white:#FFFFFF;--purple:#7E43CD;--bluepurple:#5C42E5;--cyan:#34C6EE;--green:#0EDBA5;--yellow:#FFD12D;--bg:#F5F5FA;--tint:#EAEAFF;--gray:#6B6B8A;--line:#D8D8F0;--soy:#0EDBA5}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--black);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;padding-top:92px}
+/* ── TWO-LAYER GNB ── */
+.gnb-wrap{position:fixed;top:0;left:0;right:0;z-index:200}
+.gnb-layer1{height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(10,10,24,.98);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07)}
+.gnb-layer2{height:36px;display:flex;align-items:center;padding:0 5%;background:rgba(6,6,18,.95);border-bottom:1px solid rgba(255,255,255,.05);overflow-x:auto;scrollbar-width:none}
+.gnb-layer2::-webkit-scrollbar{display:none}
+.gnb-left{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.gnb-wordmark{font-size:15px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:-.01em}
+.gnb-sep{color:rgba(255,255,255,.2);font-size:12px}
+.gnb-product{font-size:11px;font-weight:400;color:rgba(255,255,255,.4);letter-spacing:.02em}
+.gnb-modules{display:flex;gap:2px;list-style:none;flex:1;justify-content:center}
+.gnb-modules a{color:rgba(255,255,255,.45);text-decoration:none;font-size:12px;font-weight:400;padding:5px 10px;border-radius:3px;transition:color .15s,background .15s;white-space:nowrap}
+.gnb-modules a:hover{color:var(--white);background:rgba(255,255,255,.07)}
+.gnb-modules a.active{color:var(--white);background:rgba(255,255,255,.1);font-weight:500}
+.gnb-cta{background:var(--blue);color:var(--white);font-size:11px;font-weight:600;letter-spacing:.06em;padding:7px 16px;text-decoration:none;text-transform:uppercase;transition:opacity .2s;white-space:nowrap;flex-shrink:0}
+.gnb-cta:hover{opacity:.85}
+.gnb-sub{display:flex;gap:0;list-style:none;white-space:nowrap}
+.gnb-sub a{color:rgba(255,255,255,.38);text-decoration:none;font-size:11px;font-weight:400;padding:0 14px;height:36px;display:flex;align-items:center;transition:color .15s,background .15s;border-right:1px solid rgba(255,255,255,.05)}
+.gnb-sub a:hover{color:rgba(255,255,255,.75);background:rgba(255,255,255,.04)}
+.gnb-sub a.sub-active{color:rgba(255,255,255,.9);font-weight:500}
+body{padding-top:92px}
+section{padding:100px 5%}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#0EDBA5;margin-bottom:12px}
+.section-title{font-size:clamp(28px,3vw,44px);font-weight:700;letter-spacing:-.03em;line-height:1.08;margin-bottom:16px}
+.section-sub{font-size:16px;font-weight:300;color:var(--gray);line-height:1.75;max-width:600px}
+.divider{width:36px;height:2px;background:#0EDBA5;margin:18px 0}
+.btn-primary{display:inline-block;background:#0EDBA5;color:#0A0A18;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:14px 32px;text-decoration:none;transition:opacity .2s,transform .15s}
+.btn-primary:hover{opacity:.85;transform:translateY(-2px)}
+.btn-ghost{display:inline-block;border:1.5px solid rgba(255,255,255,.25);color:var(--white);font-size:13px;font-weight:500;padding:13px 28px;text-decoration:none;transition:border-color .2s}
+.btn-ghost:hover{border-color:var(--white)}
+.hero{min-height:88vh;background:var(--black);display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;padding:80px 5% 72px;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(23,28,253,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(23,28,253,.05) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
+.hero-glow{position:absolute;width:650px;height:650px;border-radius:50%;background:radial-gradient(circle,rgba(23,28,253,.15) 0%,transparent 68%);top:-100px;right:-100px;pointer-events:none}
+.hero-left{position:relative;z-index:2}
+.hero-breadcrumb{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:18px}
+.hero-breadcrumb a{color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
+.hero-breadcrumb a:hover{color:var(--white)}
+.hero-industry-tag{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border:1px solid;margin-bottom:18px;color:#0EDBA5;border-color:#0EDBA5;background:rgba(255,255,255,.05)}
+.hero h1{font-size:clamp(38px,4.5vw,62px);font-weight:800;letter-spacing:-.04em;line-height:1.0;color:var(--white);margin-bottom:18px}
+.hero h1 em{font-style:normal;color:#0EDBA5}
+.hero-desc{font-size:16px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.75;max-width:490px;margin-bottom:30px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px;padding-top:22px;border-top:1px solid rgba(255,255,255,.07)}
+.hero-chip{font-size:11px;font-weight:500;padding:5px 12px;background:rgba(14,219,165,.1);border:1px solid rgba(14,219,165,.25);color:rgba(100,255,200,.8)}
+.hero-right{position:relative;z-index:2}
+.mock-dash{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);overflow:hidden}
+.mock-dash-header{background:rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.1);padding:10px 16px;display:flex;align-items:center;justify-content:space-between}
+.mock-dash-header-accent{background:#0EDBA5;width:3px;height:18px;margin-right:10px;flex-shrink:0}
+.mock-dash-title{font-size:11px;font-weight:600;color:var(--white);letter-spacing:.05em;flex:1}
+.mock-dash-dots{display:flex;gap:4px}
+.mock-dash-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.25)}
+.mock-section{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.06)}
+.mock-section:last-child{border-bottom:none}
+.mock-label{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:10px}
+.mock-price-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.mock-price-row:last-child{margin-bottom:0}
+.mock-price-item{font-size:12px;font-weight:300;color:rgba(255,255,255,.5)}
+.mock-price-val{font-size:13px;font-weight:700;color:var(--white)}
+.mock-delta{font-size:10px;font-weight:500;padding:2px 6px}
+.mock-delta.up{background:rgba(14,219,165,.15);color:var(--green)}
+.mock-delta.down{background:rgba(255,80,80,.15);color:#FF8080}
+.mock-bar-wrap{display:flex;flex-direction:column;gap:7px}
+.mock-bar-row{display:flex;align-items:center;gap:8px}
+.mock-bar-label{font-size:10px;color:rgba(255,255,255,.4);width:76px;flex-shrink:0}
+.mock-bar-bg{flex:1;height:8px;background:rgba(255,255,255,.06)}
+.mock-bar-fill{height:100%}
+.mock-bar-val{font-size:10px;font-weight:600;color:var(--white);width:36px;text-align:right;flex-shrink:0}
+.problem{background:var(--bg)}
+.problem-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:52px;align-items:start}
+.problem-text p{font-size:15px;font-weight:300;color:var(--gray);line-height:1.75;margin-top:14px}
+.problem-text strong{color:var(--black);font-weight:600}
+.problem-callout{background:var(--black);padding:30px;border-top:3px solid #0EDBA5;margin-top:22px}
+.problem-callout-text{font-size:16px;font-weight:700;color:var(--white);line-height:1.4;letter-spacing:-.02em}
+.problem-callout-sub{font-size:13px;font-weight:300;color:rgba(255,255,255,.4);margin-top:8px;line-height:1.65}
+.prob-cards{display:flex;flex-direction:column;gap:14px}
+.prob-card{background:var(--white);border:1px solid var(--line);padding:22px;border-left:3px solid #0EDBA5;transition:transform .2s}
+.prob-card:nth-child(2){border-left-color:var(--blue)}
+.prob-card:nth-child(3){border-left-color:var(--cyan)}
+.prob-card:hover{transform:translateX(4px)}
+.prob-card-title{font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px}
+.prob-card-body{font-size:13px;font-weight:300;color:var(--gray);line-height:1.65}
+.pillars{background:var(--white)}
+.pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
+.pillar{border:1px solid var(--line);padding:28px;transition:transform .2s,box-shadow .2s}
+.pillar:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.06)}
+.pillar::before{content:'';display:block;height:2px;margin-bottom:18px;background:#0EDBA5}
+.pillar:nth-child(2)::before{background:var(--blue)}
+.pillar:nth-child(3)::before{background:var(--cyan)}
+.pillar-num{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(107,107,138,.5);background:var(--bg);display:inline-block;padding:2px 8px;margin-bottom:10px}
+.pillar-title{font-size:17px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+.pillar-body{font-size:13.5px;font-weight:300;color:var(--gray);line-height:1.65;margin-bottom:14px}
+.pillar-points{display:flex;flex-direction:column;gap:6px}
+.pillar-point{font-size:12.5px;color:var(--gray);display:flex;align-items:flex-start;gap:7px;line-height:1.5}
+.pillar-point::before{content:'&#8594;';color:#0EDBA5;font-weight:700;flex-shrink:0;font-size:11px;margin-top:1px}
+.why{background:var(--black);padding:100px 5%}
+.why-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:52px;background:rgba(255,255,255,.15)}
+.why-col{background:#0D0D1F;padding:36px 28px;transition:background .2s}
+.why-col:hover{background:rgba(255,255,255,.04)}
+.why-col-num{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);background:rgba(255,255,255,.08);display:inline-block;padding:3px 9px;margin-bottom:10px}
+.why-col-title{font-size:16px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+.why-col-body{font-size:13px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.7}
+.why-bridge{margin-top:36px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-left:3px solid #0EDBA5;padding:22px 28px}
+.why-bridge p{font-size:15px;color:rgba(255,255,255,.6);line-height:1.7;font-style:italic}
+.why-bridge strong{color:var(--white);font-weight:600;font-style:normal}
+.usecases{background:var(--bg)}
+.uc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:52px}
+.uc-card{background:var(--white);border:1px solid var(--line);padding:26px;transition:transform .2s,box-shadow .2s}
+.uc-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.06)}
+.uc-card::before{content:'';display:block;height:2px;margin-bottom:18px;background:#0EDBA5}
+.uc-card:nth-child(2)::before{background:var(--blue)}
+.uc-card:nth-child(3)::before{background:var(--cyan)}
+.uc-card:nth-child(4)::before{background:var(--bluepurple)}
+.uc-card:nth-child(5)::before{background:var(--purple)}
+.uc-card:nth-child(6)::before{background:var(--green)}
+.uc-icon{font-size:20px;margin-bottom:10px}
+.uc-title{font-size:14px;font-weight:600;color:var(--black);margin-bottom:7px}
+.uc-body{font-size:13px;font-weight:300;color:var(--gray);line-height:1.65}
+.how{background:var(--white)}
+.how-steps{margin-top:52px;display:flex;flex-direction:column;gap:0}
+.how-step{display:grid;grid-template-columns:80px 1fr;gap:28px;padding:26px 0;border-bottom:1px solid var(--line);align-items:start}
+.how-step:last-child{border-bottom:none}
+.how-step-num{width:50px;height:50px;border:1.5px solid #0EDBA5;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;color:#0EDBA5;flex-shrink:0;transition:background .2s,color .2s}
+.how-step:hover .how-step-num{background:#0EDBA5;color:var(--black)}
+.how-step-title{font-size:16px;font-weight:600;color:var(--black);margin-bottom:6px;letter-spacing:-.02em}
+.how-step-body{font-size:13.5px;font-weight:300;color:var(--gray);line-height:1.65;max-width:580px;margin-bottom:8px}
+.how-step-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;background:rgba(255,255,255,.0);border:1px solid #0EDBA5;color:#0EDBA5}
+.deliv{background:var(--black);padding:100px 5%}
+.deliv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:52px}
+.deliv-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);padding:20px;transition:border-color .2s,background .2s}
+.deliv-card:hover{border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.06)}
+.deliv-num{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);background:rgba(255,255,255,.08);display:inline-block;padding:2px 8px;margin-bottom:8px}
+.deliv-icon{font-size:18px;margin-bottom:6px}
+.deliv-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:5px}
+.deliv-body{font-size:13px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.65}
+.faq{background:var(--bg)}
+.faq-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:52px;align-items:start}
+.faq-list{display:flex;flex-direction:column}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{padding:17px 0;font-size:14px;font-weight:500;color:var(--black);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .2s;user-select:none;gap:16px}
+.faq-q:hover{color:#0EDBA5}
+.faq-q::after{content:'+';font-size:20px;font-weight:300;color:#0EDBA5;flex-shrink:0;transition:transform .25s;line-height:1}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .2s}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:16px}
+.faq-a p{font-size:13.5px;font-weight:300;color:var(--gray);line-height:1.7}
+.faq-aside{background:var(--black);padding:30px;display:flex;flex-direction:column;gap:14px}
+.faq-aside-title{font-size:19px;font-weight:700;color:var(--white);letter-spacing:-.02em;line-height:1.3}
+.faq-aside-body{font-size:13px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.65}
+.faq-aside-link{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600;color:#0EDBA5;text-decoration:none;border-bottom:1px solid #0EDBA5;padding-bottom:1px;transition:opacity .2s}
+.faq-aside-link:hover{opacity:.7}
+.faq-related{margin-top:8px;padding-top:16px;border-top:1px solid rgba(255,255,255,.07)}
+.faq-related-label{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:8px}
+.faq-related a{display:block;font-size:12px;color:rgba(255,255,255,.3);text-decoration:none;padding:4px 0;transition:color .2s}
+.faq-related a:hover{color:rgba(255,255,255,.65)}
+.cta{background:var(--black);text-align:center;position:relative;overflow:hidden;padding:100px 5%}
+.cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(23,28,253,.18) 0%,transparent 70%);pointer-events:none}
+.cta-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(23,28,253,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(23,28,253,.04) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+.cta-inner{position:relative;z-index:2}
+.cta .section-title{color:var(--white);max-width:560px;margin:0 auto 16px}
+.cta .section-sub{color:rgba(255,255,255,.4);margin:0 auto 36px;text-align:center}
+.cta-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.cta-note{margin-top:14px;font-size:12px;color:rgba(255,255,255,.22)}
+.ribbon{padding:28px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:#0EDBA5}
+.ribbon-text{font-size:15px;font-weight:500;color:#0A0A18}
+.ribbon-btn{font-size:12px;font-weight:700;letter-spacing:.06em;padding:11px 24px;text-decoration:none;text-transform:uppercase;flex-shrink:0;background:#0A0A18;color:#0EDBA5}
+footer{background:var(--black);border-top:1px solid rgba(255,255,255,.05);padding:28px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.footer-wordmark{font-size:15px;font-weight:700;color:var(--white);text-decoration:none}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap}
+.footer-links a{font-size:11px;color:rgba(255,255,255,.28);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,.65)}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.18)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-left>*{animation:fadeUp .6s ease both}
+.hero-left>*:nth-child(1){animation-delay:.1s}.hero-left>*:nth-child(2){animation-delay:.2s}.hero-left>*:nth-child(3){animation-delay:.3s}.hero-left>*:nth-child(4){animation-delay:.42s}.hero-left>*:nth-child(5){animation-delay:.52s}
+.hero-right{animation:fadeUp .7s .3s ease both}
+@media(max-width:960px){.hero,.problem-layout,.faq-layout{grid-template-columns:1fr;gap:32px}.hero{min-height:auto}.pillars-grid,.uc-grid,.deliv-grid{grid-template-columns:1fr 1fr}.why-cols{grid-template-columns:1fr;background:none;gap:14px}.why-col{border:1px solid rgba(255,255,255,.08)}.gnb-modules{display:none}}
+@media(max-width:600px){.pillars-grid,.uc-grid,.deliv-grid{grid-template-columns:1fr}section{padding:72px 5%}.ribbon{flex-direction:column;text-align:center}}
+
+/* ── BROWSE BY MARKET ── */
+.browse{background:var(--bg);padding:72px 5%}
+.browse .eyebrow{color:#0EDBA5}
+.browse-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.browse-card{background:var(--white);border:1px solid var(--line);padding:24px;text-decoration:none;display:block;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden}
+.browse-card:not(.tbu):hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.08);border-color:#0EDBA5}
+.browse-card.tbu{opacity:.38;cursor:default;pointer-events:none}
+.browse-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:#0EDBA5}
+.browse-card-industry{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0EDBA5;margin-bottom:10px}
+.browse-card-title{font-size:16px;font-weight:700;color:var(--black);letter-spacing:-.02em;margin-bottom:8px;line-height:1.25}
+.browse-card-body{font-size:12.5px;font-weight:300;color:var(--gray);line-height:1.6;margin-bottom:14px}
+.browse-card-link{font-size:12px;font-weight:600;color:#0EDBA5;display:flex;align-items:center;gap:5px}
+.browse-card.tbu .browse-card-link{color:var(--gray)}
+.browse-tbu-badge{position:absolute;top:10px;right:10px;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--bg);border:1px solid var(--line);color:var(--gray);padding:2px 7px}
+@media(max-width:600px){.browse-grid{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+
+<div class="gnb-wrap">
+  <div class="gnb-layer1">
+    <div class="gnb-left">
+      <a class="gnb-wordmark" href="tridge_eye_hub.html">TRIDGE</a>
+      <span class="gnb-sep">/</span>
+      <span class="gnb-product">Tridge Eye</span>
+    </div>
+    <ul class="gnb-modules"><li><a href="tridge_eye_market_intelligence.html">Market Intelligence</a></li><li><a href="tridge_eye_supplier_discovery.html">Supplier Discovery</a></li><li><a href="tridge_eye_price_benchmarking.html">Price Benchmarking</a></li><li><a href="tridge_purchase_development_v2.html">Purchase Development</a></li><li><a href="tridge_export_solution.html">Export Solution</a></li><li><a href="tridge_trade_execution.html">Trade Execution</a></li></ul>
+    <a href="#cta" class="gnb-cta">Request Demo</a>
+  </div>
+  <div class="gnb-layer2">
+    <ul class="gnb-sub"><li><a href="#problem">The Problem</a></li><li><a href="#pillars">Intelligence Pillars</a></li><li><a href="#usecases">Use Cases</a></li><li><a href="#how">How It Works</a></li><li><a href="#deliverables">Deliverables</a></li><li><a href="#faq">FAQ</a></li></ul>
+  </div>
+</div>
+
+<section class="hero" id="top">
+  <div class="hero-grid"></div><div class="hero-glow"></div>
+  <div class="hero-left">
+    <div class="hero-breadcrumb"><a href="tridge_eye_hub.html">Tridge Eye</a><span>/</span><span>Supplier Discovery</span></div>
+    <div class="hero-industry-tag">Soybean Intelligence</div>
+    <h1>Find Reliable Soybean Suppliers<br/>Backed by Real Trade Data.</h1>
+    <p class="hero-desc">Tridge Eye maps the global soybean supply network &#8212; verified by transaction history, scored by commercial activity, and structured for importers and traders building resilient supply chains.</p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn-primary">Request Demo &#8594;</a>
+      <a href="#problem" class="btn-ghost">See the Problem &#8595;</a>
+    </div>
+    <div class="hero-chips"><span class="hero-chip">Supplier Network Intelligence</span><span class="hero-chip">Transaction Verification</span><span class="hero-chip">Origin Diversification</span><span class="hero-chip">GMO/Non-GMO Filtering</span><span class="hero-chip">Relationship Mapping</span></div>
+  </div>
+  <div class="hero-right">
+    <div class="mock-dash">
+      <div class="mock-dash-header">
+        <div class="mock-dash-header-accent"></div>
+        <span class="mock-dash-title">Supplier Shortlist &#8212; Soybean (Non-GMO, FOB Santos)</span>
+        <div class="mock-dash-dots"><div class="mock-dash-dot"></div><div class="mock-dash-dot"></div><div class="mock-dash-dot"></div></div>
+      </div>
+      <div class="mock-section"><div class="mock-label">Supplier Shortlist &#8212; Soybean (Non-GMO, FOB Santos)</div><div class="mock-price-row"><span class="mock-price-item">AgriMax Export S.A.</span><span class="mock-price-val">Score: 96</span><span class="mock-delta up">Active</span></div>
+<div class="mock-price-row"><span class="mock-price-item">Cofco Agri Brazil</span><span class="mock-price-val">Score: 91</span><span class="mock-delta up">Active</span></div>
+<div class="mock-price-row"><span class="mock-price-item">Amaggi Group</span><span class="mock-price-val">Score: 88</span><span class="mock-delta down">Selective</span></div>
+</div>
+      <div class="mock-section"><div class="mock-label">Global Supply Share (Current Season)</div><div class="mock-bar-wrap"><div class="mock-bar-row"><span class="mock-bar-label">Brazil</span><div class="mock-bar-bg"><div class="mock-bar-fill" style="width:37%;background:#0EDBA5"></div></div><span class="mock-bar-val">37%</span></div>
+<div class="mock-bar-row"><span class="mock-bar-label">USA</span><div class="mock-bar-bg"><div class="mock-bar-fill" style="width:31%;background:var(--blue)"></div></div><span class="mock-bar-val">31%</span></div>
+<div class="mock-bar-row"><span class="mock-bar-label">Argentina</span><div class="mock-bar-bg"><div class="mock-bar-fill" style="width:19%;background:var(--yellow)"></div></div><span class="mock-bar-val">19%</span></div>
+<div class="mock-bar-row"><span class="mock-bar-label">Others</span><div class="mock-bar-bg"><div class="mock-bar-fill" style="width:13%;background:rgba(255,255,255,.2)"></div></div><span class="mock-bar-val">13%</span></div>
+</div></div>
+      <div class="mock-section"><div class="mock-label">Top Trade Corridors (Last 30 Days)</div><div class="mock-price-row"><span class="mock-price-item">Brazil &#8594; China</span><span class="mock-price-val">4.2M MT</span></div>
+<div class="mock-price-row"><span class="mock-price-item">USA &#8594; China</span><span class="mock-price-val">1.8M MT</span></div>
+<div class="mock-price-row"><span class="mock-price-item">Argentina &#8594; EU</span><span class="mock-price-val">620K MT</span></div>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="problem" id="problem">
+  <div class="eyebrow">The Problem</div>
+  <div class="problem-layout">
+    <div class="problem-text">
+      <h2 class="section-title">Soybean supply is concentrated and opaque.<br/>Most supplier lists don't reflect trading reality.</h2>
+      <div class="divider"></div>
+      <p>The soybean market is dominated by a handful of major trading houses, but the most commercially competitive suppliers &#8212; especially in Brazil and Argentina &#8212; are often mid-tier exporters not visible in standard directories. Finding the right supplier requires understanding who is actually trading, at what scale, and with which buyers.</p>
+      <div class="problem-callout">
+        <div class="problem-callout-text">"The most competitive soybean suppliers are often not the ones who register on directories."</div>
+        <div class="problem-callout-sub">Tridge Eye Supplier Discovery is built on verified transaction data &#8212; so your shortlist reflects who is actually exporting your specification, not just who has filed a profile.</div>
+      </div>
+    </div>
+    <div class="prob-cards"><div class="prob-card"><div class="prob-card-title">Trading house concentration risk</div><div class="prob-card-body">Over-reliance on the major ABCDs creates pricing leverage risk. Independent mid-tier exporters in Brazil and Argentina often offer more competitive terms &#8212; but require transaction-verified intelligence to identify and qualify reliably.</div></div>
+<div class="prob-card"><div class="prob-card-title">GMO / non-GMO supply opacity</div><div class="prob-card-body">Non-GMO soybean supply is geographically concentrated and certification-dependent. Identifying suppliers with consistent non-GMO track records requires transaction history &#8212; not self-reported capabilities.</div></div>
+<div class="prob-card"><div class="prob-card-title">Origin volatility and switching</div><div class="prob-card-body">Brazilian and Argentine supply conditions change seasonally. Knowing which suppliers have available capacity, which are switching buyers, and which origins are in active disruption requires real-time intelligence beyond published reports.</div></div>
+</div>
+  </div>
+</section>
+
+<section class="pillars" id="pillars">
+  <div class="eyebrow">Three Intelligence Pillars</div>
+  <h2 class="section-title">What Tridge Eye Covers<br/>for Soybean Procurement</h2>
+  <p class="section-sub">Three interconnected intelligence layers built specifically for Soybean &#8212; each valuable alone, compounding together into a complete procurement intelligence picture.</p>
+  <div class="pillars-grid"><div class="pillar">
+      <div class="pillar-num">01</div>
+      <div class="pillar-title" style="color:#0EDBA5">Transaction-Verified Supplier Network</div>
+      <div class="pillar-body">Every soybean exporter in the Tridge Eye network has verifiable transaction history &#8212; confirmed shipments, buyer relationships, and commercial activity &#8212; not just a self-filed directory profile.</div>
+      <div class="pillar-points"><div class="pillar-point">Brazil exporters by volume and specification</div><div class="pillar-point">Argentina crushers and trading houses</div><div class="pillar-point">USA elevator and export terminal activity</div><div class="pillar-point">Origin-switching signals by supplier</div></div>
+    </div>
+<div class="pillar">
+      <div class="pillar-num">02</div>
+      <div class="pillar-title" style="color:var(--blue)">Specification and Certification Matching</div>
+      <div class="pillar-body">Filter by GMO status, protein content, moisture specification, origin, and certification tier &#8212; and see only suppliers with verified transaction history matching those parameters, not just listed capabilities.</div>
+      <div class="pillar-points"><div class="pillar-point">Non-GMO verified transaction history</div><div class="pillar-point">Protein/moisture specification matching</div><div class="pillar-point">Identity preservation (IP) capability signals</div><div class="pillar-point">Organic and specialty grade coverage</div></div>
+    </div>
+<div class="pillar">
+      <div class="pillar-num">03</div>
+      <div class="pillar-title" style="color:var(--cyan)">Buyer-Supplier Relationship Intelligence</div>
+      <div class="pillar-body">See who each soybean exporter sells to, at what volumes, and through which trading channels &#8212; revealing whether a supplier has the right buyer base profile and commercial positioning for your sourcing needs.</div>
+      <div class="pillar-points"><div class="pillar-point">Major trading house vs independent exporter profiles</div><div class="pillar-point">End-buyer relationship patterns by origin</div><div class="pillar-point">Market switching signals and availability windows</div><div class="pillar-point">Counterparty network depth by supplier</div></div>
+    </div>
+</div>
+</section>
+
+<section class="why" id="why-eye">
+  <div class="eyebrow" style="color:var(--cyan)">Why This Is Different</div>
+  <h2 class="section-title" style="color:var(--white)">Not a commodity report.<br/>Transaction intelligence for Soybean.</h2>
+  <p class="section-sub" style="color:rgba(255,255,255,.4)">Generic commodity data tools provide category averages. Tridge Eye provides verified transaction intelligence specific to Soybean &#8212; at origin level, specification level, and current market timing.</p>
+  <div class="why-cols"><div class="why-col"><div class="why-col-num">01</div><div class="why-col-title" style="color:#0EDBA5">Transaction depth in South America</div><div class="why-col-body">Tridge Eye has particular depth in Brazilian and Argentine soybean supply networks &#8212; covering mid-tier exporters and cooperatives that are commercially active but not visible in standard international directories.</div></div>
+<div class="why-col"><div class="why-col-num">02</div><div class="why-col-title" style="color:var(--blue)">Specification-level intelligence</div><div class="why-col-body">Supplier scoring reflects actual transaction activity at your specification &#8212; GMO status, protein grade, and delivery term &#8212; not broad category presence that may not apply to your sourcing requirements.</div></div>
+<div class="why-col"><div class="why-col-num">03</div><div class="why-col-title" style="color:var(--cyan)">Connected to outreach and qualification</div><div class="why-col-body">Identified suppliers flow directly into structured AI-led outreach &#8212; so your shortlist becomes an active engagement pipeline rather than a static research output.</div></div>
+</div>
+  <div class="why-bridge"><p>Most soybean supplier lists tell you who exists. Tridge Eye tells you who is actively trading in your specification &#8212; and who has available capacity right now.</p></div>
+</section>
+
+<section class="usecases" id="usecases">
+  <div class="eyebrow">Use Cases</div>
+  <h2 class="section-title">Six Soybean Procurement<br/>Scenarios Where This Matters.</h2>
+  <p class="section-sub">Market intelligence is most valuable at high-stakes procurement moments &#8212; where the cost of acting on outdated or generic data is real and measurable.</p>
+  <div class="uc-grid"><div class="uc-card"><div class="uc-icon">&#127807;</div><div class="uc-title">Alternative exporter development</div><div class="uc-body">Identify mid-tier Brazilian and Argentine exporters with verified transaction history &#8212; as credible alternatives to major trading house pricing.</div></div>
+<div class="uc-card"><div class="uc-icon">&#127809;</div><div class="uc-title">Non-GMO sourcing</div><div class="uc-body">Find suppliers with consistent non-GMO transaction history before investing in qualification &#8212; reducing the risk of certification failures mid-supply chain.</div></div>
+<div class="uc-card"><div class="uc-icon">&#9889;</div><div class="uc-title">Emergency supply response</div><div class="uc-body">When a key supplier fails to deliver or prices spike, rapidly identify alternative exporters with available capacity and verified reliability.</div></div>
+<div class="uc-card"><div class="uc-icon">&#127759;</div><div class="uc-title">Origin diversification</div><div class="uc-body">Assess North American soybean exporters as an alternative to South American origin concentration &#8212; backed by transaction intelligence on capacity and commercial positioning.</div></div>
+<div class="uc-card"><div class="uc-icon">&#128230;</div><div class="uc-title">Volume scale-up sourcing</div><div class="uc-body">Identify exporters with the capacity to handle growing import volumes &#8212; before your incumbent supplier becomes a bottleneck.</div></div>
+<div class="uc-card"><div class="uc-icon">&#128176;</div><div class="uc-title">Competitive pricing through supplier expansion</div><div class="uc-body">Add verified alternative suppliers to your sourcing base &#8212; creating competitive tension that improves your pricing position with incumbent relationships.</div></div>
+</div>
+</section>
+
+<section class="how" id="how">
+  <div class="eyebrow">How It Works</div>
+  <h2 class="section-title">From Soybean Procurement Brief<br/>to Market Intelligence</h2>
+  <p class="section-sub">A structured process that turns your soybean procurement question into verified, actionable intelligence &#8212; without manual research or data aggregation.</p>
+  <div class="how-steps">
+    <div class="how-step"><div class="how-step-num">1</div><div><div class="how-step-title">Define your soybean procurement context</div><div class="how-step-body">Input your specification, origin preference, destination market, target price range, and timeline. Tridge Eye structures your brief against its soybean category ontology &#8212; ensuring the intelligence output reflects your actual procurement parameters, not a generic category average.</div><span class="how-step-tag">Category Brief &#43; Ontology Matching</span></div></div>
+    <div class="how-step"><div class="how-step-num">2</div><div><div class="how-step-title">Transaction intelligence is assembled</div><div class="how-step-body">The system surfaces verified transaction data for your soybean specification, origin, and corridor &#8212; including current price range, supply structure, trade flow patterns, and active market signals relevant to your procurement decision.</div><span class="how-step-tag">Transaction Data Query</span></div></div>
+    <div class="how-step"><div class="how-step-num">3</div><div><div class="how-step-title">Origin-level signals are identified</div><div class="how-step-body">Beyond aggregated benchmarks, the system identifies origin-specific signals &#8212; supply disruption indicators, seasonal timing factors, and market switching patterns &#8212; that affect soybean pricing and availability in ways commodity indices don't capture.</div><span class="how-step-tag">Signal Identification</span></div></div>
+    <div class="how-step"><div class="how-step-num">4</div><div><div class="how-step-title">Connected to supplier development</div><div class="how-step-body">Where intelligence reveals pricing advantages in alternative origins or underserved supply corridors, the output connects to Supplier Discovery &#8212; identifying which verified exporters have transaction history in those parameters and are ready for outreach.</div><span class="how-step-tag">Connected to Supplier Discovery</span></div></div>
+  </div>
+</section>
+
+<section class="deliv" id="deliverables">
+  <div class="eyebrow" style="color:#0EDBA5">What You Receive</div>
+  <h2 class="section-title" style="color:var(--white)">Soybean Intelligence Outputs.<br/>Structured for Procurement Use.</h2>
+  <p class="section-sub" style="color:rgba(255,255,255,.4)">Not a generic commodity report. Each deliverable is structured for the specific soybean procurement question you are trying to answer.</p>
+  <div class="deliv-grid">
+    <div class="deliv-card"><div class="deliv-num">01</div><div class="deliv-icon">&#128176;</div><div class="deliv-title">Transaction price range</div><div class="deliv-body">Verified soybean price range with market average, best available, and directional trend &#8212; at your specification and corridor</div></div>
+    <div class="deliv-card"><div class="deliv-num">02</div><div class="deliv-icon">&#127757;</div><div class="deliv-title">Origin supply structure</div><div class="deliv-body">Production volumes, seasonal patterns, and supply share by origin &#8212; structured for soybean alternative sourcing evaluation</div></div>
+    <div class="deliv-card"><div class="deliv-num">03</div><div class="deliv-icon">&#128279;</div><div class="deliv-title">Trade flow map</div><div class="deliv-body">Active soybean trade corridors, volume concentration, and buyer-supplier relationship patterns in your category</div></div>
+    <div class="deliv-card"><div class="deliv-num">04</div><div class="deliv-icon">&#128225;</div><div class="deliv-title">Market signal summary</div><div class="deliv-body">Supply disruption indicators, pricing trend direction, and origin-level signals specific to soybean market dynamics</div></div>
+    <div class="deliv-card"><div class="deliv-num">05</div><div class="deliv-icon">&#128202;</div><div class="deliv-title">Benchmarking position</div><div class="deliv-body">Your current soybean procurement cost vs verified transaction prices &#8212; with overpayment or underpayment signals</div></div>
+    <div class="deliv-card"><div class="deliv-num">06</div><div class="deliv-icon">&#9889;</div><div class="deliv-title">Prioritized next actions</div><div class="deliv-body">Which suppliers to investigate, which origins to explore, and where to deploy outreach first &#8212; connected to Tridge Eye Supplier Discovery</div></div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="eyebrow">FAQ</div>
+  <h2 class="section-title">Common Questions from<br/>Soybean Procurement Teams</h2>
+  <div class="faq-layout">
+    <div class="faq-list">
+      <div class="faq-item open"><div class="faq-q">How is this different from published soybean price indices?</div><div class="faq-a"><p>Published indices aggregate reported data at commodity level with a 30&#8211;90 day lag. Tridge Eye is built on verified transaction records &#8212; actual closed trades at specific specifications, origins, and corridors &#8212; providing both greater specificity and greater currency than any published benchmark.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Which soybean origins and specifications does Tridge Eye cover?</div><div class="faq-a"><p>Tridge Eye covers the major soybean producing origins and their key export corridors, with specification-level data where transaction volume supports it. Coverage depth varies by origin &#8212; highest for the dominant trade corridors, with supply network intelligence supplementing transaction data for less liquid origins.</p></div></div>
+      <div class="faq-item"><div class="faq-q">How quickly can I get soybean market intelligence for a specific procurement decision?</div><div class="faq-a"><p>For high-volume specifications and major corridors, transaction intelligence can be assembled within hours of your brief. For more specialized specifications or emerging origins, the timeline varies but typically runs 1&#8211;2 days &#8212; significantly faster than commissioning a custom market report.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Can this support our internal soybean procurement team?</div><div class="faq-a"><p>Yes. Tridge Eye is designed to accelerate and strengthen internal teams &#8212; not replace buyer judgment. Your team retains decision authority while the system provides verified intelligence that eliminates the manual research and data aggregation bottleneck.</p></div></div>
+      <div class="faq-item"><div class="faq-q">How does soybean intelligence connect to the rest of Tridge Eye?</div><div class="faq-a"><p>Market intelligence flows directly into Supplier Discovery &#8212; identifying which exporters have verified transaction history in your specification &#8212; and into AI-led outreach, creating a connected soybean procurement workflow rather than isolated research outputs.</p></div></div>
+    </div>
+    <div>
+      <div class="faq-aside">
+        <div class="faq-aside-title">Request Soybean market intelligence for your next procurement decision</div>
+        <div class="faq-aside-body">Tell us your specification, target origin, and procurement context. We will show you how Tridge Eye applies to your soybean situation.</div>
+        <a class="faq-aside-link" href="#cta">Request a Demo &#8594;</a>
+        <a class="faq-aside-link" href="/cdn-cgi/l/email-protection#691a1c19190510440a01080007441a06051c1d0006074f4a5f5d521d1b000d0e0c470a0604">Talk to our team &#8594;</a>
+        <div class="faq-related">
+          <div class="faq-related-label">Related Modules</div>
+          <a href="tridge_eye_market_intelligence.html">&#8594; Market Intelligence</a>
+          <a href="tridge_eye_supplier_discovery.html">&#8594; Supplier Discovery</a>
+          <a href="tridge_eye_price_benchmarking.html">&#8594; Price Benchmarking</a>
+          <a href="tridge_eye_hub.html">&#8594; All Tridge Eye Modules</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="browse" id="browse-market">
+  <div class="eyebrow">Browse by Market</div>
+  <h2 class="section-title">More Intelligence<br/>for This Market.</h2>
+  <p class="section-sub">Tridge Eye intelligence for this commodity market. Greyed-out cards are in development.</p>
+  <div class="browse-grid">
+    <div class="browse-card tbu">
+      <span class="browse-tbu-badge">TBU</span>
+      <div class="browse-card-industry">Soybean</div>
+      <div class="browse-card-title">Soybean Market Intelligence</div>
+      <div class="browse-card-body">Origin-level supply signals, pricing, and trade corridor analysis for soybean.</div>
+      <div class="browse-card-link">TBU</div>
+    </div>
+    <a href="tridge_eye_soybean_discovery.html" class="browse-card">
+      
+      <div class="browse-card-industry">Soybean</div>
+      <div class="browse-card-title">Soybean Supplier Discovery</div>
+      <div class="browse-card-body">Verified soybean exporters across Brazil, Argentina, and the US &#8212; scored by transaction history.</div>
+      <div class="browse-card-link">You are here</div>
+    </a>
+    <div class="browse-card tbu">
+      <span class="browse-tbu-badge">TBU</span>
+      <div class="browse-card-industry">Soybean</div>
+      <div class="browse-card-title">Soybean Price Benchmarking</div>
+      <div class="browse-card-body">Benchmark soybean quotes across South American and North American corridors.</div>
+      <div class="browse-card-link">TBU</div>
+    </div>
+  </div>
+</section>
+<section class="cta" id="cta">
+  <div class="cta-bg"></div><div class="cta-grid"></div>
+  <div class="cta-inner">
+    <div class="eyebrow" style="color:#0EDBA5">Request a Demo</div>
+    <h2 class="section-title">Get Soybean Market Intelligence<br/>Before Your Next Negotiation.</h2>
+    <p class="section-sub">Request a demo to see how Tridge Eye applies to your specific soybean category, origin, and procurement context.</p>
+    <div class="cta-btns">
+      <a href="/cdn-cgi/l/email-protection#07747277776b7e2a646f666e692a74686b72736e6869212431333c73756e6360622964686a" class="btn-primary">Request Demo &#8594;</a>
+      <a href="tridge_eye_hub.html" class="btn-ghost">&#8592; All Modules</a>
+    </div>
+    <div class="cta-note">A Tridge solutions team member will respond within 2 business days.</div>
+  </div>
+</section>
+<div class="ribbon">
+  <div class="ribbon-text">Find soybean suppliers who are ready to trade &#8212; not just listed in a directory.</div>
+  <a href="/cdn-cgi/l/email-protection#0d7e787d7d6174206e656c6463207e626178796462632b2e3b3936797f64696a68236e6260" class="ribbon-btn">Request Demo</a>
+</div>
+
+<footer>
+  <a class="footer-wordmark" href="tridge_eye_hub.html">TRIDGE</a>
+  <div class="footer-links">
+    <a href="tridge_eye_hub.html">All Modules</a>
+    <a href="tridge_eye_market_intelligence.html">Market Intelligence</a>
+    <a href="tridge_eye_supplier_discovery.html">Supplier Discovery</a>
+    <a href="tridge_eye_price_benchmarking.html">Price Benchmarking</a>
+    <a href="/cdn-cgi/l/email-protection#2c5f595c5c4055014f444d4542015f434059584543420a0f1a1817585e45484b49024f4341">Contact</a>
+  </div>
+  <div class="footer-copy">&#169; 2026 Tridge. All rights reserved.</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
+}, { threshold: 0.07 });
+document.querySelectorAll('.prob-card,.pillar,.why-col,.uc-card,.how-step,.deliv-card,.faq-item').forEach(el => {
+  el.style.opacity='0'; el.style.transform='translateY(16px)'; el.style.transition='opacity .5s ease,transform .5s ease';
+  o

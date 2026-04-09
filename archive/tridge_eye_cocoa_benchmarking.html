@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Tridge Eye &#8212; Cocoa Price Benchmarking | Know If You Are Overpaying for Cocoa Before You Sign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#171CFD;--black:#0A0A18;--white:#FFFFFF;--purple:#7E43CD;--bluepurple:#5C42E5;--cyan:#34C6EE;--green:#0EDBA5;--yellow:#FFD12D;--bg:#F5F5FA;--tint:#EAEAFF;--gray:#6B6B8A;--line:#D8D8F0;--cocoa:#C07830}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--black);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;padding-top:92px}
+/* ── TWO-LAYER GNB ── */
+.gnb-wrap{position:fixed;top:0;left:0;right:0;z-index:200}
+.gnb-layer1{height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(10,10,24,.98);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07)}
+.gnb-layer2{height:36px;display:flex;align-items:center;padding:0 5%;background:rgba(6,6,18,.95);border-bottom:1px solid rgba(255,255,255,.05);overflow-x:auto;scrollbar-width:none}
+.gnb-layer2::-webkit-scrollbar{display:none}
+.gnb-left{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.gnb-wordmark{font-size:15px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:-.01em}
+.gnb-sep{color:rgba(255,255,255,.2);font-size:12px}
+.gnb-product{font-size:11px;font-weight:400;color:rgba(255,255,255,.4);letter-spacing:.02em}
+.gnb-modules{display:flex;gap:2px;list-style:none;flex:1;justify-content:center}
+.gnb-modules a{color:rgba(255,255,255,.45);text-decoration:none;font-size:12px;font-weight:400;padding:5px 10px;border-radius:3px;transition:color .15s,background .15s;white-space:nowrap}
+.gnb-modules a:hover{color:var(--white);background:rgba(255,255,255,.07)}
+.gnb-modules a.active{color:var(--white);background:rgba(255,255,255,.1);font-weight:500}
+.gnb-cta{background:var(--blue);color:var(--white);font-size:11px;font-weight:600;letter-spacing:.06em;padding:7px 16px;text-decoration:none;text-transform:uppercase;transition:opacity .2s;white-space:nowrap;flex-shrink:0}
+.gnb-cta:hover{opacity:.85}
+.gnb-sub{display:flex;gap:0;list-style:none;white-space:nowrap}
+.gnb-sub a{color:rgba(255,255,255,.38);text-decoration:none;font-size:11px;font-weight:400;padding:0 14px;height:36px;display:flex;align-items:center;transition:color .15s,background .15s;border-right:1px solid rgba(255,255,255,.05)}
+.gnb-sub a:hover{color:rgba(255,255,255,.75);background:rgba(255,255,255,.04)}
+.gnb-sub a.sub-active{color:rgba(255,255,255,.9);font-weight:500}
+body{padding-top:92px}
+section{padding:100px 5%}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#C07830;margin-bottom:12px}
+.section-title{font-size:clamp(28px,3vw,44px);font-weight:700;letter-spacing:-.03em;line-height:1.08;margin-bottom:16px}
+.section-sub{font-size:16px;font-weight:300;color:var(--gray);line-height:1.75;max-width:600px}
+.divider{width:36px;height:2px;background:#C07830;margin:18px 0}
+.btn-primary{display:inline-block;background:#C07830;color:#FFFFFF;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:14px 32px;text-decoration:none;transition:opacity .2s,transform .15s}
+.btn-primary:hover{opacity:.85;transform:translateY(-2px)}
+.btn-ghost{display:inline-block;border:1.5px solid rgba(255,255,255,.25);color:var(--white);font-size:13px;font-weight:500;padding:13px 28px;text-decoration:none;transition:border-color .2s}
+.btn-ghost:hover{border-color:var(--white)}
+.hero{min-height:88vh;background:var(--black);display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;padding:80px 5% 72px;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(23,28,253,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(23,28,253,.05) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
+.hero-glow{position:absolute;width:650px;height:650px;border-radius:50%;background:radial-gradient(circle,rgba(23,28,253,.15) 0%,transparent 68%);top:-100px;right:-100px;pointer-events:none}
+.hero-left{position:relative;z-index:2}
+.hero-breadcrumb{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:18px}
+.hero-breadcrumb a{color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
+.hero-breadcrumb a:hover{color:var(--white)}
+.hero-industry-tag{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border:1px solid;margin-bottom:18px;color:#C07830;border-color:#C07830;background:rgba(255,255,255,.05)}
+.hero h1{font-size:clamp(38px,4.5vw,62px);font-weight:800;letter-spacing:-.04em;line-height:1.0;color:var(--white);margin-bottom:18px}
+.hero h1 em{font-style:normal;color:#C07830}
+.hero-desc{font-size:16px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.75;max-width:490px;margin-bottom:30px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px;padding-top:22px;border-top:1px solid rgba(255,255,255,.07)}
+.hero-chip{font-size:11px;font-weight:500;padding:5px 12px;background:rgba(139,90,43,.3);border:1px solid rgba(139,90,43,.5);color:rgba(210,160,100,.9)}
+.hero-right{position:relative;z-index:2}
+.mock-dash{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);overflow:hidden}
+.mock-dash-header{background:rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.1);padding:10px 16px;display:flex;align-items:center;justify-content:space-between}
+.mock-dash-header-accent{background:#C07830;width:3px;height:18px;margin-right:10px;flex-shrink:0}
+.mock-dash-title{font-size:11px;font-weight:600;color:var(--white);letter-spacing:.05em;flex:1}
+.mock-dash-dots{display:flex;gap:4px}
+.mock-dash-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.25)}
+.mock-section{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.06)}
+.mock-section:last-child{border-bottom:none}
+.mock-label{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:10px}
+.mock-price-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.mock-price-row:last-child{margin-bottom:0}
+.mock-price-item{font-size:12px;font-weight:300;color:rgba(255,255,255,.5)}
+.mock-price-val{font-size:13px;font-weight:700;color:var(--white)}
+.mock-delta{font-size:10px;font-weight:500;padding:2px 6px}
+.mock-delta.up{background:rgba(14,219,165,.15);color:var(--green)}
+.mock-delta.down{background:rgba(255,80,80,.15);color:#FF8080}
+.mock-bar-wrap{display:flex;flex-direction:column;gap:7px}
+.mock-bar-row{display:flex;align-items:center;gap:8px}
+.mock-bar-label{font-size:10px;color:rgba(255,255,255,.4);width:76px;flex-shrink:0}
+.mock-bar-bg{flex:1;height:8px;background:rgba(255,255,255,.06)}
+.mock-bar-fill{height:100%}
+.mock-bar-val{font-size:10px;font-weight:600;color:var(--white);width:36px;text-align:right;flex-shrink:0}
+.problem{background:var(--bg)}
+.problem-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:52px;align-items:start}
+.problem-text p{font-size:15px;font-weight:300;color:var(--gray);line-height:1.75;margin-top:14px}
+.problem-text strong{color:var(--black);font-weight:600}
+.problem-callout{background:var(--black);padding:30px;border-top:3px solid #C07830;margin-top:22px}
+.problem-callout-text{font-size:16px;font-weight:700;color:var(--white);line-height:1.4;letter-spacing:-.02em}
+.problem-callout-sub{font-size:13px;font-weight:300;color:rgba(255,255,255,.4);margin-top:8px;line-height:1.65}
+.prob-cards{display:flex;flex-direction:column;gap:14px}
+.prob-card{background:var(--white);border:1px solid var(--line);padding:22px;border-left:3px solid #C07830;transition:transform .2s}
+.prob-card:nth-child(2){border-left-color:var(--blue)}
+.prob-card:nth-child(3){border-left-color:var(--cyan)}
+.prob-card:hover{transform:translateX(4px)}
+.prob-card-title{font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px}
+.prob-card-body{font-size:13px;font-weight:300;color:var(--gray);line-height:1.65}
+.pillars{background:var(--white)}
+.pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
+.pillar{border:1px solid var(--line);padding:28px;transition:transform .2s,box-shadow .2s}
+.pillar:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.06)}
+.pillar::before{content:'';display:block;height:2px;margin-bottom:18px;background:#C07830}
+.pillar:nth-child(2)::before{background:var(--blue)}
+.pillar:nth-child(3)::before{background:var(--cyan)}
+.pillar-num{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(107,107,138,.5);background:var(--bg);display:inline-block;padding:2px 8px;margin-bottom:10px}
+.pillar-title{font-size:17px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+.pillar-body{font-size:13.5px;font-weight:300;color:var(--gray);line-height:1.65;margin-bottom:14px}
+.pillar-points{display:flex;flex-direction:column;gap:6px}
+.pillar-point{font-size:12.5px;color:var(--gray);display:flex;align-items:flex-start;gap:7px;line-height:1.5}
+.pillar-point::before{content:'&#8594;';color:#C07830;font-weight:700;flex-shrink:0;font-size:11px;margin-top:1px}
+.why{background:var(--black);padding:100px 5%}
+.why-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:52px;background:rgba(255,255,255,.15)}
+.why-col{background:#0D0D1F;padding:36px 28px;transition:background .2s}
+.why-col:hover{background:rgba(255,255,255,.04)}
+.why-col-num{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);background:rgba(255,255,255,.08);display:inline-block;padding:3px 9px;margin-bottom:10px}
+.why-col-title{font-size:16px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+.why-col-body{font-size:13px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.7}
+.why-bridge{margin-top:36px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-left:3px solid #C07830;padding:22px 28px}
+.why-bridge p{font-size:15px;color:rgba(255,255,255,.6);line-height:1.7;font-style:italic}
+.why-bridge strong{color:var(--white);font-weight:600;font-style:normal}
+.usecases{background:var(--bg)}
+.uc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:52px}
+.uc-card{background:var(--white);border:1px solid var(--line);padding:26px;transition:transform .2s,box-shadow .2s}
+.uc-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.06)}
+.uc-card::before{content:'';display:block;height:2px;margin-bottom:18px;background:#C07830}
+.uc-card:nth-child(2)::before{background:var(--blue)}
+.uc-card:nth-child(3)::before{background:var(--cyan)}
+.uc-card:nth-child(4)::before{background:var(--bluepurple)}
+.uc-card:nth-child(5)::before{background:var(--purple)}
+.uc-card:nth-child(6)::before{background:var(--green)}
+.uc-icon{font-size:20px;margin-bottom:10px}
+.uc-title{font-size:14px;font-weight:600;color:var(--black);margin-bottom:7px}
+.uc-body{font-size:13px;font-weight:300;color:var(--gray);line-height:1.65}
+.how{background:var(--white)}
+.how-steps{margin-top:52px;display:flex;flex-direction:column;gap:0}
+.how-step{display:grid;grid-template-columns:80px 1fr;gap:28px;padding:26px 0;border-bottom:1px solid var(--line);align-items:start}
+.how-step:last-child{border-bottom:none}
+.how-step-num{width:50px;height:50px;border:1.5px solid #C07830;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;color:#C07830;flex-shrink:0;transition:background .2s,color .2s}
+.how-step:hover .how-step-num{background:#C07830;color:var(--white)}
+.how-step-title{font-size:16px;font-weight:600;color:var(--black);margin-bottom:6px;letter-spacing:-.02em}
+.how-step-body{font-size:13.5px;font-weight:300;color:var(--gray);line-height:1.65;max-width:580px;margin-bottom:8px}
+.how-step-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;background:rgba(255,255,255,.0);border:1px solid #C07830;color:#C07830}
+.deliv{background:var(--black);padding:100px 5%}
+.deliv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:52px}
+.deliv-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);padding:20px;transition:border-color .2s,background .2s}
+.deliv-card:hover{border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.06)}
+.deliv-num{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);background:rgba(255,255,255,.08);display:inline-block;padding:2px 8px;margin-bottom:8px}
+.deliv-icon{font-size:18px;margin-bottom:6px}
+.deliv-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:5px}
+.deliv-body{font-size:13px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.65}
+.faq{background:var(--bg)}
+.faq-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:52px;align-items:start}
+.faq-list{display:flex;flex-direction:column}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{padding:17px 0;font-size:14px;font-weight:500;color:var(--black);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .2s;user-select:none;gap:16px}
+.faq-q:hover{color:#C07830}
+.faq-q::after{content:'+';font-size:20px;font-weight:300;color:#C07830;flex-shrink:0;transition:transform .25s;line-height:1}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .2s}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:16px}
+.faq-a p{font-size:13.5px;font-weight:300;color:var(--gray);line-height:1.7}
+.faq-aside{background:var(--black);padding:30px;display:flex;flex-direction:column;gap:14px}
+.faq-aside-title{font-size:19px;font-weight:700;color:var(--white);letter-spacing:-.02em;line-height:1.3}
+.faq-aside-body{font-size:13px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.65}
+.faq-aside-link{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600;color:#C07830;text-decoration:none;border-bottom:1px solid #C07830;padding-bottom:1px;transition:opacity .2s}
+.faq-aside-link:hover{opacity:.7}
+.faq-related{margin-top:8px;padding-top:16px;border-top:1px solid rgba(255,255,255,.07)}
+.faq-related-label{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:8px}
+.faq-related a{display:block;font-size:12px;color:rgba(255,255,255,.3);text-decoration:none;padding:4px 0;transition:color .2s}
+.faq-related a:hover{color:rgba(255,255,255,.65)}
+.cta{background:var(--black);text-align:center;position:relative;overflow:hidden;padding:100px 5%}
+.cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(23,28,253,.18) 0%,transparent 70%);pointer-events:none}
+.cta-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(23,28,253,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(23,28,253,.04) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+.cta-inner{position:relative;z-index:2}
+.cta .section-title{color:var(--white);max-width:560px;margin:0 auto 16px}
+.cta .section-sub{color:rgba(255,255,255,.4);margin:0 auto 36px;text-align:center}
+.cta-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.cta-note{margin-top:14px;font-size:12px;color:rgba(255,255,255,.22)}
+.ribbon{padding:28px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:#C07830}
+.ribbon-text{font-size:15px;font-weight:500;color:#FFFFFF}
+.ribbon-btn{font-size:12px;font-weight:700;letter-spacing:.06em;padding:11px 24px;text-decoration:none;text-transform:uppercase;flex-shrink:0;background:#FFFFFF;color:#C07830}
+footer{background:var(--black);border-top:1px solid rgba(255,255,255,.05);padding:28px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.footer-wordmark{font-size:15px;font-weight:700;color:var(--white);text-decoration:none}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap}
+.footer-links a{font-size:11px;color:rgba(255,255,255,.28);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,.65)}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.18)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-left>*{animation:fadeUp .6s ease both}
+.hero-left>*:nth-child(1){animation-delay:.1s}.hero-left>*:nth-child(2){animation-delay:.2s}.hero-left>*:nth-child(3){animation-delay:.3s}.hero-left>*:nth-child(4){animation-delay:.42s}.hero-left>*:nth-child(5){animation-delay:.52s}
+.hero-right{animation:fadeUp .7s .3s ease both}
+@media(max-width:960px){.hero,.problem-layout,.faq-layout{grid-template-columns:1fr;gap:32px}.hero{min-height:auto}.pillars-grid,.uc-grid,.deliv-grid{grid-template-columns:1fr 1fr}.why-cols{grid-template-columns:1fr;background:none;gap:14px}.why-col{border:1px solid rgba(255,255,255,.08)}.gnb-modules{display:none}}
+@media(max-width:600px){.pillars-grid,.uc-grid,.deliv-grid{grid-template-columns:1fr}section{padding:72px 5%}.ribbon{flex-direction:column;text-align:center}}
+
+.browse{background:var(--bg);padding:72px 5%}
+.browse .eyebrow{color:#C07830}
+.browse-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.browse-card{background:var(--white);border:1px solid var(--line);padding:24px;text-decoration:none;display:block;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden}
+.browse-card:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.08);border-color:#C07830}
+.browse-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:#C07830}
+.browse-card-industry{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.browse-card-title{font-size:16px;font-weight:700;color:var(--black);letter-spacing:-.02em;margin-bottom:8px;line-height:1.25}
+.browse-card-body{font-size:12.5px;font-weight:300;color:var(--gray);line-height:1.6;margin-bottom:14px}
+.browse-card-link{font-size:12px;font-weight:600;color:#C07830;display:flex;align-items:center;gap:5px}
+@media(max-width:600px){.browse-grid{grid-template-columns:1fr}}
+section{padding:100px 5%}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--cocoa);margin-bottom:12px}
+.section-title{font-size:clamp(28px,3vw,44px);font-weight:700;letter-spacing:-.03em;line-height:1.08;margin-bottom:16px}
+.section-sub{font-size:16px;font-weight:300;color:var(--gray);line-height:1.75;max-width:600px}
+.divider{width:36px;height:2px;background:var(--cocoa);margin:18px 0}
+.btn-primary{display:inline-block;background:var(--cocoa);color:var(--white);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:14px 32px;text-decoration:none;transition:opacity .2s,transform .15s}
+.btn-primary:hover{opacity:.85;transform:translateY(-2px)}
+.btn-ghost{display:inline-block;border:1.5px solid rgba(255,255,255,.25);color:var(--white);font-size:13px;font-weight:500;padding:13px 28px;text-decoration:none;transition:border-color .2s}
+.btn-ghost:hover{border-color:var(--white)}
+.hero{min-height:88vh;background:var(--black);display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;padding:80px 5% 72px;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(192,120,48,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(192,120,48,.04) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(192,120,48,.12) 0%,transparent 68%);top:-100px;right:-80px;pointer-events:none}
+.hero-left{position:relative;z-index:2}
+.hero-breadcrumb{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:16px}
+.hero-breadcrumb a{color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
+.hero-breadcrumb a:hover{color:var(--white)}
+.hero-tag{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border:1px solid var(--cocoa);color:var(--cocoa);background:rgba(192,120,48,.08);margin-bottom:18px}
+.hero h1{font-size:clamp(38px,4.5vw,62px);font-weight:800;letter-spacing:-.04em;line-height:1.0;color:var(--white);margin-bottom:18px}
+.hero h1 em{font-style:normal;color:var(--cocoa)}
+.hero-desc{font-size:16px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.75;max-width:490px;margin-bottom:28px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px;padding-top:22px;border-top:1px solid rgba(255,255,255,.07)}
+.hero-chip{font-size:11px;font-weight:500;padding:5px 12px;background:rgba(192,120,48,.12);border:1px solid rgba(192,120,48,.25);color:rgba(230,170,110,.85)}
+.hero-right{position:relative;z-index:2}
+.mock-dash{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);overflow:hidden}
+.mock-dash-header{background:rgba(192,120,48,.2);border-bottom:1px solid rgba(192,120,48,.3);padding:10px 16px;display:flex;align-items:center;gap:8px}
+.mock-dash-accent{width:3px;height:16px;background:var(--cocoa);flex-shrink:0}
+.mock-dash-title{font-size:11px;font-weight:600;color:var(--white);letter-spacing:.05em;flex:1}
+.mock-dash-dots{display:flex;gap:4px}
+.mock-dash-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.25)}
+.mock-section{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.06)}
+.mock-section:last-child{border-bottom:none}
+.mock-label{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:10px}
+.mock-price-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.mock-price-row:last-child{margin-bottom:0}
+.mock-price-item{font-size:12px;font-weight:300;color:rgba(255,255,255,.5)}
+.mock-price-val{font-size:13px;font-weight:700;color:var(--white)}
+.mock-delta{font-size:10px;font-weight:500;padding:2px 6px}
+.mock-delta.up{background:rgba(14,219,165,.15);color:var(--green)}
+.mock-delta.down{background:rgba(255,80,80,.15);color:#FF8080}
+.mock-delta.neutral{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5)}
+.mock-bar-wrap{display:flex;flex-direction:column;gap:7px}
+.mock-bar-row{display:flex;align-items:center;gap:8px}
+.mock-bar-label{font-size:10px;color:rgba(255,255,255,.4);width:76px;flex-shrink:0}
+.mock-bar-bg{flex:1;height:8px;background:rgba(255,255,255,.06)}
+.mock-bar-fill{height:100%}
+.mock-bar-val{font-size:10px;font-weight:600;color:var(--white);width:36px;text-align:right;flex-shrink:0}
+.problem{background:var(--bg)}
+.problem-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:52px;align-items:start}
+.problem-text p{font-size:15px;font-weight:300;color:var(--gray);line-height:1.75;margin-top:14px}
+.problem-text strong{color:var(--black);font-weight:600}
+.problem-callout{background:var(--black);padding:30px;border-top:3px solid var(--cocoa);margin-top:22px}
+.problem-callout-text{font-size:16px;font-weight:700;color:var(--white);line-height:1.4;letter-spacing:-.02em}
+.problem-callout-sub{font-size:13px;font-weight:300;color:rgba(255,255,255,.4);margin-top:8px;line-height:1.65}
+.prob-cards{display:flex;flex-direction:column;gap:14px}
+.prob-card{background:var(--white);border:1px solid var(--line);padding:22px;border-left:3px solid var(--cocoa);transition:transform .2s}
+.prob-card:nth-child(2){border-left-color:var(--blue)}
+.prob-card:nth-child(3){border-left-color:var(--cyan)}
+.prob-card:hover{transform:translateX(4px)}
+.prob-card-title{font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px}
+.prob-card-body{font-size:13px;font-weight:300;color:var(--gray);line-height:1.65}
+.pillars{background:var(--white)}
+.pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
+.pillar{border:1px solid var(--line);padding:28px;transition:transform .2s,box-shadow .2s}
+.pillar:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.06)}
+.pillar::before{content:'';display:block;height:2px;margin-bottom:18px;background:var(--cocoa)}
+.pillar:nth-child(2)::before{background:var(--green)}
+.pillar:nth-child(3)::before{background:var(--cyan)}
+.pillar-num{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(107,107,138,.5);background:var(--bg);display:inline-block;padding:2px 8px;margin-bottom:10px}
+.pillar-title{font-size:17px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+.pillar-body{font-size:13.5px;font-weight:300;color:var(--gray);line-height:1.65;margin-bottom:14px}
+.pillar-points{display:flex;flex-direction:column;gap:6px}
+.pillar-point{font-size:12.5px;color:var(--gray);display:flex;align-items:flex-start;gap:7px;line-height:1.5}
+.pillar-point::before{content:'&#8594;';color:var(--cocoa);font-weight:700;flex-shrink:0;font-size:11px;margin-top:1px}
+.why{background:var(--black);padding:100px 5%}
+.why-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:52px;background:rgba(255,255,255,.15)}
+.why-col{background:#0D0D1F;padding:36px 28px;transition:background .2s}
+.why-col:hover{background:rgba(255,255,255,.04)}
+.why-col-num{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);background:rgba(255,255,255,.08);display:inline-block;padding:3px 9px;margin-bottom:10px}
+.why-col-title{font-size:16px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+.why-col-body{font-size:13px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.7}
+.why-bridge{margin-top:36px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-left:3px solid var(--cocoa);padding:22px 28px}
+.why-bridge p{font-size:15px;color:rgba(255,255,255,.6);line-height:1.7;font-style:italic}
+.why-bridge strong{color:var(--white);font-weight:600;font-style:normal}
+.usecases{background:var(--bg)}
+.uc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:52px}
+.uc-card{background:var(--white);border:1px solid var(--line);padding:26px;transition:transform .2s,box-shadow .2s}
+.uc-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.06)}
+.uc-card::before{content:'';display:block;height:2px;margin-bottom:18px;background:var(--cocoa)}
+.uc-card:nth-child(2)::before{background:var(--blue)}
+.uc-card:nth-child(3)::before{background:var(--cyan)}
+.uc-card:nth-child(4)::before{background:var(--green)}
+.uc-card:nth-child(5)::before{background:var(--bluepurple)}
+.uc-card:nth-child(6)::before{background:var(--yellow)}
+.uc-icon{font-size:20px;margin-bottom:10px}
+.uc-title{font-size:14px;font-weight:600;color:var(--black);margin-bottom:7px}
+.uc-body{font-size:13px;font-weight:300;color:var(--gray);line-height:1.65}
+.how{background:var(--white)}
+.how-steps{margin-top:52px;display:flex;flex-direction:column}
+.how-step{display:grid;grid-template-columns:80px 1fr;gap:28px;padding:26px 0;border-bottom:1px solid var(--line);align-items:start}
+.how-step:last-child{border-bottom:none}
+.how-step-num{width:50px;height:50px;border:1.5px solid var(--cocoa);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;color:var(--cocoa);flex-shrink:0;transition:background .2s,color .2s}
+.how-step:hover .how-step-num{background:var(--cocoa);color:var(--white)}
+.how-step-title{font-size:16px;font-weight:600;color:var(--black);margin-bottom:6px;letter-spacing:-.02em}
+.how-step-body{font-size:13.5px;font-weight:300;color:var(--gray);line-height:1.65;max-width:580px;margin-bottom:8px}
+.how-step-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border:1px solid var(--cocoa);color:var(--cocoa)}
+.deliv{background:var(--black);padding:100px 5%}
+.deliv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:52px}
+.deliv-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);padding:20px;transition:border-color .2s,background .2s}
+.deliv-card:hover{border-color:rgba(192,120,48,.4);background:rgba(192,120,48,.05)}
+.deliv-num{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);background:rgba(255,255,255,.08);display:inline-block;padding:2px 8px;margin-bottom:8px}
+.deliv-icon{font-size:18px;margin-bottom:6px}
+.deliv-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:5px}
+.deliv-body{font-size:13px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.65}
+.faq{background:var(--bg)}
+.faq-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:52px;align-items:start}
+.faq-list{display:flex;flex-direction:column}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{padding:17px 0;font-size:14px;font-weight:500;color:var(--black);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .2s;user-select:none;gap:16px}
+.faq-q:hover{color:var(--cocoa)}
+.faq-q::after{content:'+';font-size:20px;font-weight:300;color:var(--cocoa);flex-shrink:0;transition:transform .25s;line-height:1}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .2s}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:16px}
+.faq-a p{font-size:13.5px;font-weight:300;color:var(--gray);line-height:1.7}
+.faq-aside{background:var(--black);padding:30px;display:flex;flex-direction:column;gap:14px}
+.faq-aside-title{font-size:18px;font-weight:700;color:var(--white);letter-spacing:-.02em;line-height:1.3}
+.faq-aside-body{font-size:13px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.65}
+.faq-aside-link{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600;color:var(--cocoa);text-decoration:none;border-bottom:1px solid var(--cocoa);padding-bottom:1px;transition:opacity .2s;margin-bottom:4px}
+.faq-aside-link:hover{opacity:.7}
+.faq-related{margin-top:8px;padding-top:16px;border-top:1px solid rgba(255,255,255,.07)}
+.faq-related-label{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:8px}
+.faq-related a{display:block;font-size:12px;color:rgba(255,255,255,.3);text-decoration:none;padding:4px 0;transition:color .2s}
+.faq-related a:hover{color:rgba(255,255,255,.65)}
+.cta{background:var(--black);text-align:center;position:relative;overflow:hidden;padding:100px 5%}
+.cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(192,120,48,.15) 0%,transparent 70%);pointer-events:none}
+.cta-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(192,120,48,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(192,120,48,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+.cta-inner{position:relative;z-index:2}
+.cta .section-title{color:var(--white);max-width:560px;margin:0 auto 16px}
+.cta .section-sub{color:rgba(255,255,255,.4);margin:0 auto 36px;text-align:center}
+.cta-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.cta-note{margin-top:14px;font-size:12px;color:rgba(255,255,255,.22)}
+
+
+.ribbon{padding:28px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:var(--cocoa)}
+.ribbon-text{font-size:15px;font-weight:500;color:var(--white)}
+.ribbon-btn{font-size:12px;font-weight:700;letter-spacing:.06em;padding:11px 24px;text-decoration:none;text-transform:uppercase;flex-shrink:0;background:var(--white);color:var(--cocoa)}
+footer{background:var(--black);border-top:1px solid rgba(255,255,255,.05);padding:28px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.footer-wordmark{font-size:15px;font-weight:700;color:var(--white);text-decoration:none}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap}
+.footer-links a{font-size:11px;color:rgba(255,255,255,.28);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,.65)}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.18)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-left>*{animation:fadeUp .6s ease both}
+.hero-left>*:nth-child(1){animation-delay:.1s}.hero-left>*:nth-child(2){animation-delay:.2s}.hero-left>*:nth-child(3){animation-delay:.3s}.hero-left>*:nth-child(4){animation-delay:.42s}
+.hero-right{animation:fadeUp .7s .3s ease both}
+@media(max-width:960px){.hero,.problem-layout,.faq-layout{grid-template-columns:1fr;gap:32px}.hero{min-height:auto}.pillars-grid,.uc-grid,.deliv-grid{grid-template-columns:1fr 1fr}.why-cols{grid-template-columns:1fr;background:none;gap:14px}.why-col{border:1px solid rgba(255,255,255,.08)}.gnb-modules{display:none}}
+</style>
+</head>
+<body>
+<div class="gnb-wrap">
+  <div class="gnb-layer1">
+    <div class="gnb-left">
+      <a class="gnb-wordmark" href="tridge_eye_hub.html">TRIDGE</a>
+      <span class="gnb-sep">/</span>
+      <span class="gnb-product">Tridge Eye</span>
+    </div>
+    <ul class="gnb-modules"><li><a href="tridge_eye_market_intelligence.html">Market Intelligence</a></li><li><a href="tridge_eye_supplier_discovery.html">Supplier Discovery</a></li><li><a href="tridge_eye_price_benchmarking.html">Price Benchmarking</a></li><li><a href="tridge_purchase_development_v2.html">Purchase Development</a></li><li><a href="tridge_export_solution.html">Export Solution</a></li><li><a href="tridge_trade_execution.html">Trade Execution</a></li></ul>
+    <a href="#cta" class="gnb-cta">Request Demo</a>
+  </div>
+  <div class="gnb-layer2">
+    <ul class="gnb-sub"><li><a href="#problem">The Problem</a></li><li><a href="#pillars">Pillars</a></li><li><a href="#usecases">Use Cases</a></li><li><a href="#how">How It Works</a></li><li><a href="#deliverables">Deliverables</a></li><li><a href="#faq">FAQ</a></li></ul>
+  </div>
+</div>
+
+<section class="hero" id="top">
+  <div class="hero-grid"></div><div class="hero-glow"></div>
+  <div class="hero-left">
+    <div class="hero-breadcrumb">
+      <a href="tridge_eye_hub.html">Tridge Eye</a><span>/</span>
+      <a href="tridge_eye_cocoa_intelligence.html">Cocoa</a><span>/</span>
+      <span>Price Benchmarking</span>
+    </div>
+    <div class="hero-tag">&#9749; Cocoa &#183; Price Benchmarking</div>
+    <h1>Know If You're<br/>Overpaying for <em>Cocoa</em> &#8212;<br/>Before You Sign.</h1>
+    <p class="hero-desc">Transaction-verified cocoa price benchmarks across origins, grades, and certification tiers &#8212; so procurement teams enter every contract negotiation with real market context, not a trader's framing of where prices are.</p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn-primary">Request Demo &#8594;</a>
+      <a href="#problem" class="btn-ghost">See the Problem &#8595;</a>
+    </div>
+    <div class="hero-chips"><span class="hero-chip">Grade-Level Benchmarks</span><span class="hero-chip">IC vs Ghana Spread</span><span class="hero-chip">Certification Premiums</span><span class="hero-chip">ICCO vs Transaction Gap</span><span class="hero-chip">Negotiation-Ready Context</span></div>
+  </div>
+  <div class="hero-right">
+    <div class="mock-dash">
+      <div class="mock-dash-header">
+        <div class="mock-dash-accent"></div>
+        <span class="mock-dash-title">PRICE BENCHMARKING &#8212; Cocoa Grade I (CIF Hamburg)</span>
+        <div class="mock-dash-dots"><div class="mock-dash-dot"></div><div class="mock-dash-dot"></div><div class="mock-dash-dot"></div></div>
+      </div>
+      <div class="mock-section"><div class="mock-label">Your Quote vs Market Range</div><div class="mock-price-row"><span class="mock-price-item">Your quote (Ghana Grade I)</span><span class="mock-price-val">$3,450/MT</span><span class="mock-delta up">&#9888; High</span></div>
+<div class="mock-price-row"><span class="mock-price-item">Market average</span><span class="mock-price-val">$3,240/MT</span><span class="mock-delta up">+1.8%</span></div>
+<div class="mock-price-row"><span class="mock-price-item">Best verified (IC Grade I)</span><span class="mock-price-val">$3,180/MT</span><span class="mock-delta up">&#8722;7.8%</span></div>
+</div>
+      <div class="mock-section"><div class="mock-label">Origin Supply Share</div><div class="mock-bar-wrap"><div class="mock-bar-row"><span class="mock-bar-label">Ivory Coast</span><div class="mock-bar-bg"><div class="mock-bar-fill" style="width:42%;background:#C07830"></div></div><span class="mock-bar-val">42%</span></div>
+<div class="mock-bar-row"><span class="mock-bar-label">Ghana</span><div class="mock-bar-bg"><div class="mock-bar-fill" style="width:18%;background:var(--yellow)"></div></div><span class="mock-bar-val">18%</span></div>
+<div class="mock-bar-row"><span class="mock-bar-label">Indonesia</span><div class="mock-bar-bg"><div class="mock-bar-fill" style="width:14%;background:var(--green)"></div></div><span class="mock-bar-val">14%</span></div>
+<div class="mock-bar-row"><span class="mock-bar-label">Others</span><div class="mock-bar-bg"><div class="mock-bar-fill" style="width:26%;background:rgba(255,255,255,.2)"></div></div><span class="mock-bar-val">26%</span></div>
+</div></div>
+      <div class="mock-section"><div class="mock-label">Key Trade Flows</div><div class="mock-price-row"><span class="mock-price-item">IC &#8594; Netherlands</span><span class="mock-price-val">28,400 MT</span></div>
+<div class="mock-price-row"><span class="mock-price-item">Ghana &#8594; Germany</span><span class="mock-price-val">12,200 MT</span></div>
+<div class="mock-price-row"><span class="mock-price-item">Ecuador &#8594; USA</span><span class="mock-price-val">4,800 MT</span></div>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="problem" id="problem">
+  <div class="eyebrow">The Problem</div>
+  <div class="problem-layout">
+    <div class="problem-text">
+      <h2 class="section-title">Cocoa procurement teams negotiate<br/>without verified transaction price context.</h2>
+      <div class="divider"></div>
+      <p>ICCO reference prices and published indices reflect market sentiment at commodity level &#8212; not the specification-level transaction prices that determine whether your incoming quote is market-consistent or margin-loaded. Ivory Coast and Ghana Grade I prices diverge significantly, and certification premiums vary widely by buyer and season.</p>
+      <div class="problem-callout">
+        <div class="problem-callout-text">"Ghana Grade I often trades at a premium to Ivory Coast &#8212; but how much is market, and how much is your supplier's margin? Without transaction data, you can't tell."</div>
+        <div class="problem-callout-sub">Tridge Eye Price Benchmarking gives you specification-level transaction price references for cocoa &#8212; so you know exactly where your quote stands before you enter the room.</div>
+      </div>
+    </div>
+    <div class="prob-cards"><div class="prob-card"><div class="prob-card-title">ICCO and published indices lag reality</div><div class="prob-card-body">Published cocoa price benchmarks aggregate reported data at commodity level. They do not reflect current transaction prices at specification level &#8212; and suppliers use that gap to maintain margin on buyers without independent benchmarks.</div></div>
+<div class="prob-card"><div class="prob-card-title">Origin premium opacity</div><div class="prob-card-body">The Ivory Coast vs Ghana price differential shifts with export policy, harvest quality, and seasonal demand. Without current transaction data, procurement teams cannot assess whether the origin premium in their quote is market-reflective or inflated.</div></div>
+<div class="prob-card"><div class="prob-card-title">Certification premium is unverifiable without data</div><div class="prob-card-body">UTZ, Rainforest Alliance, and Fairtrade premiums vary by buyer, season, and market. Procurement teams paying certification premiums without verified benchmark data often overpay by amounts that compound significantly across annual cocoa volumes.</div></div>
+</div>
+  </div>
+</section>
+
+<section class="pillars" id="pillars">
+  <div class="eyebrow">Three Intelligence Pillars</div>
+  <h2 class="section-title">What Tridge Eye Covers<br/>for Cocoa Price Benchmarking</h2>
+  <p class="section-sub">Three intelligence layers built specifically for cocoa procurement &#8212; each valuable alone, compounding together into a complete picture.</p>
+  <div class="pillars-grid"><div class="pillar"><div class="pillar-num">01</div><div class="pillar-title" style="color:#C07830">Grade-Level Price Benchmarking</div><div class="pillar-body">Transaction-verified cocoa prices at grade level &#8212; Grade I, Grade II, and fine flavor &#8212; by origin, destination, and delivery term &#8212; not a single ICCO-referenced commodity average.</div><div class="pillar-points"><div class="pillar-point">IC Grade I vs Ghana Grade I price spread</div><div class="pillar-point">Fine flavor Ecuador vs mainstream origin differential</div><div class="pillar-point">CIF Hamburg / Rotterdam / Antwerp comparison</div><div class="pillar-point">Seasonal price trend by grade and origin</div></div></div>
+<div class="pillar"><div class="pillar-num">02</div><div class="pillar-title" style="color:var(--green)">Certification Premium Validation</div><div class="pillar-body">Verify whether UTZ, Rainforest Alliance, Fairtrade, and organic premiums are consistent with what buyers in your destination market are actually paying &#8212; backed by transaction evidence.</div><div class="pillar-points"><div class="pillar-point">UTZ vs conventional premium benchmarks by origin</div><div class="pillar-point">Rainforest Alliance price differential by season</div><div class="pillar-point">Fairtrade minimum vs market premium tracking</div><div class="pillar-point">Organic fine flavor premium trajectory</div></div></div>
+<div class="pillar"><div class="pillar-num">03</div><div class="pillar-title" style="color:var(--cyan)">Origin and Corridor Spread Intelligence</div><div class="pillar-body">Understand the full price picture across Ivory Coast, Ghana, Latin America, and Indonesia &#8212; so you can assess whether alternative origin sourcing offers genuine cost advantages at your grade.</div><div class="pillar-points"><div class="pillar-point">IC vs Ghana price differential by season</div><div class="pillar-point">Latin America fine flavor premium vs mainstream</div><div class="pillar-point">Indonesia volume-grade pricing benchmarks</div><div class="pillar-point">Emerging origin price comparison (Cameroon, Nigeria)</div></div></div>
+</div>
+</section>
+
+<section class="why" id="why-eye">
+  <div class="eyebrow" style="color:var(--cyan)">Why This Is Different</div>
+  <h2 class="section-title" style="color:var(--white)">Transaction Data vs<br/>ICCO References and Trader Quotes.</h2>
+  <p class="section-sub" style="color:rgba(255,255,255,.4)">Published cocoa benchmarks and trader quotes both have limitations. Tridge Eye provides verified transaction prices that reflect what buyers are actually paying &#8212; at grade and certification level.</p>
+  <div class="why-cols"><div class="why-col"><div class="why-col-num">01</div><div class="why-col-title" style="color:#C07830">Grade and certification depth</div><div class="why-col-body">Tridge Eye cocoa price benchmarks are available at grade and certification tier &#8212; not just commodity-level ICCO references. This means your benchmark reflects what buyers with your exact specification are actually paying.</div></div>
+<div class="why-col"><div class="why-col-num">02</div><div class="why-col-title" style="color:var(--green)">Origin spread precision</div><div class="why-col-body">The IC vs Ghana price differential, seasonal premium movements, and certification tier spreads are reflected in transaction data before they appear in published indices &#8212; giving procurement teams earlier visibility.</div></div>
+<div class="why-col"><div class="why-col-num">03</div><div class="why-col-title" style="color:var(--cyan)">Negotiation-structured output</div><div class="why-col-body">Price intelligence is structured for the way cocoa procurement teams actually use it: your quote vs market average vs best available, with overpayment signal and supporting transaction evidence formatted for direct negotiation use.</div></div>
+</div>
+  <div class="why-bridge"><p><strong>Most cocoa price tools tell you where the market has been. Tridge Eye tells you what buyers are paying right now &#8212; at your grade, your origin, and your certification tier.</strong></p></div>
+</section>
+
+<section class="usecases" id="usecases">
+  <div class="eyebrow">Use Cases</div>
+  <h2 class="section-title">Six Cocoa Procurement<br/>Scenarios Where This Matters.</h2>
+  <p class="section-sub">Most valuable at high-stakes procurement moments &#8212; where acting on incomplete information has a real, measurable cost.</p>
+  <div class="uc-grid"><div class="uc-card"><div class="uc-icon">&#128176;</div><div class="uc-title">Pre-contract quote validation</div><div class="uc-body">Verify whether your supplier's quoted price is market-consistent at grade and certification level before signing your next annual cocoa supply contract.</div></div>
+<div class="uc-card"><div class="uc-icon">&#127757;</div><div class="uc-title">IC vs Ghana origin decision</div><div class="uc-body">Assess whether the origin premium or discount in your quote reflects current transaction market reality &#8212; or your supplier's margin preference on a less-scrutinized differential.</div></div>
+<div class="uc-card"><div class="uc-icon">&#9889;</div><div class="uc-title">Harvest shortfall price assessment</div><div class="uc-body">When harvest disruptions in West Africa cause price spikes, verify how much of the increase reflects genuine supply tightness versus trader margin expansion.</div></div>
+<div class="uc-card"><div class="uc-icon">&#127981;</div><div class="uc-title">Certification premium negotiation</div><div class="uc-body">Enter UTZ, Rainforest Alliance, or Fairtrade premium negotiations with verified transaction data on what certified cocoa buyers in your destination market are actually paying this season.</div></div>
+<div class="uc-card"><div class="uc-icon">&#128200;</div><div class="uc-title">Annual contract price anchoring</div><div class="uc-body">Set defensible price targets for annual cocoa supply contracts &#8212; backed by a verified transaction price range rather than an ICCO reference that may not reflect your specific grade and origin.</div></div>
+<div class="uc-card"><div class="uc-icon">&#128202;</div><div class="uc-title">Multi-supplier quote comparison</div><div class="uc-body">When comparing quotes from multiple cocoa exporters, understand which are market-consistent, which carry excess margin, and which may reflect origin or quality differences that need investigation.</div></div>
+</div>
+</section>
+
+<section class="how" id="how">
+  <div class="eyebrow">How It Works</div>
+  <h2 class="section-title">From Cocoa Quote to Verified<br/>Market Context in Minutes</h2>
+  <p class="section-sub">A structured process that turns your incoming cocoa quote &#8212; or procurement question &#8212; into a verified market position with clear negotiation reference and next steps.</p>
+  <div class="how-steps">
+    <div class="how-step"><div class="how-step-num">1</div><div><div class="how-step-title">Input your cocoa quote or procurement question</div><div class="how-step-body">Enter the grade, certification tier, origin, destination, volume, and your incoming quote or target price range. Tridge Eye maps your input to the relevant transaction data at specification level.</div><span class="how-step-tag">Specification Matching</span></div></div>
+    <div class="how-step"><div class="how-step-num">2</div><div><div class="how-step-title">Transaction price range assembled</div><div class="how-step-body">The system surfaces verified transaction prices for your cocoa grade, certification tier, and corridor &#8212; showing actual range, market average, best available, and directional trend. This is transaction data, not ICCO-modeled estimates.</div><span class="how-step-tag">Transaction Query</span></div></div>
+    <div class="how-step"><div class="how-step-num">3</div><div><div class="how-step-title">Your position quantified</div><div class="how-step-body">You see exactly where your quote sits relative to verified market reality &#8212; expressed as a percentage deviation from market average, with the number of confirming transactions and an overpayment signal where relevant.</div><span class="how-step-tag">Position Quantification</span></div></div>
+    <div class="how-step"><div class="how-step-num">4</div><div><div class="how-step-title">Connected to alternative sourcing</div><div class="how-step-body">Where benchmarking reveals pricing advantages in alternative origins, the output connects to Supplier Discovery &#8212; surfacing verified cocoa exporters in lower-cost origins with transaction history in your specification.</div><span class="how-step-tag">Connected to Discovery</span></div></div>
+  </div>
+</section>
+
+<section class="deliv" id="deliverables">
+  <div class="eyebrow" style="color:var(--cocoa)">What You Receive</div>
+  <h2 class="section-title" style="color:var(--white)">Cocoa Intelligence Outputs.<br/>Structured for Procurement Use.</h2>
+  <p class="section-sub" style="color:rgba(255,255,255,.4)">Not a generic commodity report. Each deliverable is structured for cocoa procurement decisions.</p>
+  <div class="deliv-grid"><div class="deliv-card"><div class="deliv-num">01</div><div class="deliv-icon">&#128200;</div><div class="deliv-title">Transaction price range</div><div class="deliv-body">Verified cocoa price range with market average, best available, and directional trend &#8212; at your grade, certification tier, and corridor</div></div>
+<div class="deliv-card"><div class="deliv-num">02</div><div class="deliv-icon">&#9888;</div><div class="deliv-title">Overpayment signal with evidence</div><div class="deliv-body">Your quote position relative to verified market &#8212; quantified as a percentage deviation with confirming transaction count</div></div>
+<div class="deliv-card"><div class="deliv-num">03</div><div class="deliv-icon">&#127757;</div><div class="deliv-title">Origin price spread</div><div class="deliv-body">IC vs Ghana vs Latin America price comparison at your grade &#8212; so alternative origin cost advantages can be assessed before supplier development</div></div>
+<div class="deliv-card"><div class="deliv-num">04</div><div class="deliv-icon">&#127981;</div><div class="deliv-title">Certification premium benchmarks</div><div class="deliv-body">UTZ, Rainforest Alliance, Fairtrade, and organic premium verification against what buyers in your destination market are actually paying this season</div></div>
+<div class="deliv-card"><div class="deliv-num">05</div><div class="deliv-icon">&#128202;</div><div class="deliv-title">Price trend direction</div><div class="deliv-body">Upward, downward, or stable &#8212; with seasonal context on whether timing favors your current procurement decision</div></div>
+<div class="deliv-card"><div class="deliv-num">06</div><div class="deliv-icon">&#9889;</div><div class="deliv-title">Connected supplier options</div><div class="deliv-body">Where benchmarking reveals pricing advantages in alternative origins, connected to verified cocoa exporter shortlists from Supplier Discovery</div></div>
+</div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="eyebrow">FAQ</div>
+  <h2 class="section-title">Common Questions from<br/>Cocoa Procurement Teams</h2>
+  <div class="faq-layout">
+    <div class="faq-list"><div class="faq-item open"><div class="faq-q">How is this different from ICCO prices?</div><div class="faq-a"><p>ICCO references aggregate reported prices at commodity level with a publication lag. Tridge Eye is built on verified transaction records &#8212; actual closed trades at specific grades, origins, and corridors &#8212; providing both greater specificity and greater currency than any published benchmark.</p></div></div>
+<div class="faq-item"><div class="faq-q">Does this cover both Grade I and fine flavor cocoa?</div><div class="faq-a"><p>Yes. Tridge Eye covers mainstream grades (IC and Ghana Grade I and II) and fine flavor categories (Ecuador, Dominican Republic, Peru). Benchmark depth varies &#8212; highest for the dominant West Africa corridors, with transaction data supplemented by market intelligence for fine flavor origins.</p></div></div>
+<div class="faq-item"><div class="faq-q">How current is the cocoa transaction data?</div><div class="faq-a"><p>Transaction data is incorporated continuously. For major West Africa corridors and mainstream grades, the benchmark reflects very recent market activity. Seasonal signals &#8212; main crop pricing dynamics particularly &#8212; are prioritized for currency.</p></div></div>
+<div class="faq-item"><div class="faq-q">Can this benchmark certification premiums specifically?</div><div class="faq-a"><p>Yes. Certification premium benchmarks are available where transaction volume supports specification-level data. For UTZ and Rainforest Alliance in the major West Africa corridors, premium benchmarks are well-supported by transaction evidence.</p></div></div>
+<div class="faq-item"><div class="faq-q">How does Price Benchmarking connect to Supplier Discovery?</div><div class="faq-a"><p>Where benchmarking reveals pricing advantages in alternative origins or grades, the output connects directly to Supplier Discovery &#8212; identifying which verified cocoa exporters have transaction history in those parameters and are available for outreach.</p></div></div>
+</div>
+    <div>
+      <div class="faq-aside">
+        <div class="faq-aside-title">Benchmark your next cocoa quote before you negotiate</div>
+        <div class="faq-aside-body">Tell us your grade, certification tier, and target corridor. We will show you how Tridge Eye Price Benchmarking applies to your cocoa contract situation.</div>
+        <a class="faq-aside-link" href="#cta">Request a Demo &#8594;</a>
+        <a class="faq-aside-link" href="/cdn-cgi/l/email-protection#57242227273b2e7a343f363e397a24383b22233e3839717461636c23253e3330327934383a">Talk to our team &#8594;</a>
+        <div class="faq-related">
+          <div class="faq-related-label">Cocoa Intelligence Suite</div>
+          <a href="tridge_eye_cocoa_intelligence.html">&#8594; Cocoa Market Intelligence</a>
+          <a href="tridge_eye_cocoa_discovery.html">&#8594; Cocoa Supplier Discovery</a>
+          <a href="tridge_eye_cocoa_benchmarking.html">&#8594; Cocoa Price Benchmarking</a>
+          <a href="tridge_eye_hub.html">&#8594; All Tridge Eye Modules</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="browse" id="browse-market">
+  <div class="eyebrow">Browse by Market</div>
+  <h2 class="section-title">More Cocoa Intelligence<br/>Modules.</h2>
+  <p class="section-sub">Tridge Eye covers the full cocoa procurement intelligence stack &#8212; from market signals to supplier verification to price benchmarking.</p>
+  <div class="browse-grid">
+    <a href="tridge_eye_cocoa_intelligence.html" class="browse-card">
+      <div class="browse-card-industry">Cocoa</div>
+      <div class="browse-card-title">Cocoa Market Intelligence</div>
+      <div class="browse-card-body">Origin pricing, West Africa supply signals, and trade flow data for cocoa procurement teams.</div>
+      <div class="browse-card-link">Explore &#8594;</div>
+    </a>
+    <a href="tridge_eye_cocoa_discovery.html" class="browse-card">
+      <div class="browse-card-industry">Cocoa</div>
+      <div class="browse-card-title">Cocoa Supplier Discovery</div>
+      <div class="browse-card-body">Find verified cocoa exporters by origin, certification, and transaction history.</div>
+      <div class="browse-card-link">Explore &#8594;</div>
+    </a>
+    <a href="tridge_eye_cocoa_benchmarking.html" class="browse-card">
+      <div class="browse-card-industry">Cocoa</div>
+      <div class="browse-card-title">Cocoa Price Benchmarking</div>
+      <div class="browse-card-body">Verify cocoa quotes against transaction prices by origin, grade, and certification tier.</div>
+      <div class="browse-card-link">You are here</div>
+    </a>
+  </div>
+</section>
+<section class="cta" id="cta">
+  <div class="cta-bg"></div><div class="cta-grid"></div>
+  <div class="cta-inner">
+    <div class="eyebrow" style="color:var(--cocoa)">Price Benchmarking</div>
+    <h2 class="section-title">Benchmark Your Cocoa Quote<br/>Before You Negotiate.</h2>
+    <p class="section-sub">Request a demo to see Tridge Eye Price Benchmarking applied to your specific cocoa grade, origin, and certification tier.</p>
+    <div class="cta-btns">
+      <a href="/cdn-cgi/l/email-protection#e1929491918d98cc828980888fcc928e8d9495888e8fc7c2d7d5da959388858684cf828e8c" class="btn-primary">Request Demo &#8594;</a>
+      <a href="tridge_eye_hub.html" class="btn-ghost">&#8592; All Modules</a>
+    </div>
+    <div class="cta-note">A Tridge solutions team member will respond within 2 business days.</div>
+  </div>
+</section>
+
+
+
+
+<div class="ribbon">
+  <div class="ribbon-text">Know what fair looks like in cocoa &#8212; before the negotiation starts.</div>
+  <a href="/cdn-cgi/l/email-protection#097a7c79796570246a61686067247a66657c7d6066672f2a3f3d327d7b606d6e6c276a6664" class="ribbon-btn">Request Demo</a>
+</div>
+
+<footer>
+  <a class="footer-wordmark" href="tridge_eye_hub.html">TRIDGE</a>
+  <div class="footer-links">
+    <a href="tridge_eye_cocoa_intelligence.html">Cocoa Intelligence</a>
+    <a href="tridge_eye_cocoa_discovery.html">Cocoa Discovery</a>
+    <a href="tridge_eye_cocoa_benchmarking.html">Cocoa Benchmarking</a>
+    <a href="tridge_eye_hub.html">All Modules</a>
+    <a href="/cdn-cgi/l/email-protection#acdfd9dcdcc0d581cfc4cdc5c281dfc3c0d9d8c5c3c28a8f9a9897d8dec5c8cbc982cfc3c1">Contact</a>
+  </div>
+  <div class="footer-copy">&#169; 2026 Tridge. All rights reserved.</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.parentElement;
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+    if(!isOpen) item.classList.add('open');
+  });
+});
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});
+},{threshold:0.07});
+document.querySelectorAll('.prob-card,.pillar,.why-col,.uc-card

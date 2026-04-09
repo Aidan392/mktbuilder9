@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -L https://www.palantir.com)",
+      "Bash(curl -s -L https://www.veeva.com)",
+      "Bash(curl -s -L https://www.spglobal.com/market-intelligence/en)",
+      "WebFetch(domain:www.palantir.com)",
+      "WebFetch(domain:www.veeva.com)",
+      "WebFetch(domain:www.spglobal.com)",
+      "Bash(curl -s -L \"https://www.palantir.com\")",
+      "Bash(curl -s -L \"https://www.veeva.com\")",
+      "Bash(curl -s -L \"https://www.spglobal.com/market-intelligence/en\")",
+      "Bash(curl -s -L \"https://www.spglobal.com/marketintelligence/en/\")",
+      "WebFetch(domain:www.tridge.com)",
+      "Bash(ls:*)",
+      "Bash(mv Images Images_tmp)",
+      "Bash(mv Images_tmp images)",
+      "Bash(grep -n \"hero-es {$\\\\|hero-es::\\\\|problem-es {$\\\\|problem-es \\\\|solution-es {$\\\\|how-es {$\\\\|results-es {$\\\\|roles-es {$\\\\|insight-banner\\\\|disclaimer-box\\\\|comparison-label\\\\|comparison-rows\\\\|comp-card\\\\|comp-text\\\\|comp-arrow\\\\|comp-sublabel\\\\|results-stat {$\\\\|results-stat-value\\\\|results-stat-title\\\\|results-stat-body\\\\|how-step-body p\\\\|how-step-bullet {$\\\\|role-card-body {$\\\\|role-card-img {$\\\\|benefit-line\\\\|problem-card {$\" \"C:\\\\업무 관련\\\\Marketing\\\\Claude Code\\\\Tridge website\\\\export-solution.html\")",
+      "Bash(cp:*)",
+      "Bash(netlify:*)",
+      "Bash(npm install:*)",
+      "Bash(mkdir -p \"C:/Work/Marketing/Claude Code/Tridge website/archive\")",
+      "Bash(mv \"C:/Work/Marketing/Claude Code/Tridge website/\"*.html \"C:/Work/Marketing/Claude Code/Tridge website/archive/\")",
+      "Bash(mv \"C:/Work/Marketing/Claude Code/Tridge website/archive/landing.html\" \"C:/Work/Marketing/Claude Code/Tridge website/\")",
+      "Bash(mv \"C:/Work/Marketing/Claude Code/Tridge website/archive/export-solution.html\" \"C:/Work/Marketing/Claude Code/Tridge website/\")",
+      "Bash(mv \"C:/Work/Marketing/Claude Code/Tridge website/archive/contact-sales.html\" \"C:/Work/Marketing/Claude Code/Tridge website/\")",
+      "Bash(npm list:*)",
+      "Bash(node screenshot.js)",
+      "Bash(npm init:*)",
+      "Bash(printf 'node_modules/\\\\n.netlify/\\\\n*.log\\\\n')"
+    ]
+  }
+}

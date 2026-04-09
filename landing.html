@@ -1,0 +1,2701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tridge - The Intelligence Layer for Agri-Food Trade</title>
+  <meta name="description" content="12+ years of verified market data, AI-powered automation, and global network infrastructure. Transform trade intelligence into executed deals with Tridge.">
+  <meta name="keywords" content="global trade, AI trade platform, trade execution, market data, supplier discovery, export solution, procurement">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Tridge - The Execution Layer for Global Trade">
+  <meta property="og:description" content="12+ years of verified market data, AI-powered automation, and global network infrastructure.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.tridge.com">
+  <meta property="og:image" content="https://www.tridge.com/og-image.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tridge - The Execution Layer for Global Trade">
+  <meta name="twitter:description" content="12+ years of verified market data, AI-powered automation, and global network infrastructure.">
+  <meta name="twitter:image" content="https://www.tridge.com/twitter-image.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== CSS RESET & BASE STYLES ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* Primary Colors */
+      --color-primary-blue: #171CFD;
+      --color-primary-black: #0A0A18;
+      --color-primary-white: #FFFFFF;
+      --color-pure-black: #000000;
+
+      /* Accent Colors */
+      --color-accent-cyan: #34c6ee;
+      --color-accent-green: #0edba5;
+      --color-accent-yellow: #f4d03f;
+      --color-accent-muted-cyan: rgba(52, 198, 238, 0.1);
+      --color-accent-muted-green: rgba(14, 219, 165, 0.1);
+
+      /* Background Colors */
+      --bg-dark: #0A0A18;
+      --bg-darker: #000000;
+      --bg-light: #FFFFFF;
+      --bg-gray-light: #f4f4f8;
+      --bg-gray-medium: #e5e5e5;
+
+      /* Text Colors */
+      --text-primary: #0A0A18;
+      --text-secondary: #666666;
+      --text-on-dark: #FFFFFF;
+      --text-muted: #999999;
+
+      /* Font Weights */
+      --font-ultra-light: 200;
+      --font-light: 300;
+      --font-regular: 400;
+      --font-medium: 500;
+      --font-semibold: 600;
+      --font-bold: 700;
+      --font-extrabold: 800;
+
+      /* Responsive Font Sizes */
+      --font-hero-headline: clamp(36px, 11vw, 72px);
+      --font-section-title: clamp(26px, 8vw, 52px);
+      --font-subsection-title: clamp(20px, 5vw, 32px);
+      --font-body: clamp(14px, 3.5vw, 16px);
+      --font-small: clamp(12px, 3vw, 14px);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: clamp(14px, 1.1vw, 18px);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background: var(--bg-light);
+      overflow-x: hidden;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    button {
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      width: 90%;
+      max-width: 1440px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: clamp(16px, 3vw, 48px);
+      padding-right: clamp(16px, 3vw, 48px);
+    }
+
+    .container-narrow {
+      width: 90%;
+      max-width: 1440px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: clamp(16px, 3vw, 48px);
+      padding-right: clamp(16px, 3vw, 48px);
+    }
+
+    /* ===== SCROLL REVEAL ANIMATION ===== */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .scroll-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
+    /* ===== NAVIGATION ===== */
+    .nav-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 24, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-inner {
+      width: 90%;
+      max-width: 1440px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: clamp(16px, 3vw, 48px);
+      padding-right: clamp(16px, 3vw, 48px);
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--color-primary-white);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-dropdown {
+      position: relative;
+    }
+
+    .nav-link-dropdown {
+      color: var(--color-primary-white);
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .nav-link-dropdown:hover {
+      color: var(--color-accent-cyan);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 16px;
+      background: var(--bg-light);
+      border-radius: 8px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+      min-width: 260px;
+      padding: 8px 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+    }
+
+    .nav-dropdown.is-open .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+      display: flex;
+      flex-direction: column;
+      padding: 12px 20px;
+      color: var(--text-primary);
+      transition: background 0.2s;
+    }
+
+    .dropdown-menu a:hover {
+      background: var(--bg-gray-light);
+    }
+
+    .dropdown-menu strong {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .dropdown-menu span {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .nav-ctas {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-secondary {
+      color: var(--color-primary-white);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--color-primary-white);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .btn-primary {
+      background: var(--color-primary-blue);
+      color: var(--color-primary-white);
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: #0f14c7;
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      padding: 8px;
+    }
+
+    .mobile-menu-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--color-primary-white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* ===== BUTTON STYLES ===== */
+    .btn-primary-large {
+      background: var(--color-primary-blue);
+      color: var(--color-primary-white);
+      padding: 16px 32px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+
+    .btn-primary-large:hover {
+      background: #0f14c7;
+    }
+
+    .btn-secondary-large {
+      background: transparent;
+      color: var(--color-primary-white);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 16px 32px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-secondary-large:hover {
+      border-color: var(--color-primary-white);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .btn-secondary-large-dark {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--bg-gray-medium);
+      padding: 16px 32px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-secondary-large-dark:hover {
+      border-color: var(--text-primary);
+      background: var(--bg-gray-light);
+    }
+
+    .btn-solution-primary {
+      background: var(--color-primary-blue);
+      color: var(--color-primary-white);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+
+    .btn-solution-primary:hover {
+      background: #0f14c7;
+    }
+
+    .btn-solution-primary svg {
+      stroke: currentColor;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      background: var(--bg-dark);
+      padding: 64px 0 64px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      opacity: 0.5;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .hero-content {
+      color: var(--text-on-dark);
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--color-accent-cyan);
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+
+    .hero-headline {
+      font-size: var(--font-hero-headline);
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .hero-headline-light {
+      display: block;
+      font-weight: 400;
+      font-size: clamp(40px, 12vw, 80px);
+    }
+
+    .hero-headline-bold {
+      display: block;
+      font-weight: 300;
+      font-size: clamp(24px, 6vw, 44px);
+      color: rgba(255, 255, 255, 0.75);
+      margin-top: 8px;
+    }
+
+    .hero-subheadline {
+      font-size: clamp(16px, 4vw, 20px);
+      font-weight: 300;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 40px;
+      max-width: 600px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .stat-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--color-primary-white);
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      position: relative;
+    }
+
+    .hero-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #0a0a0a 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-visual img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+    }
+
+    /* ===== TRUST BAR ===== */
+    .trust-bar {
+      background: var(--bg-darker);
+      padding: 32px 0;
+      overflow: hidden;
+    }
+
+    .trust-bar-inner {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .trust-bar-label {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      white-space: nowrap;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .trust-bar-marquee {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .trust-bar-scroll {
+      display: flex;
+      gap: 48px;
+      animation: scroll 18s linear infinite;
+      white-space: nowrap;
+    }
+
+    .trust-bar-scroll span {
+      font-size: 16px;
+      color: var(--color-primary-white);
+      position: relative;
+    }
+
+    .trust-bar-scroll span:not(:last-child)::after {
+      content: '|';
+      position: absolute;
+      right: -24px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ===== CUSTOMER LOGOS ===== */
+    .customer-logos {
+      background: var(--bg-light);
+      padding: 64px 0;
+    }
+
+    .section-subtitle {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .logo-marquee-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-marquee-wrapper::before,
+    .logo-marquee-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 120px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .logo-marquee-wrapper::before {
+      left: 0;
+      background: linear-gradient(to right, var(--bg-light), transparent);
+    }
+
+    .logo-marquee-wrapper::after {
+      right: 0;
+      background: linear-gradient(to left, var(--bg-light), transparent);
+    }
+
+    .logo-marquee-track {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      animation: marquee-logos 30s linear infinite;
+      white-space: nowrap;
+      width: max-content;
+    }
+
+    .logo-marquee-track img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+      filter: grayscale(100%) opacity(0.5);
+      transition: filter 0.3s;
+      flex-shrink: 0;
+    }
+
+    .logo-marquee-track img:hover {
+      filter: grayscale(0%) opacity(1);
+    }
+
+    @keyframes marquee-logos {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ===== SECTION TAGS & TITLES ===== */
+    .section-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--color-accent-cyan);
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+
+    .section-tag-light {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+
+    .section-title {
+      font-size: var(--font-section-title);
+      font-weight: 300;
+      color: var(--text-primary);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .section-title-light {
+      font-size: var(--font-section-title);
+      font-weight: 300;
+      color: var(--color-primary-white);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .problem .section-title-light {
+      font-size: clamp(22px, 2.4vw, 36px);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 767px) {
+      .problem .section-title-light {
+        white-space: normal;
+        font-size: clamp(22px, 5vw, 30px);
+      }
+    }
+
+    .section-intro {
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      max-width: 800px;
+      margin-bottom: 64px;
+      line-height: 1.6;
+    }
+
+    .section-intro-light {
+      font-size: 20px;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.8);
+      max-width: 800px;
+      margin-bottom: 64px;
+      line-height: 1.6;
+    }
+
+    /* ===== PROBLEM SECTION ===== */
+    .problem {
+      background-image:
+        linear-gradient(rgba(5, 10, 25, 0.65), rgba(5, 10, 25, 0.65)),
+        url('images/port-aerial-dusk.jpg');
+      background-size: cover;
+      background-position: center;
+      padding: clamp(72px, 9vw, 120px) 0;
+      min-height: 520px;
+    }
+
+    .challenge-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .challenge-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 24px;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .challenge-card:hover {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(23, 28, 253, 0.35);
+    }
+
+    .challenge-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px !important;
+      font-weight: 700 !important;
+      color: #7c9eff !important;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+      opacity: 1 !important;
+      display: block !important;
+    }
+
+    .challenge-card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .challenge-card-body {
+      font-size: 13.5px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.70);
+      line-height: 1.65;
+    }
+
+    /* ===== SOLUTIONS SECTION ===== */
+    .solutions {
+      background: #0A0A18;
+      padding: 64px 0;
+    }
+
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+
+    .solution-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 48px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .solution-card:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .solution-tag {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--color-accent-cyan);
+      font-weight: 600;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+
+    .solution-title {
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--color-primary-white);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .solution-description {
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .solution-features {
+      list-style: none;
+      margin-bottom: 32px;
+    }
+
+    .solution-features li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .solution-features svg {
+      stroke: var(--color-accent-cyan);
+      flex-shrink: 0;
+    }
+
+    /* ===== WHY TRIDGE SECTION ===== */
+    .why-tridge {
+      background: var(--bg-light);
+      padding: 64px 0;
+    }
+
+    .why-tridge-inner {
+      display: grid;
+      grid-template-columns: 60% 40%;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .why-tridge-content {
+      min-width: 0;
+    }
+
+    .why-tridge-content .section-intro {
+      max-width: 100%;
+      margin-bottom: 40px;
+    }
+
+    .why-tridge-image {
+      position: sticky;
+      top: 100px;
+      min-width: 0;
+    }
+
+    .why-tridge-image img {
+      width: 100%;
+      height: 580px;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .comparison-table {
+      background: var(--bg-gray-light);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 64px;
+    }
+
+    .comparison-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--bg-gray-medium);
+      margin-bottom: 16px;
+    }
+
+    .comparison-header .comparison-col {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .comparison-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .comparison-row:last-child {
+      border-bottom: none;
+    }
+
+    .comparison-col {
+      font-size: 14px;
+      color: #9ca3af;
+    }
+
+    .comparison-highlight {
+      color: #171CFD;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .comparison-highlight svg {
+      stroke: var(--color-accent-cyan);
+      flex-shrink: 0;
+    }
+
+    .differentiators-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    .differentiator-card {
+      padding: 32px;
+      border: 1px solid var(--bg-gray-medium);
+      border-radius: 12px;
+      transition: border-color 0.2s;
+    }
+
+    .differentiator-card:hover {
+      border-color: var(--color-primary-blue);
+    }
+
+    .differentiator-number {
+      font-size: 48px;
+      font-weight: 200;
+      color: var(--color-primary-blue);
+      margin-bottom: 16px;
+    }
+
+    .differentiator-title {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .differentiator-subtitle {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .differentiator-description {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ===== HOW IT WORKS SECTION ===== */
+    .how-it-works {
+      background: var(--bg-gray-light);
+      padding: 64px 0;
+    }
+
+    .how-it-works-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .how-it-works-left {
+      min-width: 0;
+    }
+
+    .how-it-works-right {
+      min-width: 0;
+      align-self: center;
+      padding-top: 120px;
+    }
+
+    .how-it-works-right img {
+      width: 100%;
+      max-height: 480px;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      border: 1px solid #e0e0e0;
+      display: block;
+    }
+
+    .steps-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .step-card {
+      background: var(--bg-light);
+      padding: 24px 28px;
+      border-radius: 10px;
+      border: 1px solid var(--bg-gray-medium);
+      position: relative;
+      transition: box-shadow 0.2s;
+    }
+
+    .step-card:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .step-number {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-primary-blue);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .step-title {
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      margin-top: 0;
+    }
+
+    .step-description {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ===== PLG SECTION ===== */
+    .plg-section {
+      background-image:
+        linear-gradient(rgba(5, 10, 30, 0.70), rgba(5, 10, 30, 0.70)),
+        url('images/world-map-connections.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      padding: 64px 0;
+    }
+
+    .plg-section .section-tag,
+    .plg-section .section-title,
+    .plg-section .section-intro {
+      color: #ffffff;
+    }
+
+    .plg-section .section-intro {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .plg-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .plg-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(4px);
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .plg-card:hover {
+      background: rgba(255, 255, 255, 0.13);
+      border-color: rgba(255, 255, 255, 0.30);
+    }
+
+    .plg-card-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      margin-bottom: 20px;
+    }
+
+    .plg-card-icon svg {
+      stroke: #7eb3ff;
+      width: 32px;
+      height: 32px;
+    }
+
+    .plg-card-role {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #7eb3ff;
+      margin-bottom: 16px;
+    }
+
+    .plg-card-head {
+      font-size: 20px;
+      font-weight: 500;
+      color: #ffffff;
+      line-height: 1.3;
+      margin-bottom: 28px;
+    }
+
+    .plg-card-modules {
+      list-style: none;
+      margin-bottom: auto;
+      padding-bottom: 28px;
+    }
+
+    .plg-card-modules li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .plg-card-modules a {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .plg-card-modules a:hover {
+      color: #ffffff;
+    }
+
+    .plg-card-modules svg {
+      stroke: rgba(255, 255, 255, 0.45);
+      flex-shrink: 0;
+    }
+
+    .plg-card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.40);
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+      align-self: flex-start;
+      margin-top: auto;
+    }
+
+    .plg-card-cta:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.70);
+    }
+
+    /* ===== THE FUTURE SECTION ===== */
+    .the-future {
+      background: #ffffff;
+      padding: clamp(72px, 9vw, 112px) 0;
+    }
+
+    .the-future-inner {
+      display: grid;
+      grid-template-columns: 55% 45%;
+      gap: 64px;
+      align-items: stretch;
+    }
+
+    .the-future-content {
+      /* left column text */
+    }
+
+    .the-future-image {
+      min-height: 420px;
+    }
+
+    .the-future-image img {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    }
+
+    .future-description {
+      font-size: 18px;
+      font-weight: 300;
+      color: #555555;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .future-layers {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .future-layer {
+      background: #f0f4ff;
+      border: 1px solid #171CFD;
+      border-radius: 8px;
+      padding: 12px 20px;
+      text-align: left;
+    }
+
+    .future-layer-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #171CFD;
+      margin-bottom: 4px;
+    }
+
+    .future-layer-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: #171CFD;
+    }
+
+    .future-separator {
+      display: none;
+    }
+
+    .future-cta-text {
+      font-size: 16px;
+      font-weight: 400;
+      color: #888888;
+      line-height: 1.6;
+    }
+
+    .future-cta-text strong {
+      font-weight: 600;
+      color: #555555;
+    }
+
+    /* ===== FINAL CTA SECTION ===== */
+    .final-cta {
+      background: var(--bg-light);
+      padding: 64px 0;
+      text-align: center;
+    }
+
+    .final-cta-title {
+      font-size: clamp(28px, 7vw, 48px);
+      font-weight: 300;
+      color: var(--text-primary);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .final-cta-description {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    .final-cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .final-cta-note {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--bg-darker);
+      padding: 72px 0 0;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 40px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-heading {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-primary-white);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 13px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--color-primary-white);
+    }
+
+    .footer-social-corner {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .footer-social-corner a {
+      color: #9ca3af;
+      display: flex;
+      align-items: center;
+      transition: color 0.2s;
+    }
+
+    .footer-social-corner a:hover {
+      color: #ffffff;
+    }
+
+    .footer-bottom {
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-bottom-left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .footer-lang {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .footer-lang a {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-lang a.active,
+    .footer-lang a:hover {
+      color: var(--color-primary-white);
+    }
+
+    .footer-lang-sep {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-copyright {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.35);
+      line-height: 1.5;
+    }
+
+    .footer-legal-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-legal-links a {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-legal-links a:hover {
+      color: var(--color-primary-white);
+    }
+
+    .footer-data-notice {
+      width: 100%;
+      max-width: 100%;
+      padding-top: 16px;
+      padding-bottom: 20px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.4);
+      line-height: 1.6;
+      border-top: 1px solid #374151;
+      margin-top: 8px;
+    }
+
+    /* ===== RESPONSIVE DESIGN ===== */
+    /* ================================
+       480px 이하 — 소형 모바일
+    ================================ */
+    @media (max-width: 480px) {
+      .container,
+      .container-narrow,
+      .nav-inner {
+        width: 100%;
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .hero-inner,
+      .why-tridge-inner,
+      .the-future-inner,
+      .how-it-works-inner {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+      }
+
+      .the-future-image img { height: 240px; }
+
+      .solutions-grid,
+      .differentiators-grid,
+      .steps-grid,
+      .plg-cards-grid,
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-visual { order: 2; }
+      .hero-content { order: 1; }
+      .how-it-works-right { order: 2; transform: none; align-self: auto; }
+
+      .how-it-works-left,
+      .how-it-works-right {
+        flex: none;
+        width: 100%;
+      }
+
+      .why-tridge-image { position: static; }
+      .why-tridge-image img { height: 240px; }
+
+      .comparison-table { padding: 16px 12px; }
+      .comparison-header,
+      .comparison-row { grid-template-columns: 1fr; gap: 8px; }
+      .comparison-header .comparison-col:first-child { display: none; }
+      .comparison-row .comparison-col:first-child { font-size: 12px; color: var(--text-muted); }
+
+      .footer-bottom { flex-direction: column; gap: 12px; }
+      .footer-legal-links { justify-content: center; }
+
+      .nav-inner { height: 64px; }
+      .nav-links, .nav-ctas { display: none; }
+      .mobile-menu-toggle { display: flex; }
+
+      .nav-container.menu-open .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 64px; left: 0; right: 0; bottom: 0;
+        background: var(--bg-dark);
+        padding: 32px 20px;
+        z-index: 999;
+      }
+
+      .nav-container.menu-open .nav-ctas {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        padding: 20px;
+        background: var(--bg-dark);
+        border-top: 1px solid rgba(255,255,255,0.1);
+        z-index: 1000;
+      }
+
+      .hero { padding: 56px 0 40px; min-height: auto; }
+    }
+
+    /* ================================
+       481px ~ 767px — 모바일
+    ================================ */
+    @media (min-width: 481px) and (max-width: 767px) {
+      .container,
+      .container-narrow,
+      .nav-inner {
+        width: 95%;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .hero-inner,
+      .why-tridge-inner,
+      .the-future-inner,
+      .how-it-works-inner {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+      }
+
+      .the-future-image img { height: 260px; }
+
+      .solutions-grid,
+      .differentiators-grid,
+      .plg-cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-top { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .hero-visual { order: 2; }
+      .hero-content { order: 1; }
+      .how-it-works-right { order: 2; transform: none; align-self: auto; }
+
+      .how-it-works-left,
+      .how-it-works-right { flex: none; width: 100%; }
+
+      .why-tridge-image { position: static; }
+      .why-tridge-image img { height: 300px; }
+
+      .comparison-table { padding: 20px 14px; }
+      .comparison-header,
+      .comparison-row { grid-template-columns: 1fr; gap: 10px; }
+      .comparison-header .comparison-col:first-child { display: none; }
+      .comparison-row .comparison-col:first-child { font-size: 13px; color: var(--text-muted); }
+
+      .footer-bottom { flex-direction: column; gap: 12px; }
+      .footer-legal-links { justify-content: center; }
+
+      .nav-inner { height: 64px; }
+      .nav-links, .nav-ctas { display: none; }
+      .mobile-menu-toggle { display: flex; }
+
+      .nav-container.menu-open .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 64px; left: 0; right: 0; bottom: 0;
+        background: var(--bg-dark);
+        padding: 32px 24px;
+        z-index: 999;
+      }
+
+      .nav-container.menu-open .nav-ctas {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        padding: 24px;
+        background: var(--bg-dark);
+        border-top: 1px solid rgba(255,255,255,0.1);
+        z-index: 1000;
+      }
+
+      .hero { padding: 64px 0 48px; min-height: auto; }
+    }
+
+    /* ================================
+       768px ~ 1023px — 태블릿
+    ================================ */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .container,
+      .container-narrow,
+      .nav-inner {
+        width: 92%;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .hero-inner,
+      .why-tridge-inner,
+      .the-future-inner,
+      .how-it-works-inner {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+      }
+
+      .the-future-image img { height: 300px; }
+
+      .hero-visual { order: 2; }
+      .hero-content { order: 1; }
+      .how-it-works-right { order: 2; transform: none; align-self: auto; }
+      .how-it-works-left,
+      .how-it-works-right { flex: none; width: 100%; }
+
+      .why-tridge-image { position: static; }
+      .why-tridge-image img { height: 360px; }
+
+      .solutions-grid { grid-template-columns: 1fr; }
+      .differentiators-grid { grid-template-columns: repeat(2, 1fr); }
+      .plg-cards-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: repeat(3, 1fr); gap: 32px; }
+
+      .challenge-cards { grid-template-columns: 1fr; gap: 12px; }
+
+      .comparison-table { padding: 24px 16px; }
+      .comparison-header,
+      .comparison-row { grid-template-columns: 1fr; gap: 12px; }
+      .comparison-header .comparison-col:first-child { display: none; }
+      .comparison-row .comparison-col:first-child { font-size: 13px; color: var(--text-muted); }
+
+      .footer-bottom { flex-direction: column; gap: 12px; }
+      .footer-legal-links { justify-content: center; }
+    }
+
+    /* ================================
+       1024px ~ 1279px — 소형 노트북
+    ================================ */
+    @media (min-width: 1024px) and (max-width: 1279px) {
+      .container,
+      .container-narrow,
+      .nav-inner {
+        width: 92%;
+        max-width: 1100px;
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+
+      .plg-cards-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-top { grid-template-columns: repeat(5, 1fr); }
+    }
+
+    /* ================================
+       1280px ~ 1439px — 노트북 LCD
+    ================================ */
+    @media (min-width: 1280px) and (max-width: 1439px) {
+      .container,
+      .container-narrow,
+      .nav-inner {
+        width: 90%;
+        max-width: 1200px;
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+    }
+
+    /* ================================
+       1440px ~ 1919px — 일반 모니터
+    ================================ */
+    @media (min-width: 1440px) and (max-width: 1919px) {
+      .container,
+      .container-narrow,
+      .nav-inner {
+        width: 88%;
+        max-width: 1320px;
+        padding-left: 48px;
+        padding-right: 48px;
+      }
+    }
+
+    /* ================================
+       1920px ~ 2559px — FHD 와이드
+    ================================ */
+    @media (min-width: 1920px) and (max-width: 2559px) {
+      .container,
+      .container-narrow,
+      .nav-inner {
+        width: 85%;
+        max-width: 1600px;
+        padding-left: 48px;
+        padding-right: 48px;
+      }
+    }
+
+    /* ================================
+       2560px ~ 3439px — QHD (2K)
+    ================================ */
+    @media (min-width: 2560px) and (max-width: 3439px) {
+      .container,
+      .container-narrow,
+      .nav-inner {
+        width: 80%;
+        max-width: 2000px;
+        padding-left: 64px;
+        padding-right: 64px;
+      }
+
+      html { font-size: clamp(16px, 0.9vw, 22px); }
+    }
+
+    /* ================================
+       3440px ~ 3839px — 울트라와이드
+    ================================ */
+    @media (min-width: 3440px) and (max-width: 3839px) {
+      .container,
+      .container-narrow,
+      .nav-inner {
+        width: 75%;
+        max-width: 2400px;
+        padding-left: 80px;
+        padding-right: 80px;
+      }
+
+      html { font-size: clamp(17px, 0.8vw, 24px); }
+    }
+
+    /* ================================
+       3840px 이상 — 4K
+    ================================ */
+    @media (min-width: 3840px) {
+      .container,
+      .container-narrow,
+      .nav-inner {
+        width: 70%;
+        max-width: 2800px;
+        padding-left: 96px;
+        padding-right: 96px;
+      }
+
+      html { font-size: clamp(18px, 0.7vw, 26px); }
+    }
+
+    /* ================================
+       섹션 상하 padding 유동형
+    ================================ */
+    section {
+      padding-top: clamp(48px, 6vw, 96px);
+      padding-bottom: clamp(48px, 6vw, 96px);
+    }
+
+    .hiw-mockup {
+  background: #0d1117;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.35), 0 0 0 1px rgba(23,28,253,0.15);
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+.mockup-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: #161b27;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.mockup-dots {
+  display: flex;
+  gap: 6px;
+}
+.mockup-dots span {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+}
+.mockup-dots span:nth-child(1) { background: #ff5f57; }
+.mockup-dots span:nth-child(2) { background: #febc2e; }
+.mockup-dots span:nth-child(3) { background: #28c840; }
+
+.mockup-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+  flex: 1;
+}
+
+.mockup-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #10b981;
+  text-transform: uppercase;
+}
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.mockup-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mockup-row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: background 0.2s;
+}
+.mockup-row:hover {
+  background: rgba(23,28,253,0.08);
+  border-color: rgba(23,28,253,0.25);
+}
+.mockup-row.highlight-row {
+  background: rgba(16,185,129,0.06);
+  border-color: rgba(16,185,129,0.2);
+}
+
+.mockup-row-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mockup-tag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  min-width: 68px;
+  text-align: center;
+}
+.mockup-tag.intelligence { background: rgba(23,28,253,0.2);  color: #6583FF; border: 1px solid rgba(23,28,253,0.35); }
+.mockup-tag.discovery    { background: rgba(59,91,219,0.2);  color: #9BB3FF; border: 1px solid rgba(59,91,219,0.35); }
+.mockup-tag.outreach     { background: rgba(14,165,233,0.15); color: #7dd3fc; border: 1px solid rgba(14,165,233,0.3); }
+.mockup-tag.markets      { background: rgba(99,102,241,0.15); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.3); }
+.mockup-tag.topscore     { background: rgba(16,185,129,0.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.3); }
+
+.mockup-num {
+  font-size: 22px;
+  font-weight: 300;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.mockup-num.accent { color: #10b981; }
+
+.mockup-row-right {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mockup-bar-track {
+  height: 4px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.mockup-bar {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1s ease;
+}
+
+.mockup-desc {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 767px) {
+  .hiw-mockup { margin-top: 32px; }
+  .mockup-num { font-size: 18px; }
+  .mockup-row { grid-template-columns: 140px 1fr; }
+}
+  </style>
+</head>
+<body>
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav-container">
+    <div class="nav-inner">
+      <a href="/" class="logo">TRIDGE</a>
+
+      <div class="nav-links">
+        <div class="nav-dropdown">
+          <button class="nav-link-dropdown">Solutions ▼</button>
+          <div class="dropdown-menu">
+            <a href="tridge-eye.html">
+              <strong>Tridge Eye</strong>
+              <span>For Buyers & Procurement</span>
+            </a>
+            <a href="export-solution.html">
+              <strong>Export Solution</strong>
+              <span>For Exporters & Sellers</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="nav-dropdown">
+          <button class="nav-link-dropdown">Resources ▼</button>
+          <div class="dropdown-menu">
+            <a href="#">Blog</a>
+            <a href="#">Case Studies</a>
+            <a href="#">Documentation</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-ctas">
+        <a href="https://eye.tridge.com" class="btn-secondary">Get started</a>
+        <a href="contact-sales.html" class="btn-primary">Get a demo</a>
+      </div>
+
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== SECTION 1: HERO ===== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <span class="hero-tag">The Intelligence Layer for Agri-Food Trade</span>
+          <h1 class="hero-headline">
+            <span class="hero-headline-light">Intelligence That Moves Markets.</span>
+            <span class="hero-headline-bold">AI That Runs the Workflow.</span>
+          </h1>
+          <p class="hero-subheadline">
+            12+ years of verified market data, AI-powered automation, and global network infrastructure — turning intelligence into executed deals.
+          </p>
+
+          <div class="hero-ctas">
+            <a href="https://eye.tridge.com" class="btn-primary-large">Get Started</a>
+            <a href="#how" class="btn-secondary-large">See How It Works</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-box">
+              <div class="stat-number">1M+</div>
+              <div class="stat-label">Global Users</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number">180+</div>
+              <div class="stat-label">Countries</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number">12+</div>
+              <div class="stat-label">Years Data</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number">350K+</div>
+              <div class="stat-label">Companies</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <img src="images/Eye_speaker_black.jpg" alt="Tridge Platform Interface" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 3: CUSTOMER LOGOS ===== -->
+  <section class="customer-logos">
+    <div class="container">
+      <h2 class="section-subtitle">Trusted by Leading Global Trade Companies</h2>
+      <div class="logo-marquee-wrapper">
+        <div class="logo-marquee-track">
+          <img src="https://cdn-new.tridge.com/assets/VOXPRPRW.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/M2SKMYUX.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/UXSCTPTJ.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/2AV2V2AN.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/KQTR5FMM.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/5KOCBBSM.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/UXRBP3PM.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/FBMDYRMT.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/I2WW6JPR.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/2XEVYYKE.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/RXPRGDIU.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/VOINHDNB.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/F6NVLDF5.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/JKNHD6RU.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/37HUSUQT.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/VX53NU6U.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/JHGDAJEM.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/5XWJ2ROK.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/VASZMBV3.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/PL6URT7G.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/Q4GQOMQA.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/C55OS6IH.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/KA6KIW7X.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/VWA6XMBC.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/P7NNUTVD.png" alt="Customer logo" />
+          <!-- duplicate set for seamless loop -->
+          <img src="https://cdn-new.tridge.com/assets/VOXPRPRW.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/M2SKMYUX.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/UXSCTPTJ.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/2AV2V2AN.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/KQTR5FMM.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/5KOCBBSM.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/UXRBP3PM.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/FBMDYRMT.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/I2WW6JPR.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/2XEVYYKE.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/RXPRGDIU.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/VOINHDNB.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/F6NVLDF5.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/JKNHD6RU.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/37HUSUQT.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/VX53NU6U.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/JHGDAJEM.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/5XWJ2ROK.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/VASZMBV3.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/PL6URT7G.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/Q4GQOMQA.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/C55OS6IH.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/KA6KIW7X.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/VWA6XMBC.png" alt="Customer logo" />
+          <img src="https://cdn-new.tridge.com/assets/P7NNUTVD.png" alt="Customer logo" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 4: THE PROBLEM ===== -->
+  <section class="problem">
+    <div class="container">
+      <span class="section-tag-light">The Challenge</span>
+      <h2 class="section-title-light" style="text-shadow: 0 1px 3px rgba(0,0,0,0.8); margin-bottom: 32px;">The agri-food industry runs on opacity and manual effort.</h2>
+
+      <div class="challenge-cards">
+        <div class="challenge-card">
+          <div class="challenge-num">01</div>
+          <h3 class="challenge-card-title">Information Asymmetry</h3>
+          <p class="challenge-card-body">Price signals, supply conditions, and demand shifts are locked in private networks. Buyers and exporters operate on lagging data that doesn't reflect reality.</p>
+        </div>
+        <div class="challenge-card">
+          <div class="challenge-num">02</div>
+          <h3 class="challenge-card-title">Trust &amp; Verification Gap</h3>
+          <p class="challenge-card-body">Cross-border trade requires counterparty confidence that's expensive to build. Fraud, non-delivery, and misrepresentation remain systemic risks without verified networks.</p>
+        </div>
+        <div class="challenge-card">
+          <div class="challenge-num">03</div>
+          <h3 class="challenge-card-title">Execution Bottleneck</h3>
+          <p class="challenge-card-body">Every deal requires manual discovery, outreach, follow-up, and coordination. Teams hit a ceiling before they can capture the volume of opportunities available to them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 4: OUR VISION ===== -->
+  <section class="the-future">
+    <div class="container">
+      <div class="the-future-inner">
+        <div class="the-future-content">
+          <span class="section-tag">OUR VISION</span>
+          <h2 class="section-title">Agri-food trade should work for everyone in it.</h2>
+          <p class="future-description">
+            We're building the infrastructure that makes it possible — data, technology, and trusted networks working as one system.<br><br>
+            Not just faster decisions. Fairer markets.<br>
+            Not just better tools. Shared prosperity.
+          </p>
+
+          <div class="future-layers">
+            <div class="future-layer">
+              <div class="future-layer-label">Data Layer</div>
+              <div class="future-layer-value">12+ years · 682M records</div>
+            </div>
+            <div class="future-layer">
+              <div class="future-layer-label">Network Layer</div>
+              <div class="future-layer-value">1M+ users · 180+ countries</div>
+            </div>
+            <div class="future-layer">
+              <div class="future-layer-label">AI Layer</div>
+              <div class="future-layer-value">Automated · End-to-end execution</div>
+            </div>
+          </div>
+
+          <p class="future-cta-text">
+            <strong>Tridge empowers agri-food trade from end to end.</strong>
+          </p>
+        </div>
+        <div class="the-future-image">
+          <img src="images/agrifood-farmland.png" alt="Agri-food farmland">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 5: TWO SOLUTIONS ===== -->
+  <section class="solutions">
+    <div class="container">
+      <span class="section-tag-light">Our Solutions</span>
+      <h2 class="section-title-light">Built for How You Trade</h2>
+      <p class="section-intro-light">
+        Two powerful solutions designed for the specific workflows of buyers and exporters.
+      </p>
+
+      <div class="solutions-grid">
+        <!-- Card 1: Tridge Eye -->
+        <div class="solution-card">
+          <div class="solution-tag">For Buyers & Procurement</div>
+          <h3 class="solution-title">Intelligence That Closes Deals</h3>
+          <p class="solution-description">
+            Real-time market data, supplier discovery, and price benchmarking. Make informed sourcing decisions backed by 12+ years of verified trade intelligence.
+          </p>
+          <ul class="solution-features">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              Market price analysis across 180+ countries
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              Verified supplier profiles with trade history
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              Real-time trade flow visibility
+            </li>
+          </ul>
+          <a href="https://www.tridge.com/about/tridge-eye" target="_blank" class="btn-solution-primary">
+            Explore Tridge Eye
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Card 2: Export Solution -->
+        <div class="solution-card">
+          <div class="solution-tag">For Exporters & Sellers</div>
+          <h3 class="solution-title">At a Scale Your Team Can't Do Alone</h3>
+          <p class="solution-description">
+            AI-powered buyer discovery and automated outreach at scale. Connect with qualified buyers globally without scaling your sales team.
+          </p>
+          <ul class="solution-features">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              AI-driven buyer matching and discovery
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              Automated outreach and follow-up
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              Lead qualification and nurturing
+            </li>
+          </ul>
+          <a href="export-solution.html" class="btn-solution-primary">
+            Explore Export Solution
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 6: WHY TRIDGE ===== -->
+  <section class="why-tridge">
+    <div class="container">
+      <div class="why-tridge-inner">
+      <div class="why-tridge-content">
+      <span class="section-tag">Differentiation</span>
+      <h2 class="section-title">12 Years of Data. No Competitor Can Replicate This.</h2>
+      <p class="section-intro">
+        Generic AI tools lack the foundation to execute trade. Tridge is different.
+      </p>
+
+      <!-- Comparison Table -->
+      <div class="comparison-table">
+        <div class="comparison-header">
+          <div class="comparison-col">Generic AI</div>
+          <div class="comparison-col">Tridge</div>
+        </div>
+
+        <div class="comparison-row">
+          <div class="comparison-col">Scraped data</div>
+          <div class="comparison-col comparison-highlight">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            12+ yrs native data
+          </div>
+        </div>
+
+        <div class="comparison-row">
+          <div class="comparison-col">Stops at insights</div>
+          <div class="comparison-col comparison-highlight">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Executes end-to-end
+          </div>
+        </div>
+
+        <div class="comparison-row">
+          <div class="comparison-col">No network</div>
+          <div class="comparison-col comparison-highlight">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Millions active
+          </div>
+        </div>
+      </div>
+
+      <!-- Differentiators -->
+      <div class="differentiators-grid">
+        <div class="differentiator-card">
+          <div class="differentiator-number">01</div>
+          <h3 class="differentiator-title">Data Foundation</h3>
+          <h4 class="differentiator-subtitle">12+ Years of Native Intelligence</h4>
+          <p class="differentiator-description">
+            Not synthetic, not scraped. Deeply structured domain data accumulated over a decade, with high-quality ontology that mirrors how global trade actually works.
+          </p>
+        </div>
+
+        <div class="differentiator-card">
+          <div class="differentiator-number">02</div>
+          <h3 class="differentiator-title">Domain Expertise</h3>
+          <h4 class="differentiator-subtitle">We Understand Trade Better</h4>
+          <p class="differentiator-description">
+            Deep understanding of pricing structures, product specs, trade logistics, regulatory workflows, and the real complexity of cross-border execution.
+          </p>
+        </div>
+
+        <div class="differentiator-card">
+          <div class="differentiator-number">03</div>
+          <h3 class="differentiator-title">Proven Network</h3>
+          <h4 class="differentiator-subtitle">Millions of Users. Real Activity.</h4>
+          <p class="differentiator-description">
+            An already-active ecosystem of global buyers and suppliers that compounds in value with every new participant.
+          </p>
+        </div>
+
+        <div class="differentiator-card">
+          <div class="differentiator-number">04</div>
+          <h3 class="differentiator-title">Execution Engine</h3>
+          <h4 class="differentiator-subtitle">Outcomes, Not Suggestions</h4>
+          <p class="differentiator-description">
+            Most AI tools stop at analysis. We execute actual trade workflows — from discovery to deal closure — delivering measurable outcomes.
+          </p>
+        </div><!-- end differentiator-card 4 -->
+      </div><!-- end differentiators-grid -->
+      </div><!-- end why-tridge-content -->
+      <div class="why-tridge-image">
+        <img src="images/EyeShelf.jpg" alt="Tridge Data Intelligence" />
+      </div>
+    </div><!-- end why-tridge-inner -->
+    </div><!-- end container -->
+  </section>
+
+  <!-- ===== SECTION 7: HOW IT WORKS ===== -->
+  <section id="how" class="how-it-works">
+    <div class="container">
+      <div class="how-it-works-inner">
+
+        <!-- Left: headline + step cards -->
+        <div class="how-it-works-left">
+          <span class="section-tag">Process</span>
+          <h2 class="section-title">How It Works</h2>
+          <p class="section-intro" style="margin-bottom: 32px;">
+            From market signal to trade outcome — in three steps.
+          </p>
+
+          <div class="steps-grid">
+            <div class="step-card">
+              <div class="step-number">01</div>
+              <h3 class="step-title">Define Your Needs</h3>
+              <p class="step-description">
+                Input your goals — market intelligence, sourcing targets, or export opportunities. Tridge structures your intent instantly — no complex setup required.
+              </p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">02</div>
+              <h3 class="step-title">AI Agents Activate</h3>
+              <p class="step-description">
+                Intelligent agents analyze markets, identify opportunities, and initiate action across your global operation simultaneously.
+              </p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">03</div>
+              <h3 class="step-title">Execute & Scale</h3>
+              <p class="step-description">
+                Act on intelligence. Convert opportunities. Scale without scaling headcount — every decision strengthens your data advantage for the next.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: HTML mockup -->
+        <div class="how-it-works-right">
+          <div class="hiw-mockup">
+  <div class="mockup-header">
+    <div class="mockup-dots">
+      <span></span><span></span><span></span>
+    </div>
+    <span class="mockup-title">TRIDGE PLATFORM — LIVE RUN</span>
+    <span class="mockup-status"><span class="status-dot"></span> LIVE</span>
+  </div>
+  <div class="mockup-body">
+    <div class="mockup-row">
+      <div class="mockup-row-left">
+        <span class="mockup-tag intelligence">INTELLIGENCE</span>
+        <span class="mockup-num">1,240</span>
+      </div>
+      <div class="mockup-row-right">
+        <div class="mockup-bar-track"><div class="mockup-bar" style="width:100%; background:#171CFD;"></div></div>
+        <span class="mockup-desc">Price signals tracked</span>
+      </div>
+    </div>
+    <div class="mockup-row">
+      <div class="mockup-row-left">
+        <span class="mockup-tag discovery">DISCOVERY</span>
+        <span class="mockup-num">9,695</span>
+      </div>
+      <div class="mockup-row-right">
+        <div class="mockup-bar-track"><div class="mockup-bar" style="width:85%; background:#3b5bdb;"></div></div>
+        <span class="mockup-desc">Companies scanned by AI</span>
+      </div>
+    </div>
+    <div class="mockup-row">
+      <div class="mockup-row-left">
+        <span class="mockup-tag outreach">OUTREACH</span>
+        <span class="mockup-num">640</span>
+      </div>
+      <div class="mockup-row-right">
+        <div class="mockup-bar-track"><div class="mockup-bar" style="width:66%; background:#0ea5e9;"></div></div>
+        <span class="mockup-desc">Outreach-ready leads</span>
+      </div>
+    </div>
+    <div class="mockup-row">
+      <div class="mockup-row-left">
+        <span class="mockup-tag markets">MARKETS</span>
+        <span class="mockup-num">89</span>
+      </div>
+      <div class="mockup-row-right">
+        <div class="mockup-bar-track"><div class="mockup-bar" style="width:45%; background:#6366f1;"></div></div>
+        <span class="mockup-desc">Active market monitors</span>
+      </div>
+    </div>
+    <div class="mockup-row highlight-row">
+      <div class="mockup-row-left">
+        <span class="mockup-tag topscore">MATCH SCORE</span>
+        <span class="mockup-num accent">92</span>
+      </div>
+      <div class="mockup-row-right">
+        <div class="mockup-bar-track"><div class="mockup-bar" style="width:92%; background:#10b981;"></div></div>
+        <span class="mockup-desc">AI fit score (out of 100)</span>
+      </div>
+    </div>
+  </div>
+</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 8: PLG INTELLIGENCE ===== -->
+  <section class="plg-section">
+    <div class="container">
+      <span class="section-tag">FOR EVERY ROLE IN TRADE</span>
+      <h2 class="section-title">Built for How You Trade. Whatever Your Role.</h2>
+      <p class="section-intro">
+        Select your path — see exactly how Tridge applies.
+      </p>
+
+      <div class="plg-cards-grid">
+
+        <!-- Card 1: Procurement -->
+        <div class="plg-card">
+          <div class="plg-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+          </div>
+          <div class="plg-card-role">Procurement</div>
+          <div class="plg-card-head">Know if you're overpaying before you sign.</div>
+          <ul class="plg-card-modules">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <a href="tridge-eye.html">Price Benchmarking</a>
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <a href="tridge-eye.html" class="secondary">Supplier Discovery</a>
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <a href="tridge-eye.html" class="secondary">Market Intelligence</a>
+            </li>
+          </ul>
+          <a href="tridge-eye.html" class="plg-card-cta">
+            Explore
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- Card 2: Exporter -->
+        <div class="plg-card">
+          <div class="plg-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+            </svg>
+          </div>
+          <div class="plg-card-role">Exporter</div>
+          <div class="plg-card-head">Reach verified buyers across 60+ markets.</div>
+          <ul class="plg-card-modules">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <a href="export-solution.html">Export Solution</a>
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <a href="export-solution.html" class="secondary">AI Outreach</a>
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <a href="tridge-eye.html" class="secondary">Market Intelligence</a>
+            </li>
+          </ul>
+          <a href="export-solution.html" class="plg-card-cta">
+            Explore
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- Card 3: Trader -->
+        <div class="plg-card">
+          <div class="plg-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <div class="plg-card-role">Trader</div>
+          <div class="plg-card-head">Execute more deals without adding headcount.</div>
+          <ul class="plg-card-modules">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <a href="export-solution.html">Trade Execution</a>
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <a href="export-solution.html" class="secondary">Purchase Development</a>
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <a href="tridge-eye.html" class="secondary">Market Intelligence</a>
+            </li>
+          </ul>
+          <a href="contact-sales.html" class="plg-card-cta">
+            Explore
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 9: FINAL CTA ===== -->
+  <section class="final-cta">
+    <div class="container-narrow">
+      <h2 class="final-cta-title">Intelligence That Moves Markets Starts Here.</h2>
+      <p class="final-cta-description">
+        12+ years of trade data. 600K verified network.<br>30+ AI agents — ready for your market.
+      </p>
+
+      <div class="final-cta-buttons">
+        <a href="contact-sales.html" class="btn-primary-large">Request Demo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+
+      <!-- 5-column link grid -->
+      <div class="footer-top">
+        <div>
+          <h4 class="footer-heading">Tridge Solutions</h4>
+          <ul class="footer-links">
+            <li><a href="tridge-eye.html">Tridge Eye</a></li>
+            <li><a href="export-solution.html">Export Solution</a></li>
+            <li><a href="#">Data &amp; Analytics</a></li>
+            <li><a href="#">Sourcing Hub</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Why Tridge</h4>
+          <ul class="footer-links">
+            <li><a href="#">Use Case</a></li>
+            <li><a href="#">AI Technology</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Insights</h4>
+          <ul class="footer-links">
+            <li><a href="#">Data Curations</a></li>
+            <li><a href="#">Weekly Product Updates</a></li>
+            <li><a href="#">Market News</a></li>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Opinion</a></li>
+            <li><a href="#">Guides</a></li>
+            <li><a href="#">Webinars</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Support</h4>
+          <ul class="footer-links">
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Channel Partner</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Company</h4>
+          <ul class="footer-links">
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Newsroom</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="footer-bottom">
+        <div class="footer-bottom-left">
+          <div class="footer-lang">
+            <a href="#" class="active">English</a>
+            <span class="footer-lang-sep">|</span>
+            <a href="#">한국어</a>
+          </div>
+          <div class="footer-copyright">© 2026 Tridge.</div>
+        </div>
+        <div class="footer-legal-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Sitemap</a>
+        </div>
+        <div class="footer-social-corner">
+          <a href="https://www.linkedin.com/company/tridge/" aria-label="LinkedIn" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="http://www.youtube.com/@tridge_global" aria-label="YouTube" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/tridge_global/" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          </a>
+          <a href="https://blog.naver.com/tridgeglobal" aria-label="Naver Blog" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
+          </a>
+          <a href="https://www.threads.com/@tridge_global" aria-label="Threads" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.74-1.75-.476-.547-1.23-.826-2.24-.829h-.04c-.82 0-1.799.213-2.379 1.32l-1.755-1.142C8.057 4.98 9.469 4.18 11.303 4.18h.06c1.554.01 2.82.508 3.762 1.48.835.863 1.344 2.087 1.518 3.643.396.176.778.377 1.143.6 1.453.87 2.437 2.12 2.827 3.516.596 2.138.195 5.037-2.256 7.432-1.83 1.798-4.021 2.633-6.17 2.65z"/></svg>
+          </a>
+        </div>
+        <div class="footer-data-notice">
+          All data and analyses are the property of Tridge. Reproduction, distribution, modification, or commercial use without permission is prohibited. This content may not be used for AI training or data extraction without Tridge's consent.
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    // ===== MOBILE MENU TOGGLE =====
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const nav = document.querySelector('.nav-container');
+
+    if (mobileMenuToggle) {
+      mobileMenuToggle.addEventListener('click', () => {
+        nav.classList.toggle('menu-open');
+        document.body.classList.toggle('menu-open');
+      });
+    }
+
+    // ===== NAVIGATION DROPDOWN (DESKTOP) =====
+    const dropdowns = document.querySelectorAll('.nav-dropdown');
+
+    dropdowns.forEach(dropdown => {
+      const button = dropdown.querySelector('.nav-link-dropdown');
+
+      if (button) {
+        button.addEventListener('click', (e) => {
+          e.stopPropagation();
+          // Close other dropdowns
+          dropdowns.forEach(d => {
+            if (d !== dropdown) d.classList.remove('is-open');
+          });
+          dropdown.classList.toggle('is-open');
+        });
+      }
+
+      // Close on outside click
+      document.addEventListener('click', () => {
+        dropdown.classList.remove('is-open');
+      });
+    });
+
+    // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return; // Skip empty hash links
+
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // ===== SCROLL REVEAL ANIMATION =====
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    document.querySelectorAll('section').forEach(section => {
+      section.classList.add('scroll-reveal');
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>

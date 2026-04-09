@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tridge Eye — The Intelligence Layer for Global Agri-Food Trade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ── RESET & BASE ── */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --blue:       #171CFD;
+      --black:      #0A0A18;
+      --white:      #FFFFFF;
+      --purple:     #7E43CD;
+      --bluepurple: #5C42E5;
+      --cyan:       #6B8CAE;
+      --green:      #2D8B70;
+      --yellow:     #D4A840;
+      --bg:         #F5F5FA;
+      --tint:       #EAEAFF;
+      --gray:       #6B6B8A;
+      --line:       #D8D8F0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #1a1a2e;
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ── NAVIGATION ── */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10,10,24,.98);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .nav-main {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a,
+    .nav-dropdown {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,.55);
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-dropdown:hover > .nav-dropdown-trigger {
+      color: rgba(255,255,255,.9);
+    }
+
+    .nav-links a.tbu {
+      opacity: 0.38;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .nav-dropdown {
+      position: relative;
+    }
+
+    .nav-dropdown-trigger {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,.55);
+      transition: color 0.2s;
+    }
+
+    .nav-dropdown-arrow {
+      font-size: 10px;
+      transition: transform 0.2s;
+    }
+
+    .nav-dropdown:hover .nav-dropdown-arrow {
+      transform: rotate(180deg);
+    }
+
+    .nav-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 12px);
+      left: -12px;
+      background: rgba(10,10,24,.98);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 8px;
+      padding: 8px 0;
+      min-width: 200px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+    }
+
+    .nav-dropdown:hover .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .nav-dropdown-menu a {
+      display: block;
+      padding: 10px 16px;
+      font-size: 13px;
+      color: rgba(255,255,255,.65);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .nav-dropdown-menu a:hover {
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.95);
+    }
+
+    .nav-cta {
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--blue);
+      border-radius: 6px;
+      transition: opacity 0.2s;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.85;
+    }
+
+    .nav-sub {
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      padding: 0 5%;
+    }
+
+    .nav-sub a {
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255,255,255,.4);
+      transition: color 0.2s;
+    }
+
+    .nav-sub a:hover {
+      color: rgba(255,255,255,.75);
+    }
+
+    .nav-sub a.tbu {
+      opacity: 0.38;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .nav-hamburger span {
+      width: 20px;
+      height: 2px;
+      background: rgba(255,255,255,.7);
+      transition: all 0.3s;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--black);
+      background-image:
+        radial-gradient(ellipse 700px 500px at 80% 20%, rgba(23,28,253,0.15), transparent),
+        linear-gradient(90deg, transparent 0%, transparent calc(56px - 1px), rgba(23,28,253,0.06) calc(56px - 1px), rgba(23,28,253,0.06) 56px),
+        linear-gradient(0deg, transparent 0%, transparent calc(56px - 1px), rgba(23,28,253,0.06) calc(56px - 1px), rgba(23,28,253,0.06) 56px);
+      background-size: 100% 100%, 56px 56px, 56px 56px;
+      min-height: 85vh;
+      padding: 120px 5% 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-content {
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 24px;
+    }
+
+    .hero-dot::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--cyan);
+      border-radius: 50%;
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero h1 {
+      font-size: 72px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--blue);
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      font-weight: 300;
+      color: rgba(255,255,255,.5);
+      max-width: 520px;
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 48px;
+      animation: fadeUp 0.6s ease 0.2s both;
+    }
+
+    .btn-primary {
+      padding: 14px 28px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--blue);
+      border-radius: 6px;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.85;
+    }
+
+    .btn-ghost {
+      padding: 14px 28px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,.5);
+      background: rgba(255,255,255,.05);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,.07);
+      animation: fadeUp 0.6s ease 0.3s both;
+    }
+
+    .hero-stat {
+      flex: 1;
+    }
+
+    .hero-stat-n {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .hero-stat-n em {
+      font-style: normal;
+      color: var(--cyan);
+    }
+
+    .hero-stat-l {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+    }
+
+    .hero-visual {
+      animation: fadeUp 0.6s ease 0.2s both;
+    }
+
+    .hero-visual img {
+      display: block;
+      width: 100%;
+    }
+
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 80px 5%;
+    }
+
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #1a1a2e;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--gray);
+      max-width: 640px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    .section-body {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--gray);
+      max-width: 720px;
+      margin: 0 auto 48px;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    /* ── TRUSTED BY ── */
+    .trusted-by {
+      background: var(--white);
+      text-align: center;
+      padding: 80px 0 60px;
+      overflow: hidden;
+    }
+
+    .trusted-by .section-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 12px;
+    }
+
+    .trusted-by .section-title {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 48px;
+      padding: 0 5%;
+    }
+
+    .logo-scroll-wrapper {
+      position: relative;
+      width: 100%;
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    .logo-scroll {
+      display: flex;
+      gap: 80px;
+      animation: scroll 20s linear infinite;
+    }
+
+    .logo-scroll-track {
+      display: flex;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .logo-item {
+      flex-shrink: 0;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-item img {
+      height: 40px;
+      width: auto;
+      max-width: 150px;
+      object-fit: contain;
+      filter: grayscale(100%) opacity(0.5);
+      transition: filter 0.3s ease;
+    }
+
+    .logo-item:hover img {
+      filter: grayscale(0%) opacity(1);
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ── WHO IT'S FOR ── */
+    .who-for {
+      background: var(--bg);
+    }
+
+    .persona-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .persona-card {
+      background: var(--white);
+      border: 1.5px solid var(--line);
+      border-radius: 8px;
+      padding: 28px;
+      border-top: 3px solid;
+    }
+
+    .persona-card.blue { border-top-color: var(--blue); }
+    .persona-card.green { border-top-color: var(--green); }
+    .persona-card.yellow { border-top-color: var(--yellow); }
+
+    .persona-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 12px;
+    }
+
+    .persona-title {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: #1a1a2e;
+      margin-bottom: 24px;
+    }
+
+    .persona-cta {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--blue);
+      border-radius: 6px;
+      transition: opacity 0.2s;
+    }
+
+    .persona-cta:hover {
+      opacity: 0.85;
+    }
+
+    /* ── VALUE STACK ── */
+    .value-stack {
+      background: var(--black);
+      text-align: center;
+      color: var(--white);
+    }
+
+    .value-stack .eyebrow {
+      color: var(--cyan);
+    }
+
+    .value-stack .section-title {
+      color: var(--white);
+      max-width: 720px;
+      margin: 0 auto 48px;
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,.2);
+      margin-bottom: 48px;
+    }
+
+    .value-layer {
+      background: #0D0D1F;
+      padding: 32px 24px;
+      text-align: left;
+      transition: background 0.2s;
+    }
+
+    .value-layer:hover {
+      background: rgba(255,255,255,.05);
+    }
+
+    .value-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 16px;
+    }
+
+    .value-icon svg {
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .value-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .value-title.blue { color: #6B8FFF; }
+    .value-title.green { color: var(--green); }
+    .value-title.cyan { color: var(--cyan); }
+    .value-title.yellow { color: var(--yellow); }
+
+    .value-body {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 16px;
+    }
+
+    .value-link {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--cyan);
+      transition: opacity 0.2s;
+    }
+
+    .value-link:hover {
+      opacity: 0.75;
+    }
+
+    .stack-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 32px;
+      background: rgba(23,28,253,0.08);
+      border-radius: 8px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .stack-arrow-step {
+      flex: 1;
+      text-align: center;
+    }
+
+    .stack-arrow-label {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--cyan);
+    }
+
+    .stack-arrow-sep {
+      font-size: 18px;
+      font-weight: 700;
+      color: rgba(255,255,255,.3);
+    }
+
+    /* ── WHY TRIDGE ── */
+    .why-us {
+      background: var(--white);
+      text-align: center;
+    }
+
+    .why-us .section-title strong {
+      color: var(--blue);
+    }
+
+    .comparison {
+      max-width: 1000px;
+      margin: 0 auto;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .comparison-table {
+      width: 100%;
+      min-width: 600px;
+      border-collapse: collapse;
+    }
+
+    .comparison-table thead th {
+      padding: 16px 20px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .th-others {
+      background: #F5F5F5;
+      color: var(--gray);
+      text-align: left;
+    }
+
+    .th-vs {
+      background: transparent;
+      color: var(--gray);
+      width: 40px;
+      text-align: center;
+    }
+
+    .th-us {
+      background: var(--blue);
+      color: var(--white);
+      text-align: left;
+    }
+
+    .comparison-table tbody td {
+      padding: 18px 20px;
+      font-size: 14px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .td-other {
+      background: #F5F5F5;
+      color: var(--gray);
+      font-weight: 300;
+    }
+
+    .td-mid {
+      background: transparent;
+      text-align: center;
+      color: var(--gray);
+    }
+
+    .td-our {
+      background: rgba(23,28,253,0.05);
+      color: #1a1a2e;
+      font-weight: 400;
+    }
+
+    /* ── EXPLORE MODULES ── */
+    .explore-modules {
+      background: var(--bg);
+      text-align: center;
+    }
+
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .module-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-top: 2px solid var(--blue);
+      border-radius: 8px;
+      padding: 22px;
+      text-align: left;
+      transition: all 0.2s;
+    }
+
+    .module-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(23,28,253,.08);
+      border-color: var(--blue);
+    }
+
+    .module-card.tbu {
+      opacity: 0.4;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .module-card.tbu:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .module-icon {
+      width: 36px;
+      height: 36px;
+      margin-bottom: 12px;
+    }
+
+    .module-icon svg {
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .module-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-bottom: 8px;
+    }
+
+    .module-body {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--gray);
+      margin-bottom: 12px;
+    }
+
+    .module-action {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    /* ── FORMULA ── */
+    .formula {
+      background: var(--white);
+    }
+
+    .formula-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 52px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .formula-counts {
+      display: grid;
+      gap: 16px;
+    }
+
+    .formula-count {
+      border: 1px solid var(--line);
+      border-top: 3px solid;
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .formula-count.blue { border-top-color: var(--blue); }
+    .formula-count.green { border-top-color: var(--green); }
+    .formula-count.cyan { border-top-color: var(--cyan); }
+
+    .formula-count-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 8px;
+    }
+
+    .formula-count-examples {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    .formula-examples {
+      display: grid;
+      gap: 12px;
+    }
+
+    .formula-example {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--blue);
+      border-radius: 6px;
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .formula-example strong {
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+
+    /* ── MID CTA ── */
+    .mid-cta {
+      text-align: center;
+      padding: 60px 5%;
+      background: linear-gradient(180deg, rgba(23,28,253,0.03) 0%, transparent 100%);
+      border-top: 1px solid rgba(23,28,253,0.08);
+      border-bottom: 1px solid rgba(23,28,253,0.08);
+    }
+
+    .mid-cta h3 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 24px;
+      line-height: 1.3;
+    }
+
+    .mid-cta-checks {
+      max-width: 600px;
+      margin: 0 auto 28px;
+      text-align: left;
+    }
+
+    .mid-cta-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-size: 15px;
+      color: #1a1a2e;
+      line-height: 1.5;
+    }
+
+    .mid-cta-check::before {
+      content: '✓';
+      font-weight: 700;
+      color: var(--green);
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+
+    .mid-cta-btns {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* ── FINAL CTA ── */
+    .hub-cta {
+      background: var(--black);
+      text-align: center;
+      padding: 80px 5%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hub-cta-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(23,28,253,0.2), transparent);
+      pointer-events: none;
+    }
+
+    .hub-cta-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hub-cta .section-title {
+      color: var(--white);
+      max-width: 540px;
+      margin: 0 auto 16px;
+    }
+
+    .hub-cta .section-sub {
+      color: rgba(255,255,255,.4);
+      margin-bottom: 32px;
+    }
+
+    .hub-cta-btns {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(255,255,255,.05);
+      padding: 28px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-wordmark {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 11px;
+      color: rgba(255,255,255,.28);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: rgba(255,255,255,.65);
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: rgba(255,255,255,.18);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 100px 5% 60px;
+      }
+
+      .hero h1 {
+        font-size: 56px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
+
+      .nav-dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .nav-dropdown-menu a {
+        padding: 8px 0;
+      }
+
+      .persona-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .value-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .module-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .formula-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .section-title {
+        font-size: 32px;
+      }
+
+      .logo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px 40px;
+      }
+
+      .persona-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .value-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .module-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stack-arrow {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .stack-arrow-sep {
+        transform: rotate(90deg);
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 80px 5% 40px;
+        min-height: auto;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero-btns {
+        flex-direction: column;
+      }
+
+      .btn-primary,
+      .btn-ghost {
+        width: 100%;
+        text-align: center;
+      }
+
+      .hub-cta-btns {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hub-cta-btns .btn-primary,
+      .hub-cta-btns .btn-ghost {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav-main">
+      <div class="nav-brand">
+        <span>TRIDGE</span>
+      </div>
+      <div class="nav-links">
+        <div class="nav-dropdown">
+          <div class="nav-dropdown-trigger">
+            <span>Solutions</span>
+            <span class="nav-dropdown-arrow">▼</span>
+          </div>
+          <div class="nav-dropdown-menu">
+            <a href="tridge_eye_hub.html">Tridge Eye</a>
+            <a href="tridge_export_solution.html">Export Solution</a>
+          </div>
+        </div>
+        <a href="tridge_market_intelligence.html">Market Intelligence</a>
+        <a href="tridge_supplier_discovery.html">Supplier Discovery</a>
+        <a href="tridge_price_benchmarking.html">Price Benchmarking</a>
+        <a href="tridge_purchase_development.html">Purchase Development</a>
+      </div>
+      <a href="contact-sales.html" class="nav-cta">Request Demo</a>
+      <div class="nav-hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+    <div class="nav-sub">
+      <a href="#">Industries</a>
+      <a href="#">Data Coverage</a>
+      <a href="#" class="tbu">Case Studies [TBU]</a>
+      <a href="#" class="tbu">API [TBU]</a>
+      <a href="#" class="tbu">Pricing [TBU]</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-dot">Live Intelligence</div>
+        <h1>Research Stops Short. <em>Execution</em> Is the Gap.</h1>
+        <p class="hero-desc">12+ years of verified market data, AI-powered outreach, and human intelligence — integrated into one execution layer for global trade.</p>
+        <div class="hero-btns">
+          <a href="https://eye.tridge.com" class="btn-primary">Try Tridge Eye →</a>
+          <a href="#how" class="btn-ghost">See How It Works</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-n"><em>1M+</em></div>
+            <div class="hero-stat-l">Users</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-n"><em>180+</em></div>
+            <div class="hero-stat-l">Countries</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-n"><em>12+</em> Years</div>
+            <div class="hero-stat-l">Trade Data</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-n"><em>350K+</em></div>
+            <div class="hero-stat-l">Companies</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="Eye_speaker_black.jpg"
+             alt="Tridge Eye Platform"
+             style="width: 100%; border-radius: 12px; box-shadow: 0 24px 48px rgba(0,0,0,0.5); transform: perspective(1000px) rotateY(-2deg) rotateX(2deg);">
+      </div>
+    </section>
+
+    <!-- TRUSTED BY -->
+    <section class="trusted-by">
+      <div class="section-eyebrow">Trusted By</div>
+      <h2 class="section-title">Trusted by Leading Global Trade Companies</h2>
+
+      <div class="logo-scroll-wrapper">
+        <div class="logo-scroll">
+          <div class="logo-scroll-track">
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/VOXPRPRW.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/M2SKMYUX.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/UXSCTPTJ.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/2AV2V2AN.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/KQTR5FMM.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/5KOCBBSM.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/UXRBP3PM.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/FBMDYRMT.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/I2WW6JPR.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/2XEVYYKE.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/RXPRGDIU.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/VOINHDNB.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/F6NVLDF5.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/JKNHD6RU.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/37HUSUQT.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/VX53NU6U.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/JHGDAJEM.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/5XWJ2ROK.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/VASZMBV3.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/PL6URT7G.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/Q4GQOMQA.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/C55OS6IH.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/KA6KIW7X.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/VWA6XMBC.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/P7NNUTVD.png" alt="Company Logo"></div>
+          </div>
+          <div class="logo-scroll-track">
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/VOXPRPRW.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/M2SKMYUX.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/UXSCTPTJ.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/2AV2V2AN.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/KQTR5FMM.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/5KOCBBSM.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/UXRBP3PM.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/FBMDYRMT.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/I2WW6JPR.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/2XEVYYKE.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/RXPRGDIU.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/VOINHDNB.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/F6NVLDF5.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/JKNHD6RU.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/37HUSUQT.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/VX53NU6U.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/JHGDAJEM.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/5XWJ2ROK.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/VASZMBV3.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/PL6URT7G.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/Q4GQOMQA.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/C55OS6IH.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/KA6KIW7X.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/VWA6XMBC.png" alt="Company Logo"></div>
+            <div class="logo-item"><img src="https://cdn-new.tridge.com/assets/P7NNUTVD.png" alt="Company Logo"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO IT'S FOR -->
+    <section class="who-for">
+      <div class="section-eyebrow">Who It's For</div>
+      <h2 class="section-title">Built for How You Trade</h2>
+      <p class="section-sub">Different roles, different needs. Same platform.</p>
+
+      <div class="persona-grid">
+        <!-- Buyers / Procurement -->
+        <div class="persona-card blue">
+          <div class="persona-label">PROCUREMENT / SOURCING</div>
+          <div class="persona-title">Find verified suppliers and benchmark prices before you negotiate.</div>
+          <a href="contact-sales.html" class="persona-cta">Get a Demo →</a>
+        </div>
+
+        <!-- Exporters / Sellers -->
+        <div class="persona-card green">
+          <div class="persona-label">SALES / EXPORT</div>
+          <div class="persona-title">Reach qualified buyers at a scale your team can't do alone.</div>
+          <a href="contact-sales.html" class="persona-cta">Get a Demo →</a>
+        </div>
+
+        <!-- Operators / Traders -->
+        <div class="persona-card yellow">
+          <div class="persona-label">OPERATIONS / TRADING</div>
+          <div class="persona-title">Execute more deals with the same team — AI handles the operational load.</div>
+          <a href="contact-sales.html" class="persona-cta">Get a Demo →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MID CTA 1 -->
+    <section class="mid-cta">
+      <h3>Ready to See How Tridge Eye Works?</h3>
+      <div class="mid-cta-checks">
+        <div class="mid-cta-check">Real data from your product category</div>
+        <div class="mid-cta-check">Live supplier and pricing intelligence</div>
+        <div class="mid-cta-check">AI-powered workflow from research to execution</div>
+      </div>
+      <div class="mid-cta-btns">
+        <a href="contact-sales.html" class="btn-primary">Get a Demo →</a>
+      </div>
+    </section>
+
+    <!-- VALUE STACK -->
+    <section class="value-stack" id="how">
+      <div class="eyebrow">Value Stack</div>
+      <h2 class="section-title">Four Layers. Each Valuable Alone.<br>Compounding Together.</h2>
+
+      <div class="value-grid">
+        <div class="value-layer">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24">
+              <polyline points="3 17 9 11 13 15 21 7"></polyline>
+              <polyline points="14 7 21 7 21 14"></polyline>
+            </svg>
+          </div>
+          <div class="value-title blue">Market Intelligence</div>
+          <div class="value-body">12+ years of verified trade data across 6,500+ agri-food categories. Prices, trade flows, supplier networks — structured and updated daily.</div>
+          <a href="tridge_market_intelligence.html" class="value-link">Explore Market Intelligence →</a>
+        </div>
+
+        <div class="value-layer">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+              <circle cx="11" cy="11" r="3"></circle>
+              <path d="M8 11h6"></path>
+              <path d="M11 8v6"></path>
+            </svg>
+          </div>
+          <div class="value-title green">Supplier Discovery</div>
+          <div class="value-body">Filter by origin, capacity, product spec, and trade history. Every supplier is connected to real transactions — not scraped directories.</div>
+          <a href="tridge_supplier_discovery.html" class="value-link">Explore Supplier Discovery →</a>
+        </div>
+
+        <div class="value-layer">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 3v3m6.366-.366-2.12 2.12M21 12h-3m.366 6.366-2.12-2.12M12 21v-3m-6.366.366 2.12-2.12M3 12h3m-.366-6.366 2.12 2.12"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </div>
+          <div class="value-title cyan">Price Benchmarking</div>
+          <div class="value-body">Real-time price comparison across markets, grades, and shipment terms. Know if you're paying fair value before you negotiate.</div>
+          <a href="tridge_price_benchmarking.html" class="value-link">Explore Price Benchmarking →</a>
+        </div>
+
+        <div class="value-layer">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <div class="value-title yellow">AI-Powered Outreach</div>
+          <div class="value-body">AI generates outreach campaigns using your search criteria, sends personalized messages to verified buyers or suppliers, and tracks engagement.</div>
+          <a href="tridge_export_solution.html" class="value-link">Learn About Outreach →</a>
+        </div>
+      </div>
+
+      <div class="stack-arrow">
+        <div class="stack-arrow-step">
+          <div class="stack-arrow-label">DATA</div>
+        </div>
+        <div class="stack-arrow-sep">+</div>
+        <div class="stack-arrow-step">
+          <div class="stack-arrow-label">AI</div>
+        </div>
+        <div class="stack-arrow-sep">+</div>
+        <div class="stack-arrow-step">
+          <div class="stack-arrow-label">NETWORK</div>
+        </div>
+        <div class="stack-arrow-sep">=</div>
+        <div class="stack-arrow-step">
+          <div class="stack-arrow-label">EXECUTION</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY TRIDGE -->
+    <section class="why-us">
+      <div class="eyebrow">Why Tridge</div>
+      <h2 class="section-title">Built on Data. <strong>Not Just AI.</strong></h2>
+      <p class="section-body">Generic AI tools fail in trade because they have no real domain data. Our foundation is irreplaceable — 12+ years of native, structured trade intelligence.</p>
+
+      <div class="comparison">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th class="th-others">Generic AI</th>
+              <th class="th-vs">vs</th>
+              <th class="th-us">Tridge</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-other">General-purpose models</td>
+              <td class="td-mid">→</td>
+              <td class="td-our">Built for trade, trained on 12+ years of real transactions</td>
+            </tr>
+            <tr>
+              <td class="td-other">Scraped or synthetic data</td>
+              <td class="td-mid">→</td>
+              <td class="td-our">Native data from 1M+ users and verified supplier network</td>
+            </tr>
+            <tr>
+              <td class="td-other">Insights only</td>
+              <td class="td-mid">→</td>
+              <td class="td-our">Execution layer: AI generates outreach, connects parties, closes gaps</td>
+            </tr>
+            <tr>
+              <td class="td-other">You customize every query</td>
+              <td class="td-mid">→</td>
+              <td class="td-our">Domain ontology ready: cocoa, soybeans, palm oil, 6,500+ categories</td>
+            </tr>
+            <tr>
+              <td class="td-other">No real network</td>
+              <td class="td-mid">→</td>
+              <td class="td-our">Millions of active buyers and suppliers already on platform</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MID CTA 2 -->
+    <section class="mid-cta">
+      <h3>See the Tridge Difference in Action</h3>
+      <div class="mid-cta-checks">
+        <div class="mid-cta-check">Compare your quotes against real transaction prices</div>
+        <div class="mid-cta-check">Find verified suppliers beyond directories</div>
+        <div class="mid-cta-check">Activate AI outreach at a scale your team can't do alone</div>
+      </div>
+      <div class="mid-cta-btns">
+        <a href="contact-sales.html" class="btn-primary">Request Demo →</a>
+      </div>
+    </section>
+
+    <!-- EXPLORE MODULES -->
+    <section class="explore-modules">
+      <div class="eyebrow">Explore Modules</div>
+      <h2 class="section-title">Explore Tridge Eye Modules</h2>
+      <p class="section-sub">Each module delivers standalone value. Stack them into a complete trade intelligence workflow.</p>
+
+      <div class="module-grid">
+        <a href="tridge_market_intelligence.html" class="module-card">
+          <div class="module-icon">
+            <svg viewBox="0 0 24 24">
+              <polyline points="3 17 9 11 13 15 21 7"></polyline>
+              <polyline points="14 7 21 7 21 14"></polyline>
+            </svg>
+          </div>
+          <div class="module-title">Market Intelligence</div>
+          <div class="module-body">Real-time prices, trade flows, and supply-demand analysis across 6,500+ categories.</div>
+          <div class="module-action">Explore →</div>
+        </a>
+
+        <a href="tridge_supplier_discovery.html" class="module-card">
+          <div class="module-icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+              <circle cx="11" cy="11" r="3"></circle>
+              <path d="M8 11h6"></path>
+              <path d="M11 8v6"></path>
+            </svg>
+          </div>
+          <div class="module-title">Supplier Discovery</div>
+          <div class="module-body">Find verified suppliers by origin, capacity, and trade history — not scraped web data.</div>
+          <div class="module-action">Explore →</div>
+        </a>
+
+        <a href="tridge_price_benchmarking.html" class="module-card">
+          <div class="module-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 3v3m6.366-.366-2.12 2.12M21 12h-3m.366 6.366-2.12-2.12M12 21v-3m-6.366.366 2.12-2.12M3 12h3m-.366-6.366 2.12 2.12"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </div>
+          <div class="module-title">Price Benchmarking</div>
+          <div class="module-body">Compare prices across markets, grades, and terms. Know if you're paying fair value.</div>
+          <div class="module-action">Explore →</div>
+        </a>
+
+        <a href="tridge_purchase_development.html" class="module-card">
+          <div class="module-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="9" y1="15" x2="15" y2="15"></line>
+              <polyline points="9 12 10 13 12 11"></polyline>
+            </svg>
+          </div>
+          <div class="module-title">Purchase Development</div>
+          <div class="module-body">Structure procurement projects, track supplier conversations, and close deals faster.</div>
+          <div class="module-action">Explore →</div>
+        </a>
+
+        <a href="tridge_export_solution.html" class="module-card">
+          <div class="module-icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              <polyline points="16 8 20 12 16 16"></polyline>
+            </svg>
+          </div>
+          <div class="module-title">Export Solution</div>
+          <div class="module-body">AI-powered buyer discovery and outreach. Reach active importers at scale without cold calling.</div>
+          <div class="module-action">Explore →</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- FORMULA -->
+    <section class="formula">
+      <div class="eyebrow">Formula</div>
+      <h2 class="section-title">Intelligence That Scales<br>to Any Market or Role</h2>
+      <p class="section-sub">Pick a market. Pick a module. Get relevant intelligence instantly — no custom setup required.</p>
+
+      <div class="formula-grid">
+        <div class="formula-counts">
+          <div class="formula-count blue">
+            <div class="formula-count-tag">MARKETS</div>
+            <div class="formula-count-examples">Cocoa, Soybeans, Palm Oil, Coffee, Corn, Wheat, Sugar, Cotton...</div>
+          </div>
+
+          <div class="formula-count green">
+            <div class="formula-count-tag">MODULES</div>
+            <div class="formula-count-examples">Market Intelligence, Supplier Discovery, Price Benchmarking, Purchase Development, Export Solution...</div>
+          </div>
+
+          <div class="formula-count cyan">
+            <div class="formula-count-tag">ROLES</div>
+            <div class="formula-count-examples">Procurement, Trading, Export Sales, Supply Chain, Risk Management...</div>
+          </div>
+        </div>
+
+        <div class="formula-examples">
+          <div class="formula-example">
+            <strong>Cocoa Buyer</strong> → Market Intelligence + Supplier Discovery → "Show me West African cocoa suppliers with verified capacity and current benchmark prices"
+          </div>
+          <div class="formula-example">
+            <strong>Soybean Exporter</strong> → Export Solution → "Find active importers in Southeast Asia and generate personalized outreach"
+          </div>
+          <div class="formula-example">
+            <strong>Coffee Trader</strong> → Price Benchmarking + Market Intelligence → "Compare Arabica prices across Brazil, Colombia, Vietnam with real-time differentials"
+          </div>
+          <div class="formula-example">
+            <strong>Procurement Manager</strong> → Purchase Development → "Track 12 supplier conversations for palm oil tender, score responses, close faster"
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="hub-cta" id="hub-cta">
+      <div class="hub-cta-bg"></div>
+      <div class="hub-cta-inner">
+        <h2 class="section-title">Real Intelligence. Real Action.<br>Start Today.</h2>
+        <p class="section-sub">See how Tridge transforms global trade intelligence for buyers, exporters, and operators worldwide.</p>
+        <div class="hub-cta-btns">
+          <a href="contact-sales.html" class="btn-primary">Get a Demo</a>
+          <a href="https://eye.tridge.com" class="btn-ghost">Explore Tridge Eye</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="#" class="footer-wordmark">TRIDGE</a>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Sitemap</a>
+      <a href="#">Careers</a>
+    </div>
+    <div class="footer-copy">© 2026 Tridge. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Hamburger menu toggle
+    const hamburger = document.querySelector('.nav-hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (hamburger) {
+      hamburger.addEventListener('click', () => {
+        navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+      });
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && href !== '#hub-cta') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }
+      });
+    });
+
+    // Add scroll detection for navigation shadow
+    let lastScroll = 0;
+    const header = document.querySelector('header');
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      if (currentScroll > 50) {
+        header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
+      } else {
+        header.style.boxShadow = 'none';
+      }
+      lastScroll = currentScroll;
+    });
+  </script>
+</body>
+</html>

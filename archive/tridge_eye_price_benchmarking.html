@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tridge Eye &#8212; Price Benchmarking | Know If You're Overpaying</title>
+<meta name="description" content="Compare supplier quotes against real transaction prices across regions and specifications. Enter every negotiation with verified market context &#8212; not estimates or published indices."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#171CFD;--black:#0A0A18;--white:#FFFFFF;--purple:#7E43CD;--bluepurple:#5C42E5;--cyan:#34C6EE;--green:#0EDBA5;--yellow:#FFD12D;--bg:#F5F5FA;--tint:#EAEAFF;--gray:#6B6B8A;--line:#D8D8F0}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--black);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+
+
+
+
+
+
+
+
+
+
+section{padding:100px 5%}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin-bottom:12px}
+.section-title{font-size:clamp(28px,3vw,44px);font-weight:700;letter-spacing:-.03em;line-height:1.08;margin-bottom:16px}
+.section-sub{font-size:16px;font-weight:300;color:var(--gray);line-height:1.75;max-width:600px}
+.divider{width:36px;height:2px;background:var(--yellow);margin:18px 0}
+.btn-primary{display:inline-block;background:var(--yellow);color:var(--black);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:14px 32px;text-decoration:none;transition:opacity .2s,transform .15s}
+.btn-primary:hover{opacity:.85;transform:translateY(-2px)}
+.btn-ghost{display:inline-block;border:1.5px solid rgba(255,255,255,.25);color:var(--white);font-size:13px;font-weight:500;padding:13px 28px;text-decoration:none;transition:border-color .2s}
+.btn-ghost:hover{border-color:var(--white)}
+/* HERO */
+.hero{min-height:90vh;background:var(--black);display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;padding:100px 5% 72px;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,209,45,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,209,45,.04) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
+.hero-glow{position:absolute;width:650px;height:650px;border-radius:50%;background:radial-gradient(circle,rgba(255,209,45,.08) 0%,transparent 68%);top:-120px;right:-100px;pointer-events:none}
+.hero-left{position:relative;z-index:2}
+.hero-breadcrumb{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:20px}
+.hero-breadcrumb a{color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
+.hero-breadcrumb a:hover{color:var(--white)}
+.hero h1{font-size:clamp(40px,4.8vw,66px);font-weight:800;letter-spacing:-.04em;line-height:1.0;color:var(--white);margin-bottom:20px}
+.hero h1 em{font-style:normal;color:var(--yellow)}
+.hero-desc{font-size:17px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.75;max-width:490px;margin-bottom:32px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px;padding-top:26px;border-top:1px solid rgba(255,255,255,.07)}
+.hero-chip{font-size:11px;font-weight:500;padding:5px 12px;background:rgba(255,209,45,.1);border:1px solid rgba(255,209,45,.2);color:rgba(255,230,130,.8)}
+/* Benchmark UI mock */
+.hero-right{position:relative;z-index:2}
+.bench-ui{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);overflow:hidden}
+.bench-header{background:rgba(255,209,45,.15);border-bottom:1px solid rgba(255,209,45,.2);padding:11px 16px;display:flex;align-items:center;justify-content:space-between}
+.bench-title{font-size:11px;font-weight:600;color:var(--yellow);letter-spacing:.06em}
+.bench-section{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.05)}
+.bench-section:last-child{border-bottom:none}
+.bench-label{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:10px}
+.bench-rows{display:flex;flex-direction:column;gap:8px}
+.bench-row{display:flex;align-items:center;gap:8px}
+.bench-source{font-size:11px;font-weight:300;color:rgba(255,255,255,.45);width:110px;flex-shrink:0}
+.bench-bar-bg{flex:1;position:relative;height:18px;background:rgba(255,255,255,.05)}
+.bench-bar{height:100%;position:absolute;left:0;top:0;display:flex;align-items:center;justify-content:flex-end;padding-right:6px}
+.bench-bar-val{font-size:10px;font-weight:700;color:var(--white)}
+.bench-row.your .bench-bar{background:rgba(255,80,80,.3)}
+.bench-row.your .bench-source{color:rgba(255,130,130,.8);font-weight:600}
+.bench-row.avg .bench-bar{background:rgba(255,209,45,.25)}
+.bench-row.best .bench-bar{background:rgba(14,219,165,.25)}
+.bench-verdict{background:rgba(255,80,80,.1);border:1px solid rgba(255,80,80,.2);padding:10px 14px;margin-top:12px}
+.bench-verdict-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,130,130,.8);margin-bottom:4px}
+.bench-verdict-text{font-size:12px;font-weight:500;color:var(--white)}
+/* PROBLEM */
+.problem{background:var(--bg)}
+.problem-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:52px;align-items:start}
+.problem-text p{font-size:15px;font-weight:300;color:var(--gray);line-height:1.75;margin-top:14px}
+.problem-text strong{color:var(--black);font-weight:600}
+.problem-callout{background:var(--black);padding:32px;border-top:3px solid var(--yellow);margin-top:24px}
+.problem-callout-text{font-size:17px;font-weight:700;color:var(--white);line-height:1.4;letter-spacing:-.02em}
+.problem-callout-sub{font-size:13px;font-weight:300;color:rgba(255,255,255,.4);margin-top:10px;line-height:1.65}
+.prob-cards{display:flex;flex-direction:column;gap:14px}
+.prob-card{background:var(--white);border:1px solid var(--line);padding:24px;border-left:3px solid var(--yellow);transition:transform .2s}
+.prob-card:nth-child(2){border-left-color:var(--blue)}
+.prob-card:nth-child(3){border-left-color:var(--cyan)}
+.prob-card:hover{transform:translateX(4px)}
+.prob-card-title{font-size:14px;font-weight:600;color:var(--black);margin-bottom:7px}
+.prob-card-body{font-size:13px;font-weight:300;color:var(--gray);line-height:1.65}
+/* WHAT YOU GAIN */
+.gains{background:var(--white)}
+.gains-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
+.gain-card{border:1px solid var(--line);padding:28px;transition:transform .2s,box-shadow .2s,border-color .2s}
+.gain-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(255,209,45,.08);border-color:var(--yellow)}
+.gain-card::before{content:'';display:block;height:2px;margin-bottom:20px}
+.gain-card:nth-child(1)::before{background:var(--yellow)}
+.gain-card:nth-child(2)::before{background:var(--green)}
+.gain-card:nth-child(3)::before{background:var(--blue)}
+.gain-card:nth-child(4)::before{background:var(--cyan)}
+.gain-card:nth-child(5)::before{background:var(--purple)}
+.gain-card:nth-child(6)::before{background:var(--bluepurple)}
+.gain-icon{font-size:20px;margin-bottom:12px}
+.gain-title{font-size:15px;font-weight:600;color:var(--black);margin-bottom:8px;letter-spacing:-.01em}
+.gain-body{font-size:13.5px;font-weight:300;color:var(--gray);line-height:1.65}
+/* WHY DIFFERENT */
+.why{background:var(--black);padding:100px 5%}
+.why .eyebrow{color:var(--cyan)}
+.why-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:52px;background:rgba(255,255,255,.07)}
+.why-col{background:var(--black);padding:36px 28px;transition:background .2s}
+.why-col:hover{background:rgba(255,255,255,.03)}
+.why-col-num{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);background:rgba(255,255,255,.08);display:inline-block;padding:3px 9px;margin-bottom:10px}
+.why-col-title{font-size:16px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+.why-col:nth-child(1) .why-col-title{color:var(--yellow)}
+.why-col:nth-child(2) .why-col-title{color:var(--green)}
+.why-col:nth-child(3) .why-col-title{color:var(--cyan)}
+.why-col-body{font-size:13px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.7}
+.why-bridge{margin-top:36px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-left:3px solid var(--yellow);padding:22px 28px}
+.why-bridge p{font-size:15px;color:rgba(255,255,255,.6);line-height:1.7;font-style:italic}
+.why-bridge strong{color:var(--white);font-weight:600;font-style:normal}
+/* HOW IT WORKS */
+.how{background:var(--bg)}
+.how-steps{margin-top:52px;display:flex;flex-direction:column;gap:0}
+.how-step{display:grid;grid-template-columns:80px 1fr;gap:28px;padding:28px 0;border-bottom:1px solid var(--line);align-items:start}
+.how-step:last-child{border-bottom:none}
+.how-step-num{width:52px;height:52px;border:1.5px solid var(--yellow);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:var(--yellow);flex-shrink:0;transition:background .2s,color .2s}
+.how-step:hover .how-step-num{background:var(--yellow);color:var(--black)}
+.how-step-title{font-size:16px;font-weight:600;color:var(--black);margin-bottom:6px;letter-spacing:-.02em}
+.how-step-body{font-size:13.5px;font-weight:300;color:var(--gray);line-height:1.65;max-width:600px;margin-bottom:10px}
+.how-step-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;background:rgba(255,209,45,.1);color:var(--yellow)}
+/* SCENARIOS */
+.scenarios{background:var(--white)}
+.sc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:52px}
+.sc-card{border:1px solid var(--line);padding:28px;transition:transform .2s,box-shadow .2s}
+.sc-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(255,209,45,.08)}
+.sc-card::before{content:'';display:block;height:2px;margin-bottom:18px}
+.sc-card:nth-child(1)::before{background:var(--yellow)}
+.sc-card:nth-child(2)::before{background:var(--blue)}
+.sc-card:nth-child(3)::before{background:var(--green)}
+.sc-card:nth-child(4)::before{background:var(--cyan)}
+.sc-situation{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:8px}
+.sc-title{font-size:16px;font-weight:700;color:var(--black);margin-bottom:10px;letter-spacing:-.02em;line-height:1.3}
+.sc-body{font-size:13px;font-weight:300;color:var(--gray);line-height:1.65}
+/* DELIVERABLES */
+.deliv{background:var(--black);padding:100px 5%}
+.deliv .eyebrow{color:var(--yellow)}
+.deliv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:52px}
+.deliv-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);padding:20px;transition:border-color .2s,background .2s}
+.deliv-card:hover{border-color:rgba(255,209,45,.4);background:rgba(255,209,45,.04)}
+.deliv-num{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);background:rgba(255,255,255,.08);display:inline-block;padding:2px 8px;margin-bottom:8px}
+.deliv-icon{font-size:18px;margin-bottom:6px}
+.deliv-title{font-size:13px;font-weight:600;color:var(--white);margin-bottom:5px}
+.deliv-body{font-size:13px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.65}
+/* DIFF TABLE */
+.diff{background:var(--bg)}
+.diff-table{margin-top:52px;border:1px solid var(--line);overflow:hidden}
+.diff-head{display:grid;grid-template-columns:1.2fr 1fr 1fr;background:var(--black)}
+.diff-head-cell{padding:14px 20px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.diff-head-cell.hl{color:var(--yellow);background:rgba(255,209,45,.07)}
+.diff-row{display:grid;grid-template-columns:1.2fr 1fr 1fr;border-top:1px solid var(--line)}
+.diff-row:hover{background:rgba(255,209,45,.02)}
+.diff-cell{padding:14px 20px;font-size:13px;font-weight:300;color:var(--gray)}
+.diff-cell:nth-child(1){font-weight:500;color:var(--black)}
+.diff-cell.hl{background:rgba(255,209,45,.03);font-weight:500;color:var(--black)}
+.check{color:var(--green);margin-right:5px;font-weight:700}
+.cross{color:rgba(107,107,138,.4);margin-right:5px}
+/* FAQ */
+.faq{background:var(--white)}
+.faq-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:52px;align-items:start}
+.faq-list{display:flex;flex-direction:column}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{padding:18px 0;font-size:14px;font-weight:500;color:var(--black);cursor:pointer;display:flex;justify-content:space-between;align-items:center;letter-spacing:-.01em;transition:color .2s;user-select:none;gap:16px}
+.faq-q:hover{color:var(--yellow)}
+.faq-q::after{content:'+';font-size:20px;font-weight:300;color:var(--yellow);flex-shrink:0;transition:transform .25s;line-height:1}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .2s}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:16px}
+.faq-a p{font-size:13.5px;font-weight:300;color:var(--gray);line-height:1.7}
+.faq-aside{background:var(--black);padding:32px;display:flex;flex-direction:column;gap:14px}
+.faq-aside-eyebrow{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--yellow)}
+.faq-aside-title{font-size:19px;font-weight:700;color:var(--white);letter-spacing:-.02em;line-height:1.3}
+.faq-aside-body{font-size:13px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.65}
+.faq-aside-link{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600;color:var(--yellow);text-decoration:none;border-bottom:1px solid var(--yellow);padding-bottom:1px;transition:opacity .2s}
+.faq-aside-link:hover{opacity:.7}
+.faq-related{margin-top:8px;padding-top:16px;border-top:1px solid rgba(255,255,255,.07)}
+.faq-related-label{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:8px}
+.faq-related a{display:block;font-size:12px;color:rgba(255,255,255,.3);text-decoration:none;padding:4px 0;transition:color .2s}
+.faq-related a:hover{color:rgba(255,255,255,.65)}
+/* CTA */
+.cta{background:var(--black);text-align:center;position:relative;overflow:hidden;padding:100px 5%}
+.cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(255,209,45,.1) 0%,transparent 70%);pointer-events:none}
+.cta-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,209,45,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,209,45,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+.cta-inner{position:relative;z-index:2}
+.cta .section-title{color:var(--white);max-width:560px;margin:0 auto 16px}
+.cta .section-sub{color:rgba(255,255,255,.4);margin:0 auto 36px;text-align:center}
+.cta-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.cta-note{margin-top:16px;font-size:12px;color:rgba(255,255,255,.22)}
+.ribbon{background:var(--yellow);padding:28px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.ribbon-text{font-size:15px;font-weight:500;color:var(--black)}
+.ribbon-btn{background:var(--black);color:var(--yellow);font-size:12px;font-weight:700;letter-spacing:.06em;padding:11px 24px;text-decoration:none;text-transform:uppercase}
+footer{background:var(--black);border-top:1px solid rgba(255,255,255,.05);padding:28px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.footer-wordmark{font-size:15px;font-weight:700;color:var(--white);text-decoration:none}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap}
+.footer-links a{font-size:11px;color:rgba(255,255,255,.28);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,.65)}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.18)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-left>*{animation:fadeUp .6s ease both}
+.hero-left>*:nth-child(1){animation-delay:.1s}.hero-left>*:nth-child(2){animation-delay:.2s}.hero-left>*:nth-child(3){animation-delay:.3s}.hero-left>*:nth-child(4){animation-delay:.42s}.hero-left>*:nth-child(5){animation-delay:.52s}
+.hero-right{animation:fadeUp .7s .3s ease both}
+@media(max-width:960px){.hero,.problem-layout,.faq-layout{grid-template-columns:1fr;gap:36px}.hero{min-height:auto}.gains-grid{grid-template-columns:1fr 1fr}.sc-grid{grid-template-columns:1fr}.why-cols{grid-template-columns:1fr;background:none;gap:14px}.why-col{border:1px solid rgba(255,255,255,.08)}.deliv-grid{grid-template-columns:1fr 1fr}.diff-head,.diff-row{grid-template-columns:1fr 1fr}.diff-head-cell:nth-child(1),.diff-cell:nth-child(1){display:none}}
+@media(max-width:600px){.gains-grid,.deliv-grid{grid-template-columns:1fr}section{padding:72px 5%}.ribbon{flex-direction:column;text-align:center}}
+
+/* ── TWO-LAYER GNB ── */
+.gnb-wrap{position:fixed;top:0;left:0;right:0;z-index:200}
+.gnb-layer1{height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(10,10,24,.98);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07)}
+.gnb-layer2{height:36px;display:flex;align-items:center;padding:0 5%;background:rgba(6,6,18,.95);border-bottom:1px solid rgba(255,255,255,.05);overflow-x:auto;scrollbar-width:none}
+.gnb-layer2::-webkit-scrollbar{display:none}
+.gnb-left{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.gnb-wordmark{font-size:15px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:-.01em}
+.gnb-sep{color:rgba(255,255,255,.2);font-size:12px}
+.gnb-product{font-size:11px;font-weight:400;color:rgba(255,255,255,.4);letter-spacing:.02em}
+.gnb-modules{display:flex;gap:2px;list-style:none;flex:1;justify-content:center}
+.gnb-modules a{color:rgba(255,255,255,.45);text-decoration:none;font-size:12px;font-weight:400;padding:5px 10px;border-radius:3px;transition:color .15s,background .15s;white-space:nowrap}
+.gnb-modules a:hover{color:var(--white);background:rgba(255,255,255,.07)}
+.gnb-modules a.active{color:var(--white);background:rgba(255,255,255,.1);font-weight:500}
+.gnb-cta{background:var(--blue);color:var(--white);font-size:11px;font-weight:600;letter-spacing:.06em;padding:7px 16px;text-decoration:none;text-transform:uppercase;transition:opacity .2s;white-space:nowrap;flex-shrink:0}
+.gnb-cta:hover{opacity:.85}
+.gnb-sub{display:flex;gap:0;list-style:none;white-space:nowrap}
+.gnb-sub a{color:rgba(255,255,255,.38);text-decoration:none;font-size:11px;font-weight:400;padding:0 14px;height:36px;display:flex;align-items:center;transition:color .15s,background .15s;border-right:1px solid rgba(255,255,255,.05)}
+.gnb-sub a:hover{color:rgba(255,255,255,.75);background:rgba(255,255,255,.04)}
+.gnb-sub a.sub-active{color:rgba(255,255,255,.9);font-weight:500}
+body{padding-top:92px}
+
+
+
+
+/* ── BROWSE BY MARKET ── */
+
+
+/* ── BROWSE BY MARKET (Phase 1) ── */
+.browse{background:var(--bg);padding:72px 5%}
+.browse .eyebrow{color:var(--blue)}
+.browse-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.browse-card{background:var(--white);border:1px solid var(--line);padding:24px;text-decoration:none;display:block;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden}
+.browse-card:not(.tbu):hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.08);border-color:var(--blue)}
+.browse-card.tbu{opacity:.38;cursor:default;pointer-events:none}
+.browse-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.browse-card:nth-child(1)::before{background:#C07830}
+.browse-card:nth-child(2)::before{background:var(--green)}
+.browse-card:nth-child(3)::before{background:var(--yellow)}
+.browse-card-industry{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.browse-card:nth-child(1) .browse-card-industry{color:#C07830}
+.browse-card:nth-child(2) .browse-card-industry{color:var(--green)}
+.browse-card:nth-child(3) .browse-card-industry{color:var(--yellow)}
+.browse-card-title{font-size:16px;font-weight:700;color:var(--black);letter-spacing:-.02em;margin-bottom:8px;line-height:1.25}
+.browse-card-body{font-size:12.5px;font-weight:300;color:var(--gray);line-height:1.6;margin-bottom:14px}
+.browse-card-link{font-size:12px;font-weight:600;color:var(--blue);display:flex;align-items:center;gap:5px}
+.browse-card.tbu .browse-card-link{color:var(--gray)}
+.browse-tbu-badge{position:absolute;top:10px;right:10px;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--bg);border:1px solid var(--line);color:var(--gray);padding:2px 7px}
+@media(max-width:600px){.browse-grid{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<div class="gnb-wrap">
+  <div class="gnb-layer1">
+    <div class="gnb-left">
+      <a class="gnb-wordmark" href="tridge_eye_hub.html">TRIDGE</a>
+      <span class="gnb-sep">/</span>
+      <span class="gnb-product">Tridge Eye</span>
+    </div>
+    <ul class="gnb-modules"><li><a href="tridge_eye_market_intelligence.html">Market Intelligence</a></li><li><a href="tridge_eye_supplier_discovery.html">Supplier Discovery</a></li><li><a href="tridge_eye_price_benchmarking.html" class="active">Price Benchmarking</a></li><li><a href="tridge_purchase_development_v2.html">Purchase Development</a></li><li><a href="tridge_export_solution.html">Export Solution</a></li><li><a href="tridge_trade_execution.html">Trade Execution</a></li></ul>
+    <a href="#cta" class="gnb-cta">Request Demo</a>
+  </div>
+  <div class="gnb-layer2">
+    <ul class="gnb-sub"><li><a href="#problem">The Problem</a></li><li><a href="#gains">What You Gain</a></li><li><a href="#how">How It Works</a></li><li><a href="#scenarios">Scenarios</a></li><li><a href="#deliverables">Deliverables</a></li><li><a href="#faq">FAQ</a></li></ul>
+  </div>
+</div>
+
+
+<section class="hero" id="top">
+  <div class="hero-grid"></div><div class="hero-glow"></div>
+  <div class="hero-left">
+    <div class="hero-breadcrumb"><a href="tridge_eye_hub.html">Tridge Eye</a><span>/</span><span>Price Benchmarking</span></div>
+    <h1>Know If You're<br/><em>Overpaying</em> &#8212;<br/>Before You Sign.</h1>
+    <p class="hero-desc">Compare supplier quotes against real transaction prices across regions, specifications, and time periods. Enter every negotiation with verified market context &#8212; not estimates, not published indices, and not a supplier's word.</p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn-primary">Request Demo &#8594;</a>
+      <a href="#problem" class="btn-ghost">See the Problem &#8595;</a>
+    </div>
+    <div class="hero-chips">
+      <span class="hero-chip">Transaction Prices</span>
+      <span class="hero-chip">Regional Comparison</span>
+      <span class="hero-chip">Negotiation Context</span>
+      <span class="hero-chip">Overpayment Detection</span>
+      <span class="hero-chip">Trend Direction</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="bench-ui">
+      <div class="bench-header"><span class="bench-title">PRICE BENCHMARKING &#8212; Almonds Nonpareil 40/50 CIF Rotterdam</span></div>
+      <div class="bench-section">
+        <div class="bench-label">Your Quote vs Market Range</div>
+        <div class="bench-rows">
+          <div class="bench-row your"><span class="bench-source">Your quote</span><div class="bench-bar-bg"><div class="bench-bar" style="width:92%"><span class="bench-bar-val">$5.85/kg</span></div></div></div>
+          <div class="bench-row avg"><span class="bench-source">Market avg.</span><div class="bench-bar-bg"><div class="bench-bar" style="width:82%"><span class="bench-bar-val">$5.22/kg</span></div></div></div>
+          <div class="bench-row best"><span class="bench-source">Best verified</span><div class="bench-bar-bg"><div class="bench-bar" style="width:72%"><span class="bench-bar-val">$4.90/kg</span></div></div></div>
+        </div>
+        <div class="bench-verdict"><div class="bench-verdict-label">&#9888; Overpayment Signal</div><div class="bench-verdict-text">Your quote is 12% above verified market average. 6 suppliers transacted below $5.30 in the last 30 days.</div></div>
+      </div>
+      <div class="bench-section">
+        <div class="bench-label">Regional Price Spread (Last 90 Days)</div>
+        <div class="bench-rows">
+          <div class="bench-row avg"><span class="bench-source">USA &#8594; EU</span><div class="bench-bar-bg"><div class="bench-bar" style="width:84%"><span class="bench-bar-val">$5.20/kg</span></div></div></div>
+          <div class="bench-row avg"><span class="bench-source">AUS &#8594; EU</span><div class="bench-bar-bg"><div class="bench-bar" style="width:76%"><span class="bench-bar-val">$4.95/kg</span></div></div></div>
+          <div class="bench-row avg"><span class="bench-source">USA &#8594; Gulf</span><div class="bench-bar-bg"><div class="bench-bar" style="width:80%"><span class="bench-bar-val">$5.10/kg</span></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="problem" id="problem">
+  <div class="eyebrow">The Problem</div>
+  <div class="problem-layout">
+    <div class="problem-text">
+      <h2 class="section-title">Most procurement teams negotiate<br/>without knowing what the market pays.</h2>
+      <div class="divider"></div>
+      <p>Published price indices arrive months late and reflect what participants chose to report, not what deals were actually closed at. Supplier quotes are presented as market-reflective when they may carry significant margin above what comparable buyers are paying in the same corridor for the same specification.</p>
+      <p>The result: <strong>procurement teams accept prices that feel reasonable because they have no credible alternative reference point.</strong> Overpayment is systematic and invisible &#8212; because there is no benchmark that reflects current market reality at the level of specificity procurement decisions require.</p>
+      <div class="problem-callout">
+        <div class="problem-callout-text">"The most expensive negotiation is the one where you don't know what fair looks like."</div>
+        <div class="problem-callout-sub">Tridge Eye Price Benchmarking gives you a verified transaction price reference at specification, origin, and corridor level &#8212; so you enter every negotiation knowing exactly where you stand relative to what the market is actually paying.</div>
+      </div>
+    </div>
+    <div class="prob-cards">
+      <div class="prob-card"><div class="prob-card-title">Published indices lag reality by 30&#8211;90 days</div><div class="prob-card-body">Price indices are published after data is collected, verified, and processed. By the time a benchmark is publicly available, the market has moved. You are negotiating today with data that reflects what happened last quarter &#8212; and suppliers know it.</div></div>
+      <div class="prob-card"><div class="prob-card-title">Supplier quotes are not market evidence</div><div class="prob-card-body">A supplier's quote is not a benchmark. It is their opening position in a negotiation. Without an independent reference point built on actual transaction data, procurement teams have no way to assess whether a quote is market-consistent or margin-loaded.</div></div>
+      <div class="prob-card"><div class="prob-card-title">Regional and specification price spread is invisible</div><div class="prob-card-body">The same product at the same specification can transact at meaningfully different prices depending on origin, destination, and corridor. Without corridor-level transaction data, procurement teams cannot see these spreads &#8212; and cannot leverage them in supplier selection or negotiation.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="gains" id="gains">
+  <div class="eyebrow">What You Gain</div>
+  <h2 class="section-title">Six Ways Price Benchmarking<br/>Changes Your Procurement.</h2>
+  <p class="section-sub">Benchmarking is not just about finding cheaper prices. It is about entering every commercial conversation with verified market context &#8212; and knowing exactly where you stand before the negotiation begins.</p>
+  <div class="gains-grid">
+    <div class="gain-card"><div class="gain-icon">&#128176;</div><div class="gain-title">Spot overpayment before it happens</div><div class="gain-body">Compare incoming quotes against verified transaction prices in real time &#8212; before signing, not after the contract is executed and the margin is irreversible.</div></div>
+    <div class="gain-card"><div class="gain-icon">&#127919;</div><div class="gain-title">Set credible negotiation targets</div><div class="gain-body">Enter price negotiations with a verified transaction price range as your reference. Suppliers know when you have real data &#8212; and adjust their position accordingly.</div></div>
+    <div class="gain-card"><div class="gain-icon">&#127759;</div><div class="gain-title">Compare across regions and origins</div><div class="gain-body">See price spreads by origin, destination corridor, and specification &#8212; so you can evaluate whether sourcing from an alternative origin makes commercial sense before investing in supplier development.</div></div>
+    <div class="gain-card"><div class="gain-icon">&#128200;</div><div class="gain-title">Track price trend direction</div><div class="gain-body">Understand whether you are buying at a seasonal high or low &#8212; and whether price momentum favors waiting, accelerating your timeline, or locking in now to protect against upward movement.</div></div>
+    <div class="gain-card"><div class="gain-icon">&#9878;</div><div class="gain-title">Validate multi-supplier quotes</div><div class="gain-body">When comparing quotes from multiple suppliers, understand which are market-consistent, which carry excess margin, and which may reflect unusual circumstances that need investigation before committing.</div></div>
+    <div class="gain-card"><div class="gain-icon">&#128203;</div><div class="gain-title">Build an internal pricing reference library</div><div class="gain-body">Build a verified benchmark library across your procurement categories &#8212; so every future negotiation starts with institutional context rather than starting from zero each time.</div></div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="eyebrow" style="color:var(--cyan)">Why This Is Different</div>
+  <h2 class="section-title" style="color:var(--white)">Transaction Data vs<br/>Reported Estimates.</h2>
+  <p class="section-sub" style="color:rgba(255,255,255,.4)">The difference between Tridge Eye Price Benchmarking and traditional price reference tools is not a matter of freshness or granularity. It is a fundamentally different data source that produces fundamentally more reliable procurement context.</p>
+  <div class="why-cols">
+    <div class="why-col"><div class="why-col-num">01</div><div class="why-col-title">Verified transaction anchoring</div><div class="why-col-body">Every price in Tridge Eye is anchored to a verified trade &#8212; a real product, a real specification, a real origin, a real destination, a real price, a real transaction. Not estimated. Not modeled. Not reported. Verified against the actual trade record that produced the number.</div></div>
+    <div class="why-col"><div class="why-col-num">02</div><div class="why-col-title">Specification-level precision</div><div class="why-col-body">Benchmarks are available at specification level &#8212; by grade, certification, origin, and delivery term &#8212; not just broad category averages. This means your reference reflects what buyers with your exact requirements are actually paying, not a commodity-level aggregate that may not apply to your situation.</div></div>
+    <div class="why-col"><div class="why-col-num">03</div><div class="why-col-title">Negotiation-ready framing</div><div class="why-col-body">Price intelligence is structured for the way procurement teams actually use it: your quote versus market average versus best verified, regional spread, trend direction, and overpayment signal. You receive a benchmark structured for negotiation preparation &#8212; not a data export that requires further interpretation.</div></div>
+  </div>
+  <div class="why-bridge"><p><strong>Most tools tell you what prices have been. Tridge Eye tells you what prices are &#8212; and whether the one in front of you is fair.</strong></p></div>
+</section>
+
+<section class="how" id="how">
+  <div class="eyebrow">How It Works</div>
+  <h2 class="section-title">From Quote to Verified<br/>Market Context in Minutes</h2>
+  <p class="section-sub">A structured process that turns your incoming supplier quote &#8212; or procurement question &#8212; into a verified market position with a clear negotiation reference and next steps.</p>
+  <div class="how-steps">
+    <div class="how-step"><div class="how-step-num">1</div><div><div class="how-step-title">Input your quote or procurement question</div><div class="how-step-body">Enter the product, specification, origin, destination, volume, and either an incoming quote or a target price range. Tridge Eye's ontology maps your input to the relevant transaction data at specification level &#8212; ensuring the benchmark reflects your actual procurement context, not a broad category proxy.</div><span class="how-step-tag">Specification Matching</span></div></div>
+    <div class="how-step"><div class="how-step-num">2</div><div><div class="how-step-title">Tridge Eye queries verified transactions</div><div class="how-step-body">The system queries verified transaction data across matching specifications, origins, and delivery corridors &#8212; surfacing the actual range of prices that buyers in your market have paid recently, including average, best available, and trend direction. This is transaction data, not modeled estimates.</div><span class="how-step-tag">Transaction Price Query</span></div></div>
+    <div class="how-step"><div class="how-step-num">3</div><div><div class="how-step-title">Your position is quantified and framed</div><div class="how-step-body">You see exactly where your quote or target sits relative to verified market reality: your quote versus market average versus best available, expressed as a percentage deviation with the number of recent transactions that support the reference. Overpayment signals are flagged with supporting evidence, not just a number.</div><span class="how-step-tag">Position Quantification</span></div></div>
+    <div class="how-step"><div class="how-step-num">4</div><div><div class="how-step-title">Regional and origin spread is surfaced</div><div class="how-step-body">Beyond your immediate quote, the benchmark surfaces price spreads across origins and corridors &#8212; so you can see whether alternative origins offer a meaningful cost advantage at your specification, and whether that advantage justifies investment in new supplier development before your next contract cycle.</div><span class="how-step-tag">Regional Spread Analysis</span></div></div>
+    <div class="how-step"><div class="how-step-num">5</div><div><div class="how-step-title">Connected to supplier development</div><div class="how-step-body">Where the benchmark reveals significant regional price advantages or overpayment risk, the output connects to Supplier Discovery &#8212; surfacing which suppliers in lower-cost origins have verified transaction history in your specification &#8212; and to AI-led outreach to activate those options before your next negotiation cycle.</div><span class="how-step-tag">Connected to Discovery + Outreach</span></div></div>
+  </div>
+</section>
+
+<section class="scenarios" id="scenarios">
+  <div class="eyebrow">When Buyers Use This</div>
+  <h2 class="section-title">Four High-Stakes Scenarios Where<br/>Benchmarking Changes the Outcome.</h2>
+  <p class="section-sub">Price benchmarking delivers the greatest value in procurement moments where the cost of getting it wrong is real, measurable, and difficult to reverse after the contract is signed.</p>
+  <div class="sc-grid">
+    <div class="sc-card"><div class="sc-situation">Scenario 01</div><div class="sc-title">A supplier sends you a quote 15% above your expectation</div><div class="sc-body">Is this the market, or is this the supplier testing your reference? With verified transaction data at specification level, you know immediately whether the quote reflects market conditions or carries excess margin &#8212; and can push back with evidence, not instinct.</div></div>
+    <div class="sc-card"><div class="sc-situation">Scenario 02</div><div class="sc-title">You are evaluating a new origin for the first time</div><div class="sc-body">Before committing resources to new supplier development, validate whether prices from that origin are genuinely competitive versus the alternatives you already work with &#8212; at your specification and delivery terms, not a commodity average that may not apply to your product.</div></div>
+    <div class="sc-card"><div class="sc-situation">Scenario 03</div><div class="sc-title">Your incumbent supplier raises prices citing market conditions</div><div class="sc-body">Verify whether the claimed market movement is real and whether your price increase is proportional to what other buyers in the same market are actually paying. This is the moment when transaction-level benchmarking delivers the clearest, most actionable value.</div></div>
+    <div class="sc-card"><div class="sc-situation">Scenario 04</div><div class="sc-title">You are comparing three shortlisted suppliers before contract</div><div class="sc-body">Quotes from three suppliers look similar but you are not certain which represent genuine market pricing. Transaction benchmarks reveal which quotes are market-consistent, which carry room for negotiation, and which may reflect unusual circumstances that need investigation before you commit.</div></div>
+  </div>
+</section>
+
+<section class="deliv" id="deliverables">
+  <div class="eyebrow" style="color:var(--yellow)">What You Receive</div>
+  <h2 class="section-title" style="color:var(--white)">Negotiation-Ready Price Intelligence.<br/>Structured for Immediate Use.</h2>
+  <p class="section-sub" style="color:rgba(255,255,255,.4)">Not a data export. Not a raw price series. Each deliverable is structured for the specific procurement question you are trying to answer &#8212; before a negotiation, during a supplier evaluation, or as part of category planning.</p>
+  <div class="deliv-grid">
+    <div class="deliv-card"><div class="deliv-num">01</div><div class="deliv-icon">&#128200;</div><div class="deliv-title">Verified transaction price range</div><div class="deliv-body">Market average, best available, and recent range &#8212; for your specific category, specification, and corridor</div></div>
+    <div class="deliv-card"><div class="deliv-num">02</div><div class="deliv-icon">&#9888;</div><div class="deliv-title">Overpayment signal with evidence</div><div class="deliv-body">Your quote position relative to market &#8212; quantified as a percentage deviation and supported by the number of confirming transactions</div></div>
+    <div class="deliv-card"><div class="deliv-num">03</div><div class="deliv-icon">&#127759;</div><div class="deliv-title">Regional price spread</div><div class="deliv-body">Price comparison across origins and delivery corridors &#8212; so alternative sourcing options can be evaluated on a cost basis before supplier development begins</div></div>
+    <div class="deliv-card"><div class="deliv-num">04</div><div class="deliv-icon">&#128202;</div><div class="deliv-title">Price trend direction</div><div class="deliv-body">Upward, downward, or stable &#8212; over the relevant time period for your category &#8212; with context on whether timing favors your current procurement decision</div></div>
+    <div class="deliv-card"><div class="deliv-num">05</div><div class="deliv-icon">&#128203;</div><div class="deliv-title">Negotiation reference framing</div><div class="deliv-body">A structured summary formatted for direct use in supplier negotiations &#8212; with supporting transaction evidence presented in a way that is credible and actionable</div></div>
+    <div class="deliv-card"><div class="deliv-num">06</div><div class="deliv-icon">&#9889;</div><div class="deliv-title">Connected supplier development options</div><div class="deliv-body">Where benchmarking reveals pricing advantages in alternative origins, connected to verified supplier shortlists for those origins &#8212; from Supplier Discovery</div></div>
+  </div>
+</section>
+
+<section class="diff" id="diff">
+  <div class="eyebrow">Why This Is Different</div>
+  <h2 class="section-title">Transaction Data vs<br/>Every Other Price Reference.</h2>
+  <p class="section-sub">Published indices, broker estimates, and market reports all have a place in procurement intelligence. None of them tell you what buyers are actually paying right now for your specification in your corridor.</p>
+  <div class="diff-table">
+    <div class="diff-head"><div class="diff-head-cell">Reference type</div><div class="diff-head-cell">What it reflects</div><div class="diff-head-cell hl">&#10003; Tridge Eye</div></div>
+    <div class="diff-row"><div class="diff-cell">Published price indices</div><div class="diff-cell">Reported data, 30&#8211;90 day lag</div><div class="diff-cell hl"><span class="check">&#10003;</span>Current transaction data</div></div>
+    <div class="diff-row"><div class="diff-cell">Broker / trader quotes</div><div class="diff-cell">Counterparty negotiating positions</div><div class="diff-cell hl"><span class="check">&#10003;</span>Verified closed transactions</div></div>
+    <div class="diff-row"><div class="diff-cell">Market research reports</div><div class="diff-cell">Category-level averages</div><div class="diff-cell hl"><span class="check">&#10003;</span>Specification and corridor level</div></div>
+    <div class="diff-row"><div class="diff-cell">Supplier-provided benchmarks</div><div class="diff-cell">Supplier's framing of market</div><div class="diff-cell hl"><span class="check">&#10003;</span>Independent transaction evidence</div></div>
+    <div class="diff-row"><div class="diff-cell">Regional coverage</div><div class="diff-cell">Major corridors only</div><div class="diff-cell hl"><span class="check">&#10003;</span>Multi-origin, multi-corridor</div></div>
+    <div class="diff-row"><div class="diff-cell">Negotiation framing</div><div class="diff-cell"><span class="cross">&#10007;</span>Raw data, manual interpretation</div><div class="diff-cell hl"><span class="check">&#10003;</span>Structured for negotiation use</div></div>
+    <div class="diff-row"><div class="diff-cell">Connected to discovery</div><div class="diff-cell"><span class="cross">&#10007;</span>Isolated tool</div><div class="diff-cell hl"><span class="check">&#10003;</span>Flows into Supplier Discovery</div></div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="eyebrow">Frequently Asked Questions</div>
+  <h2 class="section-title">Common Questions from<br/>Procurement Teams</h2>
+  <div class="faq-layout">
+    <div class="faq-list">
+      <div class="faq-item open"><div class="faq-q">How is this different from published price indices like CBOT or LME-referenced benchmarks?</div><div class="faq-a"><p>Published indices aggregate reported data from market participants and are published on a fixed cycle. They reflect what happened during the reporting period at an aggregated level &#8212; often at broad commodity level, not specification level. Tridge Eye is built on verified transaction data &#8212; actual closed trades at specific specifications, origins, and corridors &#8212; which is both more current and more relevant to specific procurement decisions than a published index.</p></div></div>
+      <div class="faq-item"><div class="faq-q">How specific is the benchmark? Does it account for grade and certification?</div><div class="faq-a"><p>Yes. Tridge Eye benchmarks are available at specification level &#8212; including grade, certification status, packaging format, and delivery term &#8212; for categories where transaction volume supports that level of specificity. This means your reference reflects what buyers with your exact requirements are actually paying, not a commodity average that averages across specifications very different from yours.</p></div></div>
+      <div class="faq-item"><div class="faq-q">How current is the transaction data?</div><div class="faq-a"><p>Transaction data is incorporated on a continuous basis as new trade activity is confirmed and structured. For high-volume categories and major corridors, the benchmark reflects very recent market activity. For more specialized categories, the reference period may be slightly longer &#8212; but will always be indicated clearly so you can assess its applicability to your current decision.</p></div></div>
+      <div class="faq-item"><div class="faq-q">What if no verified transactions exist for my exact specification?</div><div class="faq-a"><p>For categories or specifications with limited transaction volume, Tridge Eye provides the most relevant available benchmark &#8212; typically at a slightly broader specification level &#8212; along with clear indication of the coverage basis. Supply market context, origin-level pricing signals, and comparable specification data are provided to ensure the output still supports your procurement decision, even without exact specification-level transaction volume.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Can I use this as evidence in a supplier negotiation?</div><div class="faq-a"><p>The benchmarks are structured to support that use &#8212; presenting your position relative to market with transaction evidence and overpayment signals that can be shared or referenced in a supplier conversation. How you choose to use market data in a specific negotiation is your decision, but the output is designed to be negotiation-ready rather than requiring additional preparation before it can be used.</p></div></div>
+      <div class="faq-item"><div class="faq-q">How does Price Benchmarking connect to the rest of Tridge Eye?</div><div class="faq-a"><p>Price Benchmarking often leads directly to two connected actions. If overpayment risk is identified, it can trigger Supplier Discovery &#8212; identifying verified alternatives in lower-cost origins &#8212; and AI-led outreach to those alternatives. If a target price range is confirmed as market-realistic, it provides context for negotiation preparation and qualification criteria for the outreach campaign.</p></div></div>
+    </div>
+    <div>
+      <div class="faq-aside">
+        <div class="faq-aside-eyebrow">Ready to start?</div>
+        <div class="faq-aside-title">Benchmark your next quote before you negotiate</div>
+        <div class="faq-aside-body">Tell us your category, specification, and target corridor. We will show you how Tridge Eye Price Benchmarking applies to your specific procurement situation.</div>
+        <a class="faq-aside-link" href="#cta">Request a Demo &#8594;</a>
+        <a class="faq-aside-link" href="/cdn-cgi/l/email-protection#81f2f4f1f1edf8ace2e9e0e8efacf2eeedf4f5e8eeefa7a2b7b5baf5f3e8e5e6e4afe2eeec">Talk to our team &#8594;</a>
+        <div class="faq-related">
+          <div class="faq-related-label">Related Modules</div>
+          <a href="tridge_eye_market_intelligence.html">&#8594; Market Intelligence</a>
+          <a href="tridge_eye_supplier_discovery.html">&#8594; Supplier Discovery</a>
+          <a href="tridge_purchase_development_v2.html">&#8594; Purchase Development Plan</a>
+          <a href="tridge_eye_hub.html">&#8594; All Tridge Eye Modules</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="browse" id="browse-market">
+  <div class="eyebrow">Browse by Market</div>
+  <h2 class="section-title">Tridge Eye Applied to<br/>Your Specific Market.</h2>
+  <p class="section-sub">See how this module applies to specific commodity markets. Greyed-out cards are in development.</p>
+  <div class="browse-grid">
+    <a href="tridge_eye_cocoa_benchmarking.html" class="browse-card">
+      
+      <div class="browse-card-industry" style="color:#C07830">Cocoa</div>
+      <div class="browse-card-title">Cocoa Price Benchmarking</div>
+      <div class="browse-card-body">Verify cocoa quotes against transaction prices by origin, grade, and certification tier.</div>
+      <div class="browse-card-link">Explore &#8594;</div>
+    </a>
+    <div class="browse-card tbu">
+      <span class="browse-tbu-badge">TBU</span>
+      <div class="browse-card-industry" style="color:#0EDBA5">Soybean</div>
+      <div class="browse-card-title">Soybean Price Benchmarking</div>
+      <div class="browse-card-body">Benchmark soybean quotes across South American and North American corridors.</div>
+      <div class="browse-card-link">TBU</div>
+    </div>
+    <a href="tridge_eye_palmoil_benchmarking.html" class="browse-card">
+      
+      <div class="browse-card-industry" style="color:#FFD12D">Palm Oil</div>
+      <div class="browse-card-title">Palm Oil Price Benchmarking</div>
+      <div class="browse-card-body">Compare RBD, CPO, and certified palm oil quotes against verified transaction prices.</div>
+      <div class="browse-card-link">Explore &#8594;</div>
+    </a>
+  </div>
+</section>
+
+<section class="cta" id="cta">
+  <div class="cta-bg"></div><div class="cta-grid"></div>
+  <div class="cta-inner">
+    <div class="eyebrow" style="color:var(--yellow)">Request a Demo</div>
+    <h2 class="section-title">Benchmark Your Next Quote<br/>Before You Negotiate.</h2>
+    <p class="section-sub">Request a demo to see Tridge Eye Price Benchmarking applied to your category, origin, and specification.</p>
+    <div class="cta-btns">
+      <a href="/cdn-cgi/l/email-protection#fe8d8b8e8e9287d39d969f9790d38d91928b8a979190d8ddc8cac58a8c979a999bd09d9193" class="btn-primary">Request Demo &#8594;</a>
+      <a href="tridge_eye_hub.html" class="btn-ghost">&#8592; Back to All Modules</a>
+    </div>
+    <div class="cta-note">A Tridge solutions team member will respond within 2 business days.</div>
+  </div>
+</section>
+
+
+
+<div class="ribbon">
+  <div class="ribbon-text">Know what fair looks like &#8212; before the negotiation starts.</div>
+  <a href="/cdn-cgi/l/email-protection#1f6c6a6f6f7366327c777e7671326c70736a6b767071393c292b246b6d767b787a317c7072" class="ribbon-btn">Request Demo</a>
+</div>
+
+<footer>
+  <a class="footer-wordmark" href="tridge_eye_hub.html">TRIDGE</a>
+  <div class="footer-links">
+    <a href="tridge_eye_hub.html">All Modules</a>
+    <a href="tridge_eye_market_intelligence.html">Market Intelligence</a>
+    <a href="tridge_eye_supplier_discovery.html">Supplier Discovery</a>
+    <a href="https://www.tridge.com/about/company-introduction" target="_blank">About Tridge</a>
+    <a href="/cdn-cgi/l/email-protection#94e7e1e4e4f8edb9f7fcf5fdfab9e7fbf8e1e0fdfbfab2b7a2a0afe0e6fdf0f3f1baf7fbf9">Contact</a>
+  </div>
+  <div class="footer-copy">&#169; 2026 Tridge. All rights reserved.</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.pa

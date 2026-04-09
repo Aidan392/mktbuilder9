@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="theme-color" content="#ffffff">
+<title>Tridge — AI That Executes Global Trade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   TOKENS & RESET
+═══════════════════════════════════════ */
+:root {
+  --blue:       #171CFD;
+  --blue-dark:  #0f13c4;
+  --black:      #0A0A18;
+  --white:      #FFFFFF;
+  --purple:     #7E43CD;
+  --blue-purple:#5c42e5;
+  --cyan:       #34c6ee;
+  --green:      #0edba5;
+  --yellow:     #ffd12d;
+  --light-blue: #CADDFF;
+  --gray:       #6b7280;
+  --light-gray: #f4f4f8;
+  --px: 20px;
+  --py: 64px;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body {
+  font-family:'Inter',sans-serif;
+  background:var(--white); color:var(--black);
+  overflow-x:hidden; line-height:1.5;
+}
+img,svg { display:block; max-width:100%; }
+button { cursor:pointer; font-family:'Inter',sans-serif; border:none; }
+a { text-decoration:none; }
+ul { list-style:none; }
+
+/* ═══════════════════════════════════════
+   NAV
+═══════════════════════════════════════ */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px var(--px);
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(23,28,253,0.08);
+  transition:box-shadow 0.3s;
+  min-height:58px;
+}
+nav.scrolled { box-shadow:0 2px 20px rgba(0,0,0,0.07); }
+
+.nav-logo { display:flex; align-items:center; flex-shrink:0; }
+.nav-logo svg { height:25px; }
+
+.nav-links { display:none; gap:32px; }
+.nav-links a { color:var(--black); font-size:14px; font-weight:400; letter-spacing:-0.01em; transition:color 0.2s; }
+.nav-links a:hover { color:var(--blue); }
+
+.nav-cta { display:none; gap:10px; align-items:center; }
+
+.btn-ghost {
+  padding:8px 18px; border:1.5px solid var(--black);
+  background:transparent; color:var(--black);
+  font-size:13px; font-weight:500; transition:all 0.2s;
+}
+.btn-ghost:hover { background:var(--black); color:var(--white); }
+
+.btn-primary {
+  padding:8px 18px; background:var(--blue); color:var(--white);
+  border:1.5px solid var(--blue); font-size:13px; font-weight:500; transition:all 0.2s;
+}
+.btn-primary:hover { background:var(--blue-dark); border-color:var(--blue-dark); }
+
+/* Hamburger */
+.hamburger {
+  display:flex; flex-direction:column; justify-content:center;
+  align-items:center; gap:5px; width:40px; height:40px;
+  background:transparent; padding:4px;
+  -webkit-tap-highlight-color:transparent;
+}
+.hamburger span {
+  display:block; width:22px; height:2px;
+  background:var(--black); border-radius:2px;
+  transition:all 0.3s ease; transform-origin:center;
+}
+.hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+/* Mobile drawer */
+.mobile-menu {
+  position:fixed; top:58px; left:0; right:0; bottom:0; z-index:190;
+  background:var(--white);
+  transform:translateX(100%);
+  transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  overflow-y:auto;
+  padding:32px var(--px) 48px;
+  display:flex; flex-direction:column;
+}
+.mobile-menu.open { transform:translateX(0); }
+
+.mobile-menu a {
+  display:block; color:var(--black);
+  font-size:22px; font-weight:300;
+  padding:16px 0; letter-spacing:-0.03em;
+  border-bottom:1px solid rgba(0,0,0,0.06);
+  transition:color 0.2s;
+}
+.mobile-menu a:hover { color:var(--blue); }
+.mobile-menu-cta { display:flex; flex-direction:column; gap:12px; margin-top:32px; }
+.mobile-menu-cta button { width:100%; padding:16px; font-size:15px; font-weight:600; }
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.hero {
+  min-height:100dvh;
+  padding:calc(58px + var(--py)) var(--px) var(--py);
+  background:var(--white);
+  position:relative; overflow:hidden;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.hero::after {
+  content:''; position:absolute; top:-100px; right:-150px;
+  width:500px; height:500px;
+  background:radial-gradient(circle,rgba(23,28,253,0.05) 0%,transparent 70%);
+  pointer-events:none;
+}
+
+.hero-tag {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 14px; background:var(--light-blue); color:var(--blue);
+  font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;
+  margin-bottom:22px;
+  animation:fadeUp 0.6s ease both;
+}
+.hero-tag::before {
+  content:''; width:6px; height:6px; background:var(--blue); border-radius:50%;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(1.5)} }
+
+.hero h1 {
+  font-size:clamp(36px,11vw,72px); font-weight:300; line-height:1.04;
+  letter-spacing:-0.04em; color:var(--black); margin-bottom:18px;
+  animation:fadeUp 0.7s 0.1s ease both;
+}
+.hero h1 strong { font-weight:800; color:var(--blue); }
+
+.hero-sub {
+  font-size:clamp(15px,4vw,17px); font-weight:300; line-height:1.65; color:#444;
+  margin-bottom:28px;
+  animation:fadeUp 0.7s 0.2s ease both;
+}
+
+/* Mini network for mobile hero */
+.hero-network-mobile {
+  width:min(240px,65vw); margin:0 auto 28px;
+  animation:fadeIn 0.9s 0.1s ease both;
+}
+
+.hero-right { display:none; } /* desktop only */
+
+.hero-actions {
+  display:flex; flex-direction:column; gap:12px;
+  margin-bottom:40px;
+  animation:fadeUp 0.7s 0.3s ease both;
+}
+.btn-hero-primary {
+  padding:16px 24px; background:var(--blue); color:var(--white);
+  font-size:15px; font-weight:600; text-align:center;
+  transition:all 0.2s; -webkit-tap-highlight-color:transparent;
+}
+.btn-hero-primary:hover  { background:var(--blue-dark); }
+.btn-hero-primary:active { transform:scale(0.98); }
+
+.btn-hero-ghost {
+  padding:16px 24px; background:transparent; color:var(--black);
+  font-size:15px; font-weight:500; text-align:center;
+  border:1.5px solid rgba(10,10,24,0.2);
+  transition:all 0.2s; -webkit-tap-highlight-color:transparent;
+}
+.btn-hero-ghost:hover  { border-color:var(--black); }
+.btn-hero-ghost:active { transform:scale(0.98); }
+
+.hero-stats {
+  display:flex; border:1px solid rgba(0,0,0,0.08);
+  animation:fadeUp 0.7s 0.4s ease both;
+}
+.stat-item {
+  flex:1; padding:14px 8px; border-right:1px solid rgba(0,0,0,0.08); text-align:center;
+}
+.stat-item:last-child { border-right:none; }
+.stat-num { font-size:clamp(18px,5vw,28px); font-weight:800; color:var(--black); letter-spacing:-0.04em; }
+.stat-num span { color:var(--blue); }
+.stat-label { font-size:10px; font-weight:400; color:var(--gray); margin-top:2px; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+/* ═══════════════════════════════════════
+   TRUST BAR
+═══════════════════════════════════════ */
+.trust-bar {
+  background:var(--black); padding:13px 0;
+  display:flex; align-items:center; overflow:hidden; white-space:nowrap;
+}
+.trust-label {
+  color:rgba(255,255,255,0.3); font-size:10px; font-weight:600;
+  letter-spacing:0.1em; text-transform:uppercase; flex-shrink:0; padding-left:var(--px);
+}
+.trust-scroll { display:flex; gap:40px; animation:scroll 18s linear infinite; flex-shrink:0; }
+.trust-item { color:rgba(255,255,255,0.4); font-size:11px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; }
+@keyframes scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ═══════════════════════════════════════
+   SECTION COMMONS
+═══════════════════════════════════════ */
+.section-pad { padding:var(--py) var(--px); }
+
+.section-eyebrow {
+  font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--blue); margin-bottom:12px;
+}
+.section-title {
+  font-size:clamp(26px,8vw,52px); font-weight:300; letter-spacing:-0.04em;
+  line-height:1.1; color:var(--black); margin-bottom:14px;
+}
+.section-title strong { font-weight:800; }
+.section-body { font-size:clamp(14px,3.5vw,16px); font-weight:300; line-height:1.7; color:#555; }
+
+/* ═══════════════════════════════════════
+   MISSION
+═══════════════════════════════════════ */
+.mission { background:var(--blue); padding:var(--py) var(--px); }
+.mission .section-eyebrow { color:rgba(255,255,255,0.5); }
+.mission .section-title   { color:var(--white); }
+.mission .section-body    { color:rgba(255,255,255,0.7); }
+
+.mission-inner { display:flex; flex-direction:column; gap:44px; }
+
+.mission-bullets { margin-top:24px; display:flex; flex-direction:column; gap:12px; }
+.mission-bullets li {
+  display:flex; align-items:flex-start; gap:10px;
+  font-size:clamp(13px,3.5vw,15px); font-weight:300;
+  color:rgba(255,255,255,0.85); line-height:1.55;
+}
+.mission-bullets li::before { content:'→'; color:rgba(255,255,255,0.4); flex-shrink:0; }
+
+.expansion-track { display:flex; flex-direction:column; }
+.expansion-item {
+  padding:18px 20px; border-left:2px solid rgba(255,255,255,0.15);
+  margin-left:14px; position:relative; transition:border-color 0.3s;
+}
+.expansion-item:hover { border-left-color:var(--white); }
+.expansion-item::before {
+  content:''; position:absolute; left:-7px; top:22px; width:12px; height:12px;
+  background:rgba(255,255,255,0.2); border-radius:50%; border:2px solid rgba(255,255,255,0.5);
+}
+.expansion-item.active::before { background:var(--white); }
+.expansion-label { font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:4px; }
+.expansion-title { font-size:clamp(15px,4.5vw,20px); font-weight:600; color:var(--white); letter-spacing:-0.02em; }
+.expansion-desc  { font-size:12px; font-weight:300; color:rgba(255,255,255,0.5); margin-top:3px; }
+
+/* ═══════════════════════════════════════
+   PROBLEM
+═══════════════════════════════════════ */
+.problem { background:var(--light-gray); padding:var(--py) var(--px); }
+.problem-header { margin-bottom:36px; }
+
+.problem-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; }
+.problem-card { background:var(--white); padding:24px 20px; transition:all 0.3s; }
+.problem-card:active,
+.problem-card:hover { background:var(--black); }
+.problem-card:active .problem-card-title,
+.problem-card:hover  .problem-card-title { color:var(--white); }
+.problem-card:active .problem-card-text,
+.problem-card:hover  .problem-card-text  { color:rgba(255,255,255,0.5); }
+.problem-icon      { font-size:22px; margin-bottom:12px; }
+.problem-card-title{ font-size:clamp(12px,3.5vw,15px); font-weight:600; color:var(--black); margin-bottom:6px; transition:color 0.3s; }
+.problem-card-text { font-size:12px; font-weight:300; line-height:1.6; color:var(--gray); transition:color 0.3s; }
+
+.problem-statement { margin-top:20px; padding:24px 20px; background:var(--black); }
+.problem-statement p { font-size:clamp(15px,5vw,26px); font-weight:300; letter-spacing:-0.03em; line-height:1.4; color:var(--white); }
+.problem-statement strong { font-weight:700; color:var(--blue); }
+
+/* ═══════════════════════════════════════
+   SOLUTION
+═══════════════════════════════════════ */
+.solution { background:var(--white); padding:var(--py) var(--px); }
+.solution-header { margin-bottom:40px; }
+.solution-header .section-body { margin-top:14px; }
+
+.pillars { display:flex; flex-direction:column; gap:2px; }
+.pillar { background:var(--light-gray); padding:36px 28px; transition:all 0.3s; }
+.pillar:active, .pillar:hover { background:var(--blue); }
+.pillar:active .pillar-num,   .pillar:hover .pillar-num   { color:rgba(255,255,255,0.06); }
+.pillar:active .pillar-title, .pillar:hover .pillar-title { color:var(--white); }
+.pillar:active .pillar-text,  .pillar:hover .pillar-text  { color:rgba(255,255,255,0.65); }
+.pillar:active .pillar-features li, .pillar:hover .pillar-features li { color:rgba(255,255,255,0.8); }
+.pillar:active .pillar-features li::before, .pillar:hover .pillar-features li::before { color:rgba(255,255,255,0.4); }
+
+.pillar-num   { font-size:52px; font-weight:800; color:rgba(10,10,24,0.05); letter-spacing:-0.04em; line-height:1; margin-bottom:14px; transition:color 0.3s; }
+.pillar-title { font-size:clamp(17px,5vw,22px); font-weight:600; letter-spacing:-0.03em; color:var(--black); margin-bottom:10px; transition:color 0.3s; }
+.pillar-text  { font-size:14px; font-weight:300; line-height:1.65; color:var(--gray); margin-bottom:18px; transition:color 0.3s; }
+
+.pillar-features { display:flex; flex-direction:column; gap:7px; }
+.pillar-features li { font-size:13px; font-weight:400; color:var(--black); display:flex; gap:8px; align-items:flex-start; transition:color 0.3s; }
+.pillar-features li::before { content:'—'; color:var(--blue); flex-shrink:0; transition:color 0.3s; }
+
+/* ═══════════════════════════════════════
+   BENEFITS
+═══════════════════════════════════════ */
+.benefits { background:var(--black); padding:var(--py) var(--px); }
+.benefits .section-eyebrow { color:var(--cyan); }
+.benefits .section-title   { color:var(--white); }
+.benefits-header           { margin-bottom:40px; }
+
+.benefits-grid { display:flex; flex-direction:column; gap:2px; }
+.benefit-card { padding:36px 28px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); transition:all 0.3s; }
+.benefit-card:active, .benefit-card:hover { background:rgba(23,28,253,0.18); border-color:rgba(23,28,253,0.3); }
+.benefit-icon { width:42px; height:42px; background:rgba(23,28,253,0.2); display:flex; align-items:center; justify-content:center; margin-bottom:18px; font-size:20px; }
+.benefit-title { font-size:clamp(17px,5vw,22px); font-weight:600; color:var(--white); letter-spacing:-0.03em; margin-bottom:10px; }
+.benefit-text  { font-size:14px; font-weight:300; line-height:1.7; color:rgba(255,255,255,0.5); }
+.benefit-tag {
+  display:inline-block; margin-top:16px; padding:5px 12px;
+  font-size:10px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;
+}
+.benefit-card:nth-child(1) .benefit-tag { background:rgba(52,198,238,0.15);  color:var(--cyan);   }
+.benefit-card:nth-child(2) .benefit-tag { background:rgba(23,28,253,0.2);    color:#9BB3FF;       }
+.benefit-card:nth-child(3) .benefit-tag { background:rgba(14,219,165,0.15);  color:var(--green);  }
+.benefit-card:nth-child(4) .benefit-tag { background:rgba(255,209,45,0.15);  color:var(--yellow); }
+
+/* ═══════════════════════════════════════
+   WHY US
+═══════════════════════════════════════ */
+.why-us { background:var(--white); padding:var(--py) var(--px); }
+.why-inner { display:flex; flex-direction:column; gap:48px; }
+
+.comparison { overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:0; }
+.comparison-table { width:100%; min-width:300px; border-collapse:collapse; }
+.comparison-table th { padding:11px 14px; font-size:11px; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; }
+.comparison-table th.th-others { background:var(--light-gray); color:var(--gray); text-align:left; }
+.comparison-table th.th-vs     { background:transparent; color:var(--gray); text-align:center; width:40px; }
+.comparison-table th.th-us     { background:var(--blue); color:var(--white); text-align:left; }
+.comparison-table td { padding:12px 14px; font-size:12px; font-weight:300; line-height:1.5; border-top:1px solid rgba(0,0,0,0.06); }
+.comparison-table td.td-other { background:var(--light-gray); color:var(--gray); }
+.comparison-table td.td-mid   { background:transparent; text-align:center; font-size:14px; color:var(--gray); }
+.comparison-table td.td-our   { background:rgba(23,28,253,0.05); color:var(--black); font-weight:400; }
+
+.differentiators { display:flex; flex-direction:column; }
+.differentiator   { padding:22px 0; border-bottom:1px solid rgba(0,0,0,0.08); }
+.differentiator:first-child { padding-top:0; }
+.differentiator:last-child  { border-bottom:none; }
+.diff-num   { font-size:10px; font-weight:700; letter-spacing:0.1em; color:var(--blue); margin-bottom:5px; text-transform:uppercase; }
+.diff-title { font-size:clamp(15px,4.5vw,20px); font-weight:600; letter-spacing:-0.03em; color:var(--black); margin-bottom:5px; }
+.diff-text  { font-size:13px; font-weight:300; line-height:1.6; color:var(--gray); }
+
+/* ═══════════════════════════════════════
+   HOW IT WORKS
+═══════════════════════════════════════ */
+.how { background:var(--light-gray); padding:var(--py) var(--px); }
+.how-header { margin-bottom:36px; }
+
+.steps { display:flex; flex-direction:column; gap:2px; }
+.step { background:var(--white); padding:36px 28px; transition:all 0.3s; }
+.step:active, .step:hover { background:var(--black); }
+.step:active .step-title, .step:hover .step-title { color:var(--white); }
+.step:active .step-text,  .step:hover .step-text  { color:rgba(255,255,255,0.5); }
+.step:active .step-num,   .step:hover .step-num   { color:rgba(255,255,255,0.04); }
+.step-num   { font-size:68px; font-weight:800; color:rgba(10,10,24,0.05); letter-spacing:-0.04em; line-height:1; margin-bottom:18px; transition:color 0.3s; }
+.step-icon  { font-size:22px; margin-bottom:12px; }
+.step-title { font-size:clamp(17px,5vw,22px); font-weight:600; letter-spacing:-0.03em; color:var(--black); margin-bottom:8px; transition:color 0.3s; }
+.step-text  { font-size:14px; font-weight:300; line-height:1.65; color:var(--gray); transition:color 0.3s; }
+
+/* ═══════════════════════════════════════
+   SCALE
+═══════════════════════════════════════ */
+.scale { background:var(--white); padding:var(--py) var(--px); }
+.scale-inner { display:flex; flex-direction:column; gap:44px; }
+
+.metrics-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; }
+.metric-box { padding:28px 24px; background:var(--light-gray); }
+.metric-box:nth-child(1) { background:var(--blue); }
+.metric-box:nth-child(1) .metric-num   { color:var(--white); }
+.metric-box:nth-child(1) .metric-label { color:rgba(255,255,255,0.6); }
+.metric-num   { font-size:clamp(28px,9vw,42px); font-weight:800; letter-spacing:-0.04em; color:var(--black); margin-bottom:5px; }
+.metric-label { font-size:12px; font-weight:300; color:var(--gray); line-height:1.4; }
+
+/* ═══════════════════════════════════════
+   VISION
+═══════════════════════════════════════ */
+.vision {
+  background:var(--black); padding:var(--py) var(--px);
+  text-align:center; position:relative; overflow:hidden;
+}
+.vision::before {
+  content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:600px; height:600px; background:radial-gradient(circle,rgba(23,28,253,0.14) 0%,transparent 70%);
+  pointer-events:none;
+}
+.vision .section-eyebrow { color:rgba(255,255,255,0.3); }
+.vision-title { font-size:clamp(28px,9vw,68px); font-weight:200; letter-spacing:-0.04em; color:var(--white); line-height:1.1; margin-bottom:18px; }
+.vision-title em { font-style:normal; font-weight:800; color:var(--blue); }
+.vision-sub { font-size:clamp(13px,4vw,16px); font-weight:300; color:rgba(255,255,255,0.4); margin:0 auto 40px; line-height:1.7; max-width:480px; }
+.vision-layers { display:flex; justify-content:center; gap:2px; margin-bottom:40px; flex-wrap:wrap; }
+.vision-layer {
+  padding:14px 22px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);
+  font-size:11px; font-weight:600; color:rgba(255,255,255,0.5); letter-spacing:0.06em; text-transform:uppercase; transition:all 0.3s;
+}
+.vision-layer:hover { background:var(--blue); color:var(--white); border-color:var(--blue); }
+.vision-footer { font-size:clamp(12px,3.5vw,15px); font-weight:300; color:rgba(255,255,255,0.3); line-height:1.7; }
+
+/* ═══════════════════════════════════════
+   FINAL CTA
+═══════════════════════════════════════ */
+.final-cta { background:var(--blue); padding:var(--py) var(--px); display:flex; flex-direction:column; gap:36px; }
+.cta-title { font-size:clamp(28px,9vw,52px); font-weight:300; letter-spacing:-0.04em; color:var(--white); line-height:1.1; }
+.cta-title strong { font-weight:800; }
+.cta-right { display:flex; flex-direction:column; gap:12px; }
+.cta-sub { font-size:15px; font-weight:300; color:rgba(255,255,255,0.7); line-height:1.65; margin-bottom:4px; }
+
+.btn-cta-white {
+  padding:16px 24px; background:var(--white); color:var(--blue);
+  font-size:15px; font-weight:700; text-align:center; transition:all 0.2s; -webkit-tap-highlight-color:transparent;
+}
+.btn-cta-white:hover  { background:var(--black); color:var(--white); }
+.btn-cta-white:active { transform:scale(0.98); }
+
+.btn-cta-outline {
+  padding:16px 24px; background:transparent; color:var(--white);
+  font-size:15px; font-weight:500; text-align:center;
+  border:1.5px solid rgba(255,255,255,0.4); transition:all 0.2s; -webkit-tap-highlight-color:transparent;
+}
+.btn-cta-outline:hover  { border-color:var(--white); }
+.btn-cta-outline:active { transform:scale(0.98); }
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer { background:var(--black); padding:52px var(--px) 28px; border-top:1px solid rgba(255,255,255,0.05); }
+.footer-inner { display:grid; grid-template-columns:1fr 1fr; gap:36px 24px; margin-bottom:40px; }
+.footer-brand { grid-column:1/-1; }
+.footer-brand p { font-size:13px; font-weight:300; color:rgba(255,255,255,0.38); line-height:1.7; margin-top:12px; }
+.footer-col-title { font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.22); margin-bottom:12px; }
+.footer-links { display:flex; flex-direction:column; gap:9px; }
+.footer-links a { color:rgba(255,255,255,0.42); font-size:13px; font-weight:300; transition:color 0.2s; }
+.footer-links a:hover { color:var(--white); }
+.footer-bottom { display:flex; flex-direction:column; gap:6px; padding-top:22px; border-top:1px solid rgba(255,255,255,0.05); }
+.footer-copy { font-size:11px; font-weight:300; color:rgba(255,255,255,0.2); }
+
+/* ═══════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════ */
+.reveal { opacity:0; transform:translateY(22px); transition:opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ═══════════════════════════════════════
+   SVG ANIMATIONS
+═══════════════════════════════════════ */
+.node-pulse { animation:nodePulse 3s ease-in-out infinite; }
+@keyframes nodePulse { 0%,100%{opacity:1} 50%{opacity:0.45} }
+.edge-flow { stroke-dasharray:8 6; animation:edgeFlow 2s linear infinite; }
+@keyframes edgeFlow { from{stroke-dashoffset:0} to{stroke-dashoffset:-28} }
+
+/* ═══════════════════════════════════════
+   TABLET  ≥ 640px
+═══════════════════════════════════════ */
+@media (min-width:640px) {
+  :root { --px:40px; --py:80px; }
+
+  nav { padding:16px 40px; }
+
+  .hero { padding:calc(58px + 80px) 40px 80px; }
+  .hero-network-mobile { width:280px; }
+  .hero-actions { flex-direction:row; }
+  .btn-hero-primary, .btn-hero-ghost { width:auto; }
+
+  .problem-grid { grid-template-columns:repeat(4,1fr); }
+
+  .pillars { flex-direction:row; flex-wrap:wrap; }
+  .pillar  { flex:1; min-width:240px; }
+
+  .benefits-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; }
+
+  .steps { flex-direction:row; }
+  .step  { flex:1; }
+
+  .footer-inner { grid-template-columns:2fr 1fr 1fr 1fr; }
+  .footer-brand { grid-column:auto; }
+  .footer-bottom { flex-direction:row; justify-content:space-between; }
+}
+
+/* ═══════════════════════════════════════
+   DESKTOP  ≥ 1024px
+═══════════════════════════════════════ */
+@media (min-width:1024px) {
+  :root { --px:60px; --py:100px; }
+
+  nav { padding:20px 60px; min-height:68px; }
+  .nav-links  { display:flex; }
+  .nav-cta    { display:flex; }
+  .hamburger  { display:none; }
+  .mobile-menu{ display:none !important; }
+
+  .hero {
+    display:grid; grid-template-columns:1fr 1fr;
+    align-items:center;
+    padding:calc(68px + 80px) 60px 80px;
+  }
+  .hero-network-mobile { display:none; }
+  .hero-right { display:flex; justify-content:center; align-items:center; }
+
+  .mission-inner { flex-direction:row; gap:80px; align-items:center; }
+  .mission-inner > * { flex:1; }
+
+  .solution-header { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:end; }
+  .solution-header .section-body { margin-top:0; }
+
+  .pillars { flex-direction:row; flex-wrap:nowrap; }
+  .pillar  { flex:1; min-width:0; }
+
+  .why-inner { flex-direction:row; gap:80px; align-items:flex-start; }
+  .why-inner > * { flex:1; }
+
+  .scale-inner { flex-direction:row; gap:80px; align-items:center; }
+  .scale-inner > * { flex:1; }
+
+  .final-cta { flex-direction:row; align-items:center; gap:60px; }
+  .final-cta > * { flex:1; }
+}
+
+/* ═══════════════════════════════════════
+   WIDE  ≥ 1280px
+═══════════════════════════════════════ */
+@media (min-width:1280px) {
+  :root { --px:80px; }
+  .network-viz { width:460px; height:460px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo" aria-label="Tridge Home">
+    <svg viewBox="0 0 140 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 28 L20 8 L14 28" stroke="#171CFD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="8"  cy="28" r="3.5" fill="#171CFD"/>
+      <circle cx="20" cy="8"  r="3.5" fill="#171CFD"/>
+      <circle cx="14" cy="28" r="3.5" fill="#0A0A18"/>
+      <text x="32" y="26" font-family="Inter,sans-serif" font-weight="800" font-size="20" fill="#0A0A18" letter-spacing="-1">TRIDGE</text>
+    </svg>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#solution">Platform</a></li>
+    <li><a href="#benefits">Solutions</a></li>
+    <li><a href="#why">Why Tridge</a></li>
+    <li><a href="#how">How It Works</a></li>
+  </ul>
+  <div class="nav-cta">
+    <button class="btn-ghost" onclick="alert('Login coming soon')">Log in</button>
+    <button class="btn-primary" onclick="alert('Demo request received!')">Request Demo</button>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+  <a href="#solution"  onclick="closeMenu()">Platform</a>
+  <a href="#benefits"  onclick="closeMenu()">Solutions</a>
+  <a href="#why"       onclick="closeMenu()">Why Tridge</a>
+  <a href="#how"       onclick="closeMenu()">How It Works</a>
+  <div class="mobile-menu-cta">
+    <button class="btn-hero-ghost"   onclick="alert('Login'); closeMenu()">Log in</button>
+    <button class="btn-hero-primary" onclick="alert('Demo request received!'); closeMenu()">Request Demo →</button>
+  </div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <!-- Mobile network visual -->
+  <svg class="hero-network-mobile" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="130" cy="130" r="95" stroke="rgba(23,28,253,0.07)" stroke-width="1"/>
+    <circle cx="130" cy="130" r="60" stroke="rgba(23,28,253,0.09)" stroke-width="1"/>
+    <circle cx="130" cy="130" r="28" stroke="rgba(23,28,253,0.13)" stroke-width="1"/>
+    <line x1="130" y1="130" x2="55"  y2="55"  stroke="#171CFD" stroke-width="1.2" stroke-opacity="0.3" class="edge-flow"/>
+    <line x1="130" y1="130" x2="205" y2="60"  stroke="#171CFD" stroke-width="1.2" stroke-opacity="0.3" class="edge-flow" style="animation-delay:-0.5s"/>
+    <line x1="130" y1="130" x2="38"  y2="155" stroke="#171CFD" stroke-width="1.2" stroke-opacity="0.3" class="edge-flow" style="animation-delay:-1s"/>
+    <line x1="130" y1="130" x2="222" y2="155" stroke="#171CFD" stroke-width="1.2" stroke-opacity="0.3" class="edge-flow" style="animation-delay:-1.5s"/>
+    <line x1="130" y1="130" x2="85"  y2="215" stroke="#171CFD" stroke-width="1.2" stroke-opacity="0.3" class="edge-flow" style="animation-delay:-0.8s"/>
+    <line x1="130" y1="130" x2="175" y2="210" stroke="#171CFD" stroke-width="1.2" stroke-opacity="0.3" class="edge-flow" style="animation-delay:-1.3s"/>
+    <circle cx="55"  cy="55"  r="6" fill="#171CFD" opacity="0.7" class="node-pulse"/>
+    <circle cx="205" cy="60"  r="6" fill="#171CFD" opacity="0.7" class="node-pulse" style="animation-delay:-1s"/>
+    <circle cx="38"  cy="155" r="6" fill="#5c42e5" opacity="0.7" class="node-pulse" style="animation-delay:-0.5s"/>
+    <circle cx="222" cy="155" r="6" fill="#5c42e5" opacity="0.7" class="node-pulse" style="animation-delay:-1.5s"/>
+    <circle cx="85"  cy="215" r="6" fill="#34c6ee" opacity="0.7" class="node-pulse" style="animation-delay:-0.8s"/>
+    <circle cx="175" cy="210" r="6" fill="#34c6ee" opacity="0.7" class="node-pulse" style="animation-delay:-1.3s"/>
+    <circle cx="130" cy="130" r="20" fill="rgba(23,28,253,0.1)" stroke="#171CFD" stroke-width="2"/>
+    <circle cx="130" cy="130" r="11" fill="#171CFD"/>
+    <path d="M126 133 L130 124 L128 133" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <circle cx="126" cy="133" r="1.8" fill="white"/>
+    <circle cx="130" cy="124" r="1.8" fill="white"/>
+  </svg>
+
+  <div class="hero-left">
+    <div class="hero-tag">AI-Powered Trade Execution</div>
+    <h1>AI That<br><strong>Executes</strong><br>Global Trade</h1>
+    <p class="hero-sub">Automate sourcing, sales, and execution across global supply chains — powered by 12+ years of proprietary data and domain expertise that no competitor can replicate.</p>
+    <div class="hero-actions">
+      <button class="btn-hero-primary" onclick="alert('Demo request received!')">Request Demo →</button>
+      <button class="btn-hero-ghost" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">See How It Works</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num"><span>1M+</span></div>
+        <div class="stat-label">Global Users</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span>12+</span></div>
+        <div class="stat-label">Years Data</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span>180+</span></div>
+        <div class="stat-label">Countries</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Desktop network graphic -->
+  <div class="hero-right">
+    <div class="network-viz" style="width:420px;height:420px;">
+      <svg viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+        <circle cx="240" cy="240" r="180" stroke="rgba(23,28,253,0.06)" stroke-width="1"/>
+        <circle cx="240" cy="240" r="120" stroke="rgba(23,28,253,0.08)" stroke-width="1"/>
+        <circle cx="240" cy="240" r="60"  stroke="rgba(23,28,253,0.12)" stroke-width="1"/>
+        <line x1="240" y1="240" x2="120" y2="100" stroke="#171CFD" stroke-width="1.5" stroke-opacity="0.3" class="edge-flow"/>
+        <line x1="240" y1="240" x2="360" y2="110" stroke="#171CFD" stroke-width="1.5" stroke-opacity="0.3" class="edge-flow" style="animation-delay:-0.5s"/>
+        <line x1="240" y1="240" x2="80"  y2="280" stroke="#171CFD" stroke-width="1.5" stroke-opacity="0.3" class="edge-flow" style="animation-delay:-1s"/>
+        <line x1="240" y1="240" x2="400" y2="280" stroke="#171CFD" stroke-width="1.5" stroke-opacity="0.3" class="edge-flow" style="animation-delay:-1.5s"/>
+        <line x1="240" y1="240" x2="160" y2="390" stroke="#171CFD" stroke-width="1.5" stroke-opacity="0.3" class="edge-flow" style="animation-delay:-0.8s"/>
+        <line x1="240" y1="240" x2="320" y2="380" stroke="#171CFD" stroke-width="1.5" stroke-opacity="0.3" class="edge-flow" style="animation-delay:-1.3s"/>
+        <line x1="120" y1="100" x2="360" y2="110" stroke="rgba(23,28,253,0.1)" stroke-width="1"/>
+        <line x1="80"  y1="280" x2="160" y2="390" stroke="rgba(23,28,253,0.1)" stroke-width="1"/>
+        <line x1="400" y1="280" x2="320" y2="380" stroke="rgba(23,28,253,0.1)" stroke-width="1"/>
+        <circle cx="120" cy="100" r="8" fill="#171CFD" opacity="0.7" class="node-pulse"/>
+        <circle cx="360" cy="110" r="8" fill="#171CFD" opacity="0.7" class="node-pulse" style="animation-delay:-1s"/>
+        <circle cx="80"  cy="280" r="8" fill="#5c42e5" opacity="0.7" class="node-pulse" style="animation-delay:-0.5s"/>
+        <circle cx="400" cy="280" r="8" fill="#5c42e5" opacity="0.7" class="node-pulse" style="animation-delay:-1.5s"/>
+        <circle cx="160" cy="390" r="8" fill="#34c6ee" opacity="0.7" class="node-pulse" style="animation-delay:-0.8s"/>
+        <circle cx="320" cy="380" r="8" fill="#34c6ee" opacity="0.7" class="node-pulse" style="animation-delay:-1.3s"/>
+        <circle cx="240" cy="240" r="28" fill="rgba(23,28,253,0.1)" stroke="#171CFD" stroke-width="2"/>
+        <circle cx="240" cy="240" r="16" fill="#171CFD"/>
+        <path d="M234 246 L240 234 L237 246" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <circle cx="234" cy="246" r="2.5" fill="white"/>
+        <circle cx="240" cy="234" r="2.5" fill="white"/>
+        <text x="100" y="88"  font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#0A0A18" text-anchor="middle" opacity="0.45">Buyer</text>
+        <text x="360" y="98"  font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#0A0A18" text-anchor="middle" opacity="0.45">Supplier</text>
+        <text x="55"  y="295" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#0A0A18" text-anchor="middle" opacity="0.45">Market</text>
+        <text x="425" y="295" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#0A0A18" text-anchor="middle" opacity="0.45">Agent</text>
+        <text x="155" y="410" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#0A0A18" text-anchor="middle" opacity="0.45">Data</text>
+        <text x="325" y="400" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#0A0A18" text-anchor="middle" opacity="0.45">Network</text>
+        <text x="240" y="265" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="rgba(23,28,253,0.4)" text-anchor="middle" letter-spacing="1">TRIDGE</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TRUST BAR ═══ -->
+<div class="trust-bar">
+  <span class="trust-label">Trusted by</span>
+  <div class="trust-scroll">
+    <span class="trust-item">Food &amp; Agriculture</span>
+    <span class="trust-item">Global Procurement</span>
+    <span class="trust-item">Trade Finance</span>
+    <span class="trust-item">Supply Chain</span>
+    <span class="trust-item">Export Markets</span>
+    <span class="trust-item">Commodity Trading</span>
+    <span class="trust-item">Food &amp; Agriculture</span>
+    <span class="trust-item">Global Procurement</span>
+    <span class="trust-item">Trade Finance</span>
+    <span class="trust-item">Supply Chain</span>
+    <span class="trust-item">Export Markets</span>
+    <span class="trust-item">Commodity Trading</span>
+  </div>
+</div>
+
+<!-- ═══ MISSION ═══ -->
+<section class="mission" id="mission">
+  <div class="mission-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Our Mission</div>
+      <h2 class="section-title">From Food &amp; Agriculture<br><strong>to All Global Trade</strong></h2>
+      <p class="section-body">We started with one of the most complex, fragmented, and inefficient supply chains in the world. Our mission reaches further — to build the intelligence layer that powers all global trade.</p>
+      <ul class="mission-bullets">
+        <li>Deep domain expertise and native data in food &amp; agriculture</li>
+        <li>Expanding into manufacturing, chemicals, and beyond</li>
+        <li>Universal infrastructure for any complex trade workflow</li>
+        <li>Not a vertical solution — a universal operating system for trade</li>
+      </ul>
+    </div>
+    <div class="expansion-track reveal" style="transition-delay:0.15s">
+      <div class="expansion-item active">
+        <div class="expansion-label">Today — Core Expertise</div>
+        <div class="expansion-title">Food &amp; Agriculture</div>
+        <div class="expansion-desc">12+ years of data, millions of users, full workflow coverage</div>
+      </div>
+      <div class="expansion-item">
+        <div class="expansion-label">Expanding Now</div>
+        <div class="expansion-title">Manufacturing &amp; Chemicals</div>
+        <div class="expansion-desc">Complex supply chains with structural parallels to agri-food</div>
+      </div>
+      <div class="expansion-item">
+        <div class="expansion-label">The Vision</div>
+        <div class="expansion-title">All Global Trade</div>
+        <div class="expansion-desc">The AI execution layer for every industry that trades globally</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROBLEM ═══ -->
+<section class="problem" id="problem">
+  <div class="problem-header reveal">
+    <div class="section-eyebrow">The Problem</div>
+    <h2 class="section-title">Global Trade Is Still<br><strong>Broken</strong></h2>
+  </div>
+  <div class="problem-grid reveal" style="transition-delay:0.1s">
+    <div class="problem-card">
+      <div class="problem-icon">⚡</div>
+      <div class="problem-card-title">Fragmented Supply Chains</div>
+      <div class="problem-card-text">Buyers and suppliers operate in silos. Data scattered across spreadsheets, emails, and disconnected platforms.</div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">🔍</div>
+      <div class="problem-card-title">Opaque Networks</div>
+      <div class="problem-card-text">Discovering reliable counterparties requires manual outreach, trade shows, and years of relationship-building.</div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">⏳</div>
+      <div class="problem-card-title">Manual Workflows</div>
+      <div class="problem-card-text">Procurement and sales teams repeat the same tasks endlessly — outreach, negotiation, coordination, follow-up.</div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">📊</div>
+      <div class="problem-card-title">Unstructured Data</div>
+      <div class="problem-card-text">Pricing, specs, and market signals exist — but are unstructured and impossible to act on at scale.</div>
+    </div>
+  </div>
+  <div class="problem-statement reveal" style="transition-delay:0.2s">
+    <p>Companies don't lack opportunities — they lack the <strong>execution intelligence</strong> to capture them.</p>
+  </div>
+</section>
+
+<!-- ═══ SOLUTION ═══ -->
+<section class="solution" id="solution">
+  <div class="solution-header reveal">
+    <div>
+      <div class="section-eyebrow">The Platform</div>
+      <h2 class="section-title">AI-Native Trade<br><strong>Execution Platform</strong></h2>
+    </div>
+    <div>
+      <p class="section-body">We combine data intelligence, AI agents, and network infrastructure to automate and optimize the entire trade lifecycle. Not tools — outcomes.</p>
+    </div>
+  </div>
+  <div class="pillars">
+    <div class="pillar reveal">
+      <div class="pillar-num">01</div>
+      <div class="pillar-title">Proprietary Data Intelligence</div>
+      <div class="pillar-text">12+ years of structured global trade data with a deep ontology of products, pricing, and supply chains no competitor can replicate.</div>
+      <ul class="pillar-features">
+        <li>Structured trade ontology built over 12 years</li>
+        <li>Real-time global market pricing &amp; signals</li>
+        <li>Domain-native product classifications</li>
+        <li>Historical supply/demand analysis</li>
+      </ul>
+    </div>
+    <div class="pillar reveal" style="transition-delay:0.1s">
+      <div class="pillar-num">02</div>
+      <div class="pillar-title">AI Agents for Execution</div>
+      <div class="pillar-text">Deploy AI agents that automate sourcing, outreach, negotiation, and coordination — operating continuously across global markets.</div>
+      <ul class="pillar-features">
+        <li>Automated supplier &amp; buyer discovery</li>
+        <li>AI-driven outreach and communication</li>
+        <li>Workflow orchestration end-to-end</li>
+        <li>Continuous 24/7 market coverage</li>
+      </ul>
+    </div>
+    <div class="pillar reveal" style="transition-delay:0.2s">
+      <div class="pillar-num">03</div>
+      <div class="pillar-title">Global Trade Network</div>
+      <div class="pillar-text">Instant access to millions of verified buyers and suppliers. Built-in network effects that compound over time and expand your reach.</div>
+      <ul class="pillar-features">
+        <li>Millions of active global participants</li>
+        <li>Verified buyers &amp; supplier profiles</li>
+        <li>Network effects compounding daily</li>
+        <li>Cross-border transaction infrastructure</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BENEFITS ═══ -->
+<section class="benefits" id="benefits">
+  <div class="benefits-header reveal">
+    <div class="section-eyebrow">Customer Benefits</div>
+    <h2 class="section-title">Grow Faster.<br><strong>Operate Smarter.</strong></h2>
+  </div>
+  <div class="benefits-grid">
+    <div class="benefit-card reveal">
+      <div class="benefit-icon">🌐</div>
+      <div class="benefit-title">Expand Your Market Reach</div>
+      <div class="benefit-text">Access a global network of buyers and suppliers instantly. Discover new counterparties automatically and unlock markets you couldn't reach manually. No cold start.</div>
+      <span class="benefit-tag">Growth</span>
+    </div>
+    <div class="benefit-card reveal" style="transition-delay:0.1s">
+      <div class="benefit-icon">🤖</div>
+      <div class="benefit-title">Automate Execution</div>
+      <div class="benefit-text">AI agents handle outreach, communication, coordination, and follow-ups. Reduce team reliance and close deals significantly faster than any human-driven process.</div>
+      <span class="benefit-tag">Automation</span>
+    </div>
+    <div class="benefit-card reveal" style="transition-delay:0.15s">
+      <div class="benefit-icon">📈</div>
+      <div class="benefit-title">Make Better Decisions</div>
+      <div class="benefit-text">Data-driven pricing, sourcing signals, and market intelligence replace fragmented information. Less uncertainty, better terms, stronger positions in every transaction.</div>
+      <span class="benefit-tag">Intelligence</span>
+    </div>
+    <div class="benefit-card reveal" style="transition-delay:0.2s">
+      <div class="benefit-icon">💰</div>
+      <div class="benefit-title">Scale Without Cost Explosion</div>
+      <div class="benefit-text">No need to build large offline teams. Operate at enterprise scale with a fraction of the overhead. Revenue growth no longer requires proportional headcount.</div>
+      <span class="benefit-tag">Efficiency</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHY US ═══ -->
+<section class="why-us" id="why">
+  <div class="why-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Why Tridge</div>
+      <h2 class="section-title">Built on Data.<br><strong>Not Just AI.</strong></h2>
+      <p class="section-body" style="margin-bottom:28px">Generic AI tools fail in trade because they have no real domain data. Our foundation is irreplaceable — 12+ years of native, structured trade intelligence.</p>
+      <div class="comparison">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th class="th-others">Generic AI</th>
+              <th class="th-vs">vs</th>
+              <th class="th-us">Tridge</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="td-other">General-purpose</td><td class="td-mid">—</td><td class="td-our">✓ Built for trade</td></tr>
+            <tr><td class="td-other">Scraped data</td><td class="td-mid">—</td><td class="td-our">✓ 12+ yrs native data</td></tr>
+            <tr><td class="td-other">Stops at insights</td><td class="td-mid">—</td><td class="td-our">✓ Executes end-to-end</td></tr>
+            <tr><td class="td-other">Needs customization</td><td class="td-mid">—</td><td class="td-our">✓ Ontology ready</td></tr>
+            <tr><td class="td-other">No network</td><td class="td-mid">—</td><td class="td-our">✓ Millions active</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="differentiators reveal" style="transition-delay:0.15s">
+      <div class="differentiator">
+        <div class="diff-num">01 — Data Foundation</div>
+        <div class="diff-title">12+ Years of Native Intelligence</div>
+        <div class="diff-text">Not synthetic, not scraped. Deeply structured domain data accumulated over a decade, with high-quality ontology that mirrors how global trade actually works.</div>
+      </div>
+      <div class="differentiator">
+        <div class="diff-num">02 — Domain Expertise</div>
+        <div class="diff-title">We Understand Trade Better</div>
+        <div class="diff-text">Deep understanding of pricing structures, product specs, trade logistics, regulatory workflows, and the real complexity of cross-border execution.</div>
+      </div>
+      <div class="differentiator">
+        <div class="diff-num">03 — Proven Network</div>
+        <div class="diff-title">Millions of Users. Real Activity.</div>
+        <div class="diff-text">An already-active ecosystem of global buyers and suppliers that compounds in value with every new participant.</div>
+      </div>
+      <div class="differentiator">
+        <div class="diff-num">04 — Execution Engine</div>
+        <div class="diff-title">Outcomes, Not Suggestions</div>
+        <div class="diff-text">Most AI tools stop at analysis. We execute actual trade workflows — from discovery to deal closure — delivering measurable outcomes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="how" id="how">
+  <div class="how-header reveal">
+    <div class="section-eyebrow">How It Works</div>
+    <h2 class="section-title">Simple.<br><strong>Automated. Scalable.</strong></h2>
+  </div>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-icon">🎯</div>
+      <div class="step-title">Define Your Needs</div>
+      <div class="step-text">Input your sourcing requirements, sales targets, product specs, or market goals. Tridge's domain ontology structures your intent instantly — no complex setup required.</div>
+    </div>
+    <div class="step reveal" style="transition-delay:0.1s">
+      <div class="step-num">02</div>
+      <div class="step-icon">⚡</div>
+      <div class="step-title">AI Agents Activate</div>
+      <div class="step-text">Intelligent agents identify optimal matches, initiate outreach, manage communication, and orchestrate workflows across your global opportunity set simultaneously.</div>
+    </div>
+    <div class="step reveal" style="transition-delay:0.2s">
+      <div class="step-num">03</div>
+      <div class="step-icon">🚀</div>
+      <div class="step-title">Execute &amp; Scale</div>
+      <div class="step-text">Close deals faster with full visibility and control. Scale operations without scaling headcount. Every deal strengthens your data advantage for the next one.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SCALE ═══ -->
+<section class="scale" id="scale">
+  <div class="scale-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Network &amp; Scale</div>
+      <h2 class="section-title">Trusted by the<br><strong>Global Trade Ecosystem</strong></h2>
+      <p class="section-body">Millions of buyers and suppliers already operate on Tridge. Every participant enriches the data, expands the network, and creates more value for everyone. You plug in — you don't build from scratch.</p>
+    </div>
+    <div class="metrics-grid reveal" style="transition-delay:0.15s">
+      <div class="metric-box"><div class="metric-num">1M+</div><div class="metric-label">Active Users Globally</div></div>
+      <div class="metric-box"><div class="metric-num">12+</div><div class="metric-label">Years of Native Data</div></div>
+      <div class="metric-box"><div class="metric-num">180+</div><div class="metric-label">Countries Covered</div></div>
+      <div class="metric-box"><div class="metric-num">10K+</div><div class="metric-label">Product Categories</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VISION ═══ -->
+<section class="vision">
+  <div class="section-eyebrow reveal">The Future</div>
+  <h2 class="vision-title reveal" style="transition-delay:0.1s">Trade Will Be Run<br>by <em>Autonomous Agents</em></h2>
+  <p class="vision-sub reveal" style="transition-delay:0.2s">The shift is already underway. Buyers will rely on agents for sourcing. Suppliers will deploy agents for sales. Transactions will execute autonomously on structured intelligence.</p>
+  <div class="vision-layers reveal" style="transition-delay:0.3s">
+    <div class="vision-layer">Data Layer</div>
+    <div class="vision-layer">Execution Layer</div>
+    <div class="vision-layer">Network Layer</div>
+  </div>
+  <p class="vision-footer reveal" style="transition-delay:0.4s">
+    Together, they form the foundation of AI-powered global commerce.<br>
+    The only question: will you operate this system — or compete against it?
+  </p>
+</section>
+
+<!-- ═══ FINAL CTA ═══ -->
+<section class="final-cta">
+  <div class="reveal">
+    <h2 class="cta-title">Start Transforming<br>Your <strong>Trade Operations</strong><br>Today</h2>
+  </div>
+  <div class="cta-right reveal" style="transition-delay:0.1s">
+    <p class="cta-sub">See how AI agents can scale your procurement and sales beyond what any team can achieve manually. Backed by 12+ years of unmatched trade data intelligence.</p>
+    <button class="btn-cta-white"   onclick="alert('Demo request received!')">Request Executive Demo →</button>
+    <button class="btn-cta-outline" onclick="alert('Sales team will reach out!')">Talk to Sales</button>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <svg viewBox="0 0 140 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:22px">
+        <path d="M8 28 L20 8 L14 28" stroke="#171CFD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <circle cx="8"  cy="28" r="3.5" fill="#171CFD"/>
+        <circle cx="20" cy="8"  r="3.5" fill="#171CFD"/>
+        <circle cx="14" cy="28" r="3.5" fill="rgba(255,255,255,0.5)"/>
+        <text x="32" y="26" font-family="Inter,sans-serif" font-weight="800" font-size="20" fill="white" letter-spacing="-1">TRIDGE</text>
+      </svg>
+      <p>The AI-native platform for global trade execution. Data intelligence, autonomous agents, and the world's largest trade network — unified.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Platform</div>
+      <ul class="footer-links">
+        <li><a href="#">Data Intelligence</a></li>
+        <li><a href="#">AI Agents</a></li>
+        <li><a href="#">Trade Network</a></li>
+        <li><a href="#">Sourcing Hub</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Solutions</div>
+      <ul class="footer-links">
+        <li><a href="#">Enterprise Buyers</a></li>
+        <li><a href="#">Exporters &amp; Suppliers</a></li>
+        <li><a href="#">Food &amp; Agriculture</a></li>
+        <li><a href="#">API Access</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#">About Tridge</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Tridge. All rights reserved.</div>
+    <div class="footer-copy">Privacy Policy · Terms of Service</div>
+  </div>
+</footer>
+
+<script>
+/* ─── Hamburger menu ─── */
+const hamburger  = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+let menuOpen = false;
+
+function closeMenu() {
+  menuOpen = false;
+  hamburger.classList.remove('open');
+  hamburger.setAttribute('aria-expanded','false');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', () => {
+  menuOpen = !menuOpen;
+  hamburger.classList.toggle('open', menuOpen);
+  hamburger.setAttribute('aria-expanded', String(menuOpen));
+  mobileMenu.classList.toggle('open', menuOpen);
+  document.body.style.overflow = menuOpen ? 'hidden' : '';
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && menuOpen) closeMenu();
+});
+
+/* ─── Nav shadow on scroll ─── */
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 30);
+}, { passive:true });
+
+/* ─── Scroll reveal ─── */
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+  });
+}, { threshold:0.1, rootMargin:'0px 0px -30px 0px' });
+reveals.forEach(r => io.observe(r));
+
+/* ─── Respect reduced motion ─── */
+if (window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
+  document.querySelectorAll('.reveal').forEach(el => {
+    el.style.cssText = 'opacity:1;transform:none;transition:none';
+  });
+  document.querySelectorAll('.edge-flow,.node-pulse,.trust-scroll,.hero-tag::before').forEach(el => {
+    el.style.animation = 'none';
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Purchase Development Plan for Buyers | Tridge Eye-Powered Supplier Intelligence</title>
+<meta name="description" content="Use Tridge Eye, AI-led supplier outreach, and human market intelligence to move from procurement research to qualified supplier development in food and agriculture."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#171CFD;
+  --black:#0A0A18;
+  --white:#FFFFFF;
+  --purple:#7E43CD;
+  --bluepurple:#5C42E5;
+  --cyan:#34C6EE;
+  --green:#0EDBA5;
+  --yellow:#FFD12D;
+  --bg:#F5F5FA;
+  --bg2:#EBEBF5;
+  --tint:#EAEAFF;
+  --gray:#6B6B8A;
+  --line:#D8D8F0;
+  --eye-blue:#171CFD;
+}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--black);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+
+/* ── NAV ── */
+
+
+
+
+
+
+
+
+
+
+
+/* ── BASE ── */
+section{padding:96px 5%}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+.section-title{font-size:clamp(26px,2.8vw,42px);font-weight:700;letter-spacing:-.03em;line-height:1.08;margin-bottom:16px}
+.section-sub{font-size:15px;font-weight:300;color:var(--gray);line-height:1.75;max-width:600px}
+.divider{width:36px;height:2px;background:var(--blue);margin:18px 0}
+.btn-primary{display:inline-block;background:var(--blue);color:var(--white);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:13px 28px;text-decoration:none;transition:opacity .2s,transform .15s}
+.btn-primary:hover{opacity:.85;transform:translateY(-2px)}
+.btn-ghost{display:inline-block;border:1.5px solid rgba(255,255,255,.25);color:var(--white);font-size:13px;font-weight:500;padding:12px 24px;text-decoration:none;transition:border-color .2s}
+.btn-ghost:hover{border-color:var(--white)}
+.btn-ghost-dark{display:inline-block;border:1.5px solid var(--line);color:var(--black);font-size:13px;font-weight:500;padding:12px 24px;text-decoration:none;transition:border-color .2s,color .2s}
+.btn-ghost-dark:hover{border-color:var(--blue);color:var(--blue)}
+
+/* ── 01 HERO ── */
+.hero{min-height:90vh;background:var(--black);display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:96px 5% 72px;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(23,28,253,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(23,28,253,.06) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(23,28,253,.2) 0%,transparent 68%);top:-100px;right:-80px;pointer-events:none}
+.hero-left{position:relative;z-index:2}
+.hero-eyebrow{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:18px}
+.hero-eyebrow span{color:var(--cyan)}
+.hero h1{font-size:clamp(36px,4.5vw,62px);font-weight:800;letter-spacing:-.04em;line-height:1.0;color:var(--white);margin-bottom:20px}
+.hero h1 em{font-style:normal;color:var(--blue)}
+.hero-desc{font-size:16px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.75;max-width:500px;margin-bottom:30px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px;padding-top:24px;border-top:1px solid rgba(255,255,255,.07)}
+.hero-chip{font-size:11px;font-weight:500;letter-spacing:.04em;padding:5px 11px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45)}
+.hero-chip.eye{background:rgba(23,28,253,.2);border-color:rgba(23,28,253,.5);color:rgba(150,160,255,.9)}
+.hero-support{margin-top:20px;font-size:12px;font-weight:300;color:rgba(255,255,255,.25);font-style:italic}
+/* Hero right — system module visual */
+.hero-right{position:relative;z-index:2;display:flex;flex-direction:column;gap:7px}
+.sys-mod{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:12px 16px;position:relative;overflow:hidden;transition:border-color .3s,background .3s}
+.sys-mod:hover{border-color:rgba(23,28,253,.45);background:rgba(23,28,253,.06)}
+.sys-mod-bar{position:absolute;left:0;top:0;bottom:0;width:2px}
+.sys-mod:nth-child(1) .sys-mod-bar{background:var(--blue)}
+.sys-mod:nth-child(2) .sys-mod-bar{background:var(--bluepurple)}
+.sys-mod:nth-child(3) .sys-mod-bar{background:var(--cyan)}
+.sys-mod:nth-child(4) .sys-mod-bar{background:var(--green)}
+.sys-mod:nth-child(5) .sys-mod-bar{background:var(--yellow)}
+.sys-mod:nth-child(6) .sys-mod-bar{background:var(--purple)}
+.sys-mod-label{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:3px}
+.sys-mod-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.sys-mod-title{font-size:12px;font-weight:500;color:var(--white)}
+.sys-mod-tag{font-size:9px;font-weight:600;letter-spacing:.06em;padding:2px 8px;flex-shrink:0}
+.sys-mod:nth-child(1) .sys-mod-tag{background:rgba(23,28,253,.25);color:rgba(150,160,255,.9)}
+.sys-mod:nth-child(2) .sys-mod-tag{background:rgba(92,66,229,.2);color:rgba(180,170,255,.8)}
+.sys-mod:nth-child(3) .sys-mod-tag{background:rgba(52,198,238,.15);color:var(--cyan)}
+.sys-mod:nth-child(4) .sys-mod-tag{background:rgba(14,219,165,.12);color:var(--green)}
+.sys-mod:nth-child(5) .sys-mod-tag{background:rgba(255,209,45,.12);color:var(--yellow)}
+.sys-mod:nth-child(6) .sys-mod-tag{background:rgba(126,67,205,.15);color:rgba(200,160,255,.8)}
+
+/* ── 02 TRIDGE EYE STRIP ── */
+.eye-strip{background:var(--blue);padding:40px 5%}
+.eye-strip-inner{display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.eye-strip-left{}
+.eye-strip-eyebrow{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:8px}
+.eye-strip-title{font-size:20px;font-weight:700;color:var(--white);letter-spacing:-.02em;margin-bottom:8px}
+.eye-strip-body{font-size:13.5px;font-weight:300;color:rgba(255,255,255,.65);line-height:1.7;max-width:540px}
+.eye-strip-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.eye-strip-tag{font-size:10px;font-weight:500;letter-spacing:.05em;padding:4px 11px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.75)}
+
+/* ── 03 PROBLEM ── */
+.problem{background:var(--bg)}
+.problem-layout{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:48px;align-items:start}
+.problem-text p{font-size:15px;font-weight:300;color:var(--gray);line-height:1.75;margin-top:14px}
+.problem-text strong{color:var(--black);font-weight:600}
+.problem-callout{margin-top:24px;background:var(--black);padding:28px 32px;border-top:3px solid var(--blue)}
+.problem-callout-text{font-size:16px;font-weight:700;color:var(--white);line-height:1.4;letter-spacing:-.02em}
+.problem-callout-sub{font-size:13px;font-weight:300;color:rgba(255,255,255,.4);margin-top:8px;line-height:1.6}
+.pain-cards{display:flex;flex-direction:column;gap:14px}
+.pain-card{background:var(--white);border:1px solid var(--line);padding:22px 24px;border-left:3px solid var(--blue);transition:transform .2s}
+.pain-card:nth-child(2){border-left-color:var(--purple)}
+.pain-card:nth-child(3){border-left-color:var(--cyan)}
+.pain-card:hover{transform:translateX(4px)}
+.pain-card-title{font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px;letter-spacing:-.01em}
+.pain-card-body{font-size:13px;font-weight:300;color:var(--gray);line-height:1.6}
+
+/* ── 04 WHY TRIDGE EYE ── */
+.why-eye{background:var(--black);padding:96px 5%}
+.why-eye .eyebrow{color:var(--cyan)}
+.why-eye .section-title{color:var(--white)}
+.why-eye .section-sub{color:rgba(255,255,255,.4)}
+.why-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:48px;background:rgba(255,255,255,.07)}
+.why-col{background:var(--black);padding:36px 28px;transition:background .2s}
+.why-col:hover{background:rgba(255,255,255,.03)}
+.why-col-num{font-size:36px;font-weight:800;letter-spacing:-.04em;opacity:.07;color:var(--white);line-height:1;margin-bottom:-4px}
+.why-col-title{font-size:16px;font-weight:700;color:var(--white);margin-bottom:10px;letter-spacing:-.02em}
+.why-col:nth-child(1) .why-col-title{color:var(--blue)}
+.why-col:nth-child(2) .why-col-title{color:var(--green)}
+.why-col:nth-child(3) .why-col-title{color:var(--cyan)}
+.why-col-body{font-size:13px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.7}
+.why-bridge{margin-top:36px;background:rgba(255,255,255,.04);border-left:3px solid var(--cyan);border:1px solid rgba(255,255,255,.07);border-left:3px solid var(--cyan);padding:22px 28px}
+.why-bridge p{font-size:15px;font-weight:400;color:rgba(255,255,255,.6);line-height:1.7;font-style:italic}
+.why-bridge strong{color:var(--white);font-weight:600;font-style:normal}
+
+/* ── 05 TRIDGE EYE TABS ── */
+.eye-tabs{background:var(--bg)}
+.eye-tab-
+.eye-tab-btn{padding:10px 20px;font-size:13px;font-weight:500;color:var(--gray);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:color .2s,border-color .2s;font-family:'Inter',sans-serif}
+.eye-tab-btn:hover{color:var(--black)}
+.eye-tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:600}
+.eye-tab-panels{margin-top:0}
+.eye-tab-panel{display:none;padding:36px;background:var(--white);border:1px solid var(--line);border-top:none}
+.eye-tab-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.eye-panel-title{font-size:20px;font-weight:700;color:var(--black);letter-spacing:-.02em;margin-bottom:10px}
+.eye-panel-body{font-size:14px;font-weight:300;color:var(--gray);line-height:1.75}
+.eye-panel-visual{background:var(--bg);border:1px solid var(--line);padding:24px;min-height:180px;display:flex;align-items:center;justify-content:center}
+.eye-panel-visual-inner{text-align:center}
+.eye-panel-icon{font-size:32px;margin-bottom:10px}
+.eye-panel-visual-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--gray)}
+
+/* ── 06 BENEFITS ── */
+.benefits{background:var(--white)}
+.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+.ben-card{border:1px solid var(--line);padding:26px;transition:transform .2s,box-shadow .2s,border-color .2s}
+.ben-card:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(23,28,253,.07);border-color:var(--blue)}
+.ben-card::before{content:'';display:block;height:2px;margin-bottom:18px;background:var(--line)}
+.ben-card:nth-child(1)::before{background:var(--blue)}
+.ben-card:nth-child(2)::before{background:var(--bluepurple)}
+.ben-card:nth-child(3)::before{background:var(--cyan)}
+.ben-card:nth-child(4)::before{background:var(--green)}
+.ben-card:nth-child(5)::before{background:var(--yellow)}
+.ben-card:nth-child(6)::before{background:var(--purple)}
+.ben-icon{font-size:20px;margin-bottom:12px}
+.ben-title{font-size:14px;font-weight:600;color:var(--black);margin-bottom:7px;letter-spacing:-.01em}
+.ben-body{font-size:12.5px;font-weight:300;color:var(--gray);line-height:1.65}
+
+/* ── 07 WORKFLOW ── */
+.workflow{background:var(--bg)}
+.workflow-connector{margin-top:12px;font-size:12px;font-weight:300;color:var(--gray);font-style:italic;text-align:center;padding:10px 0;border-top:1px solid var(--line)}
+.wf-steps{margin-top:44px;display:flex;flex-direction:column;gap:0}
+.wf-step{display:grid;grid-template-columns:72px 1fr;gap:24px;padding:26px 0;border-bottom:1px solid var(--line);align-items:start}
+.wf-step:last-child{border-bottom:none}
+.wf-step-num{width:48px;height:48px;border:1.5px solid var(--blue);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;color:var(--blue);flex-shrink:0;transition:background .2s,color .2s}
+.wf-step:hover .wf-step-num{background:var(--blue);color:var(--white)}
+.wf-step-eye{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:4px}
+.wf-step-title{font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;letter-spacing:-.02em}
+.wf-step-body{font-size:13px;font-weight:300;color:var(--gray);line-height:1.65;max-width:580px;margin-bottom:8px}
+.wf-step-tag{display:inline-block;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;background:var(--tint);color:var(--blue)}
+
+/* ── 08 CADENCE ── */
+.cadence{background:var(--black);padding:96px 5%}
+.cadence .eyebrow{color:var(--green)}
+.cadence .section-title{color:var(--white)}
+.cadence .section-sub{color:rgba(255,255,255,.4)}
+.cadence-note{margin-top:8px;font-size:11px;font-weight:300;color:rgba(255,255,255,.2);font-style:italic}
+.cadence-timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:48px;position:relative}
+.cadence-timeline::before{content:'';position:absolute;top:27px;left:5%;right:5%;height:1px;background:linear-gradient(90deg,var(--blue),var(--cyan),var(--green));opacity:.25}
+.cadence-step{text-align:center;padding:0 10px;position:relative}
+.cadence-dot{width:54px;height:54px;border-radius:50%;border:1.5px solid;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;margin:0 auto 16px;background:var(--black);position:relative;z-index:1;transition:background .2s,color .2s;letter-spacing:-.01em}
+.cadence-step:nth-child(1) .cadence-dot{border-color:var(--blue);color:var(--blue)}
+.cadence-step:nth-child(2) .cadence-dot{border-color:var(--bluepurple);color:var(--bluepurple)}
+.cadence-step:nth-child(3) .cadence-dot{border-color:var(--cyan);color:var(--cyan)}
+.cadence-step:nth-child(4) .cadence-dot{border-color:var(--green);color:var(--green)}
+.cadence-step:nth-child(5) .cadence-dot{border-color:var(--yellow);color:var(--yellow)}
+.cadence-step:hover .cadence-dot{background:currentColor}
+.cadence-step:nth-child(1):hover .cadence-dot{background:var(--blue);color:var(--white)}
+.cadence-step:nth-child(2):hover .cadence-dot{background:var(--bluepurple);color:var(--white)}
+.cadence-step:nth-child(3):hover .cadence-dot{background:var(--cyan);color:var(--black)}
+.cadence-step:nth-child(4):hover .cadence-dot{background:var(--green);color:var(--black)}
+.cadence-step:nth-child(5):hover .cadence-dot{background:var(--yellow);color:var(--black)}
+.cadence-day{font-size:12px;font-weight:600;color:var(--white);margin-bottom:4px;letter-spacing:-.01em}
+.cadence-title{font-size:11px;font-weight:500;color:rgba(255,255,255,.45);line-height:1.5;margin-bottom:6px}
+.cadence-body{font-size:10.5px;font-weight:300;color:rgba(255,255,255,.25);line-height:1.55}
+
+/* ── 09 CAPABILITIES ── */
+.caps{background:var(--white)}
+.caps-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:48px}
+.cap-col{border:1px solid var(--line);overflow:hidden}
+.cap-head{padding:16px 22px;background:var(--black);display:flex;align-items:center;gap:10px}
+.cap-head-title{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--white)}
+.cap-head-badge{font-size:9px;font-weight:600;letter-spacing:.08em;padding:3px 8px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.45)}
+.cap-items{display:flex;flex-direction:column}
+.cap-item{display:flex;align-items:center;gap:10px;padding:13px 22px;border-bottom:1px solid var(--line);font-size:13px;font-weight:400;color:var(--black);transition:background .2s}
+.cap-item:last-child{border-bottom:none}
+.cap-item:hover{background:var(--bg)}
+.cap-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.cap-col:nth-child(1) .cap-dot{background:var(--blue)}
+.cap-col:nth-child(2) .cap-dot{background:var(--green)}
+
+/* ── 10 USE CASES ── */
+.usecases{background:var(--bg)}
+.uc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+.uc-card{background:var(--white);border:1px solid var(--line);padding:26px;transition:transform .2s,box-shadow .2s}
+.uc-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.06)}
+.uc-card::before{content:'';display:block;height:2px;margin-bottom:18px}
+.uc-card:nth-child(1)::before{background:var(--blue)}
+.uc-card:nth-child(2)::before{background:var(--bluepurple)}
+.uc-card:nth-child(3)::before{background:var(--cyan)}
+.uc-card:nth-child(4)::before{background:var(--green)}
+.uc-card:nth-child(5)::before{background:var(--yellow)}
+.uc-card:nth-child(6)::before{background:var(--purple)}
+.uc-icon{font-size:20px;margin-bottom:10px}
+.uc-title{font-size:14px;font-weight:600;color:var(--black);margin-bottom:7px;letter-spacing:-.01em}
+.uc-body{font-size:12.5px;font-weight:300;color:var(--gray);line-height:1.65}
+
+/* ── 11 DELIVERABLES ── */
+.deliv{background:var(--black);padding:96px 5%}
+.deliv .eyebrow{color:var(--green)}
+.deliv .section-title{color:var(--white)}
+.deliv .section-sub{color:rgba(255,255,255,.4)}
+.deliv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px}
+.deliv-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);padding:20px;display:flex;flex-direction:column;gap:8px;transition:border-color .2s,background .2s}
+.deliv-card:hover{border-color:rgba(14,219,165,.35);background:rgba(14,219,165,.04)}
+.deliv-num{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2)}
+.deliv-icon{font-size:18px}
+.deliv-title{font-size:13px;font-weight:600;color:var(--white);letter-spacing:-.01em}
+.deliv-body{font-size:13px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.65}
+
+/* ── 12 COMPARISON ── */
+.compare{background:var(--white)}
+.compare-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+.compare-card{border:1px solid var(--line);padding:28px 22px;text-align:center;transition:transform .2s}
+.compare-card:hover{transform:translateY(-3px)}
+.compare-card.highlight{border-color:var(--blue);background:var(--tint)}
+.compare-card-above{font-size:12px;font-weight:300;color:var(--gray);margin-bottom:14px;line-height:1.5}
+.compare-divider{width:28px;height:1px;background:var(--line);margin:0 auto 14px}
+.compare-title{font-size:15px;font-weight:700;color:var(--black);margin-bottom:8px;letter-spacing:-.02em}
+.compare-card.highlight .compare-title{color:var(--blue)}
+.compare-body{font-size:12.5px;font-weight:300;color:var(--gray);line-height:1.6}
+.compare-card.highlight .compare-body{color:var(--black)}
+.compare-bridge{margin-top:36px;padding:20px 28px;background:var(--tint);border-left:3px solid var(--blue)}
+.compare-bridge p{font-size:14px;font-weight:500;color:var(--blue);line-height:1.65;font-style:italic}
+
+/* ── 13 FAQ ── */
+.faq{background:var(--bg)}
+.faq-layout{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:48px;align-items:start}
+.faq-list{display:flex;flex-direction:column}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{padding:17px 0;font-size:14px;font-weight:500;color:var(--black);cursor:pointer;display:flex;justify-content:space-between;align-items:center;letter-spacing:-.01em;transition:color .2s;user-select:none;gap:16px}
+.faq-q:hover{color:var(--blue)}
+.faq-q::after{content:'+';font-size:20px;font-weight:300;color:var(--blue);flex-shrink:0;transition:transform .25s;line-height:1}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .2s}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:16px}
+.faq-a p{font-size:13.5px;font-weight:300;color:var(--gray);line-height:1.7}
+.faq-aside{background:var(--black);padding:32px;display:flex;flex-direction:column;gap:14px}
+.faq-aside-eyebrow{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.faq-aside-title{font-size:19px;font-weight:700;color:var(--white);letter-spacing:-.02em;line-height:1.3}
+.faq-aside-body{font-size:13px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.65}
+.faq-aside-link{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600;color:var(--blue);text-decoration:none;border-bottom:1px solid var(--blue);padding-bottom:1px;transition:opacity .2s}
+.faq-aside-link:hover{opacity:.7}
+.faq-related{margin-top:8px;padding-top:16px;border-top:1px solid rgba(255,255,255,.07)}
+.faq-related-label{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:8px}
+.faq-related a{display:block;font-size:12px;color:rgba(255,255,255,.3);text-decoration:none;padding:4px 0;transition:color .2s}
+.faq-related a:hover{color:rgba(255,255,255,.65)}
+
+/* ── 14 CTA FORM ── */
+.cta-section{background:var(--black);position:relative;overflow:hidden;padding:96px 5%}
+.cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(23,28,253,.2) 0%,transparent 70%);pointer-events:none}
+.cta-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(23,28,253,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(23,28,253,.04) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+.cta-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.cta-left .eyebrow{color:var(--cyan)}
+.cta-left .section-title{color:var(--white)}
+.cta-left-body{font-size:14px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.75;margin-bottom:24px}
+.cta-support{font-size:12px;font-weight:300;color:rgba(255,255,255,.25);line-height:1.65;font-style:italic}
+.cta-points{display:flex;flex-direction:column;gap:9px;margin-bottom:24px}
+.cta-pt{display:flex;align-items:flex-start;gap:9px;font-size:13px;font-weight:300;color:rgba(255,255,255,.4)}
+.cta-pt-dot{width:5px;height:5px;background:var(--blue);border-radius:50%;flex-shrink:0;margin-top:6px}
+.cta-form{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:28px;display:flex;flex-direction:column;gap:10px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fi,.fs,.ft{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--white);font-family:'Inter',sans-serif;font-size:13px;font-weight:300;padding:11px 14px;outline:none;width:100%;transition:border-color .2s;appearance:none;resize:none}
+.fi::placeholder,.ft::placeholder{color:rgba(255,255,255,.22)}
+.fi:focus,.fs:focus,.ft:focus{border-color:var(--blue)}
+.fs{color:rgba(255,255,255,.45);cursor:pointer}
+.fs option{background:var(--black);color:var(--white)}
+.ft{min-height:72px}
+.fb{background:var(--blue);color:var(--white);font-family:'Inter',sans-serif;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:13px;border:none;cursor:pointer;transition:opacity .2s,transform .15s;width:100%}
+.fb:hover{opacity:.85;transform:translateY(-1px)}
+.form-note{font-size:10.5px;font-weight:300;color:rgba(255,255,255,.18);line-height:1.6}
+
+/* ── 15 FOOTER RIBBON ── */
+.ribbon{background:var(--blue);padding:28px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.ribbon-text{font-size:15px;font-weight:500;color:var(--white);letter-spacing:-.01em}
+.ribbon-btn{background:var(--white);color:var(--blue);font-size:12px;font-weight:700;letter-spacing:.06em;padding:11px 24px;text-decoration:none;text-transform:uppercase;flex-shrink:0;transition:opacity .2s}
+.ribbon-btn:hover{opacity:.85}
+
+/* ── FOOTER ── */
+footer{background:var(--black);border-top:1px solid rgba(255,255,255,.05);padding:28px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.footer-wordmark{font-size:15px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:-.01em}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap}
+.footer-links a{font-size:11px;color:rgba(255,255,255,.28);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,.65)}
+.footer-copy{font-size:11px;font-weight:300;color:rgba(255,255,255,.18)}
+
+/* ── ANIMATION ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.hero-left>*{animation:fadeUp .6s ease both}
+.hero-left>*:nth-child(1){animation-delay:.1s}
+.hero-left>*:nth-child(2){animation-delay:.2s}
+.hero-left>*:nth-child(3){animation-delay:.3s}
+.hero-left>*:nth-child(4){animation-delay:.42s}
+.hero-left>*:nth-child(5){animation-delay:.52s}
+.hero-right{animation:fadeUp .7s .28s ease both}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1000px){
+  .hero,.problem-layout,.cta-inner,.faq-layout,.eye-tab-panel.active{grid-template-columns:1fr;gap:32px}
+  .hero{min-height:auto}
+  .why-cols{grid-template-columns:1fr;background:none;gap:14px}
+  .why-col{border:1px solid rgba(255,255,255,.08)}
+  .benefits-grid,.uc-grid{grid-template-columns:1fr 1fr}
+  .deliv-grid{grid-template-columns:1fr 1fr}
+  .compare-cards{grid-template-columns:1fr 1fr}
+  .caps-grid{grid-template-columns:1fr}
+  .cadence-timeline{grid-template-columns:1fr 1fr;gap:20px}
+  .cadence-timeline::before{display:none}
+  
+  .eye-strip-inner{flex-direction:column;gap:20px}
+}
+@media(max-width:640px){
+  .benefits-grid,.uc-grid,.deliv-grid,.compare-cards,.cadence-timeline{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  section{padding:68px 5%}
+  .ribbon{flex-direction:column;text-align:center}
+}
+
+/* ── TWO-LAYER GNB ── */
+.gnb-wrap{position:fixed;top:0;left:0;right:0;z-index:200}
+.gnb-layer1{height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(10,10,24,.98);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07)}
+.gnb-layer2{height:36px;display:flex;align-items:center;padding:0 5%;background:rgba(6,6,18,.95);border-bottom:1px solid rgba(255,255,255,.05);overflow-x:auto;scrollbar-width:none}
+.gnb-layer2::-webkit-scrollbar{display:none}
+.gnb-left{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.gnb-wordmark{font-size:15px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:-.01em}
+.gnb-sep{color:rgba(255,255,255,.2);font-size:12px}
+.gnb-product{font-size:11px;font-weight:400;color:rgba(255,255,255,.4);letter-spacing:.02em}
+.gnb-modules{display:flex;gap:2px;list-style:none;flex:1;justify-content:center}
+.gnb-modules a{color:rgba(255,255,255,.45);text-decoration:none;font-size:12px;font-weight:400;padding:5px 10px;border-radius:3px;transition:color .15s,background .15s;white-space:nowrap}
+.gnb-modules a:hover{color:var(--white);background:rgba(255,255,255,.07)}
+.gnb-modules a.active{color:var(--white);background:rgba(255,255,255,.1);font-weight:500}
+.gnb-cta{background:var(--blue);color:var(--white);font-size:11px;font-weight:600;letter-spacing:.06em;padding:7px 16px;text-decoration:none;text-transform:uppercase;transition:opacity .2s;white-space:nowrap;flex-shrink:0}
+.gnb-cta:hover{opacity:.85}
+.gnb-sub{display:flex;gap:0;list-style:none;white-space:nowrap}
+.gnb-sub a{color:rgba(255,255,255,.38);text-decoration:none;font-size:11px;font-weight:400;padding:0 14px;height:36px;display:flex;align-items:center;transition:color .15s,background .15s;border-right:1px solid rgba(255,255,255,.05)}
+.gnb-sub a:hover{color:rgba(255,255,255,.75);background:rgba(255,255,255,.04)}
+.gnb-sub a.sub-active{color:rgba(255,255,255,.9);font-weight:500}
+body{padding-top:92px}
+
+
+
+
+/* ── BROWSE BY MARKET ── */
+
+
+/* ── BROWSE BY MARKET (Phase 1) ── */
+.browse{background:var(--bg);padding:72px 5%}
+.browse .eyebrow{color:var(--blue)}
+.browse-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.browse-card{background:var(--white);border:1px solid var(--line);padding:24px;text-decoration:none;display:block;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden}
+.browse-card:not(.tbu):hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.08);border-color:var(--blue)}
+.browse-card.tbu{opacity:.38;cursor:default;pointer-events:none}
+.browse-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.browse-card:nth-child(1)::before{background:#C07830}
+.browse-card:nth-child(2)::before{background:var(--green)}
+.browse-card:nth-child(3)::before{background:var(--yellow)}
+.browse-card-industry{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.browse-card:nth-child(1) .browse-card-industry{color:#C07830}
+.browse-card:nth-child(2) .browse-card-industry{color:var(--green)}
+.browse-card:nth-child(3) .browse-card-industry{color:var(--yellow)}
+.browse-card-title{font-size:16px;font-weight:700;color:var(--black);letter-spacing:-.02em;margin-bottom:8px;line-height:1.25}
+.browse-card-body{font-size:12.5px;font-weight:300;color:var(--gray);line-height:1.6;margin-bottom:14px}
+.browse-card-link{font-size:12px;font-weight:600;color:var(--blue);display:flex;align-items:center;gap:5px}
+.browse-card.tbu .browse-card-link{color:var(--gray)}
+.browse-tbu-badge{position:absolute;top:10px;right:10px;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--bg);border:1px solid var(--line);color:var(--gray);padding:2px 7px}
+@media(max-width:600px){.browse-grid{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<div class="gnb-wrap">
+  <div class="gnb-layer1">
+    <div class="gnb-left">
+      <a class="gnb-wordmark" href="tridge_eye_hub.html">TRIDGE</a>
+      <span class="gnb-sep">/</span>
+      <span class="gnb-product">Tridge Eye</span>
+    </div>
+    <ul class="gnb-modules"><li><a href="tridge_eye_market_intelligence.html">Market Intelligence</a></li><li><a href="tridge_eye_supplier_discovery.html">Supplier Discovery</a></li><li><a href="tridge_eye_price_benchmarking.html">Price Benchmarking</a></li><li><a href="tridge_purchase_development_v2.html" class="active">Purchase Development</a></li><li><a href="tridge_export_solution.html">Export Solution</a></li><li><a href="tridge_trade_execution.html">Trade Execution</a></li></ul>
+    <a href="#cta" class="gnb-cta">Start Purchase Dev</a>
+  </div>
+  <div class="gnb-layer2">
+    <ul class="gnb-sub"><li><a href="#why-eye">Why Tridge Eye</a></li><li><a href="#workflow">Workflow</a></li><li><a href="#usecases">Use Cases</a></li><li><a href="#deliverables">Deliverables</a></li><li><a href="#faq">FAQ</a></li></ul>
+  </div>
+</div>
+
+<!-- NAV -->
+
+
+<!-- 01 HERO -->
+<section class="hero" id="top">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">Buyer Services <span>/</span> Purchase Development Plan</div>
+    <h1>Start with <em>Tridge Eye.</em><br/>Develop Suppliers<br/>with Confidence.</h1>
+    <p class="hero-desc">Built for enterprise food and agriculture buyers, the Purchase Development Plan combines native market intelligence, AI-led supplier outreach, and human intelligence to move from procurement research to qualified supplier conversations.</p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn-primary">Start Purchase Development →</a>
+      <a href="#workflow" class="btn-ghost">See the Workflow ↓</a>
+    </div>
+    <div class="hero-chips">
+      <span class="hero-chip eye">Powered by Tridge Eye</span>
+      <span class="hero-chip">Native market intelligence</span>
+      <span class="hero-chip">AI agent communication</span>
+      <span class="hero-chip">Human market intelligence</span>
+      <span class="hero-chip">Negotiation support</span>
+    </div>
+    <div class="hero-support">Research the market. Activate the network. Develop better suppliers.</div>
+  </div>
+  <div class="hero-right">
+    <div class="sys-mod">
+      <div class="sys-mod-bar"></div>
+      <div class="sys-mod-label">Intelligence</div>
+      <div class="sys-mod-row">
+        <div class="sys-mod-title">Tridge Eye — Category Intelligence</div>
+        <span class="sys-mod-tag">Active</span>
+      </div>
+    </div>
+    <div class="sys-mod">
+      <div class="sys-mod-bar"></div>
+      <div class="sys-mod-label">Discovery</div>
+      <div class="sys-mod-row">
+        <div class="sys-mod-title">Supplier Shortlist Panel</div>
+        <span class="sys-mod-tag">Building</span>
+      </div>
+    </div>
+    <div class="sys-mod">
+      <div class="sys-mod-bar"></div>
+      <div class="sys-mod-label">Outreach</div>
+      <div class="sys-mod-row">
+        <div class="sys-mod-title">AI Outreach Activity</div>
+        <span class="sys-mod-tag">Running</span>
+      </div>
+    </div>
+    <div class="sys-mod">
+      <div class="sys-mod-bar"></div>
+      <div class="sys-mod-label">Intelligence Capture</div>
+      <div class="sys-mod-row">
+        <div class="sys-mod-title">Response Summary</div>
+        <span class="sys-mod-tag">47 Replies</span>
+      </div>
+    </div>
+    <div class="sys-mod">
+      <div class="sys-mod-bar"></div>
+      <div class="sys-mod-label">Validation</div>
+      <div class="sys-mod-row">
+        <div class="sys-mod-title">Field Intelligence Notes</div>
+        <span class="sys-mod-tag">3 Markets</span>
+      </div>
+    </div>
+    <div class="sys-mod">
+      <div class="sys-mod-bar"></div>
+      <div class="sys-mod-label">Progression</div>
+      <div class="sys-mod-row">
+        <div class="sys-mod-title">Deal Progression Tracker</div>
+        <span class="sys-mod-tag">12 Qualified</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 TRIDGE EYE STRIP -->
+<div class="eye-strip">
+  <div class="eye-strip-inner">
+    <div class="eye-strip-left">
+      <div class="eye-strip-eyebrow">Powered by</div>
+      <div class="eye-strip-title">Tridge Eye — Native Food &amp; Agriculture Intelligence</div>
+      <div class="eye-strip-body">Tridge Eye is our native data intelligence service for food and agriculture. It structures years of supplier, transaction, market, and relationship intelligence into a research-ready foundation for buyer-side supplier development.</div>
+      <div class="eye-strip-tags">
+        <span class="eye-strip-tag">Supplier intelligence</span>
+        <span class="eye-strip-tag">Transaction context</span>
+        <span class="eye-strip-tag">Counterparty visibility</span>
+        <span class="eye-strip-tag">Supply chain connections</span>
+        <span class="eye-strip-tag">Ontology-based grouping</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 03 PROBLEM -->
+<section class="problem" id="problem">
+  <div class="eyebrow">The Gap</div>
+  <div class="problem-layout">
+    <div class="problem-text">
+      <h2 class="section-title">Research Stops Short.<br/>Execution Is the Gap.</h2>
+      <div class="divider"></div>
+      <p>Most procurement research begins with desk research, supplier lists, price references, and category intelligence. But buyers still need to know which suppliers are <strong>relevant, responsive, commercially interested, and worth developing further.</strong></p>
+      <p>The gap is not information. <strong>The gap is execution.</strong></p>
+      <div class="problem-callout">
+        <div class="problem-callout-text">Procurement teams need a way to turn research into market action — not more data alone.</div>
+        <div class="problem-callout-sub">The Purchase Development Plan bridges the distance between intelligence and qualified supplier conversations.</div>
+      </div>
+    </div>
+    <div class="pain-cards">
+      <div class="pain-card">
+        <div class="pain-card-title">Too much data, too little context</div>
+        <div class="pain-card-body">Buyers can find information, but not always the market structure needed to act on it with confidence or speed.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card-title">Supplier lists without qualification</div>
+        <div class="pain-card-body">A supplier record does not show transaction context, commercial fit, or real engagement potential.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card-title">Manual outreach slows everything</div>
+        <div class="pain-card-body">Teams lose time coordinating research, targeting, outreach, follow-up, and qualification across fragmented workflows.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 WHY TRIDGE EYE -->
+<section class="why-eye" id="why-eye">
+  <div class="eyebrow">Why Enterprise Buyers Start with Tridge Eye</div>
+  <h2 class="section-title" style="color:var(--white)">Why Enterprise Buyers<br/>Start with Tridge Eye.</h2>
+  <p class="section-sub">Tridge Eye helps buyers move beyond supplier search and into structured market investigation — giving procurement teams a native intelligence layer built specifically for food and agriculture.</p>
+  <div class="why-cols">
+    <div class="why-col">
+      <div class="why-col-num">01</div>
+      <div class="why-col-title">Native market intelligence</div>
+      <div class="why-col-body">Built on 12+ years of food and agriculture data compilation and analysis across suppliers, transactions, and market activity — designed for procurement, not general search.</div>
+    </div>
+    <div class="why-col">
+      <div class="why-col-num">02</div>
+      <div class="why-col-title">Deeper supplier visibility</div>
+      <div class="why-col-body">Explore supplier context through transaction signals, counterparties, and supply chain relationships before investing in outreach or qualification effort.</div>
+    </div>
+    <div class="why-col">
+      <div class="why-col-num">03</div>
+      <div class="why-col-title">Better sourcing decisions</div>
+      <div class="why-col-body">Use structured intelligence to decide where to research further, where to engage, and where to focus qualification and negotiation resources.</div>
+    </div>
+  </div>
+  <div class="why-bridge">
+    <p><strong>Most tools help buyers search. Tridge Eye helps buyers investigate.</strong></p>
+  </div>
+</section>
+
+<!-- 05 TRIDGE EYE TABS -->
+<section class="eye-tabs" id="eye-tabs">
+  <div class="eyebrow">What Buyers Can Explore in Tridge Eye</div>
+  <h2 class="section-title">See the Market in Structure,<br/>Not Just in Records.</h2>
+  <p class="section-sub">Tridge Eye helps buyers move from discovery to understanding by showing suppliers in market context, not as isolated records.</p>
+  <div class="eye-tab-nav" id="tabNav">
+    <button class="eye-tab-btn active" data-tab="0">Suppliers</button>
+    <button class="eye-tab-btn" data-tab="1">Transactions</button>
+    <button class="eye-tab-btn" data-tab="2">Counterparties</button>
+    <button class="eye-tab-btn" data-tab="3">Connections</button>
+    <button class="eye-tab-btn" data-tab="4">Ontologies</button>
+    <button class="eye-tab-btn" data-tab="5">Activation</button>
+  </div>
+  <div class="eye-tab-panels">
+    <div class="eye-tab-panel active" data-panel="0">
+      <div>
+        <div class="eye-panel-title">Supplier Explorer</div>
+        <div class="eye-panel-body">Explore suppliers within the structure of the market. See relevant entities, product associations, and commercial context before beginning outreach — so every targeting decision is grounded in real market position, not just a company name.</div>
+      </div>
+      <div class="eye-panel-visual"><div class="eye-panel-visual-inner"><div class="eye-panel-icon">🏢</div><div class="eye-panel-visual-label">Supplier Intelligence Workspace</div></div></div>
+    </div>
+    <div class="eye-tab-panel" data-panel="1">
+      <div>
+        <div class="eye-panel-title">Transaction Intelligence</div>
+        <div class="eye-panel-body">Review transaction activity and market signals that help buyers assess commercial relevance — not just whether a supplier exists, but how actively they participate in the category and at what scale.</div>
+      </div>
+      <div class="eye-panel-visual"><div class="eye-panel-visual-inner"><div class="eye-panel-icon">📊</div><div class="eye-panel-visual-label">Transaction Signal View</div></div></div>
+    </div>
+    <div class="eye-tab-panel" data-panel="2">
+      <div>
+        <div class="eye-panel-title">Counterparty Visibility</div>
+        <div class="eye-panel-body">Understand who suppliers interact with and how counterparty relationships shape commercial positioning. This context reveals competitive dynamics and relationship patterns before outreach begins.</div>
+      </div>
+      <div class="eye-panel-visual"><div class="eye-panel-visual-inner"><div class="eye-panel-icon">🔗</div><div class="eye-panel-visual-label">Counterparty Relationship Map</div></div></div>
+    </div>
+    <div class="eye-tab-panel" data-panel="3">
+      <div>
+        <div class="eye-panel-title">Supply Chain Connections</div>
+        <div class="eye-panel-body">See relationship patterns that reveal how suppliers sit within the broader market and supply network — providing context that isolates the most relevant and strategically positioned options.</div>
+      </div>
+      <div class="eye-panel-visual"><div class="eye-panel-visual-inner"><div class="eye-panel-icon">🌐</div><div class="eye-panel-visual-label">Supply Chain Network View</div></div></div>
+    </div>
+    <div class="eye-tab-panel" data-panel="4">
+      <div>
+        <div class="eye-panel-title">Ontology-Based Grouping</div>
+        <div class="eye-panel-body">Navigate products through structured grouping that aligns with real buyer use cases, category logic, and sourcing workflows — not generic taxonomy systems that obscure procurement-relevant distinctions.</div>
+      </div>
+      <div class="eye-panel-visual"><div class="eye-panel-visual-inner"><div class="eye-panel-icon">🗂️</div><div class="eye-panel-visual-label">Category Ontology Explorer</div></div></div>
+    </div>
+    <div class="eye-tab-panel" data-panel="5">
+      <div>
+        <div class="eye-panel-title">Research-to-Action Prioritization</div>
+        <div class="eye-panel-body">Use Tridge Eye insights to decide which suppliers to investigate further, which markets to validate on the ground, and where to deploy AI agent outreach first — turning intelligence into a structured action plan.</div>
+      </div>
+      <div class="eye-panel-visual"><div class="eye-panel-visual-inner"><div class="eye-panel-icon">⚡</div><div class="eye-panel-visual-label">Activation Prioritization Panel</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 BENEFITS -->
+<section class="benefits" id="benefits">
+  <div class="eyebrow">What Buyers Gain</div>
+  <h2 class="section-title">Six Outcomes That Move<br/>Procurement Forward.</h2>
+  <p class="section-sub">The Purchase Development Plan turns market intelligence into supplier development — a connected workflow from research to outreach, qualification, and deal progression.</p>
+  <div class="benefits-grid">
+    <div class="ben-card">
+      <div class="ben-icon">🔬</div>
+      <div class="ben-title">Research with more context</div>
+      <div class="ben-body">Start procurement research with structured supplier, transaction, and market intelligence through Tridge Eye.</div>
+    </div>
+    <div class="ben-card">
+      <div class="ben-icon">🔍</div>
+      <div class="ben-title">Discover alternatives faster</div>
+      <div class="ben-body">Identify alternative suppliers beyond incumbent networks or static directories — scored by fit and intent.</div>
+    </div>
+    <div class="ben-card">
+      <div class="ben-icon">🎯</div>
+      <div class="ben-title">Reduce blind outreach</div>
+      <div class="ben-body">Target suppliers more intelligently using market signals, relevance, and buyer-specific sourcing parameters.</div>
+    </div>
+    <div class="ben-card">
+      <div class="ben-icon">✅</div>
+      <div class="ben-title">Validate supplier fit earlier</div>
+      <div class="ben-body">Capture supplier responsiveness, commercial interest, and qualification signals before formal sourcing stages.</div>
+    </div>
+    <div class="ben-card">
+      <div class="ben-icon">📡</div>
+      <div class="ben-title">Capture live market intelligence</div>
+      <div class="ben-body">Use AI-led outreach and human intelligence to gather fresh information directly from the market.</div>
+    </div>
+    <div class="ben-card">
+      <div class="ben-icon">🤝</div>
+      <div class="ben-title">Enter negotiation prepared</div>
+      <div class="ben-body">Move into supplier discussions with stronger context, clearer priorities, and better market awareness.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 WORKFLOW -->
+<section class="workflow" id="workflow">
+  <div class="eyebrow">How the System Works</div>
+  <h2 class="section-title">From Intelligence to<br/>Qualified Supplier Conversations.</h2>
+  <p class="section-sub">The system connects research, targeting, outreach, market validation, and qualification in one buyer-side workflow.</p>
+  <div class="wf-steps">
+    <div class="wf-step">
+      <div class="wf-step-num">1</div>
+      <div>
+        <div class="wf-step-eye">Tridge Eye Foundation</div>
+        <div class="wf-step-title">Build the intelligence base</div>
+        <div class="wf-step-body">Define the product, specification, target volume, price range, origin priorities, and sourcing objective. Tridge Eye assembles the relevant market and supplier intelligence foundation — so every subsequent step is grounded in structured data, not guesswork.</div>
+        <span class="wf-step-tag">Brief Intake + Tridge Eye Assembly</span>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-step-num">2</div>
+      <div>
+        <div class="wf-step-eye">Tridge Eye Prioritization</div>
+        <div class="wf-step-title">Prioritize the supplier universe</div>
+        <div class="wf-step-body">Use supplier context, transaction signals, supply chain connections, and ontology-based grouping from Tridge Eye to narrow the market from a broad universe to a targeted, intelligence-informed shortlist of candidates worth engaging.</div>
+        <span class="wf-step-tag">Supplier Targeting + Segmentation</span>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-step-num">3</div>
+      <div>
+        <div class="wf-step-eye">AI Agent Execution</div>
+        <div class="wf-step-title">Activate AI agent communication</div>
+        <div class="wf-step-body">Launch targeted supplier outreach with structured segmentation, message cadence, response tracking, and qualification logic — AI agents handle the communication volume so your team focuses on the decisions, not the coordination.</div>
+        <span class="wf-step-tag">AI Outreach + Response Classification</span>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-step-num">4</div>
+      <div>
+        <div class="wf-step-eye">Human Intelligence Layer</div>
+        <div class="wf-step-title">Add human market intelligence</div>
+        <div class="wf-step-body">Enrich the workflow with on-the-ground research, local context, supplier-side insight, and qualitative validation that AI cannot capture alone. This layer distinguishes informed qualification from automated sorting.</div>
+        <span class="wf-step-tag">Field Research + Market Validation</span>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-step-num">5</div>
+      <div>
+        <div class="wf-step-eye">Deal Progression</div>
+        <div class="wf-step-title">Progress qualified suppliers</div>
+        <div class="wf-step-body">Move the most relevant suppliers into shortlist review, negotiation preparation, and deal progression — with full conversation history, Tridge Eye intelligence briefings, and market context preserved at every handoff.</div>
+        <span class="wf-step-tag">Qualification → Negotiation → Progression</span>
+      </div>
+    </div>
+  </div>
+  <div class="workflow-connector">Tridge Eye informs the strategy. AI agents activate the market. Human intelligence sharpens the outcome.</div>
+</section>
+
+<!-- 08 CADENCE -->
+<section class="cadence" id="cadence">
+  <div class="eyebrow">Operational Cadence</div>
+  <h2 class="section-title" style="color:var(--white)">Research to Shortlist.<br/>Days, Not Months.</h2>
+  <p class="section-sub">Representative timelines vary by category and market complexity, but the workflow is designed to move quickly from research to qualified supplier development.</p>
+  <div class="cadence-note">Representative timing. Actual cadence varies by category complexity and market scope.</div>
+  <div class="cadence-timeline">
+    <div class="cadence-step">
+      <div class="cadence-dot">Day 0</div>
+      <div class="cadence-day">Brief & Objective</div>
+      <div class="cadence-title">Buyer brief and sourcing parameters</div>
+      <div class="cadence-body">Product, specs, commercial priorities, target markets, and procurement question defined</div>
+    </div>
+    <div class="cadence-step">
+      <div class="cadence-dot">Day 1</div>
+      <div class="cadence-day">Tridge Eye Assembly</div>
+      <div class="cadence-title">Intelligence and research foundations</div>
+      <div class="cadence-body">Market, supplier, transaction, and ontology-based research assembled through Tridge Eye</div>
+    </div>
+    <div class="cadence-step">
+      <div class="cadence-dot">Day 1–2</div>
+      <div class="cadence-day">AI Outreach</div>
+      <div class="cadence-title">Supplier communication activated</div>
+      <div class="cadence-body">Segmented outreach deployed, responses captured, and signal classification begins</div>
+    </div>
+    <div class="cadence-step">
+      <div class="cadence-dot">Day 2–4</div>
+      <div class="cadence-day">Validation</div>
+      <div class="cadence-title">Follow-up and market intelligence</div>
+      <div class="cadence-body">Follow-up refined, field intelligence gathered, and human market insight added</div>
+    </div>
+    <div class="cadence-step">
+      <div class="cadence-dot">Day 3–7</div>
+      <div class="cadence-day">Shortlist</div>
+      <div class="cadence-title">Negotiation-ready handoff</div>
+      <div class="cadence-body">Suppliers prioritized for qualification, sourcing conversations, and negotiation support</div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 CAPABILITIES -->
+<section class="caps" id="caps">
+  <div class="eyebrow">What Is Included</div>
+  <h2 class="section-title">Not Just a Dashboard.<br/>An Operating Model.</h2>
+  <p class="section-sub">Buyers do not just receive a dashboard. The Purchase Development Plan combines a software-enabled platform with an operated intelligence and execution service.</p>
+  <div class="caps-grid">
+    <div class="cap-col">
+      <div class="cap-head">
+        <div class="cap-head-title">Software Capabilities</div>
+        <span class="cap-head-badge">Platform</span>
+      </div>
+      <div class="cap-items">
+        <div class="cap-item"><div class="cap-dot"></div>Procurement brief intake and parameter setting</div>
+        <div class="cap-item"><div class="cap-dot"></div>Tridge Eye intelligence workspace</div>
+        <div class="cap-item"><div class="cap-dot"></div>Supplier discovery and segmentation</div>
+        <div class="cap-item"><div class="cap-dot"></div>Outreach workflow management</div>
+        <div class="cap-item"><div class="cap-dot"></div>AI response classification and tracking</div>
+        <div class="cap-item"><div class="cap-dot"></div>Shortlist and status tracking</div>
+        <div class="cap-item"><div class="cap-dot"></div>Internal notes and collaboration</div>
+        <div class="cap-item"><div class="cap-dot"></div>Deal progression visibility</div>
+      </div>
+    </div>
+    <div class="cap-col">
+      <div class="cap-head">
+        <div class="cap-head-title">Operated Service Capabilities</div>
+        <span class="cap-head-badge">Managed</span>
+      </div>
+      <div class="cap-items">
+        <div class="cap-item"><div class="cap-dot"></div>Market research setup and structuring</div>
+        <div class="cap-item"><div class="cap-dot"></div>Supplier targeting strategy</div>
+        <div class="cap-item"><div class="cap-dot"></div>AI communication orchestration</div>
+        <div class="cap-item"><div class="cap-dot"></div>Campaign monitoring and follow-up</div>
+        <div class="cap-item"><div class="cap-dot"></div>Human intelligence enrichment</div>
+        <div class="cap-item"><div class="cap-dot"></div>Supplier-side qualification support</div>
+        <div class="cap-item"><div class="cap-dot"></div>Negotiation preparation support</div>
+        <div class="cap-item"><div class="cap-dot"></div>Workflow handoff to sourcing teams</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 USE CASES -->
+<section class="usecases" id="usecases">
+  <div class="eyebrow">Where Buyers Use This</div>
+  <h2 class="section-title">Built for Every Stage<br/>of Procurement Development.</h2>
+  <p class="section-sub">The Purchase Development Plan is most valuable when buyers need to move faster, go deeper, or break beyond existing supplier relationships.</p>
+  <div class="uc-grid">
+    <div class="uc-card">
+      <div class="uc-icon">🔄</div>
+      <div class="uc-title">Alternative supplier discovery</div>
+      <div class="uc-body">Find new supply options when incumbent suppliers are limited, concentrated, or no longer competitive.</div>
+    </div>
+    <div class="uc-card">
+      <div class="uc-icon">🌏</div>
+      <div class="uc-title">New origin exploration</div>
+      <div class="uc-body">Assess suppliers and supply structures in new markets before committing sourcing resources.</div>
+    </div>
+    <div class="uc-card">
+      <div class="uc-icon">⚡</div>
+      <div class="uc-title">Supply chain disruption response</div>
+      <div class="uc-body">Move quickly when availability, pricing, or continuity risks affect existing procurement plans.</div>
+    </div>
+    <div class="uc-card">
+      <div class="uc-icon">💰</div>
+      <div class="uc-title">Cost and pricing exploration</div>
+      <div class="uc-body">Combine market intelligence with live supplier feedback to understand real price positioning.</div>
+    </div>
+    <div class="uc-card">
+      <div class="uc-icon">🗺️</div>
+      <div class="uc-title">Fragmented market sourcing</div>
+      <div class="uc-body">Cover broad supplier universes where manual research and communication would be too slow or impractical.</div>
+    </div>
+    <div class="uc-card">
+      <div class="uc-icon">📋</div>
+      <div class="uc-title">Pre-negotiation qualification</div>
+      <div class="uc-body">Filter potential suppliers before deeper sourcing, commercial, or legal engagement begins.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 DELIVERABLES -->
+<section class="deliv" id="deliverables">
+  <div class="eyebrow">What Buyers Receive</div>
+  <h2 class="section-title" style="color:var(--white)">Real Outputs. Not Just Reports.</h2>
+  <p class="section-sub">The output is not just research. Buyers receive structured intelligence, qualified supplier progress, and a visible workflow — from brief to negotiation-ready handoff.</p>
+  <div class="deliv-grid">
+    <div class="deliv-card">
+      <div class="deliv-num">01</div>
+      <div class="deliv-icon">📄</div>
+      <div class="deliv-title">Market and sourcing brief</div>
+      <div class="deliv-body">Structured definition of the procurement objective, constraints, and targeting priorities</div>
+    </div>
+    <div class="deliv-card">
+      <div class="deliv-num">02</div>
+      <div class="deliv-icon">📋</div>
+      <div class="deliv-title">Supplier longlist</div>
+      <div class="deliv-body">Broad supplier universe shaped by Tridge Eye intelligence and category logic</div>
+    </div>
+    <div class="deliv-card">
+      <div class="deliv-num">03</div>
+      <div class="deliv-icon">⭐</div>
+      <div class="deliv-title">Prioritized shortlist</div>
+      <div class="deliv-body">Focused suppliers ranked by relevance, context, and engagement potential</div>
+    </div>
+    <div class="deliv-card">
+      <div class="deliv-num">04</div>
+      <div class="deliv-icon">💬</div>
+      <div class="deliv-title">Outreach response summary</div>
+      <div class="deliv-body">View of supplier responses, engagement signals, and follow-up status</div>
+    </div>
+    <div class="deliv-card">
+      <div class="deliv-num">05</div>
+      <div class="deliv-icon">📊</div>
+      <div class="deliv-title">Transaction and market context</div>
+      <div class="deliv-body">Intelligence explaining supplier position, commercial pattern, and market relevance</div>
+    </div>
+    <div class="deliv-card">
+      <div class="deliv-num">06</div>
+      <div class="deliv-icon">🔍</div>
+      <div class="deliv-title">Qualification notes</div>
+      <div class="deliv-body">Structured observations from AI-led communication and human market validation</div>
+    </div>
+    <div class="deliv-card">
+      <div class="deliv-num">07</div>
+      <div class="deliv-icon">🤝</div>
+      <div class="deliv-title">Negotiation-ready handoff</div>
+      <div class="deliv-body">Shortlist and intelligence package prepared for sourcing discussions and commercial progression</div>
+    </div>
+    <div class="deliv-card">
+      <div class="deliv-num">08</div>
+      <div class="deliv-icon">🖥️</div>
+      <div class="deliv-title">Tracked workflow in software</div>
+      <div class="deliv-body">Visible workspace showing research, communication, qualification, and progression status</div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 COMPARISON -->
+<section class="compare" id="compare">
+  <div class="eyebrow">Why This Is Different</div>
+  <h2 class="section-title">Beyond Search. Beyond Data.<br/>Beyond One-Off Sourcing.</h2>
+  <p class="section-sub">Most platforms help buyers search. This system helps buyers see the market in structure — and act on it with intelligence, AI, and human validation.</p>
+  <div class="compare-cards">
+    <div class="compare-card">
+      <div class="compare-card-above">Shows who exists.<br/>Nothing more.</div>
+      <div class="compare-divider"></div>
+      <div class="compare-title">Generic directory</div>
+      <div class="compare-body">Supplier records without transaction context, commercial fit, or engagement potential.</div>
+    </div>
+    <div class="compare-card">
+      <div class="compare-card-above">Shows what happened.<br/>Not what to do next.</div>
+      <div class="compare-divider"></div>
+      <div class="compare-title">Research report</div>
+      <div class="compare-body">Historical analysis without a path from insight to supplier conversation.</div>
+    </div>
+    <div class="compare-card">
+      <div class="compare-card-above">Helps manage process.<br/>Not the work itself.</div>
+      <div class="compare-divider"></div>
+      <div class="compare-title">Basic workflow software</div>
+      <div class="compare-body">Structure for coordination without intelligence, outreach, or operated execution.</div>
+    </div>
+    <div class="compare-card highlight">
+      <div class="compare-card-above">Connects intelligence,<br/>outreach, and qualification.</div>
+      <div class="compare-divider"></div>
+      <div class="compare-title">Purchase Development Plan</div>
+      <div class="compare-body">Helps buyers understand the market structure, prioritize suppliers, activate outreach, and progress toward qualification and negotiation.</div>
+    </div>
+  </div>
+  <div class="compare-bridge">
+    <p>Most platforms help buyers search. This system helps buyers see the market in structure and act on it.</p>
+  </div>
+</section>
+
+<!-- 13 FAQ -->
+<section class="faq" id="faq">
+  <div class="eyebrow">Frequently Asked Questions</div>
+  <h2 class="section-title">Before You Start.</h2>
+  <div class="faq-layout">
+    <div class="faq-list">
+      <div class="faq-item open">
+        <div class="faq-q">Is this a software product or a managed service?</div>
+        <div class="faq-a"><p>It is a software-enabled operating model. Buyers use a structured platform workflow, while AI agents and operated services help accelerate supplier development, intelligence capture, and qualification.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What does Tridge Eye add beyond supplier search?</div>
+        <div class="faq-a"><p>Tridge Eye adds structured market intelligence. Buyers can explore supplier context, transaction patterns, counterparties, supply chain relationships, and ontology-based product grouping before they begin outreach — turning search into investigation.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Who is this designed for?</div>
+        <div class="faq-a"><p>This program is designed for enterprise buyers in food and agriculture — especially sourcing, procurement, category, and supply chain teams starting market research or alternative supplier development.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How are suppliers engaged?</div>
+        <div class="faq-a"><p>Relevant suppliers are engaged through structured outreach workflows supported by AI agents, tracked in software, and enriched with human market intelligence where deeper validation is needed.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What happens after suppliers respond?</div>
+        <div class="faq-a"><p>Responses are captured, structured, and reviewed for commercial relevance and qualification signals. The most relevant suppliers then move into shortlist review and negotiation preparation.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Does this replace our internal sourcing team?</div>
+        <div class="faq-a"><p>No. It is designed to strengthen internal procurement teams by improving research quality, speeding supplier development, and making outreach and qualification more structured — your team stays in control of decisions.</p></div>
+      </div>
+    </div>
+    <div>
+      <div class="faq-aside">
+        <div class="faq-aside-eyebrow">Ready to start?</div>
+        <div class="faq-aside-title">Start your purchase development workflow</div>
+        <div class="faq-aside-body">Tell us what you need to source and where you need market visibility. We will help structure the research, targeting, and engagement approach.</div>
+        <a class="faq-aside-link" href="#cta">Start Purchase Development →</a>
+        <a class="faq-aside-link" href="/cdn-cgi/l/email-protection#bdcec8cdcdd1c490ded5dcd4d390ced2d1c8c9d4d2d39b9e8b8986c9cfd4d9dad893ded2d0">Talk to our team →</a>
+        <div class="faq-related">
+          <div class="faq-related-label">Related Buyer Services</div>
+          <a href="#">→ Market Intelligence</a>
+          <a href="#">→ Alternative Supplier Discovery</a>
+          <a href="#">→ AI Supplier Outreach</a>
+          <a href="#">→ Supplier Qualification</a>
+          <a href="#">→ Negotiation Support</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 14 CTA FORM -->
+<section class="browse" id="browse-market">
+  <div class="eyebrow">Browse by Market</div>
+  <h2 class="section-title">Tridge Eye Applied to<br/>Your Specific Market.</h2>
+  <p class="section-sub">See how this module applies to specific commodity markets. Greyed-out cards are in development.</p>
+  <div class="browse-grid">
+    <div class="browse-card tbu">
+      <span class="browse-tbu-badge">TBU</span>
+      <div class="browse-card-industry" style="color:#C07830">Cocoa</div>
+      <div class="browse-card-title">Cocoa Purchase Development</div>
+      <div class="browse-card-body">Build a structured cocoa supplier development program backed by market intelligence.</div>
+      <div class="browse-card-link">TBU</div>
+    </div>
+    <div class="browse-card tbu">
+      <span class="browse-tbu-badge">TBU</span>
+      <div class="browse-card-industry" style="color:#0EDBA5">Soybean</div>
+      <div class="browse-card-title">Soybean Purchase Development</div>
+      <div class="browse-card-body">Develop verified soybean supply relationships beyond the major trading houses.</div>
+      <div class="browse-card-link">TBU</div>
+    </div>
+    <div class="browse-card tbu">
+      <span class="browse-tbu-badge">TBU</span>
+      <div class="browse-card-industry" style="color:#FFD12D">Palm Oil</div>
+      <div class="browse-card-title">Palm Oil Purchase Development</div>
+      <div class="browse-card-body">Structure palm oil supplier development with origin-level intelligence.</div>
+      <div class="browse-card-link">TBU</div>
+    </div>
+  </div>
+</section>
+
+<!-- 15 FOOTER RIBBON -->
+<section class="cta-section" id="cta">
+  <div class="cta-bg"></div>
+  <div class="cta-grid-bg"></div>
+  <div class="cta-inner">
+    <div class="cta-left">
+      <div class="eyebrow">Start Purchase Development</div>
+      <h2 class="section-title">Tell Us What You Need to Source.</h2>
+      <p class="cta-left-body">Tell us what you need to source, where you need better market visibility, and what kind of supplier development support your team needs. We will help structure the research, targeting, and engagement approach.</p>
+      <div class="cta-points">
+        <div class="cta-pt"><div class="cta-pt-dot"></div>Research the market with Tridge Eye intelligence</div>
+        <div class="cta-pt"><div class="cta-pt-dot"></div>Activate the supplier network through AI agents</div>
+        <div class="cta-pt"><div class="cta-pt-dot"></div>Develop better suppliers with structure and speed</div>
+      </div>
+      <div class="cta-support">Built for enterprise food and agriculture buyers researching new supply options, market entry, and alternative supplier development.</div>
+    </div>
+    <div>
+      <div class="cta-form">
+        <div class="form-row">
+          <input class="fi" type="email" placeholder="Work Email" required/>
+          <input class="fi" type="text" placeholder="Company Name" required/>
+        </div>
+        <input class="fi" type="text" placeholder="Product / Category" required/>
+        <input class="fi" type="text" placeholder="Key Specifications (optional)"/>
+        <div class="form-row">
+          <input class="fi" type="text" placeholder="Target Volume"/>
+          <input class="fi" type="text" placeholder="Target Price Range"/>
+        </div>
+        <input class="fi" type="text" placeholder="Target Markets / Origins"/>
+        <select class="fs">
+          <option value="" disabled selected>Timeline</option>
+          <option>Immediate (within 1 month)</option>
+          <option>Short-term (1–3 months)</option>
+          <option>Medium-term (3–6 months)</option>
+          <option>Planning phase (6+ months)</option>
+        </select>
+        <textarea class="ft" placeholder="Current sourcing challenge (optional)"></textarea>
+        <button class="fb" onclick="handleForm(event)">Start Purchase Development →</button>
+        <div class="form-note">By submitting, you agree to be contacted about buyer-side sourcing and intelligence services. A Tridge solutions team member will respond within 2 business days.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<div class="ribbon">
+  <div class="ribbon-text">Start with intelligence native to food and agriculture.</div>
+  <a href="#cta" class="ribbon-btn">Start Purchase Development</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a class="footer-wordmark" href="#">TRIDGE</a>
+  <div class="footer-links">
+    <a href="https://www.tridge.com/about/company-introduction" target="_blank">About Tridge</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Use</a>
+    <a href="https://www.tridge.com" target="_blank">tridge.com</a>
+    <a href="/cdn-cgi/l/email-protection#493a3c39392530642a21282027643a26253c3d2026276f6a7f7d723d3b202d2e2c672a2624">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 Tridge. All rights reserved.</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+// Tridge Eye tabs
+document.querySelectorAll('.eye-tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const idx = btn.dataset.tab;
+    document.querySelectorAll('.eye-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.eye-tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelector(`.eye-tab-panel[data-panel="${idx}"]`).classList.add('active');
+  });
+});
+
+// Form submit
+function handleForm(e) {
+  e.preventDefault();
+  const btn = e.target;
+  btn.textContent = '✓ Brief Received — We\'ll be in touch within 2 business days';
+  btn.style.background = '#0EDBA5';
+  btn.style.color = '#0A0A18';
+  btn.disabled = true;
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.targe

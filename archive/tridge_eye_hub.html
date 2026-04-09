@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tridge Eye &#8212; The Intelligence Layer for Global Agri-Food Trade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#171CFD;--black:#0A0A18;--white:#FFFFFF;--purple:#7E43CD;--bluepurple:#5C42E5;--cyan:#34C6EE;--green:#0EDBA5;--yellow:#FFD12D;--bg:#F5F5FA;--tint:#EAEAFF;--gray:#6B6B8A;--line:#D8D8F0}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--black);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;padding-top:92px}
+/* ── TWO-LAYER GNB ── */
+.gnb-wrap{position:fixed;top:0;left:0;right:0;z-index:200}
+.gnb-layer1{height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(10,10,24,.98);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07)}
+.gnb-layer2{height:36px;display:flex;align-items:center;padding:0 5%;background:rgba(6,6,18,.95);border-bottom:1px solid rgba(255,255,255,.05);overflow-x:auto;scrollbar-width:none}
+.gnb-layer2::-webkit-scrollbar{display:none}
+.gnb-left{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.gnb-wordmark{font-size:15px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:-.01em}
+.gnb-sep{color:rgba(255,255,255,.2);font-size:12px}
+.gnb-product{font-size:11px;font-weight:400;color:rgba(255,255,255,.4);letter-spacing:.02em}
+.gnb-modules{display:flex;gap:2px;list-style:none;flex:1;justify-content:center}
+.gnb-modules a{color:rgba(255,255,255,.45);text-decoration:none;font-size:12px;font-weight:400;padding:5px 10px;border-radius:3px;transition:color .15s,background .15s;white-space:nowrap}
+.gnb-modules a:hover{color:var(--white);background:rgba(255,255,255,.07)}
+.gnb-modules a.active{color:var(--white);background:rgba(255,255,255,.1);font-weight:500}
+.gnb-cta{background:var(--blue);color:var(--white);font-size:11px;font-weight:600;letter-spacing:.06em;padding:7px 16px;text-decoration:none;text-transform:uppercase;transition:opacity .2s;white-space:nowrap;flex-shrink:0}
+.gnb-cta:hover{opacity:.85}
+.gnb-sub{display:flex;gap:0;list-style:none;white-space:nowrap}
+.gnb-sub a{color:rgba(255,255,255,.38);text-decoration:none;font-size:11px;font-weight:400;padding:0 14px;height:36px;display:flex;align-items:center;transition:color .15s,background .15s;border-right:1px solid rgba(255,255,255,.05)}
+.gnb-sub a:hover{color:rgba(255,255,255,.75);background:rgba(255,255,255,.04)}
+.gnb-sub a.sub-active{color:rgba(255,255,255,.9);font-weight:500}
+
+section{padding:80px 5%}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+.section-title{font-size:clamp(26px,3vw,40px);font-weight:700;letter-spacing:-.03em;line-height:1.08;margin-bottom:14px}
+.section-sub{font-size:15px;font-weight:300;color:var(--gray);line-height:1.75;max-width:580px}
+.btn-primary{display:inline-block;background:var(--blue);color:var(--white);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:13px 28px;text-decoration:none;transition:opacity .2s}
+.btn-primary:hover{opacity:.85}
+.btn-ghost{display:inline-block;border:1.5px solid rgba(255,255,255,.25);color:var(--white);font-size:13px;font-weight:500;padding:12px 24px;text-decoration:none;transition:border-color .2s}
+.btn-ghost:hover{border-color:var(--white)}
+.hero{min-height:85vh;background:var(--black);display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:center;padding:80px 5% 60px;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(23,28,253,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(23,28,253,.06) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
+.hero-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(23,28,253,.2) 0%,transparent 68%);top:-200px;right:-100px;pointer-events:none}
+.hero-inner{position:relative;z-index:2}
+.hero-dot{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:18px}
+.hero-dot::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.hero h1{font-size:clamp(42px,5.5vw,72px);font-weight:800;letter-spacing:-.04em;line-height:1.0;color:var(--white);margin-bottom:18px}
+.hero h1 em{font-style:normal;color:var(--blue)}
+.hero-desc{font-size:17px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.75;max-width:520px;margin-bottom:28px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
+.hero-stats{display:flex;gap:32px;flex-wrap:wrap;padding-top:24px;border-top:1px solid rgba(255,255,255,.07)}
+.hero-stat-n{font-size:28px;font-weight:800;color:var(--white);letter-spacing:-.03em}
+.hero-stat-n em{font-style:normal;color:var(--blue)}
+.hero-stat-l{font-size:10px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:2px}
+.navigate{background:var(--bg)}
+.navigate .eyebrow{color:var(--blue)}
+.nav2-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.nav2-persona{background:var(--white);border:1.5px solid var(--line);padding:28px;position:relative;overflow:hidden}
+.nav2-persona::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.nav2-persona:nth-child(1)::before{background:var(--blue)}
+.nav2-persona:nth-child(2)::before{background:var(--green)}
+.nav2-persona:nth-child(3)::before{background:var(--yellow)}
+.nav2-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);margin-bottom:12px}
+.nav2-title{font-size:17px;font-weight:700;color:var(--black);letter-spacing:-.02em;margin-bottom:10px;line-height:1.25}
+.nav2-body{font-size:13px;font-weight:300;color:var(--gray);line-height:1.65}
+.nav2-links{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px}
+.nav2-panel{display:flex;flex-direction:column;gap:8px}
+.nav2-panel-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(107,107,138,.5);padding-bottom:8px;border-bottom:1px solid var(--line);margin-bottom:2px}
+.nav2-link{display:flex;align-items:center;gap:8px;padding:9px 12px;background:var(--white);border:1px solid var(--line);text-decoration:none;color:var(--black);font-size:13px;font-weight:500;transition:background .15s,border-color .15s,transform .15s}
+.nav2-link:hover{background:var(--tint);border-color:var(--blue);transform:translateX(3px)}
+.nav2-link-arrow{color:var(--blue);font-size:13px;font-weight:700;flex-shrink:0}
+.stack{background:var(--black);padding:80px 5%}
+.stack .eyebrow{color:var(--cyan)}
+.stack-layers{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.2);margin-top:44px}
+.stack-layer{background:#0D0D1F;padding:32px 24px;transition:background .2s}
+.stack-layer:hover{background:rgba(255,255,255,.05)}
+.stack-layer-num{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);background:rgba(255,255,255,.08);display:inline-block;padding:3px 9px;margin-bottom:10px}
+.stack-layer-icon{font-size:20px;margin-bottom:10px}
+.stack-layer-title{font-size:15px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
+.stack-layer:nth-child(1) .stack-layer-title{color:#6B8FFF}
+.stack-layer:nth-child(2) .stack-layer-title{color:var(--green)}
+.stack-layer:nth-child(3) .stack-layer-title{color:var(--cyan)}
+.stack-layer:nth-child(4) .stack-layer-title{color:var(--yellow)}
+.stack-layer-body{font-size:12.5px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.65;margin-bottom:14px}
+.stack-layer-link{font-size:11px;font-weight:600;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s}
+.stack-layer-link:hover{color:var(--white)}
+.stack-arrow{margin-top:2px;display:flex;align-items:center;justify-content:center;gap:0;padding:18px 20px;background:rgba(23,28,253,.15);border:1px solid rgba(23,28,253,.3)}
+.stack-arrow-step{text-align:center;flex:1}
+.stack-arrow-label{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.stack-arrow-sep{color:var(--blue);font-size:20px;padding:0 6px;font-weight:700}
+.explore{background:var(--bg)}
+.atomic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+.atomic-card{background:var(--white);border:1px solid var(--line);padding:22px;text-decoration:none;display:block;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden}
+.atomic-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(23,28,253,.08);border-color:var(--blue)}
+.atomic-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--blue)}
+.atomic-card-icon{font-size:18px;margin-bottom:8px}
+.atomic-card-title{font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px}
+.atomic-card-body{font-size:12.5px;font-weight:300;color:var(--gray);line-height:1.6;margin-bottom:10px}
+.atomic-card-link{font-size:11px;font-weight:600;color:var(--blue)}
+.formula{background:var(--white)}
+.formula-inner{display:grid;grid-template-columns:1fr 1fr;gap:52px;margin-top:44px;align-items:start}
+.formula-count{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.formula-count-item{background:var(--white);border:1px solid var(--line);padding:20px;border-top:3px solid var(--blue)}
+.formula-count-item:nth-child(2){border-top-color:var(--green)}
+.formula-count-item:nth-child(3){border-top-color:var(--cyan)}
+.formula-count-tag{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.formula-count-item:nth-child(2) .formula-count-tag{color:var(--green)}
+.formula-count-item:nth-child(3) .formula-count-tag{color:var(--bluepurple)}
+.formula-count-examples{font-size:12px;color:var(--gray);line-height:1.7}
+.formula-examples{display:flex;flex-direction:column;gap:12px}
+.formula-example{background:var(--bg);border:1px solid var(--line);border-left:3px solid var(--blue);padding:14px 16px;font-size:13px;font-weight:300;color:var(--gray);line-height:1.6}
+.formula-example strong{color:var(--black);font-weight:600}
+.hub-browse{background:var(--bg)}
+.hub-browse .eyebrow{color:var(--blue)}
+.finder{margin-top:36px}
+.finder-section-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:10px;margin-top:24px}
+.finder-section-label:first-child{margin-top:0}
+.finder-btns{display:flex;flex-wrap:wrap;gap:10px}
+.finder-btn{font-size:13px;font-weight:500;padding:9px 18px;border:1.5px solid var(--line);background:var(--white);color:var(--gray);cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:7px;user-select:none}
+.finder-btn:hover:not(.tbu){border-color:var(--blue);color:var(--black)}
+.finder-btn.selected{background:var(--blue);color:var(--white);border-color:var(--blue);font-weight:600}
+.finder-btn.tbu{opacity:.32;cursor:not-allowed;border-style:dashed;pointer-events:none}
+.finder-tbu-label{font-size:9px;font-weight:700;letter-spacing:.08em;background:var(--bg);border:1px solid var(--line);color:var(--gray);padding:1px 5px;margin-left:4px}
+.finder-results{margin-top:28px}
+.finder-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.finder-card{border:1px solid var(--line);padding:22px;text-decoration:none;display:block;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s,border-color .2s}
+.finder-card:not(.tbu):hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.08);border-color:var(--blue)}
+.finder-card.tbu{opacity:.38;cursor:default;pointer-events:none}
+.finder-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--blue)}
+.finder-card-market{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.finder-card-title{font-size:15px;font-weight:700;color:var(--black);letter-spacing:-.02em;margin-bottom:8px;line-height:1.25}
+.finder-card-body{font-size:12.5px;font-weight:300;color:var(--gray);line-height:1.6;margin-bottom:12px}
+.finder-card-action{font-size:12px;font-weight:600;color:var(--blue)}
+.finder-card.tbu .finder-card-action{color:var(--gray)}
+.tbu-badge{position:absolute;top:10px;right:10px;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--bg);border:1px solid var(--line);color:var(--gray);padding:2px 7px}
+.finder-clear{margin-top:14px;font-size:12px;font-weight:500;color:var(--gray);cursor:pointer;display:none;align-items:center;gap:5px;text-decoration:underline;text-underline-offset:3px}
+.finder-clear:hover{color:var(--black)}
+.hub-cta{background:var(--black);text-align:center;position:relative;overflow:hidden;padding:80px 5%}
+.hub-cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(23,28,253,.2) 0%,transparent 70%);pointer-events:none}
+.hub-cta-inner{position:relative;z-index:2}
+.hub-cta .section-title{color:var(--white);max-width:540px;margin:0 auto 14px}
+.hub-cta .section-sub{color:rgba(255,255,255,.4);margin:0 auto 32px;text-align:center}
+.hub-cta-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+footer{background:var(--black);border-top:1px solid rgba(255,255,255,.05);padding:28px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.footer-wordmark{font-size:15px;font-weight:700;color:var(--white);text-decoration:none}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap}
+.footer-links a{font-size:11px;color:rgba(255,255,255,.28);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,.65)}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.18)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero-inner>*{animation:fadeUp .6s ease both}
+.hero-inner>*:nth-child(1){animation-delay:.1s}.hero-inner>*:nth-child(2){animation-delay:.2s}.hero-inner>*:nth-child(3){animation-delay:.3s}.hero-inner>*:nth-child(4){animation-delay:.42s}.hero-inner>*:nth-child(5){animation-delay:.52s}
+@media(max-width:960px){.nav2-grid,.nav2-links,.stack-layers{grid-template-columns:1fr 1fr}.atomic-grid,.finder-grid{grid-template-columns:1fr 1fr}.formula-inner{grid-template-columns:1fr}.gnb-modules{display:none}}
+@media(max-width:600px){.nav2-grid,.nav2-links,.atomic-grid,.finder-grid,.formula-count,.stack-layers{grid-template-columns:1fr}section{padding:60px 5%}}
+
+/* HERO MOCK DASHBOARD */
+.hero-mock{position:relative;z-index:2}
+.mock-wrap{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);overflow:hidden}
+.mock-header{background:var(--blue);padding:10px 16px;display:flex;align-items:center;justify-content:space-between}
+.mock-header-title{font-size:11px;font-weight:600;color:var(--white);letter-spacing:.06em}
+.mock-header-dots{display:flex;gap:4px}
+.mock-header-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3)}
+.mock-tabs{display:flex;border-bottom:1px solid rgba(255,255,255,.07)}
+.mock-tab{font-size:10px;font-weight:500;padding:8px 14px;color:rgba(255,255,255,.35);cursor:default;letter-spacing:.04em}
+.mock-tab.active{color:var(--white);border-bottom:2px solid var(--blue);margin-bottom:-1px}
+.mock-block{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.06)}
+.mock-block:last-child{border-bottom:none}
+.mock-block-label{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:10px}
+.mock-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
+.mock-row:last-child{margin-bottom:0}
+.mock-item-name{font-size:12px;font-weight:300;color:rgba(255,255,255,.5)}
+.mock-item-val{font-size:13px;font-weight:700;color:var(--white)}
+.mock-badge{font-size:10px;font-weight:500;padding:2px 7px}
+.mock-badge.up{background:rgba(14,219,165,.15);color:var(--green)}
+.mock-badge.warn{background:rgba(255,80,80,.15);color:#FF8080}
+.mock-badge.blue{background:rgba(23,28,253,.25);color:#8899FF}
+.mock-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.mock-bar-row:last-child{margin-bottom:0}
+.mock-bar-label{font-size:10px;color:rgba(255,255,255,.4);width:80px;flex-shrink:0}
+.mock-bar-bg{flex:1;height:8px;background:rgba(255,255,255,.06)}
+.mock-bar-fill{height:100%}
+.mock-bar-val{font-size:10px;font-weight:600;color:var(--white);width:36px;text-align:right;flex-shrink:0}
+.mock-pulse{display:inline-flex;align-items:center;gap:5px;font-size:10px;color:var(--green);margin-top:8px}
+.mock-pulse::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--green);animation:blink 2s infinite}
+@media(max-width:960px){.hero{grid-template-columns:1fr}.hero-mock{display:none}}
+
+</style>
+</head>
+<body>
+
+<div class="gnb-wrap">
+  <div class="gnb-layer1">
+    <div class="gnb-left">
+      <a class="gnb-wordmark" href="#">TRIDGE</a>
+      <span class="gnb-sep">/</span>
+      <span class="gnb-product">Tridge Eye</span>
+    </div>
+    <ul class="gnb-modules"><li><a href="tridge_eye_market_intelligence.html">Market Intelligence</a></li><li><a href="tridge_eye_supplier_discovery.html">Supplier Discovery</a></li><li><a href="tridge_eye_price_benchmarking.html">Price Benchmarking</a></li><li><a href="tridge_purchase_development_v2.html">Purchase Development</a></li><li><a href="tridge_export_solution.html">Export Solution</a></li><li><a href="tridge_trade_execution.html">Trade Execution</a></li></ul>
+    <a href="#hub-cta" class="gnb-cta">Request Demo</a>
+  </div>
+  <div class="gnb-layer2">
+    <ul class="gnb-sub"><li><a href="#navigate">Who It's For</a></li><li><a href="#stack">Value Stack</a></li><li><a href="#explore">Explore</a></li><li><a href="#formula">Scale</a></li><li><a href="#browse-market">By Market</a></li></ul>
+  </div>
+</div>
+
+<section class="hero" id="top">
+  <div class="hero-grid"></div><div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-dot">Tridge Eye &#8212; Intelligence Platform</div>
+    <h1>Research Stops Short.<br/><em>Execution</em> Is the Gap.</h1>
+    <p class="hero-desc">Tridge Eye combines 12+ years of verified market data, AI-powered outreach, and human intelligence to move buyers and sellers from research to qualified trade outcomes.</p>
+    <div class="hero-btns">
+      <a href="#navigate" class="btn-primary">Find Your Use Case &#8594;</a>
+      <a href="#stack" class="btn-ghost">See the Value Stack &#8595;</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hero-stat-n">350<em>K+</em></div><div class="hero-stat-l">Verified Companies</div></div>
+      <div><div class="hero-stat-n">6,500<em>+</em></div><div class="hero-stat-l">Product Categories</div></div>
+      <div><div class="hero-stat-n">140<em>+</em></div><div class="hero-stat-l">Countries</div></div>
+      <div><div class="hero-stat-n">12<em>+</em></div><div class="hero-stat-l">Years of Data</div></div>
+    </div>
+  </div>
+
+  <!-- Hero right: Intelligence Dashboard Mock -->
+  <div class="hero-mock">
+    <div class="mock-wrap">
+      <div class="mock-header">
+        <span class="mock-header-title">TRIDGE EYE &#8212; INTELLIGENCE PLATFORM</span>
+        <div class="mock-header-dots"><div class="mock-header-dot"></div><div class="mock-header-dot"></div><div class="mock-header-dot"></div></div>
+      </div>
+      <div class="mock-tabs">
+        <div class="mock-tab active">Price Intel</div>
+        <div class="mock-tab">Suppliers</div>
+        <div class="mock-tab">Trade Flows</div>
+        <div class="mock-tab">Outreach</div>
+      </div>
+      <div class="mock-block">
+        <div class="mock-block-label">Live Price Benchmarks &#8212; CIF Hamburg</div>
+        <div class="mock-row"><span class="mock-item-name">Cocoa Grade I (Ivory Coast)</span><span class="mock-item-val">$3,240/MT</span><span class="mock-badge up">+1.8%</span></div>
+        <div class="mock-row"><span class="mock-item-name">Soybean Non-GMO (FOB Santos)</span><span class="mock-item-val">$520/MT</span><span class="mock-badge up">+0.9%</span></div>
+        <div class="mock-row"><span class="mock-item-name">RBD Palm Olein (CIF Rotterdam)</span><span class="mock-item-val">$865/MT</span><span class="mock-badge warn">&#9888; 12% above avg</span></div>
+      </div>
+      <div class="mock-block">
+        <div class="mock-block-label">Supply Share by Origin &#8212; Cocoa</div>
+        <div class="mock-bar-row"><span class="mock-bar-label">Ivory Coast</span><div class="mock-bar-bg"><div class="mock-bar-fill" style="width:42%;background:var(--blue)"></div></div><span class="mock-bar-val">42%</span></div>
+        <div class="mock-bar-row"><span class="mock-bar-label">Ghana</span><div class="mock-bar-bg"><div class="mock-bar-fill" style="width:18%;background:#C07830"></div></div><span class="mock-bar-val">18%</span></div>
+        <div class="mock-bar-row"><span class="mock-bar-label">Indonesia</span><div class="mock-bar-bg"><div class="mock-bar-fill" style="width:14%;background:var(--cyan)"></div></div><span class="mock-bar-val">14%</span></div>
+      </div>
+      <div class="mock-block">
+        <div class="mock-block-label">AI Outreach Status &#8212; Active Campaigns</div>
+        <div class="mock-row"><span class="mock-item-name">Buyer outreach sent</span><span class="mock-item-val">847</span><span class="mock-badge blue">&#8594; 23 responses</span></div>
+        <div class="mock-row"><span class="mock-item-name">Suppliers shortlisted</span><span class="mock-item-val">12</span><span class="mock-badge up">Score 88+</span></div>
+        <div class="mock-pulse">Live &#8212; updated continuously</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="navigate" id="navigate">
+  <div class="eyebrow">Find Your Path</div>
+  <h2 class="section-title">What Are You Trying to Do?</h2>
+  <p class="section-sub">Select the role that best describes you &#8212; and see the pages most relevant to your situation.</p>
+  <div class="nav2-grid">
+    <div class="nav2-persona">
+      <div class="nav2-label">For Buyers &amp; Procurement Teams</div>
+      <div class="nav2-title">I need to find and develop better suppliers.</div>
+      <div class="nav2-body">You start with procurement research but struggle to turn intelligence into qualified supplier conversations.</div>
+    </div>
+    <div class="nav2-persona">
+      <div class="nav2-label">For Exporters &amp; Sellers</div>
+      <div class="nav2-title">I need to reach more buyers and close deals faster.</div>
+      <div class="nav2-body">You have a product but need qualified international buyers at scale &#8212; without hiring a sales team.</div>
+    </div>
+    <div class="nav2-persona">
+      <div class="nav2-label">For Operators &amp; Traders</div>
+      <div class="nav2-title">I have deals &#8212; I need to execute without adding headcount.</div>
+      <div class="nav2-body">You generate trade opportunities but the operational burden creates a bottleneck. AI agents absorb that load.</div>
+    </div>
+  </div>
+  <div class="nav2-links">
+    <div class="nav2-panel">
+      <div class="nav2-panel-label">Relevant pages &#8212; Buyers</div>
+      <a class="nav2-link" href="tridge_purchase_development_v2.html"><span class="nav2-link-arrow">&#8594;</span>Purchase Development Plan</a>
+      <a class="nav2-link" href="tridge_eye_market_intelligence.html"><span class="nav2-link-arrow">&#8594;</span>Market Intelligence</a>
+      <a class="nav2-link" href="tridge_eye_price_benchmarking.html"><span class="nav2-link-arrow">&#8594;</span>Price Benchmarking</a>
+      <a class="nav2-link" href="tridge_eye_supplier_discovery.html"><span class="nav2-link-arrow">&#8594;</span>Supplier Discovery</a>
+    </div>
+    <div class="nav2-panel">
+      <div class="nav2-panel-label">Relevant pages &#8212; Exporters</div>
+      <a class="nav2-link" href="tridge_export_solution.html"><span class="nav2-link-arrow">&#8594;</span>Export Solution</a>
+      <a class="nav2-link" href="tridge_eye_supplier_discovery.html"><span class="nav2-link-arrow">&#8594;</span>Supplier Discovery</a>
+      <a class="nav2-link" href="tridge_eye_market_intelligence.html"><span class="nav2-link-arrow">&#8594;</span>Market Intelligence</a>
+    </div>
+    <div class="nav2-panel">
+      <div class="nav2-panel-label">Relevant pages &#8212; Operators</div>
+      <a class="nav2-link" href="tridge_trade_execution.html"><span class="nav2-link-arrow">&#8594;</span>Trade Execution System</a>
+      <a class="nav2-link" href="tridge_purchase_development_v2.html"><span class="nav2-link-arrow">&#8594;</span>Purchase Development</a>
+      <a class="nav2-link" href="tridge_eye_market_intelligence.html"><span class="nav2-link-arrow">&#8594;</span>Market Intelligence</a>
+    </div>
+  </div>
+</section>
+
+<section class="stack" id="stack">
+  <div class="eyebrow" style="color:var(--cyan)">The Value Stack</div>
+  <h2 class="section-title" style="color:var(--white)">Four Layers. Each Valuable Alone.<br/>Compounding Together.</h2>
+  <p class="section-sub" style="color:rgba(255,255,255,.4)">Each layer of Tridge Eye delivers standalone value. Use one module, or stack them into a full trade intelligence and execution workflow.</p>
+  <div class="stack-layers">
+    <div class="stack-layer"><div class="stack-layer-num">01</div><div class="stack-layer-icon">&#129504;</div><div class="stack-layer-title">Market Intelligence</div><div class="stack-layer-body">Verified pricing, trade flows, supply chain relationships &#8212; structured from 12+ years of real transaction data.</div><a href="tridge_eye_market_intelligence.html" class="stack-layer-link">Explore &#8594;</a></div>
+    <div class="stack-layer"><div class="stack-layer-num">02</div><div class="stack-layer-icon">&#128269;</div><div class="stack-layer-title">Supplier Discovery</div><div class="stack-layer-body">Find verified suppliers beyond directories &#8212; scored by transaction history, category fit, and commercial intent.</div><a href="tridge_eye_supplier_discovery.html" class="stack-layer-link">Explore &#8594;</a></div>
+    <div class="stack-layer"><div class="stack-layer-num">03</div><div class="stack-layer-icon">&#9878;&#65039;</div><div class="stack-layer-title">Price Benchmarking</div><div class="stack-layer-body">Compare quotes against real transaction prices &#8212; know if you are overpaying before you sign.</div><a href="tridge_eye_price_benchmarking.html" class="stack-layer-link">Explore &#8594;</a></div>
+    <div class="stack-layer"><div class="stack-layer-num">04</div><div class="stack-layer-icon">&#9889;</div><div class="stack-layer-title">AI Execution</div><div class="stack-layer-body">AI agents handle outreach, documentation, compliance research, and deal progression &#8212; more deals close without adding headcount.</div><a href="tridge_trade_execution.html" class="stack-layer-link">Trade Execution &#8594;</a></div>
+  </div>
+  <div class="stack-arrow">
+    <div class="stack-arrow-step"><div class="stack-arrow-label">Intelligence</div></div>
+    <div class="stack-arrow-sep">&#8594;</div>
+    <div class="stack-arrow-step"><div class="stack-arrow-label">Discovery</div></div>
+    <div class="stack-arrow-sep">&#8594;</div>
+    <div class="stack-arrow-step"><div class="stack-arrow-label">Benchmarking</div></div>
+    <div class="stack-arrow-sep">&#8594;</div>
+    <div class="stack-arrow-step"><div class="stack-arrow-label">Activation</div></div>
+    <div class="stack-arrow-sep">&#8594;</div>
+    <div class="stack-arrow-step"><div class="stack-arrow-label">Execution</div></div>
+  </div>
+</section>
+
+<section class="explore" id="explore">
+  <div class="eyebrow">Explore Modules</div>
+  <h2 class="section-title">Six Ways Tridge Eye<br/>Moves Trade Forward.</h2>
+  <p class="section-sub">Each module delivers standalone value and connects to the next step in the trade workflow.</p>
+  <div class="atomic-grid">
+    <a class="atomic-card" href="tridge_eye_market_intelligence.html"><div class="atomic-card-icon">&#129504;</div><div class="atomic-card-title">Market Intelligence</div><div class="atomic-card-body">Verified pricing, supply chain data, and trade flow intelligence.</div><div class="atomic-card-link">Explore &#8594;</div></a>
+    <a class="atomic-card" href="tridge_eye_supplier_discovery.html"><div class="atomic-card-icon">&#128269;</div><div class="atomic-card-title">Supplier Discovery</div><div class="atomic-card-body">Transaction-verified supplier network beyond directories.</div><div class="atomic-card-link">Explore &#8594;</div></a>
+    <a class="atomic-card" href="tridge_eye_price_benchmarking.html"><div class="atomic-card-icon">&#9878;&#65039;</div><div class="atomic-card-title">Price Benchmarking</div><div class="atomic-card-body">Know if you are overpaying before you negotiate.</div><div class="atomic-card-link">Explore &#8594;</div></a>
+    <a class="atomic-card" href="tridge_purchase_development_v2.html"><div class="atomic-card-icon">&#128230;</div><div class="atomic-card-title">Purchase Development</div><div class="atomic-card-body">From research to verified supplier shortlists &#8212; faster.</div><div class="atomic-card-link">Explore &#8594;</div></a>
+    <a class="atomic-card" href="tridge_export_solution.html"><div class="atomic-card-icon">&#127758;</div><div class="atomic-card-title">Export Solution</div><div class="atomic-card-body">AI-powered buyer outreach across 350K+ verified companies.</div><div class="atomic-card-link">Explore &#8594;</div></a>
+    <a class="atomic-card" href="tridge_trade_execution.html"><div class="atomic-card-icon">&#9889;</div><div class="atomic-card-title">Trade Execution</div><div class="atomic-card-body">AI agents handle execution so your team focuses on decisions.</div><div class="atomic-card-link">Explore &#8594;</div></a>
+  </div>
+</section>
+
+<section class="formula" id="formula">
+  <div class="eyebrow">One Formula. Unlimited Combinations.</div>
+  <h2 class="section-title">Intelligence That Scales<br/>to Any Market or Role.</h2>
+  <p class="section-sub">Mix and match variables to find exactly the right intelligence for your market and role.</p>
+  <div class="formula-inner">
+    <div>
+      <div class="formula-count">
+        <div class="formula-count-item"><div class="formula-count-tag">Data Layer</div><div class="formula-count-examples">Market Intelligence &#183; Supplier Discovery &#183; Price Benchmarking &#183; AI Execution</div></div>
+        <div class="formula-count-item"><div class="formula-count-tag">Use Case</div><div class="formula-count-examples">Alternative Supplier &#183; New Market Entry &#183; Cost Reduction &#183; Disruption Response &#183; Buyer Activation &#183; Pre-negotiation</div></div>
+        <div class="formula-count-item"><div class="formula-count-tag">Persona</div><div class="formula-count-examples">Enterprise Buyer &#183; Procurement Manager &#183; Trader &#183; Exporter &#183; Trade Finance</div></div>
+      </div>
+      <p style="font-size:13px;font-weight:300;color:var(--gray);margin-top:14px;line-height:1.65">Mix and match from these variables &#8212; each combination produces a distinct, targeted page.</p>
+    </div>
+    <div class="formula-examples">
+      <div class="formula-example"><p><strong>Price Benchmarking</strong> + Cost Reduction + Procurement Manager<br/>&#8594; &#8220;Know If You&#8217;re Overpaying Before You Negotiate&#8221;</p></div>
+      <div class="formula-example"><p><strong>Supplier Discovery</strong> + New Market Entry + Exporter<br/>&#8594; &#8220;Find Distributors in Markets You&#8217;ve Never Entered&#8221;</p></div>
+      <div class="formula-example"><p><strong>Market Intelligence</strong> + Disruption Response + Trader<br/>&#8594; &#8220;See Supply Chain Risk Before It Hits Your Deal&#8221;</p></div>
+      <div class="formula-example"><p><strong>AI Execution</strong> + Buyer Activation + Exporter<br/>&#8594; &#8220;Reach 10,000 Buyers Without Building a Sales Team&#8221;</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="hub-browse" id="browse-market">
+  <div class="eyebrow">Browse by Market</div>
+  <h2 class="section-title">Find the Right<br/>Tridge Eye Module.</h2>
+  <p class="section-sub">Select a market or a module to see what is available. Clickable cards link directly to the relevant page.</p>
+  <div class="finder">
+    <div class="finder-section-label">Select a Market</div>
+    <div class="finder-btns">
+      <button class="finder-btn" data-type="market" data-value="cocoa" onclick="finderSelect(this)">&#9749; Cocoa</button>
+      <button class="finder-btn tbu" data-type="market" data-value="soybean">&#127807; Soybean<span class="finder-tbu-label">TBU</span></button>
+      <button class="finder-btn tbu" data-type="market" data-value="palmoil">&#127796; Palm Oil<span class="finder-tbu-label">TBU</span></button>
+    </div>
+    <div class="finder-section-label">Select a Module</div>
+    <div class="finder-btns">
+      <button class="finder-btn" data-type="layer" data-value="mi" onclick="finderSelect(this)">Market Intelligence</button>
+      <button class="finder-btn" data-type="layer" data-value="sd" onclick="finderSelect(this)">Supplier Discovery</button>
+      <button class="finder-btn" data-type="layer" data-value="pb" onclick="finderSelect(this)">Price Benchmarking</button>
+      <button class="finder-btn tbu" data-type="layer" data-value="pd">Purchase Development<span class="finder-tbu-label">TBU</span></button>
+      <button class="finder-btn tbu" data-type="layer" data-value="es">Export Solution<span class="finder-tbu-label">TBU</span></button>
+      <button class="finder-btn tbu" data-type="layer" data-value="te">Trade Execution<span class="finder-tbu-label">TBU</span></button>
+    </div>
+    <div class="finder-results" id="finder-results"></div>
+    <span class="finder-clear" id="finder-clear" onclick="finderClear()">&#10005; Clear selection</span>
+  </div>
+</section>
+
+<section class="hub-cta" id="hub-cta">
+  <div class="hub-cta-bg"></div>
+  <div class="hub-cta-inner">
+    <div class="eyebrow" style="color:var(--cyan)">Get Started</div>
+    <h2 class="section-title">Real Intelligence. Real Action.<br/>Start Today.</h2>
+    <p class="section-sub">Tell us what you&#8217;re sourcing, selling, or executing &#8212; and we&#8217;ll show you exactly how Tridge Eye applies to your situation.</p>
+    <div class="hub-cta-btns">
+      <a href="#" data-email="supply-chain-solution[at]tridge.com" data-subject="Tridge Eye Demo Request" class="btn-primary">Request a Demo &#8594;</a>
+      <a href="https://www.tridge.com" target="_blank" class="btn-ghost">Explore Tridge &#8594;</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a class="footer-wordmark" href="#">TRIDGE</a>
+  <div class="footer-links">
+    <a href="tridge_eye_market_intelligence.html">Market Intelligence</a>
+    <a href="tridge_eye_supplier_discovery.html">Supplier Discovery</a>
+    <a href="tridge_eye_price_benchmarking.html">Price Benchmarking</a>
+    <a href="https://www.tridge.com/about/company-introduction" target="_blank">About Tridge</a>
+    <a href="#" data-email="supply-chain-solution[at]tridge.com" data-subject="Tridge Eye Inquiry">Contact</a>
+  </div>
+  <div class="footer-copy">&#169; 2026 Tridge. All rights reserved.</div>
+</footer>
+
+<script>
+(function() {
+  // Set email links via JS to prevent Cloudflare obfuscation
+  document.querySelectorAll('[data-email]').forEach(function(el) {
+    var e = el.dataset.email.replace('[at]', '@');
+    var subj = el.dataset.subject || '';
+    el.href = 'mailto:' + e + (subj ? '?subject=' + encodeURIComponent(subj) : '');
+  });
+
+  // GNB sub-bar scroll active
+  var subLinks = document.querySelectorAll('.gnb-sub a[href^="#"]');
+  if (subLinks.length) {
+    var sectionIds = Array.from(subLinks).map(function(a) { return a.getAttribute('href').slice(1); });
+    function onScroll() {
+      var scrollY = window.scrollY + 100, active = sectionIds[0];
+      sectionIds.forEach(function(id) { var el = document.getElementById(id); if (el && el.offsetTop <= scrollY) active = id; });
+      subLinks.forEach(function(a) { a.classList.toggle('sub-active', a.getAttribute('href') === '#' + active); });
+    }
+    window.addEventListener('scroll', onScroll, {passive: true});
+    onScroll();
+  }
+
+  // FINDER
+  var CARDS = [{"market": "cocoa", "layer": "mi", "marketLabel": "Cocoa", "layerLabel": "Market Intelligence", "color": "#C07830", "title": "Cocoa Market Intelligence", "body": "Origin pricing, West Africa supply signals, and trade flow data.", "href": "tridge_eye_cocoa_intelligence.html", "available": true}, {"market": "cocoa", "layer": "sd", "marketLabel": "Cocoa", "layerLabel": "Supplier Discovery", "color": "#C07830", "title": "Cocoa Supplier Discovery", "body": "Find verified cocoa exporters by origin, certification, and transaction history.", "href": "tridge_eye_cocoa_discovery.html", "available": true}, {"market": "cocoa", "layer": "pb", "marketLabel": "Cocoa", "layerLabel": "Price Benchmarking", "color": "#C07830", "title": "Cocoa Price Benchmarking", "body": "Verify cocoa quotes against real transaction prices by origin and grade.", "href": "tridge_eye_cocoa_benchmarking.html", "available": true}, {"market": "cocoa", "layer": "pd", "marketLabel": "Cocoa", "layerLabel": "Purchase Development", "color": "#C07830", "title": "Cocoa Purchase Development", "body": "Structured cocoa supplier development backed by market intelligence.", "href": "", "available": false}, {"market": "cocoa", "layer": "es", "marketLabel": "Cocoa", "layerLabel": "Export Solution", "color": "#C07830", "title": "Cocoa Export Solution", "body": "Reach verified cocoa buyers across Europe, Asia, and North America.", "href": "", "available": false}, {"market": "cocoa", "layer": "te", "marketLabel": "Cocoa", "layerLabel": "Trade Execution", "color": "#C07830", "title": "Cocoa Trade Execution", "body": "Execute cocoa transactions with AI-assisted documentation support.", "href": "", "available": false}, {"market": "soybean", "layer": "mi", "marketLabel": "Soybean", "layerLabel": "Market Intelligence", "color": "#0EDBA5", "title": "Soybean Market Intelligence", "body": "Brazil vs Argentina supply dynamics, origin-level pricing, and trade corridors.", "href": "", "available": false}, {"market": "soybean", "layer": "sd", "marketLabel": "Soybean", "layerLabel": "Supplier Discovery", "color": "#0EDBA5", "title": "Soybean Supplier Discovery", "body": "Verified soybean exporters across Brazil, Argentina, and the US.", "href": "tridge_eye_soybean_discovery.html", "available": true}, {"market": "soybean", "layer": "pb", "marketLabel": "Soybean", "layerLabel": "Price Benchmarking", "color": "#0EDBA5", "title": "Soybean Price Benchmarking", "body": "Benchmark soybean quotes across South American and North American corridors.", "href": "", "available": false}, {"market": "soybean", "layer": "pd", "marketLabel": "Soybean", "layerLabel": "Purchase Development", "color": "#0EDBA5", "title": "Soybean Purchase Development", "body": "Structured soybean supplier development backed by origin-level intelligence.", "href": "", "available": false}, {"market": "soybean", "layer": "es", "marketLabel": "Soybean", "layerLabel": "Export Solution", "color": "#0EDBA5", "title": "Soybean Export Solution", "body": "Activate international demand for soybean through AI-powered buyer outreach.", "href": "", "available": false}, {"market": "soybean", "layer": "te", "marketLabel": "Soybean", "layerLabel": "Trade Execution", "color": "#0EDBA5", "title": "Soybean Trade Execution", "body": "Streamline soybean trade operations across complex multi-origin supply chains.", "href": "", "available": false}, {"market": "palmoil", "layer": "mi", "marketLabel": "Palm Oil", "layerLabel": "Market Intelligence", "color": "#FFD12D", "title": "Palm Oil Market Intelligence", "body": "Indonesia vs Malaysia supply dynamics, certification premiums, and trade flow data.", "href": "", "available": false}, {"market": "palmoil", "layer": "sd", "marketLabel": "Palm Oil", "layerLabel": "Supplier Discovery", "color": "#FFD12D", "title": "Palm Oil Supplier Discovery", "body": "Map verified palm oil exporters across Indonesian and Malaysian origins.", "href": "", "available": false}, {"market": "palmoil", "layer": "pb", "marketLabel": "Palm Oil", "layerLabel": "Price Benchmarking", "color": "#FFD12D", "title": "Palm Oil Price Benchmarking", "body": "Specification-level transaction prices for RBD, CPO, and certified palm oil.", "href": "tridge_eye_palmoil_benchmarking.html", "available": true}, {"market": "palmoil", "layer": "pd", "marketLabel": "Palm Oil", "layerLabel": "Purchase Development", "color": "#FFD12D", "title": "Palm Oil Purchase Development", "body": "Structured palm oil supplier development with origin-level intelligence.", "href": "", "available": false}, {"market": "palmoil", "layer": "es", "marketLabel": "Palm Oil", "layerLabel": "Export Solution", "color": "#FFD12D", "title": "Palm Oil Export Solution", "body": "Connect with verified palm oil importers across key destination markets.", "href": "", "available": false}, {"market": "palmoil", "layer": "te", "marketLabel": "Palm Oil", "layerLabel": "Trade Execution", "color": "#FFD12D", "title": "Palm Oil Trade Execution", "body": "Handle palm oil trade documentation and coordination without adding headcount.", "href": "", "available": false}];
+  var selected = {market: null, layer: null};
+  window.finderSelect = function(btn) {
+    if (btn.classList.contains('tbu')) return;
+    var type = btn.dataset.type, val = btn.dataset.value;
+    if (selected[type] === val) { selected[type] = null; btn.classList.remove('selected'); }
+    else { document.querySelectorAll('.finder-btn[data-type="' + type + '"]').forEach(function(b) { b.classList.remove('selected'); }); selected[type] = val; btn.classList.add('selected'); }
+    renderResults();
+  };
+  window.finderClear = function() {
+    selected = {market: null, layer: null};
+    document.querySelectorAll('.finder-btn').forEach(function(b) { b.classList.remove('selected'); });
+    var r = document.getElementById('finder-results'), cl = document.getElementById('finder-clear');
+    if (r) r.innerHTML = ''; if (cl) cl.style.display = 'none';
+  };
+  function renderResults() {
+    var r = document.getElementById('finder-results'), cl = document.getElementById('finder-clear');
+    var m = selected.market, l = selected.layer;
+    if (!m && !l) { if (r) r.innerHTML = ''; if (cl) cl.style.display = 'none'; return; }
+    if (cl) cl.style.display = 'inline-flex';
+    var filtered = CARDS.filter(function(c) { if (m && l) return c.market===m && c.layer===l; if (m) return c.market===m; if (l) return c.layer===l; return false; });
+    if (!filtered.length) { if (r) r.innerHTML = '<p style="font-size:13px;color:var(--gray);padding:16px 0">No pages available for this combination yet.</p>'; return; }
+    var html = '<div class="finder-grid">';
+    filtered.forEach(function(card) {
+      var tbu = !card.available;
+      html += '<' + (tbu ? 'div' : 'a href="' + card.href + '"') + ' class="finder-card' + (tbu ? ' tbu' : '') + '">';
+      html += '<div class="finder-card-market" style="color:' + card.color + '">' + card.marketLabel + ' &#8212; ' + card.layerLabel + '</div>';
+      html += '<div class="finder-card-title">' + card.title + '</div>';
+      html += '<div class="finder-card-body">' + card.body + '</div>';
+      html += '<div class="finder-card-action">' + (tbu ? 'TBU' : 'Explore &#8594;') + '</div>';
+      if (tbu) html += '<span class="tbu-badge">TBU</span>';
+      html += '</' + (tbu ? 'div' : 'a') + '>';
+    });
+    html += '</div>';
+    if (r) r.innerHTML = html;
+    setTimeout(function() { if (r) r.scrollIntoView({behavior: 'smooth', block: 'nearest'}); }, 80);
+  }
+
+  // Scroll reveal
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
+  }, {threshold: 0.07});
+  document.querySelectorAll('.nav2-persona,.nav2-panel,.stack-layer,.atomic-card,.formula-count-item,.formula-example').forEach(function(el) {
+    el.style.opacity='0'; el.style.transform='translateY(14px)'; el.style.transition='opacity .5s ease,transform .5s ease';
+    obs.observe(el);
+  });
+})();
+</script>
+</body>
+</html>
