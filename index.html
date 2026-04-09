@@ -2691,8 +2691,8 @@
       });
     }, observerOptions);
 
-    // Observe all sections
-    document.querySelectorAll('section').forEach(section => {
+    // Observe all sections except hero (already in view on load)
+    document.querySelectorAll('section:not(.hero)').forEach(section => {
       section.classList.add('scroll-reveal');
       observer.observe(section);
     });
