@@ -894,6 +894,81 @@
     .footer-legal-links a:hover { color: #ffffff; }
     .footer-data-notice { font-size: 12px; color: rgba(255,255,255,0.25); padding: 16px 0 24px; line-height: 1.6; }
 
+    /* ===================================================================
+       PROVEN RESULTS
+    =================================================================== */
+    .proven-nm {
+      background: #ffffff;
+      padding: clamp(48px, 6vw, 96px) 0;
+    }
+    .proven-nm-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 48px;
+    }
+    .proven-nm-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #171CFD;
+      margin-bottom: 16px;
+    }
+    .proven-nm-headline {
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 300;
+      color: #0A0A18;
+      line-height: 1.15;
+    }
+    .proven-nm-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+    .proven-card-nm {
+      background: #f8f9fa;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+    }
+    .proven-tag-nm {
+      display: inline-block;
+      background: #171CFD;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 4px;
+      padding: 4px 10px;
+      margin-bottom: 16px;
+      align-self: flex-start;
+    }
+    .proven-stat-nm {
+      font-size: clamp(32px, 3vw, 48px);
+      font-weight: 300;
+      color: #0A0A18;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .proven-body-nm {
+      font-size: 16px;
+      color: #6b7280;
+      line-height: 1.6;
+      margin-top: auto;
+    }
+    @media (max-width: 767px) {
+      .proven-nm-grid { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .proven-nm-grid { grid-template-columns: repeat(2, 1fr); }
+      .proven-card-nm:last-child { grid-column: 1 / -1; }
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 480px) {
       .hero-nm-inner { grid-template-columns: 1fr; }
@@ -1029,15 +1104,15 @@
 
           <div class="hero-nm-stats">
             <div class="hero-stat">
-              <div class="hero-stat-num">200K+</div>
+              <div class="hero-stat-num" data-count="200" data-prefix="" data-suffix="K+">200K+</div>
               <div class="hero-stat-label">Verified buyers &amp; distributors</div>
             </div>
             <div class="hero-stat">
-              <div class="hero-stat-num">60 days</div>
-              <div class="hero-stat-label">To first qualified introduction</div>
+              <div class="hero-stat-num" data-count="2200" data-prefix="" data-suffix="+">2,200+</div>
+              <div class="hero-stat-label">Partner network companies</div>
             </div>
             <div class="hero-stat">
-              <div class="hero-stat-num">140+</div>
+              <div class="hero-stat-num" data-count="140" data-prefix="" data-suffix="+">140+</div>
               <div class="hero-stat-label">Markets covered</div>
             </div>
           </div>
@@ -1426,6 +1501,39 @@
   </section>
 
   <!-- ===================================================================
+       SUCCESS CASES
+  =================================================================== -->
+  <section class="proven-nm scroll-reveal">
+    <div class="container">
+      <div class="proven-nm-header">
+        <span class="proven-nm-label">SUCCESS CASES</span>
+        <h2 class="proven-nm-headline">Real results from brands that went global with Tridge.</h2>
+      </div>
+      <div class="proven-nm-grid">
+
+        <div class="proven-card-nm">
+          <span class="proven-tag-nm">NEW MARKET ENTRY</span>
+          <div class="proven-stat-nm">4-year contract</div>
+          <p class="proven-body-nm">A Korean food conglomerate entered Latin America without a local team. Tridge connected them to verified buyers — from first meeting to signed contract, with full logistics support.</p>
+        </div>
+
+        <div class="proven-card-nm">
+          <span class="proven-tag-nm">BUYER EXPANSION</span>
+          <div class="proven-stat-nm" data-count="60" data-prefix="" data-suffix="+ countries">60+ countries</div>
+          <p class="proven-body-nm">A Vietnamese coffee brand already exporting to 60+ countries used Tridge to break into Northeast Asia — securing meetings with 3 Korean buyers within weeks.</p>
+        </div>
+
+        <div class="proven-card-nm">
+          <span class="proven-tag-nm">MARKET DEVELOPMENT</span>
+          <div class="proven-stat-nm">2 markets, 1 team</div>
+          <p class="proven-body-nm">A Turkish IQF exporter used Tridge Intelligence to identify demand in Korea and Japan, then activated Export Solution to build a buyer pipeline in both markets simultaneously.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
        SECTION — PAIR WITH INTELLIGENCE
   =================================================================== -->
   <section class="eye-nm scroll-reveal">
@@ -1585,6 +1693,37 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
     document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+    // ===== HERO STAT COUNT-UP =====
+    function countUp(el, target, duration) {
+      const start = performance.now();
+      const update = (time) => {
+        const elapsed = time - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const current = Math.floor(ease * target);
+        el.textContent = el.dataset.prefix + current + el.dataset.suffix;
+        if (progress < 1) requestAnimationFrame(update);
+        else el.textContent = el.dataset.prefix + target + el.dataset.suffix;
+      };
+      requestAnimationFrame(update);
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('[data-count]').forEach(el => {
+            countUp(el, parseInt(el.dataset.count, 10), 1500);
+          });
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const heroStats = document.querySelector('.hero-nm-stats');
+    if (heroStats) statsObserver.observe(heroStats);
+    const provenGrid = document.querySelector('.proven-nm-grid');
+    if (provenGrid) statsObserver.observe(provenGrid);
   </script>
 </body>
 </html>

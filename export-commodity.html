@@ -388,6 +388,17 @@
       margin-bottom: 20px;
     }
 
+    .pcard-badge {
+      display: inline-block;
+      background: rgba(220, 38, 38, 0.08);
+      color: #dc2626;
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
     .pcard-title {
       font-size: 20px;
       font-weight: 500;
@@ -1152,6 +1163,81 @@
     }
 
     /* ===================================================================
+       PROVEN RESULTS
+    =================================================================== */
+    .proven-nm {
+      background: #ffffff;
+      padding: clamp(48px, 6vw, 96px) 0;
+    }
+    .proven-nm-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 48px;
+    }
+    .proven-nm-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #171CFD;
+      margin-bottom: 16px;
+    }
+    .proven-nm-headline {
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 300;
+      color: #0A0A18;
+      line-height: 1.15;
+    }
+    .proven-nm-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+    .proven-card-nm {
+      background: #f8f9fa;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+    }
+    .proven-tag-nm {
+      display: inline-block;
+      background: #171CFD;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 4px;
+      padding: 4px 10px;
+      margin-bottom: 16px;
+      align-self: flex-start;
+    }
+    .proven-stat-nm {
+      font-size: clamp(32px, 3vw, 48px);
+      font-weight: 300;
+      color: #0A0A18;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .proven-body-nm {
+      font-size: 16px;
+      color: #6b7280;
+      line-height: 1.6;
+      margin-top: auto;
+    }
+    @media (max-width: 767px) {
+      .proven-nm-grid { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .proven-nm-grid { grid-template-columns: repeat(2, 1fr); }
+      .proven-card-nm:last-child { grid-column: 1 / -1; }
+    }
+
+    /* ===================================================================
        RESPONSIVE
     =================================================================== */
 
@@ -1440,15 +1526,15 @@
 
           <div class="hero-nm-stats">
             <div class="hero-stat">
-              <div class="hero-stat-num">200K+</div>
+              <div class="hero-stat-num" data-count="200" data-prefix="" data-suffix="K+">200K+</div>
               <div class="hero-stat-label">Verified buyers &amp; distributors</div>
             </div>
             <div class="hero-stat">
-              <div class="hero-stat-num">60 days</div>
-              <div class="hero-stat-label">To first qualified introduction</div>
+              <div class="hero-stat-num" data-count="200" data-prefix="" data-suffix="K+">200K+</div>
+              <div class="hero-stat-label">Verified buyers &amp; distributors</div>
             </div>
             <div class="hero-stat">
-              <div class="hero-stat-num">10,000+</div>
+              <div class="hero-stat-num" data-count="10" data-prefix="" data-suffix=",000+">10,000+</div>
               <div class="hero-stat-label">Buyers reachable per campaign</div>
             </div>
           </div>
@@ -1472,6 +1558,7 @@
         <!-- Card 01 -->
         <div class="problem-card-nm">
           <div class="pcard-num">01</div>
+          <span class="pcard-badge">No active sourcing signal</span>
           <h3 class="pcard-title">You&rsquo;re targeting directories, not buyers</h3>
           <p class="pcard-body">Cold outreach to generic contact lists reaches procurement teams who aren&rsquo;t sourcing your category. The importer who just switched suppliers last month &mdash; you never knew they were looking.</p>
           <div class="pcard-icon">
@@ -1484,6 +1571,7 @@
         <!-- Card 02 -->
         <div class="problem-card-nm">
           <div class="pcard-num">02</div>
+          <span class="pcard-badge">Blind outreach = low conversion</span>
           <h3 class="pcard-title">Price alone doesn&rsquo;t win new markets</h3>
           <p class="pcard-body">Commodity buyers evaluate origin reliability, certification compliance, and supply consistency before price. Without intelligence, you&rsquo;re competing blind.</p>
           <div class="pcard-icon">
@@ -1496,6 +1584,7 @@
         <!-- Card 03 -->
         <div class="problem-card-nm">
           <div class="pcard-num">03</div>
+          <span class="pcard-badge">Manual reach = missed timing</span>
           <h3 class="pcard-title">Your team can&rsquo;t cover 140 markets</h3>
           <p class="pcard-body">Manual outreach scales with headcount. Tridge scales with data &mdash; scanning 200,000+ buyer signals so your team focuses only on confirmed interest.</p>
           <div class="pcard-icon">
@@ -1838,6 +1927,39 @@
   </section>
 
   <!-- ===================================================================
+       SUCCESS CASES
+  =================================================================== -->
+  <section class="proven-nm scroll-reveal">
+    <div class="container">
+      <div class="proven-nm-header">
+        <span class="proven-nm-label">SUCCESS CASES</span>
+        <h2 class="proven-nm-headline">Commodity exporters who traded smarter with Tridge.</h2>
+      </div>
+      <div class="proven-nm-grid">
+
+        <div class="proven-card-nm">
+          <span class="proven-tag-nm">BUYER DISCOVERY</span>
+          <div class="proven-stat-nm">3 buyers secured</div>
+          <p class="proven-body-nm">A Vietnamese fresh fruit exporter used Tridge Intelligence to identify pricing gaps and competitor positioning — then secured 3 verified Korean buyers through Tridge&rsquo;s network.</p>
+        </div>
+
+        <div class="proven-card-nm">
+          <span class="proven-tag-nm">MARKET EXPANSION</span>
+          <div class="proven-stat-nm">Korea + Japan</div>
+          <p class="proven-body-nm">A Turkish IQF specialist used Tridge to map demand across emerging Asian markets, building an active buyer pipeline in Korea and Japan without a local sales team.</p>
+        </div>
+
+        <div class="proven-card-nm">
+          <span class="proven-tag-nm">PRICING INTELLIGENCE</span>
+          <div class="proven-stat-nm">15&ndash;17x ROI</div>
+          <p class="proven-body-nm">A fresh produce exporter transformed market complexity into competitive advantage — using Tridge&rsquo;s trade forecasting and competitor insights to optimize export pricing and sourcing strategy.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
        SECTION — PAIR WITH INTELLIGENCE
   =================================================================== -->
   <section class="eye-nm scroll-reveal">
@@ -1997,6 +2119,37 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
     document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+    // ===== HERO STAT COUNT-UP =====
+    function countUp(el, target, duration) {
+      const start = performance.now();
+      const update = (time) => {
+        const elapsed = time - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const current = Math.floor(ease * target);
+        el.textContent = el.dataset.prefix + current + el.dataset.suffix;
+        if (progress < 1) requestAnimationFrame(update);
+        else el.textContent = el.dataset.prefix + target + el.dataset.suffix;
+      };
+      requestAnimationFrame(update);
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('[data-count]').forEach(el => {
+            countUp(el, parseInt(el.dataset.count, 10), 1500);
+          });
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const heroStats = document.querySelector('.hero-nm-stats');
+    if (heroStats) statsObserver.observe(heroStats);
+    const provenGrid = document.querySelector('.proven-nm-grid');
+    if (provenGrid) statsObserver.observe(provenGrid);
   </script>
 </body>
 </html>

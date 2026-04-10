@@ -67,7 +67,8 @@
       "Bash(grep -rn \"export-suppliers\" *.html)",
       "Bash(mv hero-export-traders.jpg archive/)",
       "Bash(cp traders-hero.jpg hero-export-traders.jpg)",
-      "Bash(cp traders-hero.jpg seg-trader.jpg)"
+      "Bash(cp traders-hero.jpg seg-trader.jpg)",
+      "Bash(wc:*)"
     ]
   }
 }

@@ -66,8 +66,16 @@
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
     .scroll-reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
     @media (prefers-reduced-motion: reduce) {
-      .scroll-reveal { opacity: 1; transform: none; transition: none; }
+      .scroll-reveal, .reveal { opacity: 1; transform: none; transition: none; }
     }
 
     /* ===== NAVIGATION ===== */
@@ -157,7 +165,7 @@
       width: 55%;
       height: 100%;
       object-fit: cover;
-      object-position: top;
+      object-position: center;
       z-index: 0;
     }
     .hero-pt-gradient {
@@ -203,6 +211,12 @@
       margin-bottom: 32px;
       max-width: 500px;
     }
+    .hero-pt-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
     .btn-pt-primary {
       display: inline-block;
       background: var(--blue);
@@ -214,6 +228,21 @@
       transition: background 0.2s;
     }
     .btn-pt-primary:hover { background: #0f14c7; }
+    .btn-pt-outline {
+      display: inline-block;
+      background: transparent;
+      color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 6px;
+      padding: 14px 28px;
+      font-size: 16px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    .btn-pt-outline:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.8);
+    }
     .hero-pt-stats {
       display: flex;
       align-items: center;
@@ -278,31 +307,53 @@
       padding: 32px;
       display: flex;
       flex-direction: column;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      min-height: 280px;
+      transition: all 0.25s ease;
     }
-    .problem-card-pt:hover { border-color: rgba(23,28,253,0.2); box-shadow: 0 4px 20px rgba(23,28,253,0.06); }
-    .pcard-pt-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      background: rgba(23,28,253,0.06);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
+    .problem-card-pt:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+      border-color: #171CFD;
+    }
+    .pcard-num-pt {
+      font-size: 14px;
+      font-weight: 600;
+      color: #171CFD;
+      margin-bottom: 12px;
+    }
+    .pcard-badge-pt {
+      display: inline-block;
+      background: rgba(220, 38, 38, 0.08);
+      color: #dc2626;
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
     }
     .pcard-pt-title {
-      font-size: 19px;
-      font-weight: 500;
+      font-size: 18px;
+      font-weight: 600;
       color: var(--black);
       margin-bottom: 12px;
       line-height: 1.3;
     }
     .pcard-pt-body {
-      font-size: 14px;
+      font-size: 16px;
       color: var(--text-muted);
-      line-height: 1.7;
+      line-height: 1.6;
       flex: 1;
+    }
+    .pcard-bottom-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(23, 28, 253, 0.08);
+      border-radius: 8px;
+      width: 40px;
+      height: 40px;
+      margin-top: 20px;
+      flex-shrink: 0;
     }
 
     /* ===================================================================
@@ -369,6 +420,8 @@
       width: 100%;
       border-radius: 12px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      object-fit: cover;
+      object-position: top;
       display: block;
     }
 
@@ -394,14 +447,15 @@
     }
     .why-card-pt:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
     .why-card-icon-pt {
-      width: 48px;
-      height: 48px;
-      background: #eff0ff;
-      border-radius: 10px;
+      width: 40px;
+      height: 40px;
+      background: rgba(23, 28, 253, 0.08);
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
+      flex-shrink: 0;
     }
     .why-card-title-pt {
       font-size: 18px;
@@ -422,13 +476,27 @@
       background: var(--white);
       padding: clamp(48px, 6vw, 96px) 0;
     }
-    .wyg-pt-header { text-align: center; max-width: 640px; margin: 0 auto 56px; }
+    .wyg-pt-inner {
+      display: flex;
+      align-items: center;
+      gap: clamp(32px, 5vw, 80px);
+    }
+    .wyg-pt-left { flex: 0 0 50%; }
+    .wyg-pt-right { flex: 0 0 50%; }
+    .wyg-pt-img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      border: 1px solid #e0e0e0;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+    .wyg-pt-header { margin-bottom: 40px; }
     .checklist-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px 48px;
-      max-width: 860px;
-      margin: 0 auto;
+      grid-template-columns: 1fr;
+      gap: 0;
     }
     .check-item {
       display: flex;
@@ -505,10 +573,10 @@
       align-self: flex-start;
     }
     .result-stat-pt {
-      font-size: clamp(32px, 3vw, 48px);
+      font-size: clamp(36px, 4vw, 56px);
       font-weight: 300;
       color: #ffffff;
-      line-height: 1.1;
+      line-height: 1;
       margin-bottom: 16px;
     }
     .result-body-pt {
@@ -519,63 +587,70 @@
     }
 
     /* ===================================================================
-       SECTION 7 — PAIR WITH INTELLIGENCE
+       SECTION 7 — FREE DATA
     =================================================================== */
-    .eye-pt {
-      background: var(--gray-bg);
+    .free-data-pt {
+      background: #f8f9fa;
       padding: clamp(48px, 6vw, 96px) 0;
-      border-top: 1px solid #e5e7eb;
     }
-    .eye-pt-inner {
-      display: grid;
-      grid-template-columns: 40% 60%;
-      gap: 64px;
+    .free-data-pt-inner {
+      display: flex;
       align-items: center;
+      gap: clamp(32px, 5vw, 80px);
     }
-    .eye-pt-label {
+    .free-data-pt-text {
+      flex: 0 0 50%;
+    }
+    .free-data-pt-visual {
+      flex: 0 0 50%;
+    }
+    .free-data-pt-img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      border: 1px solid #e0e0e0;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+    .free-data-label-pt {
       display: block;
       font-size: 13px;
       font-weight: 600;
-      color: var(--blue);
+      color: #171CFD;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 16px;
     }
-    .eye-pt-headline {
-      font-size: clamp(28px, 3vw, 48px);
+    .free-data-headline-pt {
+      font-size: clamp(28px, 3vw, 42px);
       font-weight: 300;
-      color: var(--black);
-      line-height: 1.15;
+      color: #0A0A18;
+      line-height: 1.2;
       margin-bottom: 16px;
     }
-    .eye-pt-body {
+    .free-data-body-pt {
       font-size: 16px;
-      color: var(--text-muted);
+      color: #6b7280;
       line-height: 1.6;
       margin-bottom: 32px;
     }
-    .btn-eye-pt {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--black);
+    .btn-free-data-pt {
+      display: inline-block;
+      background: #171CFD;
       color: #ffffff;
-      padding: 14px 28px;
       border-radius: 6px;
-      font-size: 14px;
-      font-weight: 600;
-      transition: background 0.2s;
+      padding: 14px 32px;
+      font-size: 16px;
+      font-weight: 500;
       text-decoration: none;
+      transition: opacity 0.2s ease;
     }
-    .btn-eye-pt:hover { background: #000000; }
-    .eye-pt-img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-      border: 1px solid var(--border);
-      object-fit: cover;
-      object-position: top;
-      display: block;
+    .btn-free-data-pt:hover { opacity: 0.85; }
+    .free-data-note-pt {
+      font-size: 13px;
+      color: #6b7280;
+      margin-top: 12px;
     }
 
     /* ===================================================================
@@ -594,11 +669,14 @@
       margin: 0 auto 40px;
     }
     .cta-pt-headline {
-      font-size: clamp(28px, 3vw, 48px);
+      font-size: clamp(28px, 3.5vw, 48px);
       font-weight: 300;
       color: #ffffff;
       margin-bottom: 16px;
       line-height: 1.15;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .cta-pt-sub {
       font-size: 17px;
@@ -676,16 +754,21 @@
       .hero-pt-inner { grid-template-columns: 1fr; }
       .hero-pt-img { display: none; }
       .hero-pt-gradient { display: none; }
+      .hero-pt-ctas { flex-direction: column; align-items: stretch; }
+      .btn-pt-outline { text-align: center; }
       .hero-pt-stats { flex-direction: column; gap: 16px; }
       .hero-stat-pt + .hero-stat-pt { border-left: none; padding-left: 0; }
       .problem-pt-grid { grid-template-columns: 1fr; }
       .hiw-pt-inner { grid-template-columns: 1fr; }
+      .free-data-pt-inner { flex-direction: column; }
+      .free-data-pt-text, .free-data-pt-visual { flex: none; width: 100%; }
+      .free-data-pt-img { max-height: 240px; }
       .hiw-pt-img-wrap { margin-top: 32px; }
       .why-pt-grid { grid-template-columns: 1fr; }
-      .checklist-grid { grid-template-columns: 1fr; gap: 0; }
+      .wyg-pt-inner { flex-direction: column; }
+      .wyg-pt-left, .wyg-pt-right { flex: none; width: 100%; }
+      .wyg-pt-img { max-height: 240px; }
       .results-grid-pt { grid-template-columns: 1fr; }
-      .eye-pt-inner { grid-template-columns: 1fr; }
-      .eye-pt-img { margin-top: 24px; max-height: 240px; object-fit: cover; }
       .footer-top { grid-template-columns: repeat(2, 1fr); }
       .footer-bottom { flex-direction: column; gap: 12px; }
     }
@@ -710,16 +793,21 @@
       .hero-pt-inner { grid-template-columns: 1fr; }
       .hero-pt-img { display: none; }
       .hero-pt-gradient { display: none; }
+      .hero-pt-ctas { flex-direction: column; align-items: stretch; }
+      .btn-pt-outline { text-align: center; }
       .hero-pt-stats { flex-wrap: wrap; gap: 16px; }
       .hero-stat-pt + .hero-stat-pt { border-left: none; padding-left: 0; }
       .problem-pt-grid { grid-template-columns: 1fr; }
       .hiw-pt-inner { grid-template-columns: 1fr; }
       .hiw-pt-img-wrap { margin-top: 32px; }
       .why-pt-grid { grid-template-columns: 1fr; }
-      .checklist-grid { grid-template-columns: 1fr; gap: 0; }
+      .free-data-pt-inner { flex-direction: column; }
+      .free-data-pt-text, .free-data-pt-visual { flex: none; width: 100%; }
+      .free-data-pt-img { max-height: 240px; }
+      .wyg-pt-inner { flex-direction: column; }
+      .wyg-pt-left, .wyg-pt-right { flex: none; width: 100%; }
+      .wyg-pt-img { max-height: 240px; }
       .results-grid-pt { grid-template-columns: 1fr; }
-      .eye-pt-inner { grid-template-columns: 1fr; }
-      .eye-pt-img { margin-top: 24px; max-height: 240px; }
       .footer-top { grid-template-columns: repeat(2, 1fr); }
       .footer-bottom { flex-direction: column; gap: 12px; }
     }
@@ -862,7 +950,7 @@
        SECTION 1 — HERO
   =================================================================== -->
   <section class="hero-pt">
-    <img src="images/tridge-eye-home.png" alt="" class="hero-pt-img" aria-hidden="true">
+    <img src="images/procurement-hero.png" alt="" class="hero-pt-img" aria-hidden="true">
     <div class="hero-pt-gradient" aria-hidden="true"></div>
 
     <div class="container">
@@ -871,19 +959,22 @@
           <span class="hero-pt-label">FOR PROCUREMENT TEAMS</span>
           <h1 class="hero-pt-headline">Your supplier knows the market moved. Do you?</h1>
           <p class="hero-pt-sub">Tridge gives procurement teams the price benchmarks, supplier discovery tools, and market signals to negotiate from strength &mdash; not guesswork.</p>
-          <a href="contact-sales.html" class="btn-pt-primary">Request a Demo &rarr;</a>
+          <div class="hero-pt-ctas">
+            <a href="contact-sales.html" class="btn-pt-primary">Request a Demo &rarr;</a>
+            <a href="https://www.tridge.com/market-curations" target="_blank" class="btn-pt-outline">Browse Free Market Data &rarr;</a>
+          </div>
 
           <div class="hero-pt-stats">
-            <div class="hero-stat-pt">
-              <div class="stat-num-pt">15&ndash;17x</div>
+            <div class="hero-stat-pt reveal">
+              <div class="stat-num-pt" data-countup-end="17" data-countup-display="15&ndash;17x">15&ndash;17x</div>
               <div class="stat-label-pt">ROI on data subscription</div>
             </div>
-            <div class="hero-stat-pt">
-              <div class="stat-num-pt">$250K</div>
+            <div class="hero-stat-pt reveal" style="transition-delay: 0.1s;">
+              <div class="stat-num-pt" data-countup-end="250" data-countup-display="$250K">$250K</div>
               <div class="stat-label-pt">Saved on a single commodity switch</div>
             </div>
-            <div class="hero-stat-pt">
-              <div class="stat-num-pt">65M+</div>
+            <div class="hero-stat-pt reveal" style="transition-delay: 0.2s;">
+              <div class="stat-num-pt" data-countup-end="65" data-countup-display="65M+">65M+</div>
               <div class="stat-label-pt">Price records across 6,500+ categories</div>
             </div>
           </div>
@@ -899,45 +990,51 @@
     <div class="container">
       <div class="problem-pt-header">
         <span class="section-label-pt">THE PROCUREMENT GAP</span>
-        <h2 class="section-headline-pt">You&rsquo;re negotiating blind. Your suppliers aren&rsquo;t.</h2>
+        <h2 class="section-headline-pt reveal">You&rsquo;re negotiating blind. Your suppliers aren&rsquo;t.</h2>
       </div>
 
       <div class="problem-pt-grid">
 
         <!-- Card 01 -->
-        <div class="problem-card-pt">
-          <div class="pcard-pt-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
-              <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/>
-              <polyline points="17 18 23 18 23 12"/>
-            </svg>
-          </div>
+        <div class="problem-card-pt reveal" style="transition-delay: 0s;">
+          <div class="pcard-num-pt">01</div>
+          <span class="pcard-badge-pt">Avg. 3&ndash;6 months lag</span>
           <h3 class="pcard-pt-title">Price moves. Your contract doesn&rsquo;t.</h3>
           <p class="pcard-pt-body">Markets shift weekly. Most procurement teams find out months later &mdash; after the damage is done.</p>
+          <div class="pcard-bottom-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+              <polyline points="3 17 9 11 13 15 21 7"/>
+            </svg>
+          </div>
         </div>
 
         <!-- Card 02 -->
-        <div class="problem-card-pt">
-          <div class="pcard-pt-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+        <div class="problem-card-pt reveal" style="transition-delay: 0.1s;">
+          <div class="pcard-num-pt">02</div>
+          <span class="pcard-badge-pt">0 alternatives = 0 negotiation</span>
+          <h3 class="pcard-pt-title">One supplier. No leverage.</h3>
+          <p class="pcard-pt-body">When your supply chain runs through a single vendor, you don&rsquo;t negotiate. You accept.</p>
+          <div class="pcard-bottom-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
               <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/>
               <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>
             </svg>
           </div>
-          <h3 class="pcard-pt-title">One supplier. No leverage.</h3>
-          <p class="pcard-pt-body">When your supply chain runs through a single vendor, you don&rsquo;t negotiate. You accept.</p>
         </div>
 
         <!-- Card 03 -->
-        <div class="problem-card-pt">
-          <div class="pcard-pt-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
-              <circle cx="11" cy="11" r="8"/>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-          </div>
+        <div class="problem-card-pt reveal" style="transition-delay: 0.2s;">
+          <div class="pcard-num-pt">03</div>
+          <span class="pcard-badge-pt">Up to 42% overpayment risk</span>
           <h3 class="pcard-pt-title">Gut feel isn&rsquo;t a sourcing strategy.</h3>
           <p class="pcard-pt-body">Without benchmark data, every purchase decision is a guess. And your suppliers know it.</p>
+          <div class="pcard-bottom-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+              <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+          </div>
         </div>
 
       </div>
@@ -954,11 +1051,11 @@
         <!-- Left: steps -->
         <div class="hiw-pt-left">
           <span class="hiw-pt-label">HOW TRIDGE WORKS</span>
-          <h2 class="hiw-pt-headline">From market signal to signed contract &mdash; in days, not months.</h2>
+          <h2 class="hiw-pt-headline reveal">From market signal to signed contract &mdash; in days, not months.</h2>
 
           <div class="hiw-pt-steps">
 
-            <div class="hiw-pt-step">
+            <div class="hiw-pt-step reveal">
               <div class="step-num-pt">1</div>
               <div class="step-content-pt">
                 <h3 class="step-title-pt">Benchmark your current prices</h3>
@@ -966,7 +1063,7 @@
               </div>
             </div>
 
-            <div class="hiw-pt-step">
+            <div class="hiw-pt-step reveal" style="transition-delay: 0.1s;">
               <div class="step-num-pt">2</div>
               <div class="step-content-pt">
                 <h3 class="step-title-pt">Find alternative suppliers</h3>
@@ -974,7 +1071,7 @@
               </div>
             </div>
 
-            <div class="hiw-pt-step">
+            <div class="hiw-pt-step reveal" style="transition-delay: 0.2s;">
               <div class="step-num-pt">3</div>
               <div class="step-content-pt">
                 <h3 class="step-title-pt">Negotiate with data, not assumptions</h3>
@@ -987,7 +1084,7 @@
 
         <!-- Right: image -->
         <div class="hiw-pt-img-wrap">
-          <img src="images/tridge-eye-home.png" alt="Tridge Eye price benchmarking platform" class="hiw-pt-img">
+          <img src="images/Eye_speaker_white.jpg" alt="Tridge Eye price benchmarking platform" class="hiw-pt-img">
         </div>
 
       </div>
@@ -1001,14 +1098,14 @@
     <div class="container">
       <div class="why-pt-header">
         <span class="section-label-pt">WHY PROCUREMENT TEAMS CHOOSE TRIDGE</span>
-        <h2 class="section-headline-pt">The data layer your sourcing team is missing.</h2>
+        <h2 class="section-headline-pt reveal">The data layer your sourcing team is missing.</h2>
       </div>
 
       <div class="why-pt-grid">
 
-        <div class="why-card-pt">
+        <div class="why-card-pt reveal">
           <div class="why-card-icon-pt">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
               <line x1="18" y1="20" x2="18" y2="10"/>
               <line x1="12" y1="20" x2="12" y2="4"/>
               <line x1="6" y1="20" x2="6" y2="14"/>
@@ -1018,9 +1115,9 @@
           <p class="why-card-body-pt">Compare your purchase prices against 65M+ global price records &mdash; by origin, spec, and trade lane.</p>
         </div>
 
-        <div class="why-card-pt">
+        <div class="why-card-pt reveal" style="transition-delay: 0.1s;">
           <div class="why-card-icon-pt">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
               <circle cx="12" cy="12" r="10"/>
               <line x1="2" y1="12" x2="22" y2="12"/>
               <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
@@ -1030,9 +1127,9 @@
           <p class="why-card-body-pt">Find verified alternative suppliers across 140+ markets before you need them &mdash; not during a crisis.</p>
         </div>
 
-        <div class="why-card-pt">
+        <div class="why-card-pt reveal" style="transition-delay: 0.2s;">
           <div class="why-card-icon-pt">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
               <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
             </svg>
           </div>
@@ -1040,9 +1137,9 @@
           <p class="why-card-body-pt">Track price movements, supply shifts, and demand signals across 6,500+ product categories.</p>
         </div>
 
-        <div class="why-card-pt">
+        <div class="why-card-pt reveal" style="transition-delay: 0.3s;">
           <div class="why-card-icon-pt">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
               <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
               <polyline points="14 2 14 8 20 8"/>
               <line x1="16" y1="13" x2="8" y2="13"/>
@@ -1062,14 +1159,16 @@
   =================================================================== -->
   <section class="wyg-pt scroll-reveal">
     <div class="container">
-      <div class="wyg-pt-header">
-        <span class="section-label-pt">WHAT YOU GET</span>
-        <h2 class="section-headline-pt">Everything your team needs to buy smarter.</h2>
-      </div>
+      <div class="wyg-pt-inner">
+        <div class="wyg-pt-left">
+          <div class="wyg-pt-header">
+            <span class="section-label-pt">WHAT YOU GET</span>
+            <h2 class="section-headline-pt reveal">Everything your team needs to buy smarter.</h2>
+          </div>
 
-      <div class="checklist-grid">
+          <div class="checklist-grid">
 
-        <div class="check-item">
+        <div class="check-item reveal">
           <div class="check-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
               <polyline points="20 6 9 17 4 12"/>
@@ -1078,7 +1177,7 @@
           <span class="check-text">Price benchmark reports by origin &amp; spec</span>
         </div>
 
-        <div class="check-item">
+        <div class="check-item reveal" style="transition-delay: 0.05s;">
           <div class="check-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
               <polyline points="20 6 9 17 4 12"/>
@@ -1087,7 +1186,7 @@
           <span class="check-text">Verified supplier database across 140+ markets</span>
         </div>
 
-        <div class="check-item">
+        <div class="check-item reveal" style="transition-delay: 0.1s;">
           <div class="check-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
               <polyline points="20 6 9 17 4 12"/>
@@ -1096,7 +1195,7 @@
           <span class="check-text">Trade flow data &amp; import/export records</span>
         </div>
 
-        <div class="check-item">
+        <div class="check-item reveal" style="transition-delay: 0.15s;">
           <div class="check-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
               <polyline points="20 6 9 17 4 12"/>
@@ -1105,7 +1204,7 @@
           <span class="check-text">Weekly market briefs on key commodities</span>
         </div>
 
-        <div class="check-item">
+        <div class="check-item reveal" style="transition-delay: 0.2s;">
           <div class="check-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
               <polyline points="20 6 9 17 4 12"/>
@@ -1114,7 +1213,7 @@
           <span class="check-text">Competitor sourcing analysis</span>
         </div>
 
-        <div class="check-item">
+        <div class="check-item reveal" style="transition-delay: 0.25s;">
           <div class="check-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
               <polyline points="20 6 9 17 4 12"/>
@@ -1123,7 +1222,13 @@
           <span class="check-text">Custom research on demand</span>
         </div>
 
-      </div>
+          </div><!-- /.checklist-grid -->
+        </div><!-- /.wyg-pt-left -->
+
+        <div class="wyg-pt-right reveal" style="transition-delay: 0.15s;">
+          <img src="images/tridge-report-preview.png" alt="Tridge market report preview" class="wyg-pt-img">
+        </div>
+      </div><!-- /.wyg-pt-inner -->
     </div>
   </section>
 
@@ -1134,24 +1239,24 @@
     <div class="container">
       <div class="results-pt-header">
         <span class="results-pt-label">PROVEN RESULTS</span>
-        <h2 class="results-pt-headline">Procurement teams that switched to data-driven sourcing.</h2>
+        <h2 class="results-pt-headline reveal">Procurement teams that switched<br>to data-driven sourcing.</h2>
       </div>
 
       <div class="results-grid-pt">
 
-        <div class="result-card-pt">
+        <div class="result-card-pt reveal">
           <span class="result-tag-pt">Commodity Sourcing</span>
-          <div class="result-stat-pt">15&ndash;17x ROI</div>
+          <div class="result-stat-pt" data-countup-end="17" data-countup-display="15&ndash;17x ROI">15&ndash;17x ROI</div>
           <p class="result-body-pt">A food manufacturer locked in coffee bean prices before the market spiked &mdash; achieving 15 to 17x ROI on their annual data subscription.</p>
         </div>
 
-        <div class="result-card-pt">
+        <div class="result-card-pt reveal" style="transition-delay: 0.1s;">
           <span class="result-tag-pt">Supplier Diversification</span>
-          <div class="result-stat-pt">$250K saved</div>
+          <div class="result-stat-pt" data-countup-end="250" data-countup-display="$250K saved">$250K saved</div>
           <p class="result-body-pt">A global food company identified an alternative cocoa supplier during a price surge, saving $250,000 annually across a 500-ton contract.</p>
         </div>
 
-        <div class="result-card-pt">
+        <div class="result-card-pt reveal" style="transition-delay: 0.2s;">
           <span class="result-tag-pt">Cost Efficiency</span>
           <div class="result-stat-pt">2.8x volume, 1.9x cost</div>
           <p class="result-body-pt">A large food distributor scaled import volume 2.8x while keeping cost growth to 1.9x &mdash; through data-driven supplier diversification.</p>
@@ -1162,21 +1267,20 @@
   </section>
 
   <!-- ===================================================================
-       SECTION 7 — PAIR WITH INTELLIGENCE
+       SECTION 7 — FREE DATA
   =================================================================== -->
-  <section class="eye-pt scroll-reveal">
+  <section class="free-data-pt">
     <div class="container">
-      <div class="eye-pt-inner">
-        <div>
-          <span class="eye-pt-label">PAIR WITH INTELLIGENCE</span>
-          <h2 class="eye-pt-headline">Know the real price before you sign. Start with Tridge Eye.</h2>
-          <p class="eye-pt-body">Benchmark every quote against 65M+ price records. Tridge Eye tells you if the market is moving &mdash; before you&rsquo;re locked in.</p>
-          <a href="https://www.tridge.com/about/tridge-eye" target="_blank" class="btn-eye-pt">
-            Explore Tridge Eye &rarr;
-          </a>
+      <div class="free-data-pt-inner">
+        <div class="free-data-pt-text reveal">
+          <span class="free-data-label-pt">SEE THE DATA YOURSELF</span>
+          <h2 class="free-data-headline-pt">Not sure yet? The data speaks for itself.</h2>
+          <p class="free-data-body-pt">Browse current price benchmarks, trade flows, and market trends across 6,500+ product categories &mdash; no account required.</p>
+          <a href="https://www.tridge.com/market-curations" target="_blank" class="btn-free-data-pt">Explore Free Market Data &rarr;</a>
+          <p class="free-data-note-pt">Free access &middot; No sign-up required</p>
         </div>
-        <div>
-          <img src="images/tridge-eye-home.png" alt="Tridge Eye platform screenshot" class="eye-pt-img">
+        <div class="free-data-pt-visual reveal" style="transition-delay: 0.15s;">
+          <img src="images/tridge-market-data.png" alt="Tridge free market data" class="free-data-pt-img">
         </div>
       </div>
     </div>
@@ -1311,14 +1415,58 @@
       });
     }
 
-    // ===== SCROLL REVEAL =====
-    const observer = new IntersectionObserver((entries) => {
+    // ===== SCROLL REVEAL (sections) =====
+    const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('is-visible');
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
-    document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.scroll-reveal').forEach(el => sectionObserver.observe(el));
+
+    // ===== SCROLL REVEAL (elements) =====
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ===== COUNT-UP ANIMATION =====
+    function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+    function runCountUp(el) {
+      const endVal = parseInt(el.dataset.countupEnd, 10);
+      const display = el.dataset.countupDisplay;
+      const duration = 1500;
+      const start = performance.now();
+
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const current = Math.round(easeOut(progress) * endVal);
+        // Replace the numeric part in the display string
+        el.innerHTML = display.replace(String(endVal), current);
+        if (progress < 1) requestAnimationFrame(tick);
+        else el.innerHTML = display;
+      }
+      requestAnimationFrame(tick);
+    }
+
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.target.dataset.countupEnd) {
+          runCountUp(entry.target);
+          countObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('[data-countup-end]').forEach(el => countObserver.observe(el));
   </script>
 </body>
 </html>

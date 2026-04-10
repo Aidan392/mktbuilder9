@@ -2060,19 +2060,19 @@
 
           <div class="hero-stats">
             <div class="stat-box">
-              <div class="stat-number">1M+</div>
+              <div class="stat-number" data-count="1" data-prefix="" data-suffix="M+">1M+</div>
               <div class="stat-label">Global Users</div>
             </div>
             <div class="stat-box">
-              <div class="stat-number">200+</div>
+              <div class="stat-number" data-count="200" data-prefix="" data-suffix="+">200+</div>
               <div class="stat-label">Countries</div>
             </div>
             <div class="stat-box">
-              <div class="stat-number">12+</div>
+              <div class="stat-number" data-count="12" data-prefix="" data-suffix="+">12+</div>
               <div class="stat-label">Years Data</div>
             </div>
             <div class="stat-box">
-              <div class="stat-number">350K+</div>
+              <div class="stat-number" data-count="350" data-prefix="" data-suffix="K+">350K+</div>
               <div class="stat-label">Companies</div>
             </div>
           </div>
@@ -2787,6 +2787,35 @@
       section.classList.add('scroll-reveal');
       observer.observe(section);
     });
+
+    // ===== HERO STAT COUNT-UP =====
+    function countUp(el, target, duration) {
+      const start = performance.now();
+      const update = (time) => {
+        const elapsed = time - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const current = Math.floor(ease * target);
+        el.textContent = el.dataset.prefix + current + el.dataset.suffix;
+        if (progress < 1) requestAnimationFrame(update);
+        else el.textContent = el.dataset.prefix + target + el.dataset.suffix;
+      };
+      requestAnimationFrame(update);
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('[data-count]').forEach(el => {
+            countUp(el, parseInt(el.dataset.count, 10), 1500);
+          });
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const heroStats = document.querySelector('.hero-stats');
+    if (heroStats) statsObserver.observe(heroStats);
   </script>
 </body>
 </html>
