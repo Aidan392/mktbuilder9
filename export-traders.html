@@ -942,6 +942,70 @@
     .ctable-cell.tridge-col { color: #0edba5; font-weight: 500; }
 
     /* ===================================================================
+       SECTION — PAIR WITH INTELLIGENCE
+    =================================================================== */
+    .eye-nm {
+      background: #f8f9fa;
+      padding: clamp(48px, 6vw, 96px) 0;
+      border-top: 1px solid #e5e7eb;
+    }
+    .eye-nm-inner {
+      display: grid;
+      grid-template-columns: 40% 60%;
+      gap: 64px;
+      align-items: center;
+    }
+    .eye-nm-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #171CFD;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .eye-nm-headline {
+      font-size: clamp(28px, 3vw, 48px);
+      font-weight: 300;
+      color: #0A0A18;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .eye-nm-body {
+      font-size: 16px;
+      font-weight: 400;
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    .btn-eye-nm {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0A0A18;
+      color: #ffffff;
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+    .btn-eye-nm:hover { background: #000000; }
+    .eye-nm-img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      border: 1px solid #e0e0e0;
+      object-fit: cover;
+      object-position: top;
+    }
+    @media (max-width: 767px) {
+      .eye-nm-inner { grid-template-columns: 1fr; }
+      .eye-nm-img { margin-top: 24px; max-height: 240px; }
+    }
+
+    /* ===================================================================
        SECTION 6 — CTA
     =================================================================== */
     .cta-nm {
@@ -1773,6 +1837,27 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       SECTION — PAIR WITH INTELLIGENCE
+  =================================================================== -->
+  <section class="eye-nm scroll-reveal">
+    <div class="container">
+      <div class="eye-nm-inner">
+        <div>
+          <span class="eye-nm-label">PAIR WITH INTELLIGENCE</span>
+          <h2 class="eye-nm-headline">Trade on data, not instinct. Start with Tridge Eye.</h2>
+          <p class="eye-nm-body">Every deal starts with knowing the real number. Tridge Eye surfaces price spreads and trade flow shifts so you negotiate from a position of strength.</p>
+          <a href="https://www.tridge.com/about/tridge-eye" target="_blank" class="btn-eye-nm">
+            Explore Tridge Eye &rarr;
+          </a>
+        </div>
+        <div>
+          <img src="images/tridge-eye-home.png" alt="Tridge Eye platform screenshot" class="eye-nm-img">
+        </div>
+      </div>
     </div>
   </section>
 
