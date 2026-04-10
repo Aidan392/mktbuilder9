@@ -1123,11 +1123,24 @@
       color: rgba(255, 255, 255, 0.75);
     }
 
-    .plg-cards-grid {
+    .plg-grid-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .plg-row-1 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
       align-items: stretch;
+    }
+    .plg-row-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      align-items: stretch;
+      max-width: 66.66%;
+      margin: 0 auto;
     }
 
     .plg-card {
@@ -1192,44 +1205,39 @@
       align-items: center;
       gap: 8px;
       margin-bottom: 12px;
-    }
-
-    .plg-card-modules a {
-      font-size: 14px;
-      font-weight: 400;
       color: rgba(255, 255, 255, 0.75);
-      text-decoration: none;
-      transition: color 0.2s;
+      font-size: 15px;
+      cursor: default;
+      pointer-events: none;
     }
 
-    .plg-card-modules a:hover {
-      color: #ffffff;
-    }
-
-    .plg-card-modules svg {
-      stroke: rgba(255, 255, 255, 0.45);
+    .plg-bullet {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 18px;
+      line-height: 1;
       flex-shrink: 0;
     }
 
     .plg-card-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 14px;
-      font-weight: 600;
+      display: inline-block;
+      background: transparent;
       color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.40);
-      padding: 10px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
       border-radius: 6px;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
       text-decoration: none;
-      transition: background 0.2s, border-color 0.2s;
       align-self: flex-start;
       margin-top: auto;
     }
 
     .plg-card-cta:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.70);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #ffffff;
+      color: #ffffff;
     }
 
     /* ===== THE FUTURE SECTION ===== */
@@ -1321,7 +1329,29 @@
     .final-cta {
       background: var(--bg-light);
       padding: 64px 0;
-      text-align: center;
+    }
+
+    .final-cta-inner {
+      display: flex;
+      align-items: center;
+      gap: clamp(32px, 5vw, 80px);
+    }
+
+    .final-cta-text {
+      flex: 1 1 50%;
+    }
+
+    .final-cta-visual {
+      flex: 1 1 50%;
+    }
+
+    .final-cta-visual img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      object-fit: cover;
+      object-position: top;
+      display: block;
     }
 
     .final-cta-title {
@@ -1330,6 +1360,7 @@
       color: var(--text-primary);
       margin-bottom: 24px;
       line-height: 1.2;
+      text-align: left;
     }
 
     .final-cta-description {
@@ -1338,11 +1369,12 @@
       color: var(--text-secondary);
       line-height: 1.6;
       margin-bottom: 40px;
+      text-align: left;
     }
 
     .final-cta-buttons {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       gap: 16px;
       flex-wrap: wrap;
       margin-bottom: 24px;
@@ -1514,9 +1546,13 @@
       .solutions-grid,
       .differentiators-grid,
       .steps-grid,
-      .plg-cards-grid,
       .footer-top {
         grid-template-columns: 1fr;
+      }
+
+      .plg-row-1, .plg-row-2 {
+        grid-template-columns: 1fr;
+        max-width: 100%;
       }
 
       .hero-stats {
@@ -1544,6 +1580,9 @@
 
       .footer-bottom { flex-direction: column; gap: 12px; }
       .footer-legal-links { justify-content: center; }
+
+      .final-cta-inner { flex-direction: column; }
+      .final-cta-visual img { max-height: 240px; object-fit: cover; }
 
       .nav-inner { height: 64px; }
       .nav-links, .nav-ctas { display: none; }
@@ -1596,9 +1635,13 @@
       .the-future-image img { height: 260px; }
 
       .solutions-grid,
-      .differentiators-grid,
-      .plg-cards-grid {
+      .differentiators-grid {
         grid-template-columns: 1fr;
+      }
+
+      .plg-row-1, .plg-row-2 {
+        grid-template-columns: 1fr;
+        max-width: 100%;
       }
 
       .footer-top { grid-template-columns: repeat(2, 1fr); gap: 28px; }
@@ -1684,7 +1727,8 @@
 
       .solutions-grid { grid-template-columns: 1fr; }
       .differentiators-grid { grid-template-columns: repeat(2, 1fr); }
-      .plg-cards-grid { grid-template-columns: repeat(2, 1fr); }
+      .plg-row-1 { grid-template-columns: repeat(2, 1fr); }
+      .plg-row-2 { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
       .footer-top { grid-template-columns: repeat(3, 1fr); gap: 32px; }
 
       .challenge-cards { grid-template-columns: 1fr; gap: 12px; }
@@ -1712,7 +1756,8 @@
         padding-right: 32px;
       }
 
-      .plg-cards-grid { grid-template-columns: repeat(3, 1fr); }
+      .plg-row-1 { grid-template-columns: repeat(3, 1fr); }
+      .plg-row-2 { grid-template-columns: repeat(2, 1fr); max-width: 66.66%; margin: 0 auto; }
       .footer-top { grid-template-columns: repeat(6, 1fr); }
     }
 
@@ -1989,6 +2034,10 @@
                 <strong>Export Solution</strong>
                 <span>For Exporters & Sellers</span>
               </a>
+              <a href="https://www.tridge.com/sourcing-hub" target="_blank">
+                <strong>Sourcing Hub</strong>
+                <span>Find verified global suppliers</span>
+              </a>
               <a href="https://www.tridge.com/market-curations" target="_blank">
                 <strong>Browse Markets</strong>
                 <span>Explore free market data</span>
@@ -1996,21 +2045,25 @@
             </div>
             <div class="dropdown-col">
               <span class="dropdown-col-label">By Role</span>
-              <a href="https://www.tridge.com/about/tridge-eye" target="_blank">
-                <strong>Procurement Teams</strong>
+              <a href="export-procurement.html">
+                <strong>Procurement</strong>
                 <span>Know if you're overpaying</span>
               </a>
               <a href="export-solution.html">
                 <strong>Exporters & Suppliers</strong>
                 <span>Scale without hiring</span>
               </a>
-              <a href="contact-sales.html">
+              <a href="export-traders.html">
                 <strong>Traders</strong>
                 <span>Cut deal cycles</span>
               </a>
               <a href="export-brands-manufacturers.html">
-                <strong>Manufacturers</strong>
+                <strong>Brands & Manufacturers</strong>
                 <span>Go global without an export team</span>
+              </a>
+              <a href="export-government.html">
+                <strong>Government & Associations</strong>
+                <span>Drive trade with data</span>
               </a>
             </div>
           </div>
@@ -2088,7 +2141,7 @@
   <!-- ===== SECTION 3: CUSTOMER LOGOS ===== -->
   <section class="customer-logos">
     <div class="container">
-      <h2 class="section-subtitle">Trusted by Leading Global Trade Companies</h2>
+      <h2 class="section-subtitle">Trusted by the World's Leading Food Businesses</h2>
       <div class="logo-marquee-wrapper">
         <div class="logo-marquee-track">
           <img src="https://cdn-new.tridge.com/assets/VOXPRPRW.png" alt="Customer logo" />
@@ -2510,91 +2563,102 @@
         Select your path — see exactly how Tridge applies.
       </p>
 
-      <div class="plg-cards-grid">
+      <div class="plg-grid-wrapper">
 
-        <!-- Card 1: Procurement -->
-        <div class="plg-card">
-          <div class="plg-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-            </svg>
+        <div class="plg-row-1">
+
+          <!-- Card 1: Procurement -->
+          <div class="plg-card">
+            <div class="plg-card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.5" style="stroke: #171CFD;">
+                <path d="M18 20V10M12 20V4M6 20v-6"/>
+              </svg>
+            </div>
+            <div class="plg-card-role">PROCUREMENT</div>
+            <div class="plg-card-head">Know if you're overpaying before you sign.</div>
+            <ul class="plg-card-modules">
+              <li><span class="plg-bullet">·</span>Price Benchmarking</li>
+              <li><span class="plg-bullet">·</span>Supplier Discovery</li>
+              <li><span class="plg-bullet">·</span>Market Intelligence</li>
+            </ul>
+            <a href="export-procurement.html" class="plg-card-cta">See How It Works →</a>
           </div>
-          <div class="plg-card-role">Procurement</div>
-          <div class="plg-card-head">Know if you're overpaying before you sign.</div>
-          <ul class="plg-card-modules">
-            <li>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              <a href="https://www.tridge.com/about/tridge-eye" target="_blank">Price Benchmarking</a>
-            </li>
-            <li>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              <a href="https://www.tridge.com/about/tridge-eye" target="_blank" class="secondary">Supplier Discovery</a>
-            </li>
-            <li>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              <a href="https://www.tridge.com/about/tridge-eye" target="_blank" class="secondary">Market Intelligence</a>
-            </li>
-          </ul>
-          <a href="https://www.tridge.com/market-curations" target="_blank" class="plg-card-cta" style="color:#171CFD;">
-            Browse Free Market Data →
-          </a>
+
+          <!-- Card 2: Exporter -->
+          <div class="plg-card">
+            <div class="plg-card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+              </svg>
+            </div>
+            <div class="plg-card-role">EXPORTER</div>
+            <div class="plg-card-head">Reach verified buyers across 60+ markets.</div>
+            <ul class="plg-card-modules">
+              <li><span class="plg-bullet">·</span>Export Solution</li>
+              <li><span class="plg-bullet">·</span>AI Outreach</li>
+              <li><span class="plg-bullet">·</span>Market Intelligence</li>
+            </ul>
+            <a href="export-solution.html" class="plg-card-cta">Explore Export Solution →</a>
+          </div>
+
+          <!-- Card 3: Trader -->
+          <div class="plg-card">
+            <div class="plg-card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <div class="plg-card-role">TRADER</div>
+            <div class="plg-card-head">Execute more deals without adding headcount.</div>
+            <ul class="plg-card-modules">
+              <li><span class="plg-bullet">·</span>Trade Execution</li>
+              <li><span class="plg-bullet">·</span>Purchase Development</li>
+              <li><span class="plg-bullet">·</span>Market Intelligence</li>
+            </ul>
+            <a href="export-traders.html" class="plg-card-cta">Explore Solutions →</a>
+          </div>
+
         </div>
 
-        <!-- Card 2: Exporter -->
-        <div class="plg-card">
-          <div class="plg-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
-            </svg>
-          </div>
-          <div class="plg-card-role">Exporter</div>
-          <div class="plg-card-head">Reach verified buyers across 60+ markets.</div>
-          <ul class="plg-card-modules">
-            <li>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              <a href="export-solution.html">Export Solution</a>
-            </li>
-            <li>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              <a href="export-solution.html" class="secondary">AI Outreach</a>
-            </li>
-            <li>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              <a href="https://www.tridge.com/about/tridge-eye" target="_blank" class="secondary">Market Intelligence</a>
-            </li>
-          </ul>
-          <a href="export-solution.html" class="plg-card-cta" style="color:#171CFD;">
-            Explore Export Solution →
-          </a>
-        </div>
+        <div class="plg-row-2">
 
-        <!-- Card 3: Trader -->
-        <div class="plg-card">
-          <div class="plg-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
-            </svg>
+          <!-- Card 4: Manufacturer -->
+          <div class="plg-card">
+            <div class="plg-card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                <line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
+            </div>
+            <div class="plg-card-role">MANUFACTURER</div>
+            <div class="plg-card-head">Go global without building an export team.</div>
+            <ul class="plg-card-modules">
+              <li><span class="plg-bullet">·</span>Export Solution</li>
+              <li><span class="plg-bullet">·</span>Market Intelligence</li>
+              <li><span class="plg-bullet">·</span>Fulfillment</li>
+            </ul>
+            <a href="export-brands-manufacturers.html" class="plg-card-cta">See How It Works →</a>
           </div>
-          <div class="plg-card-role">Trader</div>
-          <div class="plg-card-head">Execute more deals without adding headcount.</div>
-          <ul class="plg-card-modules">
-            <li>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              <a href="export-solution.html">Trade Execution</a>
-            </li>
-            <li>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              <a href="export-solution.html" class="secondary">Purchase Development</a>
-            </li>
-            <li>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              <a href="https://www.tridge.com/about/tridge-eye" target="_blank" class="secondary">Market Intelligence</a>
-            </li>
-          </ul>
-          <a href="contact-sales.html" class="plg-card-cta" style="color:#171CFD;">
-            Get a Demo →
-          </a>
+
+          <!-- Card 5: Government -->
+          <div class="plg-card">
+            <div class="plg-card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.5" style="stroke: #171CFD;">
+                <path d="M3 22h18M6 18v-7M10 18v-7M14 18v-7M18 18v-7M12 2L2 7h20L12 2z"/>
+              </svg>
+            </div>
+            <div class="plg-card-role">GOVERNMENT</div>
+            <div class="plg-card-head">Scale export promotion across all member companies.</div>
+            <ul class="plg-card-modules">
+              <li><span class="plg-bullet">·</span>Trade Analytics</li>
+              <li><span class="plg-bullet">·</span>Export Promotion</li>
+              <li><span class="plg-bullet">·</span>Market Intelligence</li>
+            </ul>
+            <a href="export-government.html" class="plg-card-cta">Explore Solutions →</a>
+          </div>
+
         </div>
 
       </div>
@@ -2603,14 +2667,20 @@
 
   <!-- ===== SECTION 9: FINAL CTA ===== -->
   <section class="final-cta">
-    <div class="container-narrow">
-      <h2 class="final-cta-title">Intelligence That Moves Markets Starts Here.</h2>
-      <p class="final-cta-description">
-        200+ markets. 682M+ trade data points. 200K+ verified buyers.<br>Ready when you are.
-      </p>
-
-      <div class="final-cta-buttons">
-        <a href="contact-sales.html" class="btn-primary-large">Request Demo</a>
+    <div class="container">
+      <div class="final-cta-inner">
+        <div class="final-cta-text">
+          <h2 class="final-cta-title">Intelligence That Moves Markets Starts Here.</h2>
+          <p class="final-cta-description">
+            200+ markets. 682M+ trade data points. 200K+ verified buyers.<br>Ready when you are.
+          </p>
+          <div class="final-cta-buttons">
+            <a href="contact-sales.html" class="btn-primary-large">Request Demo</a>
+          </div>
+        </div>
+        <div class="final-cta-visual">
+          <img src="images/tridge-eye-home.png" alt="Tridge Eye dashboard">
+        </div>
       </div>
     </div>
   </section>
@@ -2631,19 +2701,13 @@
           </ul>
         </div>
         <div>
-          <h4 class="footer-heading">Why Tridge</h4>
-          <ul class="footer-links">
-            <li><a href="#">Use Case</a></li>
-            <li><a href="#">AI Technology</a></li>
-          </ul>
-        </div>
-        <div>
           <h4 class="footer-heading">Who It's For</h4>
           <ul class="footer-links">
-            <li><a href="https://www.tridge.com/about/tridge-eye" target="_blank">Procurement Teams</a></li>
-            <li><a href="export-solution.html">Exporters & Suppliers</a></li>
-            <li><a href="contact-sales.html">Traders</a></li>
-            <li><a href="export-brands-manufacturers.html">Manufacturers</a></li>
+            <li><a href="export-procurement.html">Procurement Teams</a></li>
+            <li><a href="export-solution.html">Exporters &amp; Suppliers</a></li>
+            <li><a href="export-traders.html">Traders</a></li>
+            <li><a href="export-brands-manufacturers.html">Brands &amp; Manufacturers</a></li>
+            <li><a href="export-government.html">Government &amp; Associations</a></li>
           </ul>
         </div>
         <div>
