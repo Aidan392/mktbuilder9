@@ -427,7 +427,7 @@
       display: grid;
       grid-template-columns: 40% 60%;
       gap: 72px;
-      align-items: start;
+      align-items: flex-start;
     }
 
     .hiw-nm-left {}
@@ -502,7 +502,7 @@
     .hiw-nm-right {
       align-self: flex-start;
       position: sticky;
-      top: 100px;
+      top: 40px;
     }
 
     .dash-nm {
@@ -666,10 +666,76 @@
     }
 
     /* ===================================================================
-       SECTION 4 — WHAT YOU GET
+       SECTION 4 — WHY TRIDGE (light)
+    =================================================================== */
+    .why-tridge-nm {
+      background: #ffffff;
+      padding: clamp(48px, 6vw, 96px) 0;
+    }
+    .wt-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #171CFD;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 20px;
+    }
+    .wt-headline {
+      font-size: clamp(28px, 3vw, 48px);
+      font-weight: 300;
+      color: #0A0A18;
+      margin: 0 0 24px;
+      line-height: 1.2;
+    }
+    .wt-intro {
+      color: #4b5563;
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 640px;
+      margin: 0 0 48px;
+    }
+    .wt-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .wt-card {
+      background: #f8f9fa;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 32px;
+    }
+    .wt-card-icon {
+      width: 48px;
+      height: 48px;
+      background: #eff0ff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .wt-card-title {
+      font-size: 18px;
+      font-weight: 500;
+      color: #0A0A18;
+      margin-bottom: 10px;
+    }
+    .wt-card-body {
+      font-size: 15px;
+      color: #4b5563;
+      line-height: 1.6;
+    }
+    @media (max-width: 767px) {
+      .wt-card-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===================================================================
+       SECTION 5 — WHAT YOU GET
     =================================================================== */
     .wyg-nm {
-      background: #ffffff;
+      background: #f8f9fa;
       padding: clamp(48px, 6vw, 96px) 0;
     }
 
@@ -1511,7 +1577,68 @@
   </section>
 
   <!-- ===================================================================
-       SECTION 4 — WHAT YOU GET
+       SECTION 4 — WHY TRIDGE
+  =================================================================== -->
+  <section class="why-tridge-nm scroll-reveal">
+    <div class="container">
+      <span class="wt-label">WHY TRIDGE</span>
+      <h2 class="wt-headline">Trade intelligence. Not a contact database.</h2>
+      <p class="wt-intro">Most outreach tools find contacts. Tridge finds counterparties who are actively sourcing or selling your category &mdash; right now. The difference is the data source: active import flows, procurement signals, and platform behavior across 140+ markets.</p>
+
+      <div class="wt-card-grid">
+
+        <div class="wt-card">
+          <div class="wt-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h3 class="wt-card-title">Active Trade Signals</h3>
+          <p class="wt-card-body">We don&rsquo;t search directories. We read active import flows across 140+ markets &mdash; updated continuously to surface counterparties at the moment they&rsquo;re ready to transact.</p>
+        </div>
+
+        <div class="wt-card">
+          <div class="wt-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <h3 class="wt-card-title">Counterparty Signal Targeting</h3>
+          <p class="wt-card-body">Every prospect is matched by active trade behavior &mdash; not job title or company size. You reach buyers and sellers who are already moving in your category.</p>
+        </div>
+
+        <div class="wt-card">
+          <div class="wt-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+              <path d="M9 11l3 3L22 4"/>
+              <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+            </svg>
+          </div>
+          <h3 class="wt-card-title">Qualified Introduction</h3>
+          <p class="wt-card-body">You receive a shortlist with the reasoning behind every introduction &mdash; not a contact list to cold-call. Every name is a confirmed, active trade participant.</p>
+        </div>
+
+        <div class="wt-card">
+          <div class="wt-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+          <h3 class="wt-card-title">Deal Intelligence Briefing</h3>
+          <p class="wt-card-body">Every introduction includes a full deal briefing: volume expectations, price targets, urgency signals, and the specific trigger that initiated engagement. You enter every negotiation informed.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       SECTION 5 — WHAT YOU GET
   =================================================================== -->
   <section class="wyg-nm scroll-reveal">
     <div class="container">
