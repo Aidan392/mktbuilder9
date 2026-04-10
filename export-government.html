@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scale Your Buyer Reach — Tridge Export Solution</title>
-  <meta name="description" content="Reach 10,000+ verified buyers without growing your team. Tridge runs your outreach at scale — 5–10 qualified introductions within 60 days.">
+  <title>Export Promotion at Scale — Tridge for Government &amp; Associations</title>
+  <meta name="description" content="Help more exporters go global without growing your team. Tridge deploys AI-driven buyer development at scale across your entire member base — simultaneously.">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Scale Your Buyer Reach — Tridge Export Solution">
-  <meta property="og:description" content="Automated outreach to 200,000+ verified buyers. Qualified introductions within 60 days.">
+  <meta property="og:title" content="Export Promotion at Scale — Tridge for Government &amp; Associations">
+  <meta property="og:description" content="AI-driven buyer development for trade promotion bodies. 200,000+ verified buyers. Every member company covered simultaneously.">
   <meta property="og:type" content="website">
 
   <!-- Favicon -->
@@ -204,7 +204,9 @@
 
     .hero-nm-img {
       position: absolute;
-      right: 0; top: 0; bottom: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
       width: 55%;
       height: 100%;
       object-fit: cover;
@@ -215,7 +217,12 @@
     .hero-nm-gradient {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to right, #0A0A18 0%, #0A0A18 42%, transparent 70%);
+      background: linear-gradient(to right,
+        #0a0a18 0%,
+        #0a0a18 35%,
+        rgba(10,10,24,0.85) 50%,
+        rgba(10,10,24,0.3) 65%,
+        transparent 80%);
       z-index: 1;
       pointer-events: none;
     }
@@ -259,7 +266,7 @@
     }
 
     .hero-nm-headline {
-      font-size: clamp(36px, 5vw, 64px);
+      font-size: clamp(36px, 4.5vw, 62px);
       font-weight: 300;
       color: #ffffff;
       line-height: 1.1;
@@ -286,6 +293,15 @@
       transition: background 0.2s;
     }
     .btn-hero-nm:hover { background: #0f14c7; }
+
+    .hero-nm-secondary-link {
+      display: block;
+      margin-top: 14px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      transition: color 0.2s;
+    }
+    .hero-nm-secondary-link:hover { color: #ffffff; }
 
     .hero-nm-stats {
       display: flex;
@@ -351,6 +367,7 @@
     }
 
     .problem-nm-header { text-align: center; max-width: 640px; margin: 0 auto 48px; }
+    .problem-nm .section-headline { white-space: nowrap; }
 
     .problem-nm-grid {
       display: grid;
@@ -375,17 +392,6 @@
       color: var(--blue);
       letter-spacing: 0.08em;
       margin-bottom: 12px;
-    }
-
-    .pcard-cost {
-      display: inline-block;
-      background: #fef2f2;
-      color: #dc2626;
-      font-size: 12px;
-      font-weight: 600;
-      border-radius: 4px;
-      padding: 4px 10px;
-      margin-bottom: 20px;
     }
 
     .pcard-title {
@@ -427,7 +433,7 @@
       display: grid;
       grid-template-columns: 40% 60%;
       gap: 72px;
-      align-items: start;
+      align-items: flex-start;
     }
 
     .hiw-nm-left {}
@@ -502,7 +508,7 @@
     .hiw-nm-right {
       align-self: flex-start;
       position: sticky;
-      top: 100px;
+      top: 40px;
     }
 
     .dash-nm {
@@ -666,10 +672,76 @@
     }
 
     /* ===================================================================
-       SECTION 4 — WHAT YOU GET
+       SECTION 4 — WHY TRIDGE (light)
+    =================================================================== */
+    .why-tridge-nm {
+      background: #ffffff;
+      padding: clamp(48px, 6vw, 96px) 0;
+    }
+    .wt-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #171CFD;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 20px;
+    }
+    .wt-headline {
+      font-size: clamp(28px, 3vw, 48px);
+      font-weight: 300;
+      color: #0A0A18;
+      margin: 0 0 24px;
+      line-height: 1.2;
+    }
+    .wt-intro {
+      color: #4b5563;
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 640px;
+      margin: 0 0 48px;
+    }
+    .wt-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .wt-card {
+      background: #f8f9fa;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 32px;
+    }
+    .wt-card-icon {
+      width: 48px;
+      height: 48px;
+      background: #eff0ff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .wt-card-title {
+      font-size: 18px;
+      font-weight: 500;
+      color: #0A0A18;
+      margin-bottom: 10px;
+    }
+    .wt-card-body {
+      font-size: 15px;
+      color: #4b5563;
+      line-height: 1.6;
+    }
+    @media (max-width: 767px) {
+      .wt-card-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===================================================================
+       SECTION 5 — WHAT YOU GET
     =================================================================== */
     .wyg-nm {
-      background: #ffffff;
+      background: #f8f9fa;
       padding: clamp(48px, 6vw, 96px) 0;
     }
 
@@ -783,7 +855,7 @@
     }
 
     /* ===================================================================
-       SECTION 5 — PROOF
+       SECTION 6 — PROOF
     =================================================================== */
     .proof-nm {
       background: var(--black);
@@ -876,7 +948,7 @@
     .ctable-cell.tridge-col { color: #0edba5; font-weight: 500; }
 
     /* ===================================================================
-       SECTION 6 — CTA
+       SECTION 7 — CTA
     =================================================================== */
     .cta-nm {
       background: linear-gradient(180deg, #0d0f2e 0%, #0A0A18 100%);
@@ -1289,7 +1361,7 @@
        SECTION 1 — HERO
   =================================================================== -->
   <section class="hero-nm">
-    <img src="images/seg-scale-supplier.jpg" alt="" class="hero-nm-img" aria-hidden="true">
+    <img src="images/government-hero.jpg" alt="" class="hero-nm-img" aria-hidden="true">
     <div class="hero-nm-gradient" aria-hidden="true"></div>
 
     <div class="container">
@@ -1300,11 +1372,11 @@
             Export Solution
           </a>
 
-          <div class="hero-nm-label">For Commodity Suppliers &amp; Producers</div>
+          <div class="hero-nm-label">GOVERNMENT &amp; ASSOCIATIONS</div>
 
-          <h1 class="hero-nm-headline">Scale to 10,000+ buyers without scaling your team.</h1>
+          <h1 class="hero-nm-headline">Help more exporters go global &mdash; without growing your team.</h1>
 
-          <p class="hero-nm-sub">Your product is ready. Your team isn't big enough to reach every buyer. Tridge runs your outreach across 200,000+ verified buyers — so you don't have to.</p>
+          <p class="hero-nm-sub">Trade promotion programs reach hundreds of companies &mdash; but your team can&rsquo;t run outreach for all of them. Tridge deploys AI-driven buyer development at scale, so every exporter in your program gets active market exposure.</p>
 
           <a href="contact-sales.html" class="btn-hero-nm">Request Demo</a>
 
@@ -1318,8 +1390,8 @@
               <div class="hero-stat-label">To first qualified introduction</div>
             </div>
             <div class="hero-stat">
-              <div class="hero-stat-num">10,000+</div>
-              <div class="hero-stat-label">Buyers reachable per campaign</div>
+              <div class="hero-stat-num">140+</div>
+              <div class="hero-stat-label">Markets covered</div>
             </div>
           </div>
         </div>
@@ -1333,9 +1405,8 @@
   <section class="problem-nm scroll-reveal">
     <div class="container">
       <div class="problem-nm-header">
-        <span class="section-label">The Problem</span>
-        <h2 class="section-headline">Why suppliers hit a ceiling</h2>
-        <p class="section-sub">Growth stalls when outreach capacity runs out.</p>
+        <span class="section-label">THE PROBLEM</span>
+        <h2 class="section-headline">Export promotion stalls at scale</h2>
       </div>
 
       <div class="problem-nm-grid">
@@ -1343,12 +1414,15 @@
         <!-- Card 01 -->
         <div class="problem-card-nm">
           <div class="pcard-num">01</div>
-          <span class="pcard-cost">$3,000–$10,000 / month</span>
-          <h3 class="pcard-title">Your sales team can only reach so many buyers</h3>
-          <p class="pcard-body">Manual outreach has a hard limit. One rep can manage 50–100 prospects. Meanwhile, thousands of distributors actively sourcing in your category never hear from you.</p>
+          <div style="display:inline-block;background:#fff0f0;color:#e53e3e;font-size:12px;font-weight:600;padding:4px 10px;border-radius:4px;margin-bottom:10px;">$15,000&ndash;$50,000 / event</div>
+          <h3 class="pcard-title">Trade shows reach the same buyers every year</h3>
+          <p class="pcard-body">One event, one week, one market. The other 51 weeks, your member companies have no active outreach running on their behalf. The distributor who just switched suppliers last month &mdash; you never knew they were looking.</p>
           <div class="pcard-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
             </svg>
           </div>
         </div>
@@ -1356,12 +1430,14 @@
         <!-- Card 02 -->
         <div class="problem-card-nm">
           <div class="pcard-num">02</div>
-          <span class="pcard-cost">$15,000–$50,000 / event</span>
-          <h3 class="pcard-title">Trade shows put you in front of the same crowd</h3>
-          <p class="pcard-body">You meet the same buyers every year. The importer who just expanded into your category last month wasn't at the show. They never found you.</p>
+          <div style="display:inline-block;background:#fff0f0;color:#e53e3e;font-size:12px;font-weight:600;padding:4px 10px;border-radius:4px;margin-bottom:10px;">No structured KPI</div>
+          <h3 class="pcard-title">ROI is invisible</h3>
+          <p class="pcard-body">You invest in export programs but can&rsquo;t measure which activities drove actual buyer conversations, negotiations, or closed deals. Attendance numbers aren&rsquo;t pipeline.</p>
           <div class="pcard-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
             </svg>
           </div>
         </div>
@@ -1369,12 +1445,15 @@
         <!-- Card 03 -->
         <div class="problem-card-nm">
           <div class="pcard-num">03</div>
-          <span class="pcard-cost">Staff time + months of attrition</span>
-          <h3 class="pcard-title">Hiring more reps doesn't solve the data problem</h3>
-          <p class="pcard-body">Without knowing which buyers are actively sourcing your category right now, more headcount just means more unfocused outreach. The signal is missing, not the people.</p>
+          <div style="display:inline-block;background:#fff0f0;color:#e53e3e;font-size:12px;font-weight:600;padding:4px 10px;border-radius:4px;margin-bottom:10px;">1 manager per market</div>
+          <h3 class="pcard-title">Your team can&rsquo;t cover every member company</h3>
+          <p class="pcard-body">100+ member exporters. Each needs market intelligence, buyer targeting, and outreach &mdash; customized to their product and target market. Manual outreach scales with headcount. Tridge scales with data.</p>
           <div class="pcard-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
-              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+              <path d="M16 3.13a4 4 0 010 7.75"/>
             </svg>
           </div>
         </div>
@@ -1393,14 +1472,14 @@
         <!-- Left: steps -->
         <div class="hiw-nm-left">
           <span class="hiw-label">How It Works</span>
-          <h2 class="hiw-headline">Your product, in front of the right buyers — automatically.</h2>
+          <h2 class="hiw-headline">Your entire member base. Active in global markets &mdash; simultaneously.</h2>
 
           <div class="hiw-steps">
 
             <div class="hiw-step">
-              <span class="day-tag">Day 1–3</span>
-              <h3 class="hiw-step-title">Catalog &amp; Capability Setup</h3>
-              <p class="hiw-step-body">AI ingests your product specs, certifications, MOQs, and target categories. Buyer profile built automatically — no lengthy intake calls required.</p>
+              <span class="day-tag">Day 1&ndash;3</span>
+              <h3 class="hiw-step-title">Member Onboarding</h3>
+              <p class="hiw-step-body">AI ingests product catalogs, certifications, and target markets for each member company simultaneously. No intake calls required per company.</p>
               <div class="hiw-step-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
                   <polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
@@ -1409,9 +1488,10 @@
             </div>
 
             <div class="hiw-step">
-              <span class="day-tag">Day 3–10</span>
-              <h3 class="hiw-step-title">Buyer Matching &amp; Scoring</h3>
-              <p class="hiw-step-body">Tridge scans 200,000+ verified buyers for active procurement signals in your category. Every prospect scored by purchase readiness, category fit, and market reach.</p>
+              <span class="day-tag">Day 3&ndash;10</span>
+              <h3 class="hiw-step-title">Target Discovery &amp; Buyer Qualification</h3>
+              <p class="hiw-step-body">Tridge scans 200,000+ active buyer signals across target markets &mdash; then qualifies every prospect across six dimensions: category fit, route-to-market alignment, market readiness, commercial activity, reachability, and signal confidence.</p>
+              <p class="hiw-step-body" style="margin-top:12px;">The result isn&rsquo;t a contact list. It&rsquo;s a qualified shortlist &mdash; with the reasoning behind every introduction.</p>
               <div class="hiw-step-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
                   <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -1421,8 +1501,8 @@
 
             <div class="hiw-step">
               <span class="day-tag">From Day 10</span>
-              <h3 class="hiw-step-title">Automated Outreach at Scale</h3>
-              <p class="hiw-step-body">Personalized outreach launched across all matched buyers simultaneously. Responses classified by intent — only genuine interest escalates to your team.</p>
+              <h3 class="hiw-step-title">Outreach &amp; Program Dashboard</h3>
+              <p class="hiw-step-body">AI-driven outreach launches simultaneously across all member companies. Qualified introductions delivered with full intelligence briefing. Program performance tracked in real time &mdash; response rates, negotiation stages, and introductions per company.</p>
               <div class="hiw-step-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
                   <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
@@ -1453,22 +1533,22 @@
             <div class="dash-nm-body">
 
               <div class="dash-campaign-row">
-                <span class="dash-campaign-label">Your Campaign</span>
-                <span class="dash-campaign-val">Premium Olive Oil &middot; 5 markets</span>
+                <span class="dash-campaign-label">Your Program</span>
+                <span class="dash-campaign-val">Export Promotion Program &middot; 12 companies</span>
               </div>
 
               <div class="dash-metrics">
                 <div class="dash-metric-card">
-                  <div class="dash-metric-label">Buyers Matched</div>
-                  <div class="dash-metric-num">3,240</div>
+                  <div class="dash-metric-label">Companies Active</div>
+                  <div class="dash-metric-num">12</div>
+                </div>
+                <div class="dash-metric-card">
+                  <div class="dash-metric-label">Verified Buyers</div>
+                  <div class="dash-metric-num">1,840</div>
                 </div>
                 <div class="dash-metric-card">
                   <div class="dash-metric-label">Outreach Live</div>
-                  <div class="dash-metric-num">1,890</div>
-                </div>
-                <div class="dash-metric-card">
-                  <div class="dash-metric-label">Responses</div>
-                  <div class="dash-metric-num accent">147</div>
+                  <div class="dash-metric-num accent">94</div>
                 </div>
               </div>
 
@@ -1476,20 +1556,20 @@
               <div class="dash-leads-list">
                 <div class="dash-lead-row">
                   <span class="lead-tier tier-1">&#9733; TIER 1</span>
-                  <span class="lead-name">Metro Fine Foods</span>
-                  <span class="lead-country">&middot; France</span>
+                  <span class="lead-name">Asian Food Distributors Co.</span>
+                  <span class="lead-country">&middot; Japan</span>
                   <span class="lead-arrow">&#8594;</span>
                 </div>
                 <div class="dash-lead-row">
                   <span class="lead-tier tier-1">&#9733; TIER 1</span>
-                  <span class="lead-name">Gulf Gourmet Trading</span>
-                  <span class="lead-country">&middot; UAE</span>
+                  <span class="lead-name">European Retail Group</span>
+                  <span class="lead-country">&middot; Germany</span>
                   <span class="lead-arrow">&#8594;</span>
                 </div>
                 <div class="dash-lead-row">
                   <span class="lead-tier tier-2">&#9670; TIER 2</span>
-                  <span class="lead-name">Yamamoto Food Import</span>
-                  <span class="lead-country">&middot; Japan</span>
+                  <span class="lead-name">MENA Import Alliance</span>
+                  <span class="lead-country">&middot; UAE</span>
                   <span class="lead-arrow">&#8594;</span>
                 </div>
               </div>
@@ -1511,45 +1591,105 @@
   </section>
 
   <!-- ===================================================================
-       SECTION 4 — WHAT YOU GET
+       SECTION 4 — WHY TRIDGE
+  =================================================================== -->
+  <section class="why-tridge-nm scroll-reveal">
+    <div class="container">
+      <span class="wt-label">WHY TRIDGE</span>
+      <h2 class="wt-headline">Trade intelligence. Not a contact database.</h2>
+      <p class="wt-intro">Most outreach tools find contacts. Tridge finds buyers who are actively sourcing your members&rsquo; categories &mdash; right now. The difference is the data source: active import flows, procurement signals, and platform behavior across 140+ markets.</p>
+
+      <div class="wt-card-grid">
+
+        <div class="wt-card">
+          <div class="wt-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h3 class="wt-card-title">Active Trade Signals</h3>
+          <p class="wt-card-body">We don&rsquo;t search directories. We read active import flows across 140+ markets &mdash; updated continuously to surface buyers at the moment they&rsquo;re sourcing.</p>
+        </div>
+
+        <div class="wt-card">
+          <div class="wt-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <h3 class="wt-card-title">Procurement Signal Targeting</h3>
+          <p class="wt-card-body">Every prospect is matched by active sourcing behavior &mdash; not job title or company size. Your members reach buyers who are already looking for what they sell.</p>
+        </div>
+
+        <div class="wt-card">
+          <div class="wt-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+              <path d="M9 11l3 3L22 4"/>
+              <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+            </svg>
+          </div>
+          <h3 class="wt-card-title">Qualified Introduction</h3>
+          <p class="wt-card-body">Every member company receives a shortlist with the reasoning behind each introduction &mdash; not a contact list to cold-call.</p>
+        </div>
+
+        <div class="wt-card">
+          <div class="wt-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#171CFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </div>
+          <h3 class="wt-card-title">Program ROI Dashboard</h3>
+          <p class="wt-card-body">Track response rates, negotiation stages, and qualified introductions across all member companies &mdash; full export program ROI in one dashboard.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       SECTION 5 — WHAT YOU GET
   =================================================================== -->
   <section class="wyg-nm scroll-reveal">
     <div class="container">
       <div class="wyg-header">
-        <span class="section-label">What You Receive</span>
+        <span class="section-label">WHAT YOU RECEIVE</span>
         <h2 class="section-headline">Four deliverables. Sixty days.</h2>
-        <p class="section-sub">Every engagement includes the same set of intelligence, outreach, and introduction deliverables — designed for scale.</p>
+        <p class="section-sub">Every engagement includes intelligence, outreach, and qualified introductions &mdash; built to serve your entire member base.</p>
       </div>
 
       <div class="wyg-vt">
 
-        <!-- Row 1: DAY 1 -->
+        <!-- Row 1: DAY 1–2 -->
         <div class="wyg-vt-row">
-          <div class="wyg-vt-day">Day 1</div>
+          <div class="wyg-vt-day">Day 1&ndash;2</div>
           <div class="wyg-vt-node-col">
             <div class="wyg-vt-circle"></div>
             <div class="wyg-vt-line"></div>
           </div>
           <div class="wyg-vt-card">
             <span class="wyg-tag intelligence">Intelligence</span>
-            <h3 class="wyg-card-title">Target Market Prioritization Report</h3>
-            <p class="wyg-card-body">A ranked breakdown of which markets show the highest active demand for your category — by import growth, buyer density, and current procurement signals.</p>
-            <div class="wyg-card-meta">10–20 markets assessed &middot; Top buyer segments identified &middot; Delivered within 2 weeks</div>
+            <h3 class="wyg-card-title">Member Market Prioritization Reports</h3>
+            <p class="wyg-card-body">Per-company ranked assessment of top target markets &mdash; by category import growth, distributor density, and active procurement signals. Delivered within 2 weeks.</p>
+            <div class="wyg-card-meta">Companies assessed: 15&ndash;20 per member &middot; Priority markets ranked: 5&ndash;8 &middot; Delivered: within 2 weeks</div>
           </div>
         </div>
 
-        <!-- Row 2: WEEK 1–2 -->
+        <!-- Row 2: WEEK 1–4 -->
         <div class="wyg-vt-row">
-          <div class="wyg-vt-day">Week 1–2</div>
+          <div class="wyg-vt-day">Week 1&ndash;4</div>
           <div class="wyg-vt-node-col">
             <div class="wyg-vt-circle"></div>
             <div class="wyg-vt-line"></div>
           </div>
           <div class="wyg-vt-card">
             <span class="wyg-tag intelligence">Intelligence</span>
-            <h3 class="wyg-card-title">Verified Buyer &amp; Distributor Shortlist</h3>
-            <p class="wyg-card-body">A curated, verified list of buyers and distributors scored by category fit and procurement readiness — far beyond what a directory or LinkedIn search provides.</p>
-            <div class="wyg-card-meta">500–3,000+ verified targets &middot; Scored by readiness &middot; Continuously refreshed</div>
+            <h3 class="wyg-card-title">Verified Buyer Shortlists</h3>
+            <p class="wyg-card-body">Per-company curated shortlists of verified distributors and importers &mdash; each assessed for category fit, procurement readiness, and market reach. Continuously updated throughout engagement.</p>
+            <div class="wyg-card-meta">500&ndash;1,000 verified targets per member company</div>
           </div>
         </div>
 
@@ -1562,9 +1702,9 @@
           </div>
           <div class="wyg-vt-card">
             <span class="wyg-tag active">Active Engagement</span>
-            <h3 class="wyg-card-title">Outreach Campaign &amp; Live Dashboard</h3>
-            <p class="wyg-card-body">Personalized outreach launched at scale across all matched buyers. Live dashboard tracks responses, intent classification, and engagement scoring in real time — no manual follow-up required.</p>
-            <div class="wyg-card-meta">Campaign live within 10 days &middot; Weekly performance report included</div>
+            <h3 class="wyg-card-title">Outreach Campaign Execution</h3>
+            <p class="wyg-card-body">AI-driven outreach launches simultaneously across all member companies &mdash; messaging personalized to each recipient&rsquo;s sourcing context. All member companies active from day 10.</p>
+            <div class="wyg-card-meta">Campaign live: within 10 days &middot; Weekly report included</div>
           </div>
         </div>
 
@@ -1577,9 +1717,9 @@
           </div>
           <div class="wyg-vt-card core-card">
             <span class="wyg-tag core">Core Deliverable</span>
-            <h3 class="wyg-card-title">Qualified Buyer Introductions</h3>
-            <p class="wyg-card-body">Buyers who confirm genuine sourcing interest are introduced to your team with a full briefing — purchase volume, decision timeline, and category context included. You close. We handle the volume.</p>
-            <div class="wyg-card-meta">5–10 qualified introductions within 60 days</div>
+            <h3 class="wyg-card-title">Program Performance Dashboard</h3>
+            <p class="wyg-card-body">Full visibility across all member companies &mdash; response rates, negotiation stages, and qualified introductions per company. Measure your program&rsquo;s ROI with structured, data-driven KPIs.</p>
+            <div class="wyg-card-meta">5&ndash;10 qualified introductions per member company within 60 days</div>
           </div>
         </div>
 
@@ -1588,61 +1728,61 @@
   </section>
 
   <!-- ===================================================================
-       SECTION 5 — PROOF
+       SECTION 6 — PROOF
   =================================================================== -->
   <section class="proof-nm scroll-reveal">
     <div class="container">
 
       <div class="proof-numbers">
         <div class="proof-num-item">
-          <div class="proof-big-num">10,000+</div>
-          <div class="proof-big-label">Buyers reachable per campaign</div>
+          <div class="proof-big-num">60 days</div>
+          <div class="proof-big-label">To first qualified introduction</div>
         </div>
         <div class="proof-num-item">
-          <div class="proof-big-num">2 weeks</div>
-          <div class="proof-big-label">From onboarding to outreach live</div>
+          <div class="proof-big-num">100+</div>
+          <div class="proof-big-label">Member companies simultaneously</div>
         </div>
         <div class="proof-num-item">
           <div class="proof-big-num">200K+</div>
-          <div class="proof-big-label">Verified buyer network across 140+ markets</div>
+          <div class="proof-big-label">Verified buyer network</div>
         </div>
       </div>
 
       <div class="proof-table-header">
         <div class="proof-table-label">The Results</div>
-        <h2 class="proof-table-headline">Manual outreach vs. Tridge</h2>
+        <h2 class="proof-table-headline">Traditional export program vs. Tridge</h2>
       </div>
 
       <div class="compare-table">
         <div class="ctable-head">
           <div class="ctable-head-cell"></div>
-          <div class="ctable-head-cell">Manual Outreach</div>
+          <div class="ctable-head-cell">Traditional Export Program</div>
           <div class="ctable-head-cell">Tridge &#10003;</div>
         </div>
         <div class="ctable-row">
-          <div class="ctable-cell row-label">Reach per rep</div>
-          <div class="ctable-cell traditional">50–100 buyers</div>
-          <div class="ctable-cell tridge-col">200,000+ verified buyers</div>
+          <div class="ctable-cell row-label">Coverage</div>
+          <div class="ctable-cell traditional">1&ndash;2 trade shows/year</div>
+          <div class="ctable-cell tridge-col">Active outreach 365 days</div>
         </div>
         <div class="ctable-row">
-          <div class="ctable-cell row-label">Targeting</div>
-          <div class="ctable-cell traditional">Directory-based</div>
-          <div class="ctable-cell tridge-col">AI procurement signals</div>
+          <div class="ctable-cell row-label">Simultaneous companies</div>
+          <div class="ctable-cell traditional">5&ndash;10 at a time</div>
+          <div class="ctable-cell tridge-col">100+ simultaneously</div>
         </div>
         <div class="ctable-row">
-          <div class="ctable-cell row-label">Time to engage</div>
-          <div class="ctable-cell traditional">Weeks of prep</div>
-          <div class="ctable-cell tridge-col">Campaign live in 10 days</div>
+          <div class="ctable-cell row-label">ROI measurement</div>
+          <div class="ctable-cell traditional">Attendance numbers</div>
+          <div class="ctable-cell tridge-col">Qualified introductions</div>
         </div>
         <div class="ctable-row">
-          <div class="ctable-cell row-label">Cost</div>
-          <div class="ctable-cell traditional">Salary + overhead</div>
-          <div class="ctable-cell tridge-col">Pricing based on markets &amp; scope</div>
+          <div class="ctable-cell row-label">Market intelligence</div>
+          <div class="ctable-cell traditional">General reports</div>
+          <div class="ctable-cell tridge-col">Per-company, per-market</div>
         </div>
         <div class="ctable-row">
-          <div class="ctable-cell row-label">Visibility</div>
-          <div class="ctable-cell traditional">None</div>
-          <div class="ctable-cell tridge-col">Live dashboard</div>
+          <div class="ctable-cell row-label">Time to first buyer</div>
+          <div class="ctable-cell traditional">Months</div>
+          <div class="ctable-cell tridge-col">Within 60 days</div>
         </div>
       </div>
 
@@ -1650,15 +1790,15 @@
   </section>
 
   <!-- ===================================================================
-       SECTION 6 — CTA
+       SECTION 7 — CTA
   =================================================================== -->
   <section class="cta-nm scroll-reveal">
     <div class="container">
       <div class="cta-nm-inner">
         <div class="cta-nm-divider"></div>
         <span class="cta-nm-next-step">Next Step</span>
-        <h2 class="cta-nm-headline">Ready to scale beyond your team's reach?</h2>
-        <p class="cta-nm-sub">5–10 qualified buyer introductions within 60 days. Your team closes deals. Tridge handles the volume.</p>
+        <h2 class="cta-nm-headline">Ready to scale export promotion across your entire member base?</h2>
+        <p class="cta-nm-sub">200,000+ verified buyers. 140+ markets. Every member company covered.</p>
         <a href="contact-sales.html" class="btn-cta-nm">Request Demo &rarr;</a>
         <a href="export-solution.html" class="cta-nm-secondary">Or explore the full Export Solution &rarr;</a>
       </div>

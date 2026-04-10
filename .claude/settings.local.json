@@ -58,7 +58,16 @@
       "Bash(cp export-manufacturers.html archive/export-manufacturers.html)",
       "Bash(node update-links.js)",
       "Bash(grep -rn \"export-new-markets\\\\|export-manufacturers\" *.html)",
-      "Bash(node screenshot-tasks.js)"
+      "Bash(node screenshot-tasks.js)",
+      "Bash(node screenshot-review.js)",
+      "Bash(node ss.js)",
+      "Bash(rm ss.js)",
+      "Bash(node screenshot-problem.js)",
+      "Bash(mv export-suppliers.html export-commodity.html)",
+      "Bash(grep -rn \"export-suppliers\" *.html)",
+      "Bash(mv hero-export-traders.jpg archive/)",
+      "Bash(cp traders-hero.jpg hero-export-traders.jpg)",
+      "Bash(cp traders-hero.jpg seg-trader.jpg)"
     ]
   }
 }
