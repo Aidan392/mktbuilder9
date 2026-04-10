@@ -219,15 +219,43 @@
       top: 100%;
       left: 0;
       margin-top: 16px;
-      background: var(--bg-light);
-      border-radius: 8px;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+      background: #0d0f2e;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
       min-width: 260px;
       padding: 8px 0;
       opacity: 0;
       visibility: hidden;
       transform: translateY(-8px);
       transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+    }
+
+    .dropdown-menu.dropdown-2col {
+      min-width: 520px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 40px;
+      padding: 24px;
+    }
+
+    .dropdown-col {
+      padding: 0;
+    }
+
+    .dropdown-col:first-child {
+      border-right: 1px solid rgba(255,255,255,0.08);
+      padding-right: 40px;
+    }
+
+    .dropdown-col-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: block;
     }
 
     .nav-dropdown.is-open .dropdown-menu {
@@ -239,24 +267,53 @@
     .dropdown-menu a {
       display: flex;
       flex-direction: column;
-      padding: 12px 20px;
+      padding: 10px 0;
       color: var(--text-primary);
-      transition: background 0.2s;
+      transition: background 0.2s, padding 0.15s;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      text-decoration: none;
+    }
+
+    .dropdown-menu a:last-child {
+      border-bottom: none;
     }
 
     .dropdown-menu a:hover {
-      background: var(--bg-gray-light);
+      background: rgba(255,255,255,0.03);
+      border-radius: 6px;
+      padding: 10px 8px;
+    }
+
+    .dropdown-menu a:hover strong {
+      color: #171CFD;
     }
 
     .dropdown-menu strong {
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      color: white;
+      display: block;
     }
 
     .dropdown-menu span {
-      font-size: 13px;
-      color: var(--text-secondary);
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* Resources dropdown — simple single-column */
+    .dropdown-menu.dropdown-simple a {
+      padding: 12px 20px;
+      color: rgba(255,255,255,0.8);
+      border-bottom: none;
+    }
+
+    .dropdown-menu.dropdown-simple a:hover {
+      background: rgba(255,255,255,0.05);
+      border-radius: 6px;
+      padding: 12px 20px;
+      color: white;
     }
 
     .nav-ctas {
@@ -1303,7 +1360,7 @@
 
     .footer-top {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 40px;
       padding-bottom: 56px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -1654,7 +1711,7 @@
       }
 
       .plg-cards-grid { grid-template-columns: repeat(3, 1fr); }
-      .footer-top { grid-template-columns: repeat(5, 1fr); }
+      .footer-top { grid-template-columns: repeat(6, 1fr); }
     }
 
     /* ================================
@@ -1919,21 +1976,47 @@
       <div class="nav-links">
         <div class="nav-dropdown">
           <button class="nav-link-dropdown">Solutions ▼</button>
-          <div class="dropdown-menu">
-            <a href="https://www.tridge.com/about/tridge-eye" target="_blank">
-              <strong>Tridge Eye</strong>
-              <span>For Buyers & Procurement</span>
-            </a>
-            <a href="export-solution.html">
-              <strong>Export Solution</strong>
-              <span>For Exporters & Sellers</span>
-            </a>
+          <div class="dropdown-menu dropdown-2col">
+            <div class="dropdown-col">
+              <span class="dropdown-col-label">By Product</span>
+              <a href="https://www.tridge.com/about/tridge-eye" target="_blank">
+                <strong>Tridge Eye</strong>
+                <span>For Buyers & Procurement</span>
+              </a>
+              <a href="export-solution.html">
+                <strong>Export Solution</strong>
+                <span>For Exporters & Sellers</span>
+              </a>
+              <a href="https://www.tridge.com/market-curations" target="_blank">
+                <strong>Browse Markets</strong>
+                <span>Explore free market data</span>
+              </a>
+            </div>
+            <div class="dropdown-col">
+              <span class="dropdown-col-label">By Role</span>
+              <a href="https://www.tridge.com/about/tridge-eye" target="_blank">
+                <strong>Procurement Teams</strong>
+                <span>Know if you're overpaying</span>
+              </a>
+              <a href="export-solution.html">
+                <strong>Exporters & Suppliers</strong>
+                <span>Scale without hiring</span>
+              </a>
+              <a href="contact-sales.html">
+                <strong>Traders</strong>
+                <span>Cut deal cycles</span>
+              </a>
+              <a href="export-manufacturers.html">
+                <strong>Manufacturers</strong>
+                <span>Go global without an export team</span>
+              </a>
+            </div>
           </div>
         </div>
 
         <div class="nav-dropdown">
           <button class="nav-link-dropdown">Resources ▼</button>
-          <div class="dropdown-menu">
+          <div class="dropdown-menu dropdown-simple">
             <a href="#">Blog</a>
             <a href="#">Case Studies</a>
             <a href="#">Documentation</a>
@@ -1969,8 +2052,8 @@
           </p>
 
           <div class="hero-ctas">
-            <a href="https://eye.tridge.com" class="btn-primary-large">Get Started</a>
-            <a href="#how" class="btn-secondary-large">See How It Works</a>
+            <a href="https://www.tridge.com/market-curations" target="_blank" class="btn-primary-large">Browse Free Market Data →</a>
+            <a href="contact-sales.html" class="btn-secondary-large">Get a Demo</a>
           </div>
 
           <div class="hero-stats">
@@ -2450,9 +2533,8 @@
               <a href="https://www.tridge.com/about/tridge-eye" target="_blank" class="secondary">Market Intelligence</a>
             </li>
           </ul>
-          <a href="https://www.tridge.com/about/tridge-eye" target="_blank" class="plg-card-cta">
-            Explore
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <a href="https://www.tridge.com/market-curations" target="_blank" class="plg-card-cta" style="color:#171CFD;">
+            Browse Free Market Data →
           </a>
         </div>
 
@@ -2480,9 +2562,8 @@
               <a href="https://www.tridge.com/about/tridge-eye" target="_blank" class="secondary">Market Intelligence</a>
             </li>
           </ul>
-          <a href="export-solution.html" class="plg-card-cta">
-            Explore
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <a href="export-solution.html" class="plg-card-cta" style="color:#171CFD;">
+            Explore Export Solution →
           </a>
         </div>
 
@@ -2509,9 +2590,8 @@
               <a href="https://www.tridge.com/about/tridge-eye" target="_blank" class="secondary">Market Intelligence</a>
             </li>
           </ul>
-          <a href="contact-sales.html" class="plg-card-cta">
-            Explore
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <a href="contact-sales.html" class="plg-card-cta" style="color:#171CFD;">
+            Get a Demo →
           </a>
         </div>
 
@@ -2553,6 +2633,15 @@
           <ul class="footer-links">
             <li><a href="#">Use Case</a></li>
             <li><a href="#">AI Technology</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Who It's For</h4>
+          <ul class="footer-links">
+            <li><a href="https://www.tridge.com/about/tridge-eye" target="_blank">Procurement Teams</a></li>
+            <li><a href="export-solution.html">Exporters & Suppliers</a></li>
+            <li><a href="contact-sales.html">Traders</a></li>
+            <li><a href="export-manufacturers.html">Manufacturers</a></li>
           </ul>
         </div>
         <div>
