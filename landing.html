@@ -31,7 +31,7 @@
     }
 
     html {
-      overflow-x: hidden !important;
+      overflow-x: clip !important;
     }
 
     body {
@@ -94,7 +94,7 @@
     }
 
     html, body {
-      overflow-x: hidden !important;
+      overflow-x: clip !important;
       max-width: 100% !important;
     }
 
@@ -1105,7 +1105,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 48px;
-      align-items: center;
+      align-items: flex-start;
     }
 
     .how-it-works-left {
@@ -1114,8 +1114,9 @@
 
     .how-it-works-right {
       min-width: 0;
-      align-self: center;
-      padding-top: 120px;
+      align-self: flex-start;
+      position: sticky;
+      top: 40px;
     }
 
     .how-it-works-right img {
